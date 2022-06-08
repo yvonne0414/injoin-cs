@@ -1,0 +1,23 @@
+@import "./_customBootstrap.scss";
+
+
+
+// object
+.object-cover {
+  object-fit: cover;
+}
+
+.pc-view{
+  display: none;
+}
+
+// @include media-breakpoint-up(md) { 
+@media screen and (min-width:768px) {
+  .pc-view{
+    display: flex;
+  }
+  .m-view{
+    display: none;
+  }
+}
+

@@ -1,0 +1,81 @@
+/* 引入字體 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* 引入變數 */
+@import './variable.css';
+
+body {
+  background-color: var(--color-bg-dark);
+}
+/* ==================== 全域 ==================== */
+/* ===== a ===== */
+a {
+  color: var(--color-font);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-font-gold);
+}
+
+/* ===== select樣式 ===== */
+select {
+  background: transparent;
+  color: #fff;
+  border: unset;
+  border-bottom: 1px solid #fff;
+}
+
+/* ==================== 常用 ==================== */
+
+/* ===== page header ===== */
+.page-header {
+  background-color: var(--color-bg-block);
+  color: var(--color-font);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  position: relative;
+}
+.page-header-content-title {
+  position: relative;
+}
+.page-header-content-title-en {
+  color: var(--color-font-mark);
+  font-family: var(--font-family-en-main);
+  font-weight: var(--font-family-bold);
+  font-size: var(--font-size-pc-cn-page-header-contant);
+  line-height: 100%;
+}
+.page-header-content-title-en span:first-child {
+  font-size: var(--font-size-pc-cn-page-header-caption);
+}
+.page-header-content-title-cn {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  color: var(--color-font-gold);
+  font-family: var(--font-family-cn-mian);
+  font-weight: var(--font-family-bold);
+  font-size: var(--font-size-pc-cn-other-lg);
+}
+.page-header-content-menu {
+  width: 90%;
+  margin-top: 1rem;
+  margin-left: auto;
+}
+.page-header-content-menu li {
+  width: fit-content;
+  line-height: 2;
+  font-family: var(--font-family-cn-mian);
+  font-weight: var(--font-family-bold);
+  font-size: var(--font-size-pc-cn-other-sp-title);
+}
+.page-header-content-menu li.active a {
+  color: var(--color-font-gold);
+}
+.page-header-img {
+  position: absolute;
+  right: 0;
+  bottom: 10%;
+  transform: translateY(50%);
+  width: 40%;
+  max-width: 40rem;
+}

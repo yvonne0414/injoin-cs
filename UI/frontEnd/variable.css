@@ -10,6 +10,7 @@
 英文大標顏色 : 666666
 icon顏色 & header 英文字顏色 & prev : CCCCCC
 輸入空格外框 & 填滿色 : 565656 */
+  --color-bg-block: #000;
   --color-bg-dark: #1c1a20;
   --color-bg-light: #131213;
   --color-font: #ffffff;
@@ -23,13 +24,15 @@ icon顏色 & header 英文字顏色 & prev : CCCCCC
 
 英文重要字體 : Playfair Display
 英文內文字體 : Roboto */
-  --font-family-cn-mian: Noto Serif TC;
-  --font-family-cn-content: Noto Sans TC;
-  --font-family-cn-footer-main: blod;
-  --font-family-cn-footer-content: Regular;
+  --font-family-cn-mian: 'Noto Serif TC';
+  --font-family-cn-content: 'Noto Sans TC';
 
-  --font-family-en-main: Playfair Display;
-  --font-family-en-content: Roboto;
+  --font-family-en-main: 'Playfair Display';
+  --font-family-en-content: 'Roboto';
+
+  --font-family-bold: bold;
+  --font-family-normal: normal;
+  --font-family-lighter: lighter;
 
   /* =============== 文字大小 =============== */
 
@@ -48,22 +51,26 @@ button & 內文 : 15px
 中標 : 14px
 大標 : 24px
 首字母 : 64px */
-  --font-size-m-cn-content: 16px;
-  --font-size-m-cn-md: 24px;
-  --font-size-m-cn-lg: 32px;
-  --font-size-m-cn-footer-main: 16px;
-  --font-size-m-cn-footer-content: 14px;
+  --font-base: 1rem;
+  --font-size-m-cn-content: var(--font-base);
+  --font-size-m-cn-md: calc(var(--font-base) * 1.5);
+  --font-size-m-cn-lg: calc(var(--font-base) * 2);
+  --font-size-m-cn-footer-main: var(--font-base);
+  --font-size-m-cn-footer-content: calc(var(--font-base) * 0.875);
 
-  --font-size-m-en-page: 13px;
-  --font-size-m-en-button: 16px;
-  --font-size-m-en-md: 14px;
-  --font-size-m-en-lg: 24px;
-  --font-size-m-en-st: 64px;
+  --font-size-m-en-page: calc(var(--font-base) * 0.812);
+  --font-size-m-en-button: var(--font-base);
+  --font-size-m-en-md: calc(var(--font-base) * 0.875);
+  --font-size-m-en-lg: calc(var(--font-base) * 1.5);
+  --font-size-m-en-st: calc(var(--font-base) * 4);
   /* =============== 電腦版 -pc =============== */
   /* 首頁內文 : 20px 
 首頁產品文字 & 說明文字1 : 24px  
 首頁中標 : 36px   
 首頁大標 : 48px
+
+上方頁面大標首字母 : 200px;
+上方頁面大標 : 128px;
 
 其他分頁內文 : 20px
 其他分頁重要說明內文 : 24px
@@ -78,21 +85,24 @@ button & 內文 : 15px
 footer 字形大小 :
 主字 : 24px blod
 內容 : 20 px Regular */
-  --font-size-pc-cn-main-content: 20px;
-  --font-size-pc-cn-main-caption: 24px;
-  --font-size-pc-cn-main-md: 35px;
-  --font-size-pc-cn-main-lg: 48px;
+  --font-size-pc-cn-main-content: calc(var(--font-base) * 1.25);
+  --font-size-pc-cn-main-caption: calc(var(--font-base) * 1.5);
+  --font-size-pc-cn-main-md: calc(var(--font-base) * 2.2);
+  --font-size-pc-cn-main-lg: calc(var(--font-base) * 3);
 
-  --font-size-pc-cn-other-content: 20px;
-  --font-size-pc-cn-other-sp-title: 32px;
-  --font-size-pc-cn-other-sp-content: 24px;
-  --font-size-pc-cn-other-list: 32px;
-  --font-size-pc-cn-other-md: 40px;
-  --font-size-pc-cn-other-lg: 64px;
+  --font-size-pc-cn-page-header-caption: calc(var(--font-base) * 12.5);
+  --font-size-pc-cn-page-header-contant: calc(var(--font-base) * 8);
 
-  --font-size-pc-cn-other-smbtn: 20px;
-  --font-size-pc-cn-other-lgbtn: 32px;
+  --font-size-pc-cn-other-content: calc(var(--font-base) * 1.25);
+  --font-size-pc-cn-other-sp-title: calc(var(--font-base) * 2);
+  --font-size-pc-cn-other-sp-content: calc(var(--font-base) * 1.5);
+  --font-size-pc-cn-other-list: calc(var(--font-base) * 2);
+  --font-size-pc-cn-other-md: calc(var(--font-base) * 2.5);
+  --font-size-pc-cn-other-lg: calc(var(--font-base) * 4);
 
-  --font-size-pc-cn-other-footer-main: 24px;
-  --font-size-pc-cn-other-footer-content: 20px;
+  --font-size-pc-cn-other-smbtn: calc(var(--font-base) * 1.25);
+  --font-size-pc-cn-other-lgbtn: calc(var(--font-base) * 2);
+
+  --font-size-pc-cn-other-footer-main: calc(var(--font-base) * 1.5);
+  --font-size-pc-cn-other-footer-content: calc(var(--font-base) * 1.25);
 }

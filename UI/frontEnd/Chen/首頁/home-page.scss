@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+// =====section1=======
+.section1 {
+  position: relative;
+  min-height: 100vh;
+  background: #1b1b1be6 no-repeat url(../images/pc-1.png);
+  background-size: 90vw 95vh;
+  .pc-img {
+    display: none;
+  }
+  .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    min-height: 100vh;
+  }
+
+  .s1-position {
+    position: absolute;
+    right: 7vw;
+    text-align: end;
+    bottom: 30vh;
+    color: white;
+  }
+  .s1-button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid #ffdb96;
+    color: #ffdb96;
+    text-align: center;
+    padding: 0.2rem 1rem;
+  }
+  .box {
+    z-index: -1;
+    background: #000;
+    width: 20vw;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .ul-position {
+    position: absolute;
+    right: 7vw;
+    bottom: 10vh;
+    ul {
+      li {
+        a {
+          text-decoration: none;
+          color: white;
+          &:hover,
+          &.active {
+            color: #ffdb96;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .section1 {
+    position: relative;
+    min-height: 100vh;
+    background: #1b1b1be6;
+    background-size: 90vw 95vh;
+    .pc-img {
+      
+      display: flex;
+      width: 60vw;
+      height: 80vh;
+      object-fit: contain;
+      top: 500px;
+      img{
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.6);
+      width: 100vw;
+      min-height: 100vh;
+    }
+
+    .s1-position {
+      position: absolute;
+      right: 7vw;
+      text-align: end;
+      bottom: 30vh;
+      color: white;
+      font-size: 4.5rem;
+      h3{
+        font-size: 4.5rem;
+      }
+    }
+    .s1-button {
+      background-color: rgba(0, 0, 0, 0);
+      border: 2px solid #ffdb96;
+      color: #ffdb96;
+      text-align: center;
+      padding: 0rem 5rem;
+
+    }
+    .box {
+      z-index: -1;
+      background: #000;
+      width: 20vw;
+      height: 100vh;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .ul-position {
+      position: absolute;
+      right: 7vw;
+      bottom: 10vh;
+      ul {
+        li {
+          a {
+            text-decoration: none;
+            color: white;
+            &:hover,
+            &.active {
+              color: #ffdb96;
+            }
+          }
+        }
+      }
+    }
+  }
+}

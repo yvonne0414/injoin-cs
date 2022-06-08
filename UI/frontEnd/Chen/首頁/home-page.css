@@ -1,0 +1,136 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.section1 {
+  position: relative;
+  min-height: 100vh;
+  background: #1b1b1be6 no-repeat url(../images/pc-1.png);
+  background-size: 90vw 95vh;
+}
+
+.section1 .pc-img {
+  display: none;
+}
+
+.section1 .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.section1 .s1-position {
+  position: absolute;
+  right: 7vw;
+  text-align: end;
+  bottom: 30vh;
+  color: white;
+}
+
+.section1 .s1-button {
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #ffdb96;
+  color: #ffdb96;
+  text-align: center;
+  padding: 0.2rem 1rem;
+}
+
+.section1 .box {
+  z-index: -1;
+  background: #000;
+  width: 20vw;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.section1 .ul-position {
+  position: absolute;
+  right: 7vw;
+  bottom: 10vh;
+}
+
+.section1 .ul-position ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.section1 .ul-position ul li a:hover, .section1 .ul-position ul li a.active {
+  color: #ffdb96;
+}
+
+@media screen and (min-width: 768px) {
+  .section1 {
+    position: relative;
+    min-height: 100vh;
+    background: #1b1b1be6;
+    background-size: 90vw 95vh;
+  }
+  .section1 .pc-img {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 60vw;
+    height: 80vh;
+    -o-object-fit: contain;
+       object-fit: contain;
+    top: 500px;
+  }
+  .section1 .pc-img img {
+    height: 100%;
+    width: 100%;
+  }
+  .section1 .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    width: 100vw;
+    min-height: 100vh;
+  }
+  .section1 .s1-position {
+    position: absolute;
+    right: 7vw;
+    text-align: end;
+    bottom: 30vh;
+    color: white;
+    font-size: 4.5rem;
+  }
+  .section1 .s1-position h3 {
+    font-size: 4.5rem;
+  }
+  .section1 .s1-button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 2px solid #ffdb96;
+    color: #ffdb96;
+    text-align: center;
+    padding: 0rem 5rem;
+  }
+  .section1 .box {
+    z-index: -1;
+    background: #000;
+    width: 20vw;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .section1 .ul-position {
+    position: absolute;
+    right: 7vw;
+    bottom: 10vh;
+  }
+  .section1 .ul-position ul li a {
+    text-decoration: none;
+    color: white;
+  }
+  .section1 .ul-position ul li a:hover, .section1 .ul-position ul li a.active {
+    color: #ffdb96;
+  }
+}
+/*# sourceMappingURL=home-page.css.map */

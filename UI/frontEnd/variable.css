@@ -120,8 +120,8 @@
   --fs-en-page-type1-prev: calc(var(--font-base) * 0.8125);
   --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.25);
   --fs-en-page-type1-title-md: calc(var(--font-base) * 2);
-  --fs-en-page-type1-title-lg: calc(var(--font-base) * 8);
-  --fs-en-page-type1-title-caption: calc(var(--font-base) * 12.5);
+  --fs-en-page-type1-title-lg: calc(var(--font-base) * 3);
+  --fs-en-page-type1-title-caption: calc(var(--font-base) * 4);
 }
 
 /* ====================== 電腦版  ====================== */

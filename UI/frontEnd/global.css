@@ -51,6 +51,7 @@ select {
 .page-header-select {
   z-index: 10;
   color: var(--color-font-mark-light);
+  font-size: var(--fs-en-page-type1-prev);
 }
 .page-header-select select {
   font-family: var(--font-family-cn-main);
@@ -62,11 +63,11 @@ select {
   color: var(--color-font-mark);
   font-family: var(--font-family-en-main);
   font-weight: var(--font-family-bold);
-  font-size: var(--font-size-en-page-header-contant);
+  font-size: var(--fs-en-page-type1-title-lg);
   line-height: 100%;
 }
 .page-header-content-title-en span:first-child {
-  font-size: var(--font-size-en-page-header-caption);
+  font-size: var(--fs-en-page-type1-title-caption);
 }
 .page-header-content-title-cn {
   position: absolute;
@@ -75,7 +76,7 @@ select {
   color: var(--color-font-gold);
   font-family: var(--font-family-cn-mian);
   font-weight: var(--font-family-bold);
-  font-size: var(--font-size-cn-other-lg);
+  font-size: var(--fs-cn-page-type1-title-lg);
 }
 .page-header-content-menu {
   width: 90%;
@@ -87,7 +88,7 @@ select {
   line-height: 2;
   font-family: var(--font-family-cn-mian);
   font-weight: var(--font-family-bold);
-  font-size: var(--font-size-cn-other-sp-title);
+  font-size: var(--fs-cn-page-type1-menu);
   z-index: 10;
 }
 .page-header-content-menu li.active a {

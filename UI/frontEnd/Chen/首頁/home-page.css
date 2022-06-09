@@ -3,6 +3,27 @@
           box-sizing: border-box;
 }
 
+:root {
+  --sp-color: #ffdb96;
+}
+
+.button-style {
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid var(--sp-color);
+  color: var(--sp-color);
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+
+.section-title-en {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.35);
+  font-weight: 900;
+  z-index: -1;
+  font-size: 3rem;
+  top: 1rem;
+}
+
 .section1 {
   position: relative;
   min-height: 100vh;
@@ -32,10 +53,6 @@
 }
 
 .section1 .s1-button {
-  background-color: rgba(0, 0, 0, 0);
-  border: 2px solid #ffdb96;
-  color: #ffdb96;
-  text-align: center;
   padding: 0.2rem 1rem;
 }
 
@@ -58,10 +75,61 @@
 .section1 .ul-position ul li a {
   text-decoration: none;
   color: white;
+  margin: 0;
 }
 
 .section1 .ul-position ul li a:hover, .section1 .ul-position ul li a.active {
   color: #ffdb96;
+}
+
+.section2 {
+  min-height: 100vh;
+  background: #1b1b1b;
+  position: relative;
+  z-index: -2;
+}
+
+.section2 .s2-content {
+  position: absolute;
+  color: white;
+  top: 3rem;
+  left: 0.8rem;
+}
+
+.section2 .s2-content .s2-title-cn {
+  color: var(--sp-color);
+  margin-bottom: 0.5rem;
+}
+
+.section2 .s2-content .s2-content-en {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.section2 .s2-content .s2-content-cn {
+  letter-spacing: 0.25rem;
+}
+
+.section2 .s2-img1 {
+  position: absolute;
+  top: 45vh;
+  width: 100vw;
+  height: 30vh;
+  z-index: 2;
+}
+
+.section2 .s2-img1 img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.section2 .s2-img2 {
+  position: absolute;
+  top: 70vh;
+  width: 50vw;
+  height: 20vh;
 }
 
 @media screen and (min-width: 768px) {
@@ -124,10 +192,12 @@
     position: absolute;
     right: 7vw;
     bottom: 10vh;
+    font-size: 2.5rem;
   }
   .section1 .ul-position ul li a {
     text-decoration: none;
     color: white;
+    margin: 0 8rem;
   }
   .section1 .ul-position ul li a:hover, .section1 .ul-position ul li a.active {
     color: #ffdb96;

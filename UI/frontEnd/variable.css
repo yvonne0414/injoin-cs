@@ -4,12 +4,14 @@
 :root {
   /* =============== 針對顏色 =============== */
   /* 背景顏色 : 1C1A20
-背景方塊色 : 131213
-一般字顏色 : FFFFFF
-金色字顏色 : FFDB96
-英文大標顏色 : 666666
-icon顏色 & header 英文字顏色 & prev : CCCCCC
-輸入空格外框 & 填滿色 : 565656 */
+  背景方塊色 : 131213
+  一般字顏色 : FFFFFF
+  金色字顏色 : FFDB96
+  英文大標顏色 : 666666
+  頁面麵包屑顏色 : bab9b9
+  輸入空格外框 & 填滿色 : 565656 
+  icon顏色 & header 英文字顏色 & prev : CCCCCC
+  */
   --color-bg-block: #000;
   --color-bg-dark: #1c1a20;
   --color-bg-light: #131213;
@@ -18,103 +20,189 @@ icon顏色 & header 英文字顏色 & prev : CCCCCC
   --color-font-mark: #666666;
   --color-font-mark-light: #bab9b9;
   --color-font-sp: #565656;
+  --color-font-sp-light: #ccc;
 
   /* =============== 針對字形 ===============*/
-  /* 中文重要字體 : Noto Serif TC
-中文內文字體 : Noto Sans TC
+  /* 
+  中文重要字體 : Noto Serif TC
+  中文內文字體 : Noto Sans TC
 
-英文重要字體 : Playfair Display
-英文內文字體 : Roboto */
-  --font-family-cn-mian: 'Noto Serif TC';
-  --font-family-cn-content: 'Noto Sans TC';
+  英文重要字體 : Playfair Display
+  英文內文字體 : Roboto 
+  */
+  --font-family-cn-mian: 'Playfair Display', 'Noto Serif TC', 'serif';
+  --font-family-cn-content: 'Noto Sans TC', 'sans-serif';
 
-  --font-family-en-main: 'Playfair Display';
-  --font-family-en-content: 'Roboto';
+  --font-family-en-main: 'Playfair Display', 'serif';
+  --font-family-en-content: 'Roboto', 'sans-serif';
 
   --font-family-bold: bold;
   --font-family-normal: normal;
   --font-family-lighter: lighter;
 
   /* =============== 文字大小 =============== */
-
   /* =============== 手機板  =============== */
-  /* 中文字型大小 : 
-內文 : 16px   
-中標 : 24px   
-大標 : 32px
-footer字形大小:
-主字 : 16px blod
-內容 : 14px Regular
-
-上方頁首英文大標首字母 : 64px;
-上方頁首英文大標 : 48px;
-
-英文字型大小 :
-Next & Prev : 13px
-button & 內文 : 15px   
-中標 : 14px
-大標 : 24px
-首字母 : 64px */
+  /* fontbase:16px */
   --font-base: 1rem;
-  --font-size-cn-content: var(--font-base);
-  --font-size-cn-md: calc(var(--font-base) * 1.5);
-  --font-size-cn-lg: calc(var(--font-base) * 2);
-  --font-size-cn-footer-main: var(--font-base);
-  --font-size-cn-footer-content: calc(var(--font-base) * 0.875);
 
-  --font-size-en-page-header-caption: calc(var(--font-base) * 4);
-  --font-size-en-page-header-contant: calc(var(--font-base) * 3);
+  /* =========== 中文 =========== */
+  /* 首頁
+  內文 : 16px   
+  產品文字 : 16px  
+  中標 : 24px   
+  大標 : 32px 
+  */
+  --fs-cn-home-content: var(--font-base);
+  --fs-cn-home-prdtext: var(--font-base);
+  --fs-cn-home-title-md: calc(var(--font-base) * 1.5);
+  --fs-cn-home-title-lg: calc(var(--font-base) * 2);
 
-  --font-size-en-page: calc(var(--font-base) * 0.812);
-  --font-size-en-button: var(--font-base);
-  --font-size-en-md: calc(var(--font-base) * 0.875);
-  --font-size-en-lg: calc(var(--font-base) * 1.5);
-  --font-size-en-st: calc(var(--font-base) * 4);
+  /* 會員、揪團  (type1)
+  內文 : 16px 
+  選單 : 20px  
+  中標 : 20px   
+  大標 : 32px
+  重要說明內文 : 16px
+  重要說明標題 : 24px
+  */
+  --fs-cn-page-type1-content: var(--font-base);
+  --fs-cn-page-type1-menu: calc(var(--font-base) * 1.25);
+  --fs-cn-page-type1-title-md: calc(var(--font-base) * 1.25);
+  --fs-cn-page-type1-title-lg: calc(var(--font-base) * 2);
+  --fs-cn-page-type1-content-sp: var(--font-base);
+  --fs-cn-page-type1-title-sp: calc(var(--font-base) * 1.5);
+
+  /* button 
+  小button : 16px
+  大button : 20px
+  */
+  --fs-cn-btn-content-sm: var(--font-base);
+  --fs-cn-btn-content-lg: calc(var(--font-base) * 1.25);
+
+  /* footer 
+  主字 : 16px
+  內容 : 14px
+  */
+  --fs-cn-footer-title: var(--font-base);
+  --fs-cn-footer-content: calc(var(--font-base) * 0.875);
+
+  /* =========== 英文 =========== */
+  /* 首頁 
+  Next : 15px
+  Prev : 13px
+  button : 15px   
+  內文 : 15px   
+  中標 : 14px
+  大標 : 24px
+  首字母 : 64px
+  */
+  --fs-en-home-next: calc(var(--font-base) * 0.9375);
+  --fs-en-home-prev: calc(var(--font-base) * 0.8125);
+  --fs-en-home-btn: calc(var(--font-base) * 0.9375);
+  --fs-en-home-content: calc(var(--font-base) * 0.9375);
+  --fs-en-home-title-md: calc(var(--font-base) * 0.875);
+  --fs-en-home-title-lg: calc(var(--font-base) * 1.5);
+  --fs-en-home-title-caption: calc(var(--font-base) * 1.5);
+
+  /* 會員、揪團  (type1)
+  內文 : 16px
+  button : 16px
+  Next : 16px
+  Prev : 13px
+  小標 : 20px 關於我們的電話、email
+  中標 : 32px 關於我們的stayintouch
+  大標 : 48px 
+  首字母：64px
+  */
+  --fs-en-page-type1-content: var(--font-base);
+  --fs-en-page-type1-btn: var(--font-base);
+  --fs-en-page-type1-next: var(--font-base);
+  --fs-en-page-type1-prev: calc(var(--font-base) * 0.8125);
+  --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.25);
+  --fs-en-page-type1-title-md: calc(var(--font-base) * 2);
+  --fs-en-page-type1-title-lg: calc(var(--font-base) * 8);
+  --fs-en-page-type1-title-caption: calc(var(--font-base) * 12.5);
 }
 
+/* ====================== 電腦版  ====================== */
 @media screen and (min-width: 768px) {
   :root {
-    /* =============== 電腦版  =============== */
-    /* 首頁內文 : 20px 
-  首頁產品文字 & 說明文字1 : 24px  
-  首頁中標 : 36px   
-  首頁大標 : 48px
+    /* =============== 文字大小 =============== */
+    /* =========== 中文 =========== */
+    /* 首頁
+  內文 : 20px 
+  產品文字 : 24px  
+  中標 : 36px   
+  大標 : 48px */
+    --fs-cn-home-content: calc(var(--font-base) * 1.25);
+    --fs-cn-home-prdtext: calc(var(--font-base) * 1.5);
+    --fs-cn-home-title-md: calc(var(--font-base) * 2.25);
+    --fs-cn-home-title-lg: calc(var(--font-base) * 3);
 
-  上方頁面大標首字母 : 200px;
-  上方頁面大標 : 128px;
+    /* 會員、揪團  (type1)
+  內文 : 20px
+  選單 : 32px
+  中標 : 40px
+  大標 : 64px
+  重要說明內文 : 24px
+  重要說明標題 : 32px
+  */
+    --fs-cn-page-type1-content: calc(var(--font-base) * 1.25);
+    --fs-cn-page-type1-menu: calc(var(--font-base) * 2);
+    --fs-cn-page-type1-title-md: calc(var(--font-base) * 2.5);
+    --fs-cn-page-type1-title-lg: calc(var(--font-base) * 4);
+    --fs-cn-page-type1-content-sp: calc(var(--font-base) * 1.5);
+    --fs-cn-page-type1-title-sp: calc(var(--font-base) * 2);
 
-  其他分頁內文 : 20px
-  其他分頁重要說明內文 : 24px
-  其他分頁重要說明標題 : 32px
-  其他分頁中標 : 40px
-  其他分頁選單 : 32px
-  其他分頁大標 : 64px
-
-  小button : 20px
+    /* button 
+  小button : 24px
   大button : 32px
+   */
+    --fs-cn-btn-content-sm: calc(var(--font-base) * 1.25);
+    --fs-cn-btn-content-lg: calc(var(--font-base) * 2);
 
-  footer 字形大小 :
-  主字 : 24px blod
-  內容 : 20 px Regular */
-    --font-size-cn-main-content: calc(var(--font-base) * 1.25);
-    --font-size-cn-main-caption: calc(var(--font-base) * 1.5);
-    --font-size-cn-main-md: calc(var(--font-base) * 2.2);
-    --font-size-cn-main-lg: calc(var(--font-base) * 3);
+    /* footer  
+  主字 : 24px
+  內容 : 20px
+  */
+    --fs-cn-footer-title: calc(var(--font-base) * 1.5);
+    --fs-cn-footer-content: calc(var(--font-base) * 1.25);
 
-    --font-size-en-page-header-caption: calc(var(--font-base) * 12.5);
-    --font-size-en-page-header-contant: calc(var(--font-base) * 8);
+    /* =========== 英文 =========== */
+    /* 首頁 
+  Next : 36px
+  Prev : 32px
+  button : 32px  
+  內文 : 32px   
+  中標 : 32px
+  大標 : 40px
+  首字母 : 128px
+  */
+    --fs-en-home-next: calc(var(--font-base) * 2.25);
+    --fs-en-home-prev: calc(var(--font-base) * 2);
+    --fs-en-home-btn: calc(var(--font-base) * 2);
+    --fs-en-home-content: calc(var(--font-base) * 2);
+    --fs-en-home-title-md: calc(var(--font-base) * 2);
+    --fs-en-home-title-lg: calc(var(--font-base) * 2.5);
+    --fs-en-home-title-caption: calc(var(--font-base) * 8);
 
-    --font-size-cn-other-content: calc(var(--font-base) * 1.25);
-    --font-size-cn-other-sp-title: calc(var(--font-base) * 2);
-    --font-size-cn-other-sp-content: calc(var(--font-base) * 1.5);
-    --font-size-cn-other-list: calc(var(--font-base) * 2);
-    --font-size-cn-other-md: calc(var(--font-base) * 2.5);
-    --font-size-cn-other-lg: calc(var(--font-base) * 4);
-
-    --font-size-cn-other-smbtn: calc(var(--font-base) * 1.25);
-    --font-size-cn-other-lgbtn: calc(var(--font-base) * 2);
-
-    --font-size-cn-other-footer-main: calc(var(--font-base) * 1.5);
-    --font-size-cn-other-footer-content: calc(var(--font-base) * 1.25);
+    /* 會員、揪團  (type1)
+  內文 : 24px
+  button : 24px
+  Next : 32px
+  Prev : 24px
+  小標 : 24px 關於我們的電話、email
+  中標 : 48px 關於我們的stayintouch
+  大標 : 128px
+  首字母：200px
+  */
+    --fs-en-page-type1-content: calc(var(--font-base) * 1.5);
+    --fs-en-page-type1-btn: calc(var(--font-base) * 1.5);
+    --fs-en-page-type1-next: calc(var(--font-base) * 2);
+    --fs-en-page-type1-prev: calc(var(--font-base) * 1.5);
+    --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.5);
+    --fs-en-page-type1-title-md: calc(var(--font-base) * 3);
+    --fs-en-page-type1-title-lg: calc(var(--font-base) * 8);
+    --fs-en-page-type1-title-caption: calc(var(--font-base) * 12.5);
   }
 }

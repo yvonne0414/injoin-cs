@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'antd/dist/antd.dark.css';
-import './assets/scss/index.scss';
+import './assets/scss/global.scss';
 // css
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

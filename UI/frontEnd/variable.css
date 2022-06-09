@@ -16,6 +16,7 @@ icon顏色 & header 英文字顏色 & prev : CCCCCC
   --color-font: #ffffff;
   --color-font-gold: #ffdb96;
   --color-font-mark: #666666;
+  --color-font-mark-light: #bab9b9;
   --color-font-sp: #565656;
 
   /* =============== 針對字形 ===============*/
@@ -36,7 +37,7 @@ icon顏色 & header 英文字顏色 & prev : CCCCCC
 
   /* =============== 文字大小 =============== */
 
-  /* =============== 手機板 -m =============== */
+  /* =============== 手機板  =============== */
   /* 中文字型大小 : 
 內文 : 16px   
 中標 : 24px   
@@ -45,6 +46,9 @@ footer字形大小:
 主字 : 16px blod
 內容 : 14px Regular
 
+上方頁首英文大標首字母 : 64px;
+上方頁首英文大標 : 48px;
+
 英文字型大小 :
 Next & Prev : 13px
 button & 內文 : 15px   
@@ -52,57 +56,65 @@ button & 內文 : 15px
 大標 : 24px
 首字母 : 64px */
   --font-base: 1rem;
-  --font-size-m-cn-content: var(--font-base);
-  --font-size-m-cn-md: calc(var(--font-base) * 1.5);
-  --font-size-m-cn-lg: calc(var(--font-base) * 2);
-  --font-size-m-cn-footer-main: var(--font-base);
-  --font-size-m-cn-footer-content: calc(var(--font-base) * 0.875);
+  --font-size-cn-content: var(--font-base);
+  --font-size-cn-md: calc(var(--font-base) * 1.5);
+  --font-size-cn-lg: calc(var(--font-base) * 2);
+  --font-size-cn-footer-main: var(--font-base);
+  --font-size-cn-footer-content: calc(var(--font-base) * 0.875);
 
-  --font-size-m-en-page: calc(var(--font-base) * 0.812);
-  --font-size-m-en-button: var(--font-base);
-  --font-size-m-en-md: calc(var(--font-base) * 0.875);
-  --font-size-m-en-lg: calc(var(--font-base) * 1.5);
-  --font-size-m-en-st: calc(var(--font-base) * 4);
-  /* =============== 電腦版 -pc =============== */
-  /* 首頁內文 : 20px 
-首頁產品文字 & 說明文字1 : 24px  
-首頁中標 : 36px   
-首頁大標 : 48px
+  --font-size-en-page-header-caption: calc(var(--font-base) * 4);
+  --font-size-en-page-header-contant: calc(var(--font-base) * 3);
 
-上方頁面大標首字母 : 200px;
-上方頁面大標 : 128px;
+  --font-size-en-page: calc(var(--font-base) * 0.812);
+  --font-size-en-button: var(--font-base);
+  --font-size-en-md: calc(var(--font-base) * 0.875);
+  --font-size-en-lg: calc(var(--font-base) * 1.5);
+  --font-size-en-st: calc(var(--font-base) * 4);
+}
 
-其他分頁內文 : 20px
-其他分頁重要說明內文 : 24px
-其他分頁重要說明標題 : 32px
-其他分頁中標 : 40px
-其他分頁選單 : 32px
-其他分頁大標 : 64px
+@media screen and (min-width: 768px) {
+  :root {
+    /* =============== 電腦版  =============== */
+    /* 首頁內文 : 20px 
+  首頁產品文字 & 說明文字1 : 24px  
+  首頁中標 : 36px   
+  首頁大標 : 48px
 
-小button : 20px
-大button : 32px
+  上方頁面大標首字母 : 200px;
+  上方頁面大標 : 128px;
 
-footer 字形大小 :
-主字 : 24px blod
-內容 : 20 px Regular */
-  --font-size-pc-cn-main-content: calc(var(--font-base) * 1.25);
-  --font-size-pc-cn-main-caption: calc(var(--font-base) * 1.5);
-  --font-size-pc-cn-main-md: calc(var(--font-base) * 2.2);
-  --font-size-pc-cn-main-lg: calc(var(--font-base) * 3);
+  其他分頁內文 : 20px
+  其他分頁重要說明內文 : 24px
+  其他分頁重要說明標題 : 32px
+  其他分頁中標 : 40px
+  其他分頁選單 : 32px
+  其他分頁大標 : 64px
 
-  --font-size-pc-cn-page-header-caption: calc(var(--font-base) * 12.5);
-  --font-size-pc-cn-page-header-contant: calc(var(--font-base) * 8);
+  小button : 20px
+  大button : 32px
 
-  --font-size-pc-cn-other-content: calc(var(--font-base) * 1.25);
-  --font-size-pc-cn-other-sp-title: calc(var(--font-base) * 2);
-  --font-size-pc-cn-other-sp-content: calc(var(--font-base) * 1.5);
-  --font-size-pc-cn-other-list: calc(var(--font-base) * 2);
-  --font-size-pc-cn-other-md: calc(var(--font-base) * 2.5);
-  --font-size-pc-cn-other-lg: calc(var(--font-base) * 4);
+  footer 字形大小 :
+  主字 : 24px blod
+  內容 : 20 px Regular */
+    --font-size-cn-main-content: calc(var(--font-base) * 1.25);
+    --font-size-cn-main-caption: calc(var(--font-base) * 1.5);
+    --font-size-cn-main-md: calc(var(--font-base) * 2.2);
+    --font-size-cn-main-lg: calc(var(--font-base) * 3);
 
-  --font-size-pc-cn-other-smbtn: calc(var(--font-base) * 1.25);
-  --font-size-pc-cn-other-lgbtn: calc(var(--font-base) * 2);
+    --font-size-en-page-header-caption: calc(var(--font-base) * 12.5);
+    --font-size-en-page-header-contant: calc(var(--font-base) * 8);
 
-  --font-size-pc-cn-other-footer-main: calc(var(--font-base) * 1.5);
-  --font-size-pc-cn-other-footer-content: calc(var(--font-base) * 1.25);
+    --font-size-cn-other-content: calc(var(--font-base) * 1.25);
+    --font-size-cn-other-sp-title: calc(var(--font-base) * 2);
+    --font-size-cn-other-sp-content: calc(var(--font-base) * 1.5);
+    --font-size-cn-other-list: calc(var(--font-base) * 2);
+    --font-size-cn-other-md: calc(var(--font-base) * 2.5);
+    --font-size-cn-other-lg: calc(var(--font-base) * 4);
+
+    --font-size-cn-other-smbtn: calc(var(--font-base) * 1.25);
+    --font-size-cn-other-lgbtn: calc(var(--font-base) * 2);
+
+    --font-size-cn-other-footer-main: calc(var(--font-base) * 1.5);
+    --font-size-cn-other-footer-content: calc(var(--font-base) * 1.25);
+  }
 }

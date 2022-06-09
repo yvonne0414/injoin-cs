@@ -3,6 +3,10 @@
 /* 引入變數 */
 @import './variable.css';
 
+* {
+  position: relative;
+}
+
 body {
   background-color: var(--color-bg-dark);
 }
@@ -21,7 +25,18 @@ select {
   background: transparent;
   color: #fff;
   border: unset;
-  border-bottom: 1px solid #fff;
+  border-bottom: 0.5px solid #fff;
+}
+
+/* ===== view ===== */
+.pc-view {
+  display: none;
+}
+
+/* ===== view ===== */
+.object-fit-cover {
+  width: 100%;
+  object-fit: cover;
 }
 
 /* ==================== 常用 ==================== */
@@ -32,20 +47,26 @@ select {
   color: var(--color-font);
   padding-top: 2rem;
   padding-bottom: 2rem;
-  position: relative;
+}
+.page-header-select {
+  z-index: 10;
+  color: var(--color-font-mark-light);
+}
+.page-header-select select {
+  font-family: var(--font-family-cn-main);
 }
 .page-header-content-title {
-  position: relative;
+  z-index: 10;
 }
 .page-header-content-title-en {
   color: var(--color-font-mark);
   font-family: var(--font-family-en-main);
   font-weight: var(--font-family-bold);
-  font-size: var(--font-size-pc-cn-page-header-contant);
+  font-size: var(--font-size-en-page-header-contant);
   line-height: 100%;
 }
 .page-header-content-title-en span:first-child {
-  font-size: var(--font-size-pc-cn-page-header-caption);
+  font-size: var(--font-size-en-page-header-caption);
 }
 .page-header-content-title-cn {
   position: absolute;
@@ -54,7 +75,7 @@ select {
   color: var(--color-font-gold);
   font-family: var(--font-family-cn-mian);
   font-weight: var(--font-family-bold);
-  font-size: var(--font-size-pc-cn-other-lg);
+  font-size: var(--font-size-cn-other-lg);
 }
 .page-header-content-menu {
   width: 90%;
@@ -66,7 +87,8 @@ select {
   line-height: 2;
   font-family: var(--font-family-cn-mian);
   font-weight: var(--font-family-bold);
-  font-size: var(--font-size-pc-cn-other-sp-title);
+  font-size: var(--font-size-cn-other-sp-title);
+  z-index: 10;
 }
 .page-header-content-menu li.active a {
   color: var(--color-font-gold);
@@ -74,8 +96,39 @@ select {
 .page-header-img {
   position: absolute;
   right: 0;
-  bottom: 10%;
-  transform: translateY(50%);
-  width: 40%;
-  max-width: 40rem;
+  top: 0;
+  width: 90%;
+}
+.page-header-img-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #00000090;
+}
+
+@media screen and (min-width: 768px) {
+  /* ==================== 全域 ==================== */
+
+  /* ===== view ===== */
+  .m-view {
+    display: none;
+  }
+  .pc-view {
+    display: flex;
+  }
+
+  /* ==================== 常用 ==================== */
+
+  /* ===== page header ===== */
+  .page-header-img {
+    transform: translateY(50%);
+    top: unset;
+    bottom: 10%;
+    max-width: 40rem !important;
+  }
+  .page-header-img-mask {
+    background-color: transparent;
+  }
 }

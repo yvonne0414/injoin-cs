@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'antd/dist/antd.dark.css';
+import 'antd/dist/antd.dark.min.css';
 import './assets/scss/global.scss';
 // css
 

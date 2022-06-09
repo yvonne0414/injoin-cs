@@ -1,9 +1,14 @@
+@charset "UTF-8";
+/* 引入字體 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+/* 引入變數 */
 * {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
-:root {
-  /* =============== 針對顏色 =============== */
-  /* 背景顏色 : 1C1A20
+
+/* =============== 針對顏色 =============== */
+/* 背景顏色 : 1C1A20
   背景方塊色 : 131213
   一般字顏色 : FFFFFF
   金色字顏色 : FFDB96
@@ -12,39 +17,19 @@
   輸入空格外框 & 填滿色 : 565656 
   icon顏色 & header 英文字顏色 & prev : CCCCCC
   */
-  --color-bg-block: #000;
-  --color-bg-dark: #1c1a20;
-  --color-bg-light: #131213;
-  --color-font: #ffffff;
-  --color-font-gold: #ffdb96;
-  --color-font-mark: #666666;
-  --color-font-mark-light: #bab9b9;
-  --color-font-sp: #565656;
-  --color-font-sp-light: #ccc;
-
-  /* =============== 針對字形 ===============*/
-  /* 
+/* =============== 針對字形 ===============*/
+/* 
   中文重要字體 : Noto Serif TC
   中文內文字體 : Noto Sans TC
 
   英文重要字體 : Playfair Display
   英文內文字體 : Roboto 
   */
-  --font-family-cn-mian: 'Playfair Display', 'Noto Serif TC', 'serif';
-  --font-family-cn-content: 'Noto Sans TC', 'sans-serif';
-
-  --font-family-en-main: 'Playfair Display', 'serif';
-  --font-family-en-content: 'Roboto', 'sans-serif';
-
-  --font-family-bold: bold;
-  --font-family-normal: normal;
-  --font-family-lighter: lighter;
-
+:root {
   /* =============== 文字大小 =============== */
   /* =============== 手機板  =============== */
   /* fontbase:16px */
   --font-base: 1rem;
-
   /* =========== 中文 =========== */
   /* 首頁
   內文 : 16px   
@@ -56,7 +41,6 @@
   --fs-cn-home-prdtext: var(--font-base);
   --fs-cn-home-title-md: calc(var(--font-base) * 1.5);
   --fs-cn-home-title-lg: calc(var(--font-base) * 2);
-
   /* 會員、揪團  (type1)
   內文 : 16px 
   選單 : 20px  
@@ -71,21 +55,18 @@
   --fs-cn-page-type1-title-lg: calc(var(--font-base) * 2);
   --fs-cn-page-type1-content-sp: var(--font-base);
   --fs-cn-page-type1-title-sp: calc(var(--font-base) * 1.5);
-
   /* button 
   小button : 16px
   大button : 20px
   */
   --fs-cn-btn-content-sm: var(--font-base);
   --fs-cn-btn-content-lg: calc(var(--font-base) * 1.25);
-
   /* footer 
   主字 : 16px
   內容 : 14px
   */
   --fs-cn-footer-title: var(--font-base);
   --fs-cn-footer-content: calc(var(--font-base) * 0.875);
-
   /* =========== 英文 =========== */
   /* 首頁 
   Next : 15px
@@ -103,7 +84,6 @@
   --fs-en-home-title-md: calc(var(--font-base) * 0.875);
   --fs-en-home-title-lg: calc(var(--font-base) * 1.5);
   --fs-en-home-title-caption: calc(var(--font-base) * 1.5);
-
   /* 會員、揪團  (type1)
   內文 : 16px
   button : 16px
@@ -138,7 +118,6 @@
     --fs-cn-home-prdtext: calc(var(--font-base) * 1.5);
     --fs-cn-home-title-md: calc(var(--font-base) * 2.25);
     --fs-cn-home-title-lg: calc(var(--font-base) * 3);
-
     /* 會員、揪團  (type1)
   內文 : 20px
   選單 : 32px
@@ -153,21 +132,18 @@
     --fs-cn-page-type1-title-lg: calc(var(--font-base) * 4);
     --fs-cn-page-type1-content-sp: calc(var(--font-base) * 1.5);
     --fs-cn-page-type1-title-sp: calc(var(--font-base) * 2);
-
     /* button 
   小button : 24px
   大button : 32px
    */
     --fs-cn-btn-content-sm: calc(var(--font-base) * 1.25);
     --fs-cn-btn-content-lg: calc(var(--font-base) * 2);
-
     /* footer  
   主字 : 24px
   內容 : 20px
   */
     --fs-cn-footer-title: calc(var(--font-base) * 1.5);
     --fs-cn-footer-content: calc(var(--font-base) * 1.25);
-
     /* =========== 英文 =========== */
     /* 首頁 
   Next : 36px
@@ -185,7 +161,6 @@
     --fs-en-home-title-md: calc(var(--font-base) * 2);
     --fs-en-home-title-lg: calc(var(--font-base) * 2.5);
     --fs-en-home-title-caption: calc(var(--font-base) * 8);
-
     /* 會員、揪團  (type1)
   內文 : 24px
   button : 24px
@@ -206,3 +181,150 @@
     --fs-en-page-type1-title-caption: calc(var(--font-base) * 12.5);
   }
 }
+
+* {
+  position: relative;
+}
+
+body {
+  background-color: #1c1a20;
+}
+
+/* ==================== 全域 ==================== */
+/* ===== a ===== */
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffdb96;
+}
+
+/* ===== select樣式 ===== */
+select {
+  background: transparent;
+  color: #fff;
+  border: unset;
+  border-bottom: 0.5px solid #fff;
+}
+
+/* ===== view ===== */
+.pc-view {
+  display: none;
+}
+
+/* ===== view ===== */
+.object-fit-cover {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* ==================== 常用 ==================== */
+/* ===== page header ===== */
+.page-header {
+  background-color: #000;
+  color: #ffffff;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.page-header-select {
+  z-index: 10;
+  color: #bab9b9;
+  font-size: var(--fs-en-page-type1-prev);
+}
+
+.page-header-select select {
+  font-family: "Noto Serif TC";
+}
+
+.page-header-content-title {
+  z-index: 10;
+}
+
+.page-header-content-title-en {
+  color: #666666;
+  font-family: "Playfair Display";
+  font-weight: bold;
+  font-size: var(--fs-en-page-type1-title-lg);
+  line-height: 100%;
+}
+
+.page-header-content-title-en span:first-child {
+  font-size: var(--fs-en-page-type1-title-caption);
+}
+
+.page-header-content-title-cn {
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  color: #ffdb96;
+  font-family: "Noto Serif TC";
+  font-weight: bold;
+  font-size: var(--fs-cn-page-type1-title-lg);
+}
+
+.page-header-content-menu {
+  width: 95%;
+  margin-top: 1rem;
+  margin-left: auto;
+}
+
+.page-header-content-menu li {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  line-height: 2;
+  font-family: "Noto Serif TC";
+  font-weight: bold;
+  font-size: var(--fs-cn-page-type1-menu);
+  z-index: 10;
+}
+
+.page-header-content-menu li.active a {
+  color: #ffdb96;
+}
+
+.page-header-img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 90%;
+}
+
+.page-header-img-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #00000090;
+}
+
+@media screen and (min-width: 768px) {
+  /* ==================== 全域 ==================== */
+  /* ===== view ===== */
+  .m-view {
+    display: none;
+  }
+  .pc-view {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  /* ==================== 常用 ==================== */
+  /* ===== page header ===== */
+  .page-header-img {
+    -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+    top: unset;
+    bottom: 10%;
+    max-width: 40rem !important;
+  }
+  .page-header-img-mask {
+    background-color: transparent;
+  }
+}
+/*# sourceMappingURL=global.css.map */

@@ -1,22 +1,22 @@
+@import '../../global/global.scss';
 * {
   box-sizing: border-box;
 }
-:root {
-  --sp-color: #ffdb96;
-}
+
 .button-style {
   background-color: transparent;
-  border: 2px solid var(--sp-color);
-  color: var(--sp-color);
+  border: 2px solid $color-font-gold;
+  color: $color-font-gold;
   text-align: center;
   padding: 0.5rem 1rem;
 }
 .section-title-en {
+  font-family: $font-family-en-main;
   position: absolute;
   color: rgba(255, 255, 255, 0.35);
   font-weight: 900;
   z-index: -1;
-  font-size: 3rem;
+  font-size: var(--fs-en-page-type1-title-lg);
   top: 1rem;
 }
 
@@ -24,11 +24,9 @@
 .section1 {
   position: relative;
   min-height: 100vh;
-  background: #1b1b1be6 no-repeat url(../images/pc-1.png);
+  background: $color-bg-dark no-repeat url(../images/pc-1.png);
   background-size: 90vw 95vh;
-  .pc-img {
-    display: none;
-  }
+
   .mask {
     position: absolute;
     top: 0;
@@ -69,7 +67,7 @@
           margin: 0;
           &:hover,
           &.active {
-            color: #ffdb96;
+            color: $color-font-gold;
           }
         }
       }
@@ -101,9 +99,9 @@
   }
   .s2-img1 {
     position: absolute;
+    left: 0;
     top: 45vh;
-
-    width: 100vw;
+    width: 80vw;
     height: 30vh;
     z-index: 2;
     img {
@@ -114,8 +112,9 @@
   }
   .s2-img2 {
     position: absolute;
-    top: 60vh;
-    width: 50vw;
+    bottom: 10vh;
+    right: 0;
+    width: 60vw;
     height: 20vh;
     img {
       object-fit: cover;
@@ -129,17 +128,17 @@
   .section1 {
     position: relative;
     min-height: 100vh;
-    background: #1b1b1be6;
+    background: $color-bg-block;
     background-size: 90vw 95vh;
     .pc-img {
-      display: flex;
-      width: 60vw;
-      height: 80vh;
-      object-fit: contain;
-      top: 500px;
+      position: absolute;
+      width: 55vw;
+      height: 90vh;
+      opacity: 0.5;
       img {
         height: 100%;
         width: 100%;
+        object-fit: contain;
       }
     }
     .mask {
@@ -152,14 +151,24 @@
     }
 
     .s1-position {
-      position: absolute;
-      right: 7vw;
+      position: relative;
+      right: 0;
+      top: 20vh;
       text-align: end;
-      bottom: 30vh;
       color: white;
-      font-size: 4.5rem;
-      h3 {
-        font-size: 4.5rem;
+      font-size: 1rem;
+      .font-cn-content {
+        font-family: $font-family-cn-content;
+        font-size: var(--fs-cn-page-type1-menu);
+      }
+      .font-en-title {
+        font-family: $font-family-en-main;
+        font-size: var(--fs-en-page-type1-title-md);
+        letter-spacing: 0.2rem;
+      }
+      .font-cn-title {
+        font-family: $font-family-cn-main;
+        font-size: 2.25rem;
       }
     }
     .s1-button {
@@ -167,7 +176,9 @@
       border: 2px solid #ffdb96;
       color: #ffdb96;
       text-align: center;
-      padding: 0rem 5rem;
+      padding: 0.5rem 4rem;
+      font-size: var(--fs-cn-home-title-lg);
+      font-family: $font-weight-bold;
     }
     .box {
       z-index: -1;
@@ -180,21 +191,81 @@
     }
     .ul-position {
       position: absolute;
-      right: 7vw;
+      right: 0;
       bottom: 10vh;
-      font-size: 2.5rem;
+      font-size: var(--fs-cn-page-list-menu);
       ul {
         li {
           a {
             text-decoration: none;
-            color: white;
-            margin: 0 8rem;
+            color: $color-font;
             &:hover,
             &.active {
-              color: #ffdb96;
+              color: $color-font-gold;
             }
           }
         }
+      }
+    }
+  }
+  .section2 {
+    min-height: 100vh;
+    background: #1b1b1b;
+    // background: lightpink;
+    position: relative;
+    z-index: -2;
+    .s2-content {
+      position: absolute;
+      color: white;
+      top: 10vh;
+      left: 4vw;
+      .s2-title-cn {
+        line-height: $line-heght-2;
+        font-family: $font-family-cn-main;
+        color: $color-font-gold;
+        margin-bottom: 0.5rem;
+        font-size: var(--fs-cn-home-title-lg);
+      }
+      .s2-content-en {
+        font-family: $font-family-en-main;
+        font-size: var(--fs-en-home-content);
+        margin-bottom: 1rem;
+        line-height: $line-heght-3;
+      }
+      .s2-content-cn {
+        line-height: $line-heght-0;
+        font-family: $font-family-cn-content;
+        font-size: var(--fs-cn-home-content);
+        letter-spacing: $space-1;
+      }
+      .s2-button {
+        margin-top: 3rem;
+      }
+    }
+    .s2-img1 {
+      position: absolute;
+      left: auto;
+      right: 0;
+      top: 5vh;
+      width: 45vw;
+      height: 50vh;
+      z-index: -1;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .s2-img2 {
+      position: absolute;
+      bottom: 15vh;
+      right: 30vw;
+      width: 22vw;
+      height:35vh;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
       }
     }
   }

@@ -56,18 +56,16 @@
   --fs-cn-page-type1-title-lg: calc(var(--font-base) * 2);
   --fs-cn-page-type1-content-sp: var(--font-base);
   --fs-cn-page-type1-title-sp: calc(var(--font-base) * 1.5);
-  /* button 
-  小button : 16px
-  大button : 20px
+  /*商品列表
+    選單:16px
+    篩選文字:14px
+    產品文字:14px
+    酒譜材料: 12px
   */
-  --fs-cn-btn-content-sm: var(--font-base);
-  --fs-cn-btn-content-lg: calc(var(--font-base) * 1.25);
-  /* footer 
-  主字 : 16px
-  內容 : 14px
-  */
-  --fs-cn-footer-title: var(--font-base);
-  --fs-cn-footer-content: calc(var(--font-base) * 0.875);
+  --fs-cn-page-list-menu: var(--font-base);
+  --fs-cn-page-list-filter: calc(var(--font-base) * 0.875);
+  --fs-cn-page-list-content: calc(var(--font-base) * 0.875);
+  --fs-cn-page-list-: calc(var(--font-base) * 0.75);
   /* =========== 英文 =========== */
   /* 首頁 
   Next : 13px
@@ -87,22 +85,41 @@
   --fs-en-home-title-caption: calc(var(--font-base) * 1.5);
   /* 會員、揪團  (type1)
   內文 : 16px
-  button : 16px
-  Next : 16px
-  Prev : 13px
   小標 : 20px 關於我們的電話、email
   中標 : 32px 關於我們的stayintouch
   大標 : 48px 
   首字母：64px
   */
   --fs-en-page-type1-content: var(--font-base);
-  --fs-en-page-type1-btn: var(--font-base);
-  --fs-en-page-type1-next: var(--font-base);
-  --fs-en-page-type1-prev: calc(var(--font-base) * 0.8125);
   --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.25);
   --fs-en-page-type1-title-md: calc(var(--font-base) * 2);
   --fs-en-page-type1-title-lg: calc(var(--font-base) * 3);
   --fs-en-page-type1-title-caption: calc(var(--font-base) * 4);
+  /*商品列表
+    小標: 12px
+    大標: 20px
+  */
+  --fs-cn-page-list-title-sm: calc(var(--font-base) * 0.75);
+  --fs-cn-page-list-title-lg: calc(var(--font-base) * 1.25);
+  /* =========== 元件 =========== */
+  /* button 
+  小button : 12px
+  中button : 16px
+  大button : 20px
+  Next : 16px
+  Prev : 13px
+  */
+  --fs-cn-btn-sm: calc(var(--font-base) * 0.75);
+  --fs-cn-btn-md: var(--font-base);
+  --fs-cn-btn-lg: calc(var(--font-base) * 1.25);
+  --fs-en-next: var(--font-base);
+  --fs-en-prev: calc(var(--font-base) * 0.8125);
+  /* footer 
+  主字 : 16px
+  內容 : 14px
+  */
+  --fs-cn-footer-title: var(--font-base);
+  --fs-cn-footer-content: calc(var(--font-base) * 0.875);
 }
 
 /* ====================== 電腦版  ====================== */
@@ -133,18 +150,16 @@
     --fs-cn-page-type1-title-lg: calc(var(--font-base) * 4);
     --fs-cn-page-type1-content-sp: calc(var(--font-base) * 1.5);
     --fs-cn-page-type1-title-sp: calc(var(--font-base) * 2);
-    /* button 
-  小button : 24px
-  大button : 32px
-   */
-    --fs-cn-btn-content-sm: calc(var(--font-base) * 1.25);
-    --fs-cn-btn-content-lg: calc(var(--font-base) * 2);
-    /* footer  
-  主字 : 24px
-  內容 : 20px
-  */
-    --fs-cn-footer-title: calc(var(--font-base) * 1.5);
-    --fs-cn-footer-content: calc(var(--font-base) * 1.25);
+    /* 商品列表
+      選單:32px
+      篩選文字:24px
+      產品文字: 24px
+      酒譜材料: 16px
+    */
+    --fs-cn-page-list-menu: calc(var(--font-base) * 2);
+    --fs-cn-page-list-filter: calc(var(--font-base) * 1.5);
+    --fs-cn-page-list-content: calc(var(--font-base) * 1.5);
+    --fs-cn-page-list-: calc(var(--font-base) * 1);
     /* =========== 英文 =========== */
     /* 首頁 
   Next : 36px
@@ -164,22 +179,41 @@
     --fs-en-home-title-caption: calc(var(--font-base) * 8);
     /* 會員、揪團  (type1)
   內文 : 24px
-  button : 24px
-  Next : 32px
-  Prev : 24px
   小標 : 24px 關於我們的電話、email
   中標 : 48px 關於我們的stayintouch
   大標 : 128px
   首字母：200px
   */
     --fs-en-page-type1-content: calc(var(--font-base) * 1.5);
-    --fs-en-page-type1-btn: calc(var(--font-base) * 1.5);
-    --fs-en-page-type1-next: calc(var(--font-base) * 2);
-    --fs-en-page-type1-prev: calc(var(--font-base) * 1.5);
     --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.5);
     --fs-en-page-type1-title-md: calc(var(--font-base) * 3);
     --fs-en-page-type1-title-lg: calc(var(--font-base) * 8);
     --fs-en-page-type1-title-caption: calc(var(--font-base) * 12.5);
+    /* 商品列表
+      小標 : 16px
+      大標 : 64px
+    */
+    --fs-cn-page-list-title-sm: calc(var(--font-base) * 1);
+    --fs-cn-page-list-title-lg: calc(var(--font-base) * 4);
+    /* =========== 元件 =========== */
+    /* button 
+  小button : 20px
+  中button : 24px
+  大button : 32px
+  Next : 32px
+  Prev : 24px
+   */
+    --fs-cn-btn-sm: calc(var(--font-base) * 1.25);
+    --fs-cn-btn-md: calc(var(--font-base) * 1.5);
+    --fs-cn-btn-lg: calc(var(--font-base) * 2);
+    --fs-en-btn-next: calc(var(--font-base) * 2);
+    --fs-en-btn-prev: calc(var(--font-base) * 1.5);
+    /* footer  
+  主字 : 24px
+  內容 : 20px
+  */
+    --fs-cn-footer-title: calc(var(--font-base) * 1.5);
+    --fs-cn-footer-content: calc(var(--font-base) * 1.25);
   }
 }
 
@@ -203,6 +237,12 @@ a:hover {
   color: #ffdb96;
 }
 
+/* ===== buttom ===== */
+.btn-none {
+  background-color: transparent;
+  border: unset;
+}
+
 /* ===== select樣式 ===== */
 select {
   background: transparent;
@@ -216,7 +256,7 @@ select {
   display: none;
 }
 
-/* ===== view ===== */
+/* ===== img-object ===== */
 .object-fit-cover {
   width: 100%;
   -o-object-fit: cover;
@@ -273,13 +313,14 @@ select {
   width: 95%;
   margin-top: 1rem;
   margin-left: auto;
+  letter-spacing: 0.1rem;
 }
 
 .page-type1-header .page-type1-header-content-menu li {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  line-height: 2;
+  line-height: 200%;
   font-family: "Noto Serif TC";
   font-weight: bold;
   font-size: var(--fs-cn-page-type1-menu);
@@ -319,7 +360,7 @@ select {
 /* ===== page pagination  ===== */
 .page-type1-pagination {
   font-family: "Playfair Display";
-  font-size: var(--fs-en-page-type1-btn);
+  font-size: var(--fs-en-btn-btn);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -353,7 +394,7 @@ select {
 }
 
 .page-type1-pagination .page-type1-pagination-btn.active .type1-pagination-btn-text {
-  font-size: var(--fs-en-page-type1-next);
+  font-size: var(--fs-en-btn-next);
   color: #ffdb96;
 }
 
@@ -448,12 +489,12 @@ select {
   }
 }
 
-.official-activity-list .page-type1-list-content > div:nth-child(4),
-.official-activity-list .page-type1-list-content > div:nth-child(5) {
+.activity-list .page-type1-list-content > div:nth-child(4),
+.activity-list .page-type1-list-content > div:nth-child(5) {
   margin-bottom: unset;
 }
 
-.official-activity-list .list-cotent_activity-name {
+.activity-list .list-content_activity-name {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
@@ -465,7 +506,7 @@ select {
   -webkit-box-orient: vertical;
 }
 
-.official-activity-list .list-cotent_time {
+.activity-list .list-content_time {
   font-weight: lighter;
   font-family: "Noto Sans TC";
   font-size: var(--fs-en-page-type1-content);
@@ -475,7 +516,7 @@ select {
   width: 50%;
 }
 
-.official-activity-list .list-cotent_place {
+.activity-list .list-content_place {
   font-weight: lighter;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
@@ -484,7 +525,7 @@ select {
   text-align: end;
 }
 
-.official-activity-list .list-cotent_state {
+.activity-list .list-content_state {
   -webkit-box-ordinal-group: 5;
       -ms-flex-order: 4;
           order: 4;
@@ -492,7 +533,15 @@ select {
   color: #ffdb96;
 }
 
-.official-activity-list .list-cotent_btn {
+.activity-list .list-content_user {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+  width: 50%;
+  color: #ffdb96;
+}
+
+.activity-list .list-content_btn {
   -webkit-box-ordinal-group: 6;
       -ms-flex-order: 5;
           order: 5;
@@ -511,6 +560,7 @@ select {
   -webkit-box-direction: normal;
       -ms-flex-flow: column;
           flex-flow: column;
+  margin-bottom: 3rem;
 }
 
 .page-group-intro-area .group-list-img-1,
@@ -531,35 +581,95 @@ select {
   margin-left: auto;
 }
 
+.bg-square {
+  background-color: #131213;
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  right: 0;
+}
+
+.user-add-group-area {
+  margin-bottom: 3rem;
+}
+
+.user-add-group-area .group-list-img-3 {
+  width: 60%;
+  margin-left: auto;
+}
+
+.user-add-group-contents {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-add-group-content {
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.user-add-group-content .user-add-group-content-text {
+  font-family: "Noto Sans TC";
+  font-size: var(--fs-cn-page-type1-content);
+  font-weight: lighter;
+  margin-bottom: 1rem;
+}
+
+.user-add-group-content .user-add-group-content-btn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px #ffffff solid;
+  margin: auto;
+}
+
+.user-add-group-content .user-add-group-content-btn button {
+  padding: 0.25rem 1rem;
+  font-family: "Noto Serif TC";
+  font-size: var(--fs-cn-btn-lg);
+  color: #ffdb96;
+}
+
 @media screen and (min-width: 768px) {
-  .official-activity-list .page-type1-list-content {
+  .activity-list .page-type1-list-content {
     border: unset;
   }
-  .official-activity-list .page-type1-list-content > div {
+  .activity-list .page-type1-list-content > div {
     margin-bottom: 0;
   }
-  .official-activity-list .list-cotent_activity-name,
-  .official-activity-list .list-cotent_time,
-  .official-activity-list .list-cotent_place,
-  .official-activity-list .list-cotent_state,
-  .official-activity-list .list-cotent_btn {
+  .activity-list .list-content_activity-name,
+  .activity-list .list-content_time,
+  .activity-list .list-content_place,
+  .activity-list .list-content_state,
+  .activity-list .list-content_user,
+  .activity-list .list-content_btn {
     -webkit-box-ordinal-group: 1;
         -ms-flex-order: 0;
             order: 0;
     width: unset;
     text-align: center;
   }
-  .official-activity-list .list-cotent_activity-name {
+  .activity-list .list-content_activity-name {
     -webkit-line-clamp: 1;
   }
-  .official-activity-list .list-cotent_btn a {
+  .activity-list .list-content_btn a {
     background-color: #000;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     padding: 0.25rem;
   }
-  .official-activity-list .list-cotent_btn a:hover {
+  .activity-list .list-content_btn a:hover {
     border: #ffffff 1px solid;
   }
   .page-group-intro-area {
@@ -575,6 +685,7 @@ select {
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
+    margin-bottom: unset;
   }
   .page-group-intro-area .group-list-img-1 {
     width: 30%;
@@ -598,11 +709,52 @@ select {
   }
   .page-group-intro-area .page-group-intro-content .page-group-intro-text > div {
     margin: auto;
-    max-width: 12rem;
+    max-width: 14rem;
     line-height: 200%;
   }
   .page-group-intro-area .page-group-intro-content .group-list-img-2 {
     width: 50%;
+  }
+  .activity-list.mode-user .page-type1-area-title {
+    margin-left: 50%;
+  }
+  .bg-square {
+    width: 98%;
+  }
+  .user-add-group-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .user-add-group-area .group-list-img-3 {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    width: 40%;
+  }
+  .user-add-group-content-text {
+    width: 60%;
+  }
+  .user-add-group-content {
+    width: 80%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1rem;
+  }
+  .user-add-group-content .user-add-group-content-btn {
+    min-width: -webkit-fit-content;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+    margin-right: unset;
+    margin-left: auto;
+  }
+  .user-add-group-content.rtl > *:last-child {
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1;
+    margin-left: unset;
+    margin-right: auto;
   }
 }
 /*# sourceMappingURL=groupList.css.map */

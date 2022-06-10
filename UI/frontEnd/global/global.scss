@@ -20,6 +20,11 @@ a {
 a:hover {
   color: $color-font-gold;
 }
+/* ===== buttom ===== */
+.btn-none {
+  background-color: transparent;
+  border: unset;
+}
 
 /* ===== select樣式 ===== */
 select {
@@ -34,7 +39,7 @@ select {
   display: none;
 }
 
-/* ===== view ===== */
+/* ===== img-object ===== */
 .object-fit-cover {
   width: 100%;
   object-fit: cover;
@@ -127,7 +132,7 @@ select {
 /* ===== page pagination  ===== */
 @mixin type1-pagination {
   font-family: $font-family-en-main;
-  font-size: var(--fs-en-page-type1-btn);
+  font-size: var(--fs-en-btn-btn);
 }
 @mixin type1-pagination-btn {
   font-size: var(--fs-en-page-type1-prev);
@@ -135,7 +140,7 @@ select {
   margin-top: $space-1;
 }
 @mixin type1-pagination-btn-active {
-  font-size: var(--fs-en-page-type1-next);
+  font-size: var(--fs-en-btn-next);
   color: $color-font-gold;
 }
 .page-type1-pagination {

@@ -56,18 +56,16 @@
   --fs-cn-page-type1-title-lg: calc(var(--font-base) * 2);
   --fs-cn-page-type1-content-sp: var(--font-base);
   --fs-cn-page-type1-title-sp: calc(var(--font-base) * 1.5);
-  /* button 
-  小button : 16px
-  大button : 20px
+  /*商品列表
+    選單:16px
+    篩選文字:14px
+    產品文字:14px
+    酒譜材料: 12px
   */
-  --fs-cn-btn-content-sm: var(--font-base);
-  --fs-cn-btn-content-lg: calc(var(--font-base) * 1.25);
-  /* footer 
-  主字 : 16px
-  內容 : 14px
-  */
-  --fs-cn-footer-title: var(--font-base);
-  --fs-cn-footer-content: calc(var(--font-base) * 0.875);
+  --fs-cn-page-list-menu: var(--font-base);
+  --fs-cn-page-list-filter: calc(var(--font-base) * 0.875);
+  --fs-cn-page-list-content: calc(var(--font-base) * 0.875);
+  --fs-cn-page-list-: calc(var(--font-base) * 0.75);
   /* =========== 英文 =========== */
   /* 首頁 
   Next : 13px
@@ -87,22 +85,41 @@
   --fs-en-home-title-caption: calc(var(--font-base) * 1.5);
   /* 會員、揪團  (type1)
   內文 : 16px
-  button : 16px
-  Next : 16px
-  Prev : 13px
   小標 : 20px 關於我們的電話、email
   中標 : 32px 關於我們的stayintouch
   大標 : 48px 
   首字母：64px
   */
   --fs-en-page-type1-content: var(--font-base);
-  --fs-en-page-type1-btn: var(--font-base);
-  --fs-en-page-type1-next: var(--font-base);
-  --fs-en-page-type1-prev: calc(var(--font-base) * 0.8125);
   --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.25);
   --fs-en-page-type1-title-md: calc(var(--font-base) * 2);
   --fs-en-page-type1-title-lg: calc(var(--font-base) * 3);
   --fs-en-page-type1-title-caption: calc(var(--font-base) * 4);
+  /*商品列表
+    小標: 12px
+    大標: 20px
+  */
+  --fs-cn-page-list-title-sm: calc(var(--font-base) * 0.75);
+  --fs-cn-page-list-title-lg: calc(var(--font-base) * 1.25);
+  /* =========== 元件 =========== */
+  /* button 
+  小button : 12px
+  中button : 16px
+  大button : 20px
+  Next : 16px
+  Prev : 13px
+  */
+  --fs-cn-btn-sm: calc(var(--font-base) * 0.75);
+  --fs-cn-btn-md: var(--font-base);
+  --fs-cn-btn-lg: calc(var(--font-base) * 1.25);
+  --fs-en-next: var(--font-base);
+  --fs-en-prev: calc(var(--font-base) * 0.8125);
+  /* footer 
+  主字 : 16px
+  內容 : 14px
+  */
+  --fs-cn-footer-title: var(--font-base);
+  --fs-cn-footer-content: calc(var(--font-base) * 0.875);
 }
 
 /* ====================== 電腦版  ====================== */
@@ -133,18 +150,16 @@
     --fs-cn-page-type1-title-lg: calc(var(--font-base) * 4);
     --fs-cn-page-type1-content-sp: calc(var(--font-base) * 1.5);
     --fs-cn-page-type1-title-sp: calc(var(--font-base) * 2);
-    /* button 
-  小button : 24px
-  大button : 32px
-   */
-    --fs-cn-btn-content-sm: calc(var(--font-base) * 1.25);
-    --fs-cn-btn-content-lg: calc(var(--font-base) * 2);
-    /* footer  
-  主字 : 24px
-  內容 : 20px
-  */
-    --fs-cn-footer-title: calc(var(--font-base) * 1.5);
-    --fs-cn-footer-content: calc(var(--font-base) * 1.25);
+    /* 商品列表
+      選單:32px
+      篩選文字:24px
+      產品文字: 24px
+      酒譜材料: 16px
+    */
+    --fs-cn-page-list-menu: calc(var(--font-base) * 2);
+    --fs-cn-page-list-filter: calc(var(--font-base) * 1.5);
+    --fs-cn-page-list-content: calc(var(--font-base) * 1.5);
+    --fs-cn-page-list-: calc(var(--font-base) * 1);
     /* =========== 英文 =========== */
     /* 首頁 
   Next : 36px
@@ -164,22 +179,41 @@
     --fs-en-home-title-caption: calc(var(--font-base) * 8);
     /* 會員、揪團  (type1)
   內文 : 24px
-  button : 24px
-  Next : 32px
-  Prev : 24px
   小標 : 24px 關於我們的電話、email
   中標 : 48px 關於我們的stayintouch
   大標 : 128px
   首字母：200px
   */
     --fs-en-page-type1-content: calc(var(--font-base) * 1.5);
-    --fs-en-page-type1-btn: calc(var(--font-base) * 1.5);
-    --fs-en-page-type1-next: calc(var(--font-base) * 2);
-    --fs-en-page-type1-prev: calc(var(--font-base) * 1.5);
     --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.5);
     --fs-en-page-type1-title-md: calc(var(--font-base) * 3);
     --fs-en-page-type1-title-lg: calc(var(--font-base) * 8);
     --fs-en-page-type1-title-caption: calc(var(--font-base) * 12.5);
+    /* 商品列表
+      小標 : 16px
+      大標 : 64px
+    */
+    --fs-cn-page-list-title-sm: calc(var(--font-base) * 1);
+    --fs-cn-page-list-title-lg: calc(var(--font-base) * 4);
+    /* =========== 元件 =========== */
+    /* button 
+  小button : 20px
+  中button : 24px
+  大button : 32px
+  Next : 32px
+  Prev : 24px
+   */
+    --fs-cn-btn-sm: calc(var(--font-base) * 1.25);
+    --fs-cn-btn-md: calc(var(--font-base) * 1.5);
+    --fs-cn-btn-lg: calc(var(--font-base) * 2);
+    --fs-en-btn-next: calc(var(--font-base) * 2);
+    --fs-en-btn-prev: calc(var(--font-base) * 1.5);
+    /* footer  
+  主字 : 24px
+  內容 : 20px
+  */
+    --fs-cn-footer-title: calc(var(--font-base) * 1.5);
+    --fs-cn-footer-content: calc(var(--font-base) * 1.25);
   }
 }
 
@@ -203,6 +237,12 @@ a:hover {
   color: #ffdb96;
 }
 
+/* ===== buttom ===== */
+.btn-none {
+  background-color: transparent;
+  border: unset;
+}
+
 /* ===== select樣式 ===== */
 select {
   background: transparent;
@@ -216,7 +256,7 @@ select {
   display: none;
 }
 
-/* ===== view ===== */
+/* ===== img-object ===== */
 .object-fit-cover {
   width: 100%;
   -o-object-fit: cover;
@@ -273,7 +313,7 @@ select {
   width: 95%;
   margin-top: 1rem;
   margin-left: auto;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.1rem;
 }
 
 .page-type1-header .page-type1-header-content-menu li {
@@ -320,7 +360,7 @@ select {
 /* ===== page pagination  ===== */
 .page-type1-pagination {
   font-family: "Playfair Display";
-  font-size: var(--fs-en-page-type1-btn);
+  font-size: var(--fs-en-btn-btn);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -354,7 +394,7 @@ select {
 }
 
 .page-type1-pagination .page-type1-pagination-btn.active .type1-pagination-btn-text {
-  font-size: var(--fs-en-page-type1-next);
+  font-size: var(--fs-en-btn-next);
   color: #ffdb96;
 }
 

@@ -1,6 +1,26 @@
 * {
   box-sizing: border-box;
 }
+/* =============== 針對空間 =============== */
+// margin, padding
+$space-base: 1rem;
+$space-1: $space-base * 0.25;
+$space-2: $space-base * 0.5;
+$space-3: $space-base;
+$space-4: $space-base * 1.5;
+$space-5: $space-base * 3;
+$space-6: $space-base * 6;
+
+// line-heigt
+$line-heght-1: 100%;
+$line-heght-2: 150%;
+$line-heght-3: 200%;
+
+// letter-space
+$letter-space-base: 1rem;
+$letter-space-1: $letter-space-base * 0.8;
+$letter-space-1: $letter-space-base * 0.15;
+
 /* =============== 針對顏色 =============== */
 /* 背景顏色 : 1C1A20
   背景方塊色 : 131213
@@ -15,6 +35,7 @@ $color-bg-block: #000;
 $color-bg-dark: #1c1a20;
 $color-bg-light: #131213;
 $color-font: #ffffff;
+$color-border: #ffffff;
 $color-font-gold: #ffdb96;
 $color-font-mark: #666666;
 $color-font-mark-light: #bab9b9;
@@ -35,9 +56,9 @@ $font-family-cn-content: 'Noto Sans TC';
 $font-family-en-main: 'Playfair Display';
 $font-family-en-content: 'Roboto';
 
-$font-family-bold: bold;
-$font-family-normal: normal;
-$font-family-lighter: lighter;
+$font-weight-lighter: lighter;
+$font-weight-normal: normal;
+$font-weight-bold: bold;
 :root {
   /* =============== 文字大小 =============== */
   /* =============== 手機板  =============== */
@@ -87,7 +108,7 @@ $font-family-lighter: lighter;
 
   /* =========== 英文 =========== */
   /* 首頁 
-  Next : 15px
+  Next : 13px
   Prev : 13px
   button : 15px   
   內文 : 15px   

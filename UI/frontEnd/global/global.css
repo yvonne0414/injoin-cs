@@ -7,6 +7,7 @@
           box-sizing: border-box;
 }
 
+/* =============== 針對空間 =============== */
 /* =============== 針對顏色 =============== */
 /* 背景顏色 : 1C1A20
   背景方塊色 : 131213
@@ -69,7 +70,7 @@
   --fs-cn-footer-content: calc(var(--font-base) * 0.875);
   /* =========== 英文 =========== */
   /* 首頁 
-  Next : 15px
+  Next : 13px
   Prev : 13px
   button : 15px   
   內文 : 15px   
@@ -188,6 +189,7 @@
 
 body {
   background-color: #1c1a20;
+  color: #ffffff;
 }
 
 /* ==================== 全域 ==================== */
@@ -222,29 +224,30 @@ select {
 }
 
 /* ==================== 常用 ==================== */
-/* ===== page header ===== */
-.page-header {
+/* ===== page type1 header ===== */
+.page-type1-header {
   background-color: #000;
   color: #ffffff;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  margin-bottom: 6rem;
 }
 
-.page-header-select {
+.page-type1-header .page-type1-header-select {
   z-index: 10;
   color: #bab9b9;
   font-size: var(--fs-en-page-type1-prev);
 }
 
-.page-header-select select {
+.page-type1-header .page-type1-header-select select {
   font-family: "Noto Serif TC";
 }
 
-.page-header-content-title {
+.page-type1-header .page-type1-header-content-title {
   z-index: 10;
 }
 
-.page-header-content-title-en {
+.page-type1-header .page-type1-header-content-title-en {
   color: #666666;
   font-family: "Playfair Display";
   font-weight: bold;
@@ -252,11 +255,11 @@ select {
   line-height: 100%;
 }
 
-.page-header-content-title-en span:first-child {
+.page-type1-header .page-type1-header-content-title-en span:first-child {
   font-size: var(--fs-en-page-type1-title-caption);
 }
 
-.page-header-content-title-cn {
+.page-type1-header .page-type1-header-content-title-cn {
   position: absolute;
   bottom: 0;
   left: 5%;
@@ -266,41 +269,122 @@ select {
   font-size: var(--fs-cn-page-type1-title-lg);
 }
 
-.page-header-content-menu {
+.page-type1-header .page-type1-header-content-menu {
   width: 95%;
   margin-top: 1rem;
   margin-left: auto;
+  letter-spacing: 0.15rem;
 }
 
-.page-header-content-menu li {
+.page-type1-header .page-type1-header-content-menu li {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  line-height: 2;
+  line-height: 200%;
   font-family: "Noto Serif TC";
   font-weight: bold;
   font-size: var(--fs-cn-page-type1-menu);
   z-index: 10;
 }
 
-.page-header-content-menu li.active a {
+.page-type1-header .page-type1-header-content-menu.active a {
   color: #ffdb96;
 }
 
-.page-header-img {
+.page-type1-header .page-type1-header-img {
   position: absolute;
   right: 0;
   top: 0;
   width: 90%;
+  overflow: hidden;
 }
 
-.page-header-img-mask {
+.page-type1-header .page-type1-header-img .page-type1-header-img-mask {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   background-color: #00000090;
+}
+
+/* ===== page title  ===== */
+.page-type1-area-title {
+  border-left: 10px #ffffff solid;
+  padding-left: 1rem;
+  font-size: var(--fs-cn-page-type1-title-sp);
+  font-family: "Noto Serif TC";
+  margin-bottom: 1.5rem;
+}
+
+/* ===== page pagination  ===== */
+.page-type1-pagination {
+  font-family: "Playfair Display";
+  font-size: var(--fs-en-page-type1-btn);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  margin: 1rem auto;
+  max-width: 10rem;
+}
+
+.page-type1-pagination .page-type1-pagination-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.page-type1-pagination .page-type1-pagination-btn svg {
+  fill: #bab9b9;
+}
+
+.page-type1-pagination .page-type1-pagination-btn .type1-pagination-btn-text {
+  font-size: var(--fs-en-page-type1-prev);
+  color: #bab9b9;
+  margin-top: 0.25rem;
+}
+
+.page-type1-pagination .page-type1-pagination-btn.active svg {
+  fill: #ffdb96;
+}
+
+.page-type1-pagination .page-type1-pagination-btn.active .type1-pagination-btn-text {
+  font-size: var(--fs-en-page-type1-next);
+  color: #ffdb96;
+}
+
+.page-type1-pagination .page-type1-pagination-btn:hover svg {
+  fill: #ffdb96;
+}
+
+.page-type1-pagination .page-type1-pagination-btn:hover .type1-pagination-btn-text {
+  color: #ffdb96;
+}
+
+/* ===== page type1 list area ===== */
+.page-type1-list-content {
+  font-family: "Noto Sans TC";
+  font-size: var(--fs-cn-page-type1-content);
+  border: #ffffff 1px solid;
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.page-type1-list-content > div {
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -316,15 +400,52 @@ select {
   }
   /* ==================== 常用 ==================== */
   /* ===== page header ===== */
-  .page-header-img {
+  .page-type1-header .page-type1-header-img {
     -webkit-transform: translateY(50%);
             transform: translateY(50%);
     top: unset;
-    bottom: 10%;
+    bottom: 18%;
     max-width: 40rem !important;
   }
-  .page-header-img-mask {
+  .page-type1-header .page-type1-header-img-mask {
     background-color: transparent;
+  }
+  /* ===== page title  ===== */
+  .page-type1-area-title {
+    margin-bottom: 3rem;
+  }
+  /* ===== page pagination  ===== */
+  .page-type1-pagination {
+    max-width: 15rem;
+  }
+  /* ===== page type1 list area ===== */
+  .page-type1-list-wraper > div > div:nth-child(1) {
+    width: 28% !important;
+    text-align: center;
+  }
+  .page-type1-list-wraper > div > div:not(:nth-child(1)) {
+    width: 18% !important;
+    text-align: center;
+  }
+  .page-type1-list-wraper .page-type1-list-title {
+    font-family: "Noto Serif TC";
+    font-size: var(--fs-cn-page-type1-content);
+    border-top: #ffffff 3px solid;
+    border-bottom: #ffffff 3px solid;
+    padding: 0.5rem;
+  }
+  .page-type1-list-wraper .page-type1-list-content {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-bottom: #ffffff 1px solid !important;
+    margin-bottom: 0;
+    padding: 1rem 0.5rem;
+  }
+  .page-type1-list-wraper .page-type1-list-content > div {
+    margin: 0.5rem;
   }
 }
 /*# sourceMappingURL=global.css.map */

@@ -9,6 +9,7 @@
 
 body {
   background-color: $color-bg-dark;
+  color: $color-font;
 }
 /* ==================== 全域 ==================== */
 /* ===== a ===== */
@@ -41,72 +42,158 @@ select {
 
 /* ==================== 常用 ==================== */
 
-/* ===== page header ===== */
+/* ===== page type1 header ===== */
 .page-type1-header {
   background-color: $color-bg-block;
   color: $color-font;
   padding-top: 2rem;
   padding-bottom: 2rem;
+  margin-bottom: $space-6;
+
+  .page-type1-header-select {
+    z-index: 10;
+    color: $color-font-mark-light;
+    font-size: var(--fs-en-page-type1-prev);
+  }
+  .page-type1-header-select select {
+    font-family: $font-family-cn-main;
+  }
+  .page-type1-header-content-title {
+    z-index: 10;
+  }
+  .page-type1-header-content-title-en {
+    color: $color-font-mark;
+    font-family: $font-family-en-main;
+    font-weight: $font-weight-bold;
+    font-size: var(--fs-en-page-type1-title-lg);
+    line-height: 100%;
+    span:first-child {
+      font-size: var(--fs-en-page-type1-title-caption);
+    }
+  }
+  .page-type1-header-content-title-cn {
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    color: $color-font-gold;
+    font-family: $font-family-cn-main;
+    font-weight: $font-weight-bold;
+    font-size: var(--fs-cn-page-type1-title-lg);
+  }
+  .page-type1-header-content-menu {
+    width: 95%;
+    margin-top: 1rem;
+    margin-left: auto;
+    letter-spacing: $letter-space-1;
+
+    li {
+      width: fit-content;
+      line-height: $line-heght-3;
+      font-family: $font-family-cn-main;
+      font-weight: $font-weight-bold;
+      font-size: var(--fs-cn-page-type1-menu);
+      z-index: 10;
+    }
+    &.active a {
+      color: $color-font-gold;
+    }
+  }
+  .page-type1-header-img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90%;
+    overflow: hidden;
+    .page-type1-header-img-mask {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: #00000090;
+    }
+  }
 }
-.page-header-select {
-  z-index: 10;
-  color: $color-font-mark-light;
-  font-size: var(--fs-en-page-type1-prev);
-}
-.page-header-select select {
+
+/* ===== page title  ===== */
+.page-type1-area-title {
+  border-left: 10px $color-border solid;
+  padding-left: $space-3;
+  font-size: var(--fs-cn-page-type1-title-sp);
   font-family: $font-family-cn-main;
+  margin-bottom: $space-4;
 }
-.page-header-content-title {
-  z-index: 10;
-}
-.page-header-content-title-en {
-  color: $color-font-mark;
+
+/* ===== page pagination  ===== */
+@mixin type1-pagination {
   font-family: $font-family-en-main;
-  font-weight: $font-family-bold;
-  font-size: var(--fs-en-page-type1-title-lg);
-  line-height: 100%;
+  font-size: var(--fs-en-page-type1-btn);
 }
-.page-header-content-title-en span:first-child {
-  font-size: var(--fs-en-page-type1-title-caption);
+@mixin type1-pagination-btn {
+  font-size: var(--fs-en-page-type1-prev);
+  color: $color-font-mark-light;
+  margin-top: $space-1;
 }
-.page-header-content-title-cn {
-  position: absolute;
-  bottom: 0;
-  left: 5%;
-  color: $color-font-gold;
-  font-family: $font-family-cn-main;
-  font-weight: $font-family-bold;
-  font-size: var(--fs-cn-page-type1-title-lg);
-}
-.page-header-content-menu {
-  width: 95%;
-  margin-top: 1rem;
-  margin-left: auto;
-}
-.page-header-content-menu li {
-  width: fit-content;
-  line-height: 2;
-  font-family: $font-family-cn-main;
-  font-weight: $font-family-bold;
-  font-size: var(--fs-cn-page-type1-menu);
-  z-index: 10;
-}
-.page-header-content-menu li.active a {
+@mixin type1-pagination-btn-active {
+  font-size: var(--fs-en-page-type1-next);
   color: $color-font-gold;
 }
-.page-header-img {
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 90%;
+.page-type1-pagination {
+  @include type1-pagination();
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin: $space-3 auto;
+  max-width: 10rem;
+  .page-type1-pagination-btn {
+    background-color: transparent;
+    border: none;
+    svg {
+      fill: $color-font-mark-light;
+    }
+    .type1-pagination-btn-text {
+      @include type1-pagination-btn();
+    }
+    &.active {
+      svg {
+        fill: $color-font-gold;
+      }
+      .type1-pagination-btn-text {
+        @include type1-pagination-btn-active();
+      }
+    }
+    &:hover {
+      svg {
+        fill: $color-font-gold;
+      }
+      .type1-pagination-btn-text {
+        color: $color-font-gold;
+      }
+    }
+  }
 }
-.page-header-img-mask {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: #00000090;
+
+/* ===== page type1 list area ===== */
+@mixin cn-list-content {
+  font-family: $font-family-cn-content;
+  font-size: var(--fs-cn-page-type1-content);
+}
+@mixin cn-list-main {
+  font-family: $font-family-cn-main;
+  font-size: var(--fs-cn-page-type1-content);
+}
+.page-type1-list-content {
+  @include cn-list-content();
+  border: $color-border 1px solid;
+  padding: $space-2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: $space-3;
+
+  > div {
+    margin-bottom: $space-2;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -123,13 +210,56 @@ select {
   /* ==================== 常用 ==================== */
 
   /* ===== page header ===== */
-  .page-header-img {
-    transform: translateY(50%);
-    top: unset;
-    bottom: 10%;
-    max-width: 40rem !important;
+  .page-type1-header {
+    .page-type1-header-img {
+      transform: translateY(50%);
+      top: unset;
+      bottom: 18%;
+      max-width: 40rem !important;
+    }
+    .page-type1-header-img-mask {
+      background-color: transparent;
+    }
   }
-  .page-header-img-mask {
-    background-color: transparent;
+
+  /* ===== page title  ===== */
+  .page-type1-area-title {
+    margin-bottom: $space-5;
+  }
+
+  /* ===== page pagination  ===== */
+  .page-type1-pagination {
+    max-width: 15rem;
+  }
+
+  /* ===== page type1 list area ===== */
+  .page-type1-list-wraper {
+    > div {
+      > div:nth-child(1) {
+        width: 28% !important;
+        text-align: center;
+      }
+      > div:not(:nth-child(1)) {
+        width: 18% !important;
+        text-align: center;
+      }
+    }
+    .page-type1-list-title {
+      @include cn-list-main();
+      border-top: $color-border 3px solid;
+      border-bottom: $color-border 3px solid;
+      padding: $space-2;
+    }
+    .page-type1-list-content {
+      flex-wrap: nowrap;
+      align-items: center;
+      border-bottom: $color-border 1px solid !important;
+      margin-bottom: 0;
+      padding: $space-3 $space-2;
+
+      > div {
+        margin: $space-2;
+      }
+    }
   }
 }

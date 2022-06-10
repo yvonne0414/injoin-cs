@@ -8,7 +8,7 @@
 }
 
 .button-style {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   border: 2px solid var(--sp-color);
   color: var(--sp-color);
   text-align: center;

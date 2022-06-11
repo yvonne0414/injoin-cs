@@ -718,8 +718,12 @@ select {
   .activity-list.mode-user .page-type1-area-title {
     margin-left: 50%;
   }
+  .square-area {
+    margin-top: -4rem;
+  }
   .bg-square {
     width: 98%;
+    z-index: -10;
   }
   .user-add-group-area {
     display: -webkit-box;

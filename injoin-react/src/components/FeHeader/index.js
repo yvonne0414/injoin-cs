@@ -25,7 +25,7 @@ function FeHeader() {
 
   useEffect(() => {
     window.addEventListener('resize', handleRWD);
-    handleRWD(); //加入此行
+    handleRWD();
 
     return () => {
       window.removeEventListener('resize', handleRWD);
@@ -39,6 +39,7 @@ function FeHeader() {
   const onClose = () => {
     setVisible(false);
   };
+  const menu_arr = ['首頁', '關於我們', '商品列表', '調酒酒譜', '現正揪團'];
 
   return (
     <>
@@ -52,9 +53,9 @@ function FeHeader() {
             </div>
           </div>
           <div className="logo-wraper">
-            <img src={ismobile ? logoImgA : logoImg} alt="injoinlog" className="img-fluid object-covero" />
+            <img src={ismobile ? logoImgA : logoImg} alt="injoinlog" className="img-fluid object-cover" />
           </div>
-          <div className="pc-view pc-content">
+          <div className="pc-view injoin-side-slogan">
             <span className="header-text">INJOIN YOURLIFE</span>
             <div className="v-line">
               <div></div>
@@ -88,25 +89,64 @@ function FeHeader() {
         bodyStyle={{ backgroundColor: '#00000085' }}
         zIndex={10}
       >
-        <div className="d-flex flex-column justify-content-between align-items-center flex-md-row justify-content-md-start align-items-center text-white">
-          <div className="fe-header-drawer-body-content">
-            <ul className="list-unstyled">
-              <li>
-                <span>01</span>
-                <span>首頁</span>
-              </li>
-            </ul>
+        <div className="drawer-content  d-flex text-white">
+          <div className="m-view injoin-side-slogan">
+            <span className="header-text">INJOIN YOURLIFE</span>
+            <div className="v-line">
+              <div></div>
+            </div>
           </div>
-          <div className="fe-header-drawer-body-content">
-            <div>
-              <div>Welcome to INJOIN</div>
+          <div className="fe-header-drawer-body-content-wrap h-100 py-5">
+            <div className="fe-header-drawer-body-content">
+              <ul className="list-unstyled">
+                {menu_arr.map((item, i) => {
+                  return (
+                    <li key={i}>
+                      <a href="/" className="header-menu">
+                        <span className="header-menu-num">0{i}</span>
+                        <span className="header-menu-content">{item}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+                {/* <li className="header-menu">
+                  <span className="header-menu-num">00</span>
+                  <span className="header-menu-content">首頁</span>
+                </li>
+                <li className="header-menu">
+                  <span className="header-menu-num">01</span>
+                  <span className="header-menu-content">關於我們</span>
+                </li> */}
+              </ul>
+            </div>
+            <div className="fe-header-drawer-body-content">
               <div>
-                <div>門市地址</div>
-                <div>台北市文山區萬芳路60-18號 (萬芳社區捷運站出口旁）</div>
+                <div className="header-slogan">
+                  Welcome to
+                  <br className="m-view" /> INJOIN
+                </div>
+                <div className="header-info">
+                  <div className="header-info-title">門市地址</div>
+                  <div className="header-info-content">台北市文山區萬芳路60-18號 (萬芳社區捷運站出口旁）</div>
+                </div>
+                <div className="header-info">
+                  <div className="header-info-title">聯絡信箱</div>
+                  <div className="header-info-content">MS@mixology.com.tw </div>
+                </div>
               </div>
-              <div>
-                <div>聯絡信箱</div>
-                <div>MS@mixology.com.tw </div>
+              <div className="header-connection">
+                <a href="/">
+                  <span></span>
+                  fb
+                </a>
+                <a href="/">
+                  <span></span>
+                  IG
+                </a>
+                <a href="/">
+                  <span></span>
+                  line
+                </a>
               </div>
             </div>
           </div>

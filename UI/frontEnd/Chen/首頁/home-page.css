@@ -536,6 +536,27 @@ select {
   top: 1rem;
 }
 
+.section-content {
+  position: absolute;
+  color: white;
+  top: 3rem;
+  left: 0.8rem;
+}
+
+.section-content .section-title-cn {
+  color: var(--sp-color);
+  margin-bottom: 0.5rem;
+}
+
+.section-content .section-content-en {
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.section-content .section-content-cn {
+  letter-spacing: 0.25rem;
+}
+
 .section1 {
   position: relative;
   min-height: 100vh;
@@ -651,6 +672,7 @@ select {
 
 @media screen and (min-width: 768px) {
   .section1 {
+    width: 100%;
     position: relative;
     min-height: 100vh;
     background: #000;

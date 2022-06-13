@@ -62,7 +62,7 @@ const FeHeader = () => {
             </div>
           </div>
           <div className="shortcut-btns text-end">
-            <a href="/">
+            <a href="/chen">
               <FontAwesomeIcon icon={faHeart} fixedWidth />
             </a>
             <a href="/">

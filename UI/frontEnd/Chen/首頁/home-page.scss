@@ -1,7 +1,5 @@
 @import '../../global/global.scss';
-* {
-  box-sizing: border-box;
-}
+
 
 .button-style {
   background-color: transparent;
@@ -126,6 +124,7 @@
 @media screen and (min-width: 768px) {
   // =====section1=======
   .section1 {
+    width: 100%;
     position: relative;
     min-height: 100vh;
     background: $color-bg-block;
@@ -173,7 +172,7 @@
     }
     .s1-button {
       background-color: rgba(0, 0, 0, 0);
-      border: 2px solid #ffdb96;
+      border: 9px solid #ffdb96;
       color: #ffdb96;
       text-align: center;
       padding: 0.5rem 4rem;

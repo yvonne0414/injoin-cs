@@ -1,0 +1,788 @@
+@charset "UTF-8";
+/* 引入字體 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+/* 引入變數 */
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/* =============== 針對空間 =============== */
+/* =============== 針對顏色 =============== */
+/* 背景顏色 : 1C1A20
+  背景方塊色 : 131213
+  一般字顏色 : FFFFFF
+  金色字顏色 : FFDB96
+  英文大標顏色 : 666666
+  頁面麵包屑顏色 : bab9b9
+  輸入空格外框 & 填滿色 : 565656 
+  icon顏色 & header 英文字顏色 & prev : CCCCCC
+  */
+/* =============== 針對字形 ===============*/
+/* 
+  中文重要字體 : Noto Serif TC
+  中文內文字體 : Noto Sans TC
+
+  英文重要字體 : Playfair Display
+  英文內文字體 : Roboto 
+  */
+:root {
+  /* =============== 文字大小 =============== */
+  /* =============== 手機板  =============== */
+  /* fontbase:16px */
+  --font-base: 1rem;
+  /* =========== 中文 =========== */
+  /* 首頁
+  內文 : 16px   
+  產品文字 : 16px  
+  中標 : 24px   
+  大標 : 32px 
+  */
+  --fs-cn-home-content: var(--font-base);
+  --fs-cn-home-prdtext: var(--font-base);
+  --fs-cn-home-title-md: calc(var(--font-base) * 1.5);
+  --fs-cn-home-title-lg: calc(var(--font-base) * 2);
+  /* 會員、揪團  (type1)
+  內文 : 16px 
+  選單 : 20px  
+  中標 : 20px   
+  大標 : 32px
+  重要說明內文 : 16px
+  重要說明標題 : 24px
+  */
+  --fs-cn-page-type1-content: var(--font-base);
+  --fs-cn-page-type1-menu: calc(var(--font-base) * 1.25);
+  --fs-cn-page-type1-title-md: calc(var(--font-base) * 1.25);
+  --fs-cn-page-type1-title-lg: calc(var(--font-base) * 2);
+  --fs-cn-page-type1-content-sp: var(--font-base);
+  --fs-cn-page-type1-title-sp: calc(var(--font-base) * 1.5);
+  /*商品列表
+    選單:16px
+    篩選文字:14px
+    產品文字:14px
+    酒譜材料: 12px
+  */
+  --fs-cn-page-list-menu: var(--font-base);
+  --fs-cn-page-list-filter: calc(var(--font-base) * 0.875);
+  --fs-cn-page-list-content: calc(var(--font-base) * 0.875);
+  --fs-cn-page-list-: calc(var(--font-base) * 0.75);
+  /* =========== 英文 =========== */
+  /* 首頁 
+  Next : 13px
+  Prev : 13px
+  button : 15px   
+  內文 : 15px   
+  中標 : 14px
+  大標 : 24px
+  首字母 : 64px
+  */
+  --fs-en-home-next: calc(var(--font-base) * 0.9375);
+  --fs-en-home-prev: calc(var(--font-base) * 0.8125);
+  --fs-en-home-btn: calc(var(--font-base) * 0.9375);
+  --fs-en-home-content: calc(var(--font-base) * 0.9375);
+  --fs-en-home-title-md: calc(var(--font-base) * 0.875);
+  --fs-en-home-title-lg: calc(var(--font-base) * 1.5);
+  --fs-en-home-title-caption: calc(var(--font-base) * 1.5);
+  /* 會員、揪團  (type1)
+  內文 : 16px
+  小標 : 20px 關於我們的電話、email
+  中標 : 32px 關於我們的stayintouch
+  大標 : 48px 
+  首字母：64px
+  */
+  --fs-en-page-type1-content: var(--font-base);
+  --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.25);
+  --fs-en-page-type1-title-md: calc(var(--font-base) * 2);
+  --fs-en-page-type1-title-lg: calc(var(--font-base) * 3);
+  --fs-en-page-type1-title-caption: calc(var(--font-base) * 4);
+  /*商品列表
+    小標: 12px
+    大標: 20px
+  */
+  --fs-cn-page-list-title-sm: calc(var(--font-base) * 0.75);
+  --fs-cn-page-list-title-lg: calc(var(--font-base) * 1.25);
+  /* =========== 元件 =========== */
+  /* button 
+  小button : 12px
+  中button : 16px
+  大button : 20px
+  Next : 16px
+  Prev : 13px
+  */
+  --fs-cn-btn-sm: calc(var(--font-base) * 0.75);
+  --fs-cn-btn-md: var(--font-base);
+  --fs-cn-btn-lg: calc(var(--font-base) * 1.25);
+  --fs-en-next: var(--font-base);
+  --fs-en-prev: calc(var(--font-base) * 0.8125);
+  /* header
+  選單 : 24px
+  小標 : 16px
+  內文 : 14px
+  數字 : 12px
+  Welcome to INJOIN : 16px
+  */
+  --fs-cn-header-menu: calc(var(--font-base) * 1.5);
+  --fs-cn-header-title: calc(var(--font-base) * 1);
+  --fs-cn-header-content: calc(var(--font-base) * 0.875);
+  --fs-en-header-num: calc(var(--font-base) * 0.75);
+  --fs-en-header-slogan: calc(var(--font-base) * 1);
+  /* footer 
+  主字 : 16px
+  內容 : 14px
+  */
+  --fs-cn-footer-title: var(--font-base);
+  --fs-cn-footer-content: calc(var(--font-base) * 0.875);
+}
+
+/* ====================== 電腦版  ====================== */
+@media screen and (min-width: 768px) {
+  :root {
+    /* =============== 文字大小 =============== */
+    /* =========== 中文 =========== */
+    /* 首頁
+  內文 : 20px 
+  產品文字 : 24px  
+  中標 : 36px   
+  大標 : 48px */
+    --fs-cn-home-content: calc(var(--font-base) * 1.25);
+    --fs-cn-home-prdtext: calc(var(--font-base) * 1.5);
+    --fs-cn-home-title-md: calc(var(--font-base) * 2.25);
+    --fs-cn-home-title-lg: calc(var(--font-base) * 3);
+    /* 會員、揪團  (type1)
+  內文 : 20px
+  選單 : 32px
+  中標 : 40px
+  大標 : 64px
+  重要說明內文 : 24px
+  重要說明標題 : 32px
+  */
+    --fs-cn-page-type1-content: calc(var(--font-base) * 1.25);
+    --fs-cn-page-type1-menu: calc(var(--font-base) * 2);
+    --fs-cn-page-type1-title-md: calc(var(--font-base) * 2.5);
+    --fs-cn-page-type1-title-lg: calc(var(--font-base) * 4);
+    --fs-cn-page-type1-content-sp: calc(var(--font-base) * 1.5);
+    --fs-cn-page-type1-title-sp: calc(var(--font-base) * 2);
+    /* 商品列表
+      選單:32px
+      篩選文字:24px
+      產品文字: 24px
+      酒譜材料: 16px
+    */
+    --fs-cn-page-list-menu: calc(var(--font-base) * 2);
+    --fs-cn-page-list-filter: calc(var(--font-base) * 1.5);
+    --fs-cn-page-list-content: calc(var(--font-base) * 1.5);
+    --fs-cn-page-list-: calc(var(--font-base) * 1);
+    /* =========== 英文 =========== */
+    /* 首頁 
+  Next : 36px
+  Prev : 32px
+  button : 32px  
+  內文 : 32px   
+  中標 : 32px
+  大標 : 40px
+  首字母 : 128px
+  */
+    --fs-en-home-next: calc(var(--font-base) * 2.25);
+    --fs-en-home-prev: calc(var(--font-base) * 2);
+    --fs-en-home-btn: calc(var(--font-base) * 2);
+    --fs-en-home-content: calc(var(--font-base) * 2);
+    --fs-en-home-title-md: calc(var(--font-base) * 2);
+    --fs-en-home-title-lg: calc(var(--font-base) * 2.5);
+    --fs-en-home-title-caption: calc(var(--font-base) * 8);
+    /* 會員、揪團  (type1)
+  內文 : 24px
+  小標 : 24px 關於我們的電話、email
+  中標 : 48px 關於我們的stayintouch
+  大標 : 128px
+  首字母：200px
+  */
+    --fs-en-page-type1-content: calc(var(--font-base) * 1.5);
+    --fs-en-page-type1-title-sm: calc(var(--font-base) * 1.5);
+    --fs-en-page-type1-title-md: calc(var(--font-base) * 3);
+    --fs-en-page-type1-title-lg: calc(var(--font-base) * 8);
+    --fs-en-page-type1-title-caption: calc(var(--font-base) * 12.5);
+    /* 商品列表
+      小標 : 16px
+      大標 : 64px
+    */
+    --fs-cn-page-list-title-sm: calc(var(--font-base) * 1);
+    --fs-cn-page-list-title-lg: calc(var(--font-base) * 4);
+    /* =========== 元件 =========== */
+    /* button 
+    小button : 20px
+    中button : 24px
+    大button : 32px
+    Next : 32px
+    Prev : 24px
+    */
+    --fs-cn-btn-sm: calc(var(--font-base) * 1.25);
+    --fs-cn-btn-md: calc(var(--font-base) * 1.5);
+    --fs-cn-btn-lg: calc(var(--font-base) * 2);
+    --fs-en-btn-next: calc(var(--font-base) * 2);
+    --fs-en-btn-prev: calc(var(--font-base) * 1.5);
+    /* header
+    選單 : 64px
+    小標 : 24px
+    內文 : 24px
+    數字 : 32px
+    Welcome to INJOIN : 32px
+    */
+    --fs-cn-header-menu: calc(var(--font-base) * 4);
+    --fs-cn-header-title: calc(var(--font-base) * 1.5);
+    --fs-cn-header-content: calc(var(--font-base) * 1.5);
+    --fs-en-header-num: calc(var(--font-base) * 2);
+    --fs-en-header-slogan: calc(var(--font-base) * 2);
+    /* footer  
+  主字 : 24px
+  內容 : 20px
+  */
+    --fs-cn-footer-title: calc(var(--font-base) * 1.5);
+    --fs-cn-footer-content: calc(var(--font-base) * 1.25);
+  }
+}
+
+* {
+  position: relative;
+}
+
+body {
+  background-color: #1c1a20;
+  color: #ffffff;
+}
+
+/* ==================== 全域 ==================== */
+/* ===== a ===== */
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffdb96;
+}
+
+/* ===== buttom ===== */
+.btn-none {
+  background-color: transparent;
+  border: unset;
+}
+
+/* ===== select樣式 ===== */
+select {
+  background: transparent;
+  color: #fff;
+  border: unset;
+  border-bottom: 0.5px solid #fff;
+}
+
+/* ===== view ===== */
+.pc-view {
+  display: none;
+}
+
+/* ===== img-object ===== */
+.object-fit-cover {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+/* ==================== 常用 ==================== */
+/* ===== page type1 header ===== */
+.page-type1-header {
+  background-color: #000;
+  color: #ffffff;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: 6rem;
+}
+
+.page-type1-header .page-type1-header-select {
+  z-index: 10;
+  color: #bab9b9;
+  font-size: var(--fs-en-page-type1-prev);
+}
+
+.page-type1-header .page-type1-header-select select {
+  font-family: "Noto Serif TC";
+}
+
+.page-type1-header .page-type1-header-content-title {
+  z-index: 10;
+}
+
+.page-type1-header .page-type1-header-content-title-en {
+  color: #666666;
+  font-family: "Playfair Display";
+  font-weight: bold;
+  font-size: var(--fs-en-page-type1-title-lg);
+  line-height: 100%;
+}
+
+.page-type1-header .page-type1-header-content-title-en span:first-child {
+  font-size: var(--fs-en-page-type1-title-caption);
+}
+
+.page-type1-header .page-type1-header-content-title-cn {
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  color: #ffdb96;
+  font-family: "Noto Serif TC";
+  font-weight: bold;
+  font-size: var(--fs-cn-page-type1-title-lg);
+}
+
+.page-type1-header .page-type1-header-content-menu {
+  width: 95%;
+  margin-top: 1rem;
+  margin-left: auto;
+  letter-spacing: 0.1rem;
+}
+
+.page-type1-header .page-type1-header-content-menu li {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  line-height: 200%;
+  font-family: "Noto Serif TC";
+  font-weight: bold;
+  font-size: var(--fs-cn-page-type1-menu);
+  z-index: 10;
+}
+
+.page-type1-header .page-type1-header-content-menu.active a {
+  color: #ffdb96;
+}
+
+.page-type1-header .page-type1-header-img {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 90%;
+  overflow: hidden;
+}
+
+.page-type1-header .page-type1-header-img .page-type1-header-img-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #00000090;
+}
+
+/* ===== page title  ===== */
+.page-type1-area-title {
+  border-left: 10px #ffffff solid;
+  padding-left: 1rem;
+  font-size: var(--fs-cn-page-type1-title-sp);
+  font-family: "Noto Serif TC";
+  margin-bottom: 1.5rem;
+}
+
+/* ===== page pagination  ===== */
+.page-type1-pagination {
+  font-family: "Playfair Display";
+  font-size: var(--fs-en-btn-btn);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  margin: 1rem auto;
+  max-width: 10rem;
+}
+
+.page-type1-pagination .page-type1-pagination-btn {
+  background-color: transparent;
+  border: none;
+}
+
+.page-type1-pagination .page-type1-pagination-btn svg {
+  fill: #bab9b9;
+}
+
+.page-type1-pagination .page-type1-pagination-btn .type1-pagination-btn-text {
+  font-size: var(--fs-en-page-type1-prev);
+  color: #bab9b9;
+  margin-top: 0.25rem;
+}
+
+.page-type1-pagination .page-type1-pagination-btn.active svg {
+  fill: #ffdb96;
+}
+
+.page-type1-pagination .page-type1-pagination-btn.active .type1-pagination-btn-text {
+  font-size: var(--fs-en-btn-next);
+  color: #ffdb96;
+}
+
+.page-type1-pagination .page-type1-pagination-btn:hover svg {
+  fill: #ffdb96;
+}
+
+.page-type1-pagination .page-type1-pagination-btn:hover .type1-pagination-btn-text {
+  color: #ffdb96;
+}
+
+/* ===== page type1 list area ===== */
+.page-type1-list-content {
+  font-family: "Noto Sans TC";
+  font-size: var(--fs-cn-page-type1-content);
+  border: #ffffff 1px solid;
+  padding: 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.page-type1-list-content > div {
+  margin-bottom: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  /* ==================== 全域 ==================== */
+  /* ===== view ===== */
+  .m-view {
+    display: none;
+  }
+  .pc-view {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  /* ==================== 常用 ==================== */
+  /* ===== page header ===== */
+  .page-type1-header .page-type1-header-img {
+    -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+    top: unset;
+    bottom: 18%;
+    max-width: 40rem !important;
+  }
+  .page-type1-header .page-type1-header-img-mask {
+    background-color: transparent;
+  }
+  /* ===== page title  ===== */
+  .page-type1-area-title {
+    margin-bottom: 3rem;
+  }
+  /* ===== page pagination  ===== */
+  .page-type1-pagination {
+    max-width: 15rem;
+  }
+  /* ===== page type1 list area ===== */
+  .page-type1-list-wraper > div > div:nth-child(1) {
+    width: 28% !important;
+    text-align: center;
+  }
+  .page-type1-list-wraper > div > div:not(:nth-child(1)) {
+    width: 18% !important;
+    text-align: center;
+  }
+  .page-type1-list-wraper .page-type1-list-title {
+    font-family: "Noto Serif TC";
+    font-size: var(--fs-cn-page-type1-content);
+    border-top: #ffffff 3px solid;
+    border-bottom: #ffffff 3px solid;
+    padding: 0.5rem;
+  }
+  .page-type1-list-wraper .page-type1-list-content {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-bottom: #ffffff 1px solid !important;
+    margin-bottom: 0;
+    padding: 1rem 0.5rem;
+  }
+  .page-type1-list-wraper .page-type1-list-content > div {
+    margin: 0.5rem;
+  }
+}
+
+.activity-list .page-type1-list-content > div:nth-child(4),
+.activity-list .page-type1-list-content > div:nth-child(5) {
+  margin-bottom: unset;
+}
+
+.activity-list .list-content_activity-name {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.activity-list .list-content_time {
+  font-weight: lighter;
+  font-family: "Noto Sans TC";
+  font-size: var(--fs-en-page-type1-content);
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  width: 50%;
+}
+
+.activity-list .list-content_place {
+  font-weight: lighter;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  width: 50%;
+  text-align: end;
+}
+
+.activity-list .list-content_state {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+  width: 50%;
+  color: #ffdb96;
+}
+
+.activity-list .list-content_user {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+  width: 50%;
+  color: #ffdb96;
+}
+
+.activity-list .list-content_btn {
+  -webkit-box-ordinal-group: 6;
+      -ms-flex-order: 5;
+          order: 5;
+  width: 50%;
+  text-align: end;
+  font-family: "Noto Serif TC";
+}
+
+.page-group-intro-area {
+  font-family: "Noto Sans TC";
+  font-size: var(--fs-cn-page-type1-content);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  margin-bottom: 3rem;
+}
+
+.page-group-intro-area .group-list-img-1,
+.page-group-intro-area .group-list-img-2 {
+  width: 40%;
+}
+
+.page-group-intro-area .page-group-intro-content .page-group-intro-text {
+  padding: 0.5rem;
+}
+
+.page-group-intro-area .page-group-intro-content .page-group-intro-text > div {
+  line-height: 200%;
+  letter-spacing: 0.15rem;
+}
+
+.page-group-intro-area .page-group-intro-content .group-list-img-2 {
+  margin-left: auto;
+}
+
+.bg-square {
+  background-color: #131213;
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  right: 0;
+}
+
+.user-add-group-area {
+  margin-bottom: 3rem;
+}
+
+.user-add-group-area .group-list-img-3 {
+  width: 60%;
+  margin-left: auto;
+}
+
+.user-add-group-contents {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-add-group-content {
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.user-add-group-content .user-add-group-content-text {
+  font-family: "Noto Sans TC";
+  font-size: var(--fs-cn-page-type1-content);
+  font-weight: lighter;
+  margin-bottom: 1rem;
+}
+
+.user-add-group-content .user-add-group-content-btn {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border: 1px #ffffff solid;
+  margin: auto;
+}
+
+.user-add-group-content .user-add-group-content-btn button {
+  padding: 0.25rem 1rem;
+  font-family: "Noto Serif TC";
+  font-size: var(--fs-cn-btn-lg);
+  color: #ffdb96;
+}
+
+@media screen and (min-width: 768px) {
+  .activity-list .page-type1-list-content {
+    border: unset;
+  }
+  .activity-list .page-type1-list-content > div {
+    margin-bottom: 0;
+  }
+  .activity-list .list-content_activity-name,
+  .activity-list .list-content_time,
+  .activity-list .list-content_place,
+  .activity-list .list-content_state,
+  .activity-list .list-content_user,
+  .activity-list .list-content_btn {
+    -webkit-box-ordinal-group: 1;
+        -ms-flex-order: 0;
+            order: 0;
+    width: unset;
+    text-align: center;
+  }
+  .activity-list .list-content_activity-name {
+    -webkit-line-clamp: 1;
+  }
+  .activity-list .list-content_btn a {
+    background-color: #000;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    padding: 0.25rem;
+  }
+  .activity-list .list-content_btn a:hover {
+    border: #ffffff 1px solid;
+  }
+  .page-group-intro-area {
+    font-family: "Noto Sans TC";
+    font-size: var(--fs-cn-page-type1-content);
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    margin-bottom: unset;
+  }
+  .page-group-intro-area .group-list-img-1 {
+    width: 30%;
+    margin-top: 6rem;
+  }
+  .page-group-intro-area .page-group-intro-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row;
+            flex-flow: row;
+    width: 55%;
+    background-color: #131213;
+  }
+  .page-group-intro-area .page-group-intro-content .page-group-intro-text {
+    -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+  }
+  .page-group-intro-area .page-group-intro-content .page-group-intro-text > div {
+    margin: auto;
+    max-width: 14rem;
+    line-height: 200%;
+  }
+  .page-group-intro-area .page-group-intro-content .group-list-img-2 {
+    width: 50%;
+  }
+  .activity-list.mode-user .page-type1-area-title {
+    margin-left: 50%;
+  }
+  .square-area {
+    margin-top: -4rem;
+  }
+  .bg-square {
+    width: 98%;
+    z-index: -10;
+  }
+  .user-add-group-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .user-add-group-area .group-list-img-3 {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    width: 40%;
+  }
+  .user-add-group-content-text {
+    width: 60%;
+  }
+  .user-add-group-content {
+    width: 80%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1rem;
+  }
+  .user-add-group-content .user-add-group-content-btn {
+    min-width: -webkit-fit-content;
+    min-width: -moz-fit-content;
+    min-width: fit-content;
+    margin-right: unset;
+    margin-left: auto;
+  }
+  .user-add-group-content.rtl > *:last-child {
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1;
+    margin-left: unset;
+    margin-right: auto;
+  }
+}
+/*# sourceMappingURL=orderList.css.map */

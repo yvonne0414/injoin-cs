@@ -18,6 +18,24 @@
   top: 1rem;
 }
 
+.section-content {
+  position: absolute;
+  color: white;
+  top: 3rem;
+  left: 0.8rem;
+  .section-title-cn {
+    color: var(--sp-color);
+    margin-bottom: 0.5rem;
+  }
+  .section-content-en {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .section-content-cn {
+    letter-spacing: 0.25rem;
+  }
+}
+
 // =====section1=======
 .section1 {
   position: relative;
@@ -172,7 +190,7 @@
     }
     .s1-button {
       background-color: rgba(0, 0, 0, 0);
-      border: 9px solid #ffdb96;
+      border: 2px solid #ffdb96;
       color: #ffdb96;
       text-align: center;
       padding: 0.5rem 4rem;

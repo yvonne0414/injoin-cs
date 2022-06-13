@@ -114,6 +114,18 @@
   --fs-cn-btn-lg: calc(var(--font-base) * 1.25);
   --fs-en-next: var(--font-base);
   --fs-en-prev: calc(var(--font-base) * 0.8125);
+  /* header
+  選單 : 24px
+  小標 : 16px
+  內文 : 14px
+  數字 : 12px
+  Welcome to INJOIN : 16px
+  */
+  --fs-cn-header-menu: calc(var(--font-base) * 1.5);
+  --fs-cn-header-title: calc(var(--font-base) * 1);
+  --fs-cn-header-content: calc(var(--font-base) * 0.875);
+  --fs-en-header-num: calc(var(--font-base) * 0.75);
+  --fs-en-header-slogan: calc(var(--font-base) * 1);
   /* footer 
   主字 : 16px
   內容 : 14px
@@ -197,17 +209,29 @@
     --fs-cn-page-list-title-lg: calc(var(--font-base) * 4);
     /* =========== 元件 =========== */
     /* button 
-  小button : 20px
-  中button : 24px
-  大button : 32px
-  Next : 32px
-  Prev : 24px
-   */
+    小button : 20px
+    中button : 24px
+    大button : 32px
+    Next : 32px
+    Prev : 24px
+    */
     --fs-cn-btn-sm: calc(var(--font-base) * 1.25);
     --fs-cn-btn-md: calc(var(--font-base) * 1.5);
     --fs-cn-btn-lg: calc(var(--font-base) * 2);
     --fs-en-btn-next: calc(var(--font-base) * 2);
     --fs-en-btn-prev: calc(var(--font-base) * 1.5);
+    /* header
+    選單 : 64px
+    小標 : 24px
+    內文 : 24px
+    數字 : 32px
+    Welcome to INJOIN : 32px
+    */
+    --fs-cn-header-menu: calc(var(--font-base) * 4);
+    --fs-cn-header-title: calc(var(--font-base) * 1.5);
+    --fs-cn-header-content: calc(var(--font-base) * 1.5);
+    --fs-en-header-num: calc(var(--font-base) * 2);
+    --fs-en-header-slogan: calc(var(--font-base) * 2);
     /* footer  
   主字 : 24px
   內容 : 20px
@@ -523,25 +547,38 @@ body {
 
 .section_title .title_sub {
   position: absolute;
-  top: 5%;
+  top: 10%;
   left: 20%;
+  font-family: "Playfair Display";
+  font-weight: lighter;
   font-size: var(--font-base);
+  font-size: var(--fs-cn-page-list-title-sm);
   color: #ccc;
+}
+
+.section_title .title_line {
+  border-bottom: 0.5px red solid;
+  width: 10px;
+  height: 10px;
 }
 
 .section_title .title_major {
   position: absolute;
-  top: 10%;
-  color: var(--font-color);
+  top: 20%;
   left: 10%;
+  font-family: "Playfair Display";
+  font-weight: bold;
+  font-size: var(--fs-cn-page-list-title-lg);
+  color: #ffffff;
 }
 
 .section_title .title_major .title_major_btn {
   margin: 0 3rem;
-  color: var(--spical-color);
-  border: solid 0.2rem #ffdb96;
-  /* text-align: center; */
   padding: 0.1rem 1rem;
   border-radius: 0%;
+  font-family: "Playfair Display";
+  font-weight: bold;
+  font-size: var(--fs-cn-page-list-title-sm);
+  color: #ffdb96;
 }
 /*# sourceMappingURL=productList.css.map */

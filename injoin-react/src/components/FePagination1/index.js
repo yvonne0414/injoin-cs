@@ -12,7 +12,7 @@ const FePagination = () => {
         <div className="type1-pagination-btn-text">Prev</div>
       </button>
       <div className="page-type1-pagination-pagenum">
-        <span>1</span>/<span>4</span>
+        <span className="mx-3">1</span>/<span className="mx-3">4</span>
       </div>
       <button className="page-type1-pagination-btn next active">
         <svg width="37" height="23" viewBox="0 0 37 23" fill="none" xmlns="http://www.w3.org/2000/svg">

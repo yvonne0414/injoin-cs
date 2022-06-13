@@ -1,0 +1,46 @@
+@import '../../assets/scss/global.scss';
+
+.footer-wraper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding-top: $space-5;
+
+  .footer-content-wraper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-bottom: $space-5;
+    .footer-title {
+      font-size: var(--fs-cn-footer-title);
+    }
+    .footer-content {
+      margin-top: $space-2;
+      font-size: var(--fs-cn-footer-content);
+      font-weight: $font-weight-lighter;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .footer-wraper {
+    flex-flow: row;
+    justify-content: space-between;
+    padding: $space-2 $space-4;
+    .footer-email {
+      order: 1;
+    }
+    .footer-phone {
+      order: 2;
+    }
+    .footer-logo {
+      order: 3;
+    }
+    .footer-time {
+      order: 4;
+    }
+    .footer-address {
+      order: 5;
+    }
+  }
+}

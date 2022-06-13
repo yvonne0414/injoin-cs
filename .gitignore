@@ -29,5 +29,5 @@ yarn-error.log*
 .vscode/settings.json
 
 # css
-.css
-.css.map
+*.css
+*.css.map

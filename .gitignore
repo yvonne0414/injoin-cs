@@ -28,6 +28,3 @@ yarn-error.log*
 .vscode
 .vscode/settings.json
 
-# css
-**.css
-**.css.map

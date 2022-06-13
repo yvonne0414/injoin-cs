@@ -41,7 +41,7 @@ select {
 
 /* ===== view ===== */
 .pc-view {
-  display: none;
+  display: none !important;
 }
 
 /* ===== img-object ===== */
@@ -82,7 +82,11 @@ select {
   align-items: flex-start;
   margin: $space-3 auto;
   max-width: 10rem;
+  .page-type1-pagination-pagenum {
+    font-size: var(--fs-en-btn-prev);
+  }
   .page-type1-pagination-btn {
+    padding-top: $space-2;
     background-color: transparent;
     border: none;
     svg {
@@ -141,10 +145,10 @@ select {
   }
   /* ===== view ===== */
   .m-view {
-    display: none;
+    display: none !important;
   }
   .pc-view {
-    display: flex;
+    display: flex !important;
   }
 
   /* ==================== 常用 ==================== */

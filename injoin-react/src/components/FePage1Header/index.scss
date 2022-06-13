@@ -1,0 +1,92 @@
+@import '../../assets/scss/global.scss';
+
+/* ===== page type1 header ===== */
+.page-type1-header {
+  background-color: $color-bg-block;
+  color: $color-font;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  margin-bottom: $space-6;
+
+  .page-type1-header-select {
+    z-index: 10;
+    color: $color-font-mark-light;
+    font-size: var(--fs-en-page-type1-prev);
+  }
+  .page-type1-header-select select {
+    font-family: $font-family-cn-main;
+  }
+  .page-type1-header-content-title {
+    z-index: 10;
+  }
+  .page-type1-header-content-title-en {
+    color: $color-font-mark;
+    font-family: $font-family-en-main;
+    font-weight: $font-weight-bold;
+    font-size: var(--fs-en-page-type1-title-lg);
+    line-height: 100%;
+    span:first-child {
+      font-size: var(--fs-en-page-type1-title-caption);
+    }
+  }
+  .page-type1-header-content-title-cn {
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    color: $color-font-gold;
+    font-family: $font-family-cn-main;
+    font-weight: $font-weight-bold;
+    font-size: var(--fs-cn-page-type1-title-lg);
+  }
+  .page-type1-header-content-menu {
+    width: 95%;
+    margin-top: 1rem;
+    margin-left: auto;
+    letter-spacing: $letter-space-1;
+
+    li {
+      width: fit-content;
+      line-height: $line-heght-3;
+      font-family: $font-family-cn-main;
+      font-weight: $font-weight-bold;
+      font-size: var(--fs-cn-page-type1-menu);
+      z-index: 10;
+      &:hover {
+        color: $color-font-gold;
+      }
+      &.active a {
+        color: $color-font-gold;
+      }
+    }
+  }
+  .page-type1-header-img {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90%;
+    overflow: hidden;
+    .page-type1-header-img-mask {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: #00000090;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* ===== page header ===== */
+  .page-type1-header {
+    .page-type1-header-img {
+      transform: translateY(50%);
+      top: unset;
+      bottom: 18%;
+      max-width: 40rem !important;
+    }
+    .page-type1-header-img-mask {
+      background-color: transparent;
+    }
+  }
+}

@@ -4,6 +4,7 @@ $header-logo-width: 4rem;
 $header-logo-md-width: 5rem;
 
 .fe-header {
+  position: fixed;
   width: 100%;
   background-color: $color-bg-block;
   padding: 0.5rem rem 0;
@@ -134,6 +135,9 @@ $header-logo-md-width: 5rem;
 
 .ant-drawer {
   top: 3rem !important;
+  .ant-drawer-content {
+    background-color: transparent;
+  }
 }
 .drawer-content {
   height: 100%;

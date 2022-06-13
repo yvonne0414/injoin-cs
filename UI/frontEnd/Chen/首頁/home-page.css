@@ -538,23 +538,46 @@ select {
 
 .section-content {
   position: absolute;
-  color: white;
+  color: #ffffff;
   top: 3rem;
   left: 0.8rem;
 }
 
 .section-content .section-title-cn {
-  color: var(--sp-color);
+  color: #ffdb96;
   margin-bottom: 0.5rem;
 }
 
 .section-content .section-content-en {
-  font-size: 0.8rem;
+  font-size: var(--fs-en-home-title-md);
   margin-bottom: 1rem;
 }
 
 .section-content .section-content-cn {
-  letter-spacing: 0.25rem;
+  letter-spacing: 0.1rem;
+}
+
+.slider-prd {
+  bottom: 5vh;
+}
+
+.slider-prd .prd-card {
+  width: 45vw;
+}
+
+.slider-prd .prd-card .prd-img {
+  height: 40vh;
+}
+
+.slider-prd .prd-card .prd-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.slider-prd .prd-card .prd-text {
+  font-family: "Playfair Display";
 }
 
 .section1 {
@@ -618,27 +641,6 @@ select {
   z-index: -2;
 }
 
-.section2 .s2-content {
-  position: absolute;
-  color: white;
-  top: 3rem;
-  left: 0.8rem;
-}
-
-.section2 .s2-content .s2-title-cn {
-  color: var(--sp-color);
-  margin-bottom: 0.5rem;
-}
-
-.section2 .s2-content .s2-content-en {
-  font-size: 0.8rem;
-  margin-bottom: 1rem;
-}
-
-.section2 .s2-content .s2-content-cn {
-  letter-spacing: 0.25rem;
-}
-
 .section2 .s2-img1 {
   position: absolute;
   left: 0;
@@ -670,7 +672,78 @@ select {
   height: 100%;
 }
 
+.section3 .section-content {
+  right: 5vw;
+}
+
+.section3 .slider {
+  width: 100%;
+  top: 50vh;
+}
+
+.section3 .slider .slider-button {
+  position: absolute;
+  top: 35%;
+  width: 100vw;
+}
+
+.section3 .slider .slider-button .left {
+  position: absolute;
+  left: 0;
+}
+
+.section3 .slider .slider-button .right {
+  position: absolute;
+  right: 0;
+}
+
+.section4 .bartd-slider {
+  top: 45vh;
+}
+
 @media screen and (min-width: 768px) {
+  .section-content {
+    top: 10vh;
+    left: 4vw;
+  }
+  .section-content .section-title-cn {
+    line-height: 150%;
+    font-family: "Noto Serif TC";
+    color: #ffdb96;
+    margin-bottom: 0.5rem;
+    font-size: var(--fs-cn-home-title-lg);
+  }
+  .section-content .section-content-en {
+    font-family: "Playfair Display";
+    line-height: 200%;
+  }
+  .section-content .section-content-cn {
+    line-height: 50%;
+    font-family: "Noto Sans TC";
+    font-size: var(--fs-cn-home-content);
+    letter-spacing: 0.25rem;
+  }
+  .section-content .section-button {
+    margin-top: 3rem;
+  }
+  .slider-prd {
+    bottom: 5vh;
+  }
+  .slider-prd .prd-card {
+    width: 30%;
+  }
+  .slider-prd .prd-card .prd-img {
+    height: 40vh;
+  }
+  .slider-prd .prd-card .prd-img img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .slider-prd .prd-card .prd-text {
+    font-family: "Playfair Display";
+  }
   .section1 {
     width: 100%;
     position: relative;
@@ -751,38 +824,7 @@ select {
     color: #ffdb96;
   }
   .section2 {
-    min-height: 100vh;
-    background: #1b1b1b;
     position: relative;
-    z-index: -2;
-  }
-  .section2 .s2-content {
-    position: absolute;
-    color: white;
-    top: 10vh;
-    left: 4vw;
-  }
-  .section2 .s2-content .s2-title-cn {
-    line-height: 150%;
-    font-family: "Noto Serif TC";
-    color: #ffdb96;
-    margin-bottom: 0.5rem;
-    font-size: var(--fs-cn-home-title-lg);
-  }
-  .section2 .s2-content .s2-content-en {
-    font-family: "Playfair Display";
-    font-size: var(--fs-en-home-content);
-    margin-bottom: 1rem;
-    line-height: 200%;
-  }
-  .section2 .s2-content .s2-content-cn {
-    line-height: 50%;
-    font-family: "Noto Sans TC";
-    font-size: var(--fs-cn-home-content);
-    letter-spacing: 0.25rem;
-  }
-  .section2 .s2-content .s2-button {
-    margin-top: 3rem;
   }
   .section2 .s2-img1 {
     position: absolute;
@@ -811,6 +853,30 @@ select {
        object-fit: cover;
     width: 100%;
     height: 100%;
+  }
+  .section3 .section-title-en {
+    top: 15vh;
+  }
+  .section3 .section-content {
+    right: 5vh;
+    top: 30vh;
+  }
+  .section3 .slider {
+    width: 70%;
+    top: 30vh;
+  }
+  .section3 .slider .slider-button {
+    position: absolute;
+    top: 35%;
+    width: 100%;
+  }
+  .section3 .slider .slider-button .left {
+    position: absolute;
+    left: 0;
+  }
+  .section3 .slider .slider-button .right {
+    position: absolute;
+    right: 0;
   }
 }
 /*# sourceMappingURL=home-page.css.map */

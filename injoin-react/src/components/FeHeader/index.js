@@ -13,7 +13,7 @@ import React, { useState, useEffect } from 'react';
 import logoImg from '../../assets/images/shared/injoinlogo.png';
 import logoImgA from '../../assets/images/shared/injoinlogo-a.png';
 
-function FeHeader() {
+const FeHeader = () => {
   const [visible, setVisible] = useState(false);
 
   const [ismobile, setIsMobile] = useState(true);
@@ -86,7 +86,7 @@ function FeHeader() {
         closable={false}
         headerStyle={{ display: 'none' }}
         height={'100%'}
-        bodyStyle={{ backgroundColor: '#00000085' }}
+        bodyStyle={{ backgroundColor: '#000000de' }}
         zIndex={10}
       >
         <div className="drawer-content  d-flex text-white">
@@ -154,5 +154,5 @@ function FeHeader() {
       </Drawer>
     </>
   );
-}
+};
 export default FeHeader;

@@ -518,7 +518,7 @@ select {
   margin-bottom: unset;
 }
 
-.activity-list .list-content_activity-name {
+.activity-list .list-content_order_num {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
@@ -530,7 +530,7 @@ select {
   -webkit-box-orient: vertical;
 }
 
-.activity-list .list-content_time {
+.activity-list .list-content_order_time {
   font-weight: lighter;
   font-family: "Noto Sans TC";
   font-size: var(--fs-en-page-type1-content);

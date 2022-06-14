@@ -8,7 +8,7 @@
       margin-bottom: unset;
     }
   }
-  .list-content_activity-name {
+  .list-content_order_num {
     order: 3;
     width: 100%;
     overflow: hidden;
@@ -17,7 +17,7 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
-  .list-content_time {
+  .list-content_order_time {
     font-weight: $font-weight-lighter;
     font-family: $font-family-cn-content;
     font-size: var(--fs-en-page-type1-content);

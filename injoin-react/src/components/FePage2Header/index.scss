@@ -1,0 +1,119 @@
+@import '../../assets/scss/global.scss';
+
+.section-title {
+  position: relative;
+
+  .background-img {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    img {
+      object-fit: cover;
+      width: 100%;
+      opacity: 0.5;
+    }
+  }
+
+  .title-sub {
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    font-family: $font-family-en-main;
+    font-weight: $font-weight-lighter;
+    font-size: var(--font-base);
+    font-size: var(--fs-cn-page-list-title-sm);
+    color: $color-font-mark-light;
+    .title-line {
+      border-bottom: solid 0.1rem $color-font-mark-light;
+      width: 1rem;
+      height: 0.7rem;
+      margin: 0 $space-4;
+    }
+  }
+  .title-major {
+    position: absolute;
+    top: 25%;
+    left: 15%;
+    font-family: $font-family-en-main;
+    font-weight: $font-weight-normal;
+    font-size: var(--fs-cn-page-list-title-lg);
+    color: $color-font;
+    z-index: 1;
+    .title-major-btn {
+      letter-spacing: 0.05rem;
+      padding: $space-1 $space-4;
+      border: solid 1px $color-font-gold;
+      border-radius: 0%;
+      font-family: $font-family-en-main;
+      font-weight: $font-weight-bold;
+      font-size: var(--fs-cn-page-list-title-sm);
+      color: $color-font-gold;
+    }
+  }
+  .title-image {
+    position: absolute;
+    width: 30%;
+    top: 30%;
+    right: 10%;
+    img {
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}
+
+.prd-nav {
+  width: 100%;
+  position: absolute;
+  transform: translate(-50%, 0);
+  left: 50%;
+  bottom: 0;
+
+  .prd-nav-li {
+    flex-grow: 1;
+    text-align: center;
+  }
+  .prd-nav-a {
+    color: $color-font;
+    background-color: $color-font-mark;
+    font-size: var(--fs-cn-page-list-menu);
+    font-family: $font-family-cn-main;
+    padding: $space-3 0;
+    font-weight: $font-weight-bold;
+    &:hover {
+      color: $color-font-sp;
+      background-color: $color-font-sp-light;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .section-title {
+    .title-sub {
+      top: 20%;
+      left: 15%;
+    }
+    .title-major {
+      top: 30%;
+    }
+  }
+  .prd-nav {
+    width: 80%;
+    box-shadow: 0 10px 10px $color-bg-light;
+    transform: translate(-50%, -50%);
+
+    .prd-nav-a {
+      background-color: #cccccc50;
+      border-left: 1px solid $color-font;
+
+      .prd-nav-icon {
+        padding-right: $space-2;
+      }
+    }
+    .prd-nav-li:first-child {
+      .prd-nav-a {
+        border-left: unset;
+      }
+    }
+  }
+}

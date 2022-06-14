@@ -45,8 +45,8 @@ const FePage1Header = (props) => {
         </div>
       </div>
       <div className="page-type1-header-img">
-        <img src={`images/fe/page1header/${imgs.m}`} className="img-fluid object-cover m-view" alt={imgs.m} />
-        <img src={`images/fe/page1header/${imgs.pc}`} className="img-fluid object-cover pc-view" alt={imgs.pc} />
+        <img src={`/images/fe/page1header/${imgs.m}`} className="img-fluid object-cover m-view" alt={imgs.m} />
+        <img src={`/images/fe/page1header/${imgs.pc}`} className="img-fluid object-cover pc-view" alt={imgs.pc} />
         <div className="page-type1-header-img-mask"></div>
       </div>
     </div>

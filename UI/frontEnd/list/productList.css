@@ -531,24 +531,24 @@ body {
     height: 0;
     padding-bottom: 56.25%; 
   } */
-.section_title {
+.section-title {
   position: relative;
 }
 
-.section_title .background_img {
+.section-title .background-img {
   width: 100%;
   height: 0;
   padding-bottom: 56.25%;
 }
 
-.section_title .background_img img {
+.section-title .background-img img {
   -o-object-fit: cover;
      object-fit: cover;
   /* height: 100%; */
   width: 100%;
 }
 
-.section_title .title_sub {
+.section-title .title-sub {
   position: absolute;
   top: 10%;
   left: 25%;
@@ -559,14 +559,14 @@ body {
   color: #bab9b9;
 }
 
-.section_title .title_sub .title_line {
+.section-title .title-sub .title-line {
   border-bottom: solid 0.1rem #bab9b9;
   width: 1rem;
   height: .7rem;
   margin: 0 1.5rem;
 }
 
-.section_title .title_major {
+.section-title .title-major {
   position: absolute;
   top: 20%;
   left: 20%;
@@ -577,7 +577,7 @@ body {
   z-index: 1;
 }
 
-.section_title .title_major .title_major_btn {
+.section-title .title-major .title-major-btn {
   margin: 0 1.5rem;
   padding: 0.1rem 1rem;
   border: solid 0.2rem #ffdb96;
@@ -588,13 +588,13 @@ body {
   color: #ffdb96;
 }
 
-.section_title .title_image {
+.section-title .title-image {
   position: absolute;
   width: 40vw;
   height: 15vh;
 }
 
-.section_title .title_image img {
+.section-title .title-image img {
   -o-object-fit: cover;
      object-fit: cover;
   height: 100%;
@@ -603,21 +603,21 @@ body {
   left: 120%;
 }
 
-.section_title .prdlist-pos {
+.section-title .prd-pos {
   position: absolute;
   top: 65%;
   right: 18%;
 }
 
-.section_title .prdlist-pos .type1-pagination-btn-text {
+.section-title .prd-pos .type1-pagination-btn-text {
   display: none;
 }
 
-.prdlist_nav {
+.prd-nav {
   margin-top: -1rem;
 }
 
-.prdlist_nav .prdlist_nav_a {
+.prd-nav .prd-nav-a {
   color: #ffffff;
   background-color: #666666;
   font-size: var(--fs-cn-page-list-menu);
@@ -626,29 +626,44 @@ body {
   font-weight: bold;
 }
 
-.prdlist_nav .prdlist_nav_a .prdlist_nav-icon {
+.prd-nav .prd-nav-a .prd-nav-icon {
   padding-right: 0.5rem;
 }
 
-.prdlist_nav .prdlist_nav_a:hover {
+.prd-nav .prd-nav-a:hover {
   color: #565656;
   background-color: #ccc;
 }
 
-.prdlist_total {
+.prd-content .prd-total {
   font-family: "Noto Sans TC";
   font-size: var(--fs-cn-page-list-title-sm);
   margin-top: 0.5rem;
   font-weight: lighter;
 }
 
-.prdlist_total span {
+.prd-content .prd-total span {
   margin-left: .5rem;
 }
 
-.prolist-btn button {
-  color: white;
+.prd-content .prd-btn button {
+  color: #ffffff;
   background-color: #1c1a20;
   border: 0;
+  font-size: var(--fs-cn-page-list-filter);
+  margin-top: 0.25rem;
+}
+
+.prd-content .prd-btn button .prd-btn-icondown {
+  margin-right: 0.25rem;
+}
+
+.prd-content .prd-btn button .prd-btn-iconright {
+  margin-left: 0.25rem;
+}
+
+.prd-content .card {
+  width: 10rem;
+  background-color: #000;
 }
 /*# sourceMappingURL=productList.css.map */

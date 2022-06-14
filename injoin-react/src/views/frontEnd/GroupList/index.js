@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination1';
@@ -81,7 +82,7 @@ const GroupList = () => {
               </div>
               <div className="list-content_state">活動報名中</div>
               <div className="list-content_btn">
-                <a href="/group/1">詳細內容</a>
+                <Link to="/group/1">詳細內容</Link>
               </div>
             </div>
             <div className="page-type1-list-content">
@@ -95,7 +96,7 @@ const GroupList = () => {
               </div>
               <div className="list-content_state">活動報名中</div>
               <div className="list-content_btn">
-                <a href="/">詳細內容</a>
+                <Link to="/">詳細內容</Link>
               </div>
             </div>
             <div className="page-type1-list-content">
@@ -107,7 +108,7 @@ const GroupList = () => {
               </div>
               <div className="list-content_state">活動報名中</div>
               <div className="list-content_btn">
-                <a href="/">詳細內容</a>
+                <Link to="/">詳細內容</Link>
               </div>
             </div>
             <div className="page-type1-list-content">
@@ -119,7 +120,7 @@ const GroupList = () => {
               </div>
               <div className="list-content_state">活動報名中</div>
               <div className="list-content_btn">
-                <a href="/">詳細內容</a>
+                <Link to="/">詳細內容</Link>
               </div>
             </div>
             <div className="page-type1-list-content">
@@ -131,7 +132,7 @@ const GroupList = () => {
               </div>
               <div className="list-content_state">活動報名中</div>
               <div className="list-content_btn">
-                <a href="/">詳細內容</a>
+                <Link to="/">詳細內容</Link>
               </div>
             </div>
           </div>
@@ -178,7 +179,7 @@ const GroupList = () => {
                   </div>
                   <div className="list-content_user">黃綠紅</div>
                   <div className="list-content_btn">
-                    <a href="/">詳細內容</a>
+                    <Link to="/">詳細內容</Link>
                   </div>
                 </div>
                 <div className="page-type1-list-content">
@@ -192,7 +193,7 @@ const GroupList = () => {
                   </div>
                   <div className="list-content_user">黃綠紅</div>
                   <div className="list-content_btn">
-                    <a href="/">詳細內容</a>
+                    <Link to="/">詳細內容</Link>
                   </div>
                 </div>
                 <div className="page-type1-list-content">
@@ -204,7 +205,7 @@ const GroupList = () => {
                   </div>
                   <div className="list-content_user">黃綠紅</div>
                   <div className="list-content_btn">
-                    <a href="/">詳細內容</a>
+                    <Link to="/">詳細內容</Link>
                   </div>
                 </div>
                 <div className="page-type1-list-content">
@@ -216,7 +217,7 @@ const GroupList = () => {
                   </div>
                   <div className="list-content_user">黃綠紅</div>
                   <div className="list-content_btn">
-                    <a href="/">詳細內容</a>
+                    <Link to="/">詳細內容</Link>
                   </div>
                 </div>
                 <div className="page-type1-list-content">
@@ -228,7 +229,7 @@ const GroupList = () => {
                   </div>
                   <div className="list-content_user">黃綠紅</div>
                   <div className="list-content_btn">
-                    <a href="/">詳細內容</a>
+                    <Link to="/">詳細內容</Link>
                   </div>
                 </div>
               </div>

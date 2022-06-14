@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './index.scss';
 import { FE_IMAGE_URL } from '../../utils/config';
 
@@ -36,9 +37,7 @@ const FePage1Header = (props) => {
             {menuList.map((menu, i) => {
               return (
                 <li key={i} className={i === 0 ? 'active' : ''}>
-                  <a href={menu.href} value={i}>
-                    {menu.name}
-                  </a>
+                  <Link to={menu.href}>{menu.name}</Link>
                 </li>
               );
             })}

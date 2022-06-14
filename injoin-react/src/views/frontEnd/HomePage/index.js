@@ -1,14 +1,15 @@
 import './HomePage.scss';
-import testImg from '../../../../assets/images/fe/chen/homepage/pc-img.svg';
+import FePage2Header from '../../../components/FePage2Header';
+
 
 const HomePage = () => {
   return (
     <>
-      {/* <div class="container">
-        <section class="section1 d-none">
+      <div class="container">
+        <section class="section1">
           <div class="mask"></div>
           <div class="pc-img d-none d-md-flex">
-            <img src="../images/pc-img.svg" />
+            <img src="FePage2Header" alt="" />
           </div>
 
           <div class="s1-position">
@@ -75,7 +76,7 @@ const HomePage = () => {
           </div>
           <div class="slider position-absolute">
             <div class="slider-prd d-flex justify-content-between">
-               <!-- component --> 
+
               <div class="prd-card">
                 <div class="prd-img">
                   <img src="../images/s3-img.png" alt="" />
@@ -95,7 +96,7 @@ const HomePage = () => {
             </div>
           </div>
         </section>
-        <section class="section4 position-relative">
+        <section class="section4 position-relative d-none">
           <h3 class="section-title-en">G</h3>
           <div class="section-content">
             <h3 class="section-title-cn">調酒酒譜</h3>
@@ -119,7 +120,7 @@ const HomePage = () => {
             </div>
           </div>
         </section>
-      </div> */}
+      </div>
     </>
   );
 };

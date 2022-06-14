@@ -1,4 +1,4 @@
-@import '../../../../assets/scss/global.scss';
+@import '../../../assets/scss/global.scss';
 * {
   box-sizing: border-box;
 }
@@ -62,7 +62,7 @@
 .section1 {
   position: relative;
   min-height: 100vh;
-  background: $color-bg-dark no-repeat url(../../../../assets/images//fe//chen//homepage/pc-1.png);
+  background: $color-bg-dark no-repeat url(../../../assets/images//fe//chen//homepage/pc-1.png);
   background-size: 90vw 95vh;
 
   .mask {

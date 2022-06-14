@@ -1,3 +1,6 @@
+// scss
+import './index.scss';
+
 // component
 import FePage1Header from '../../../components/FePage1Header';
 // import FePagination from '../../../components/FePagination1';

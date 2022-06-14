@@ -1,9 +1,11 @@
+// scss
+import './index.scss';
+
 import { Link } from 'react-router-dom';
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination1';
 
-import './groupList.scss';
 import groupListImg1 from '../../../assets/images/fe/groupList/group-list-img-1.png';
 import groupListImg2 from '../../../assets/images/fe/groupList/group-list-img-2.png';
 import groupListImg3 from '../../../assets/images/fe/groupList/group-list-img-3.png';

@@ -81,7 +81,7 @@ const GroupList = () => {
               </div>
               <div className="list-content_state">活動報名中</div>
               <div className="list-content_btn">
-                <a href="/">詳細內容</a>
+                <a href="/group/1">詳細內容</a>
               </div>
             </div>
             <div className="page-type1-list-content">

@@ -86,7 +86,7 @@ const FeHeader = () => {
         closable={false}
         headerStyle={{ display: 'none' }}
         height={'100%'}
-        bodyStyle={{ backgroundColor: '#000000de' }}
+        bodyStyle={{ backgroundColor: '#000000bc' }}
         zIndex={10}
       >
         <div className="drawer-content  d-flex text-white">

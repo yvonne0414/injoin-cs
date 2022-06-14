@@ -4,9 +4,9 @@
 
 ## 步驟
 
-1. 進入專案 cd injoin-react
-2. 下載套件 npm i
-3. 啟 server npm start
+1. 進入專案: cd injoin-react
+2. 下載套件: npm i
+3. 啟 server: npm start
 
 ## 資料夾位置
 

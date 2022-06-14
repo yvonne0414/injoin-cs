@@ -1,4 +1,5 @@
 import './index.scss';
+import { FE_IMAGE_URL } from '../../utils/config';
 
 const FePage1Header = (props) => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = props;
@@ -35,9 +36,7 @@ const FePage1Header = (props) => {
             {menuList.map((menu, i) => {
               return (
                 <li key={i} className={i === 0 ? 'active' : ''}>
-                  <a href={menu.href} value={i}>
-                    {menu.name}
-                  </a>
+                  <a href={menu.href}>{menu.name}</a>
                 </li>
               );
             })}
@@ -45,8 +44,8 @@ const FePage1Header = (props) => {
         </div>
       </div>
       <div className="page-type1-header-img">
-        <img src={`images/fe/page1header/${imgs.m}`} className="img-fluid object-cover m-view" alt={imgs.m} />
-        <img src={`images/fe/page1header/${imgs.pc}`} className="img-fluid object-cover pc-view" alt={imgs.pc} />
+        <img src={`${FE_IMAGE_URL}/page1header/${imgs.m}`} className="img-fluid object-cover m-view" alt={imgs.m} />
+        <img src={`${FE_IMAGE_URL}/page1header/${imgs.pc}`} className="img-fluid object-cover pc-view" alt={imgs.pc} />
         <div className="page-type1-header-img-mask"></div>
       </div>
     </div>

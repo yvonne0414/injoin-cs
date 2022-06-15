@@ -1,14 +1,13 @@
 import './HomePage.scss';
 import { FE_IMAGE_URL } from '../../../utils/config';
 import FePagination from '../../../components/FePagination1';
-import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/fa';
-import { FaReact } from 'react-icons/fa';
+import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 
 const HomePage = () => {
   return (
     <>
       <div className="container">
-        <section className="section1 d-none">
+        <section className="section1">
           <div className="mask"></div>
           <div className="pc-img d-none d-md-flex">
             <img src={`${FE_IMAGE_URL}/homepage/pc-img.svg`} alt="" />
@@ -27,7 +26,7 @@ const HomePage = () => {
           </div>
           <div className="box"></div>
         </section>
-        <section className="section2 d-none">
+        <section className="section2">
           <h3 className="section-title-en">W</h3>
           <div className="section-content">
             <h3 className="section-title-cn">關於我們</h3>
@@ -74,16 +73,16 @@ const HomePage = () => {
               </div>
             </div>
             <div className="slider-button">
-              {/* <AiFillCaretLeft />
-              <AiFillCaretRight /> */}
+              <AiFillCaretLeft className="button-size" />
+              <AiFillCaretRight className="button-size" />
             </div>
           </div>
         </section>
-        <section className="section4 position-relative d-none">
-          <h3 className="section-title-en">G</h3>
+        <section className="section4 position-relative">
+          <h3 className="section-title-en">C</h3>
           <div className="section-content">
             <h3 className="section-title-cn">調酒酒譜</h3>
-            <p className="section-content-en">Welcome to INJOIN</p>
+            <p className="section-content-en">classic cocktail</p>
             <p className="section-content-cn">總而言之，如果別人做得到，那我也可以做到。</p>
             <p className="section-content-cn">在人生的歷程中，酒的出現是必然的。</p>
             <button className="button-style section-button">Read More</button>
@@ -91,16 +90,39 @@ const HomePage = () => {
           <div className="bartd-slider position-absolute">
             <div className="bartd-card">
               <div className="bartd-img">
-                <img src="../images/s4-img.png" alt="" />
+                <img src={`${FE_IMAGE_URL}/homepage/s4-img.png`} alt="" />
               </div>
               <p className="batrd-text">[ 西班牙式琴通寧 ]</p>
             </div>
             <div className="bartd-card d-none d-md-block">
               <div className="bartd-img">
-                <img src="../images/s4-img.png" alt="" />
+                <img src={`${FE_IMAGE_URL}/homepage/s4-img.png`} alt="" />
               </div>
               <p className="batrd-text">[ 西班牙式琴通寧 ]</p>
             </div>
+            <div className="bartd-card d-none d-md-block">
+              <div className="bartd-img">
+                <img src={`${FE_IMAGE_URL}/homepage/s4-img.png`} alt="" />
+              </div>
+              <p className="batrd-text">[ 西班牙式琴通寧 ]</p>
+            </div>
+            <div className="slider-button">
+              <AiFillCaretLeft className="button-size" />
+              <AiFillCaretRight className="button-size" />
+            </div>
+          </div>
+        </section>
+        <section className="section5 position-relative">
+          <h3 className="section-title-en w-100 text-end">T</h3>
+          <div className="section-content text-end text-md-start">
+            <h3 className="section-title-cn">現正揪團</h3>
+            <p className="section-content-en">travel with a tour group</p>
+            <br />
+            <br />
+            <button className="button-style section-button">Details</button>
+          </div>
+          <div className="s5-img">
+            <img src={`${FE_IMAGE_URL}/homepage/s5-img.png`} alt="" />
           </div>
         </section>
       </div>

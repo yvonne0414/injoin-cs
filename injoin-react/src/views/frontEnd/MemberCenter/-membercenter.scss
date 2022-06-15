@@ -1,0 +1,15 @@
+@import '../../../assets/scss/global.scss';
+
+
+.member-s1{
+  min-height: 100vh;
+  .member-box{
+    display: none;
+    min-height: 100vh;
+    .memberbox-nav{
+      .memberbox-ul {
+        color: white;
+      }
+    }
+  }
+}

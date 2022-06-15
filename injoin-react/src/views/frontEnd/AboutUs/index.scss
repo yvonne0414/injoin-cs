@@ -89,27 +89,78 @@
   justify-content: space-around;
   align-items: center;
 }
-.user-add-group-content {
+
+.user-add-aboutus-content-text {
+  @include cn-list-content;
+  font-weight: $font-weight-lighter;
+  font-family: $font-family-cn-content;
+  margin-bottom: $space-3;
+  line-height: $line-heght-3;
+}
+.user-add-group-content-btn {
+  width: fit-content;
+  border: 1px $color-border solid;
+  margin: auto;
+
+  button {
+    padding: $space-1 $space-3;
+    font-family: $font-family-cn-main;
+    font-size: var(--fs-cn-btn-lg);
+    color: $color-font-gold;
+  }
+}
+
+.box-1 {
+  width: 40%;
+  height: 40vh;
+  background-color: $color-bg-light;
+  position: absolute;
+  right: 0;
+  bottom: 1rem;
+}
+.about-us-img-1 {
+  margin-left: auto;
+  width: 70%;
+  height: 30vh;
+  margin-top: $space-3;
+  margin-bottom: $space-4;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+.about-us-img-2 {
+  margin-right: auto;
+  width: 70%;
+  height: 40vh;
+  margin-top: $space-5;
   margin-bottom: $space-5;
-  width: 100%;
-
-  .user-add-group-content-text {
-    @include cn-list-content;
-    font-weight: $font-weight-lighter;
-    margin-bottom: $space-3;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
-  .user-add-group-content-btn {
-    width: fit-content;
-    border: 1px $color-border solid;
-    margin: auto;
-
-    button {
-      padding: $space-1 $space-3;
-      font-family: $font-family-cn-main;
-      font-size: var(--fs-cn-btn-lg);
-      color: $color-font-gold;
-    }
+}
+.about-us-img-3 {
+  margin-left: auto;
+  width: 70%;
+  height: 30vh;
+  margin-top: $space-3;
+  margin-bottom: $space-4;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
+}
+.box-2 {
+  width: 80%;
+  height: 50vh;
+  background-color: $color-bg-light;
+  position: absolute;
+  left: 0;
+  margin-top: $space-6;
 }
 
 @media screen and (min-width: 768px) {
@@ -193,11 +244,15 @@
       width: 40%;
     }
   }
-  .user-add-group-content-text {
+  .about-us-session1 {
+    .user-add-aboutus-content-text {
+      width: 60%;
+    }
+  }
+  .user-add-aboutus-content-text {
     font-size: var(--fs-en-page-type1-title-sm);
-    font-family: $font-family-cn-main;
+    // font-family: $font-family-cn-main;
     line-height: $line-heght-3;
-    width: 60%;
   }
   .user-add-group-content {
     width: 80%;
@@ -216,18 +271,70 @@
       }
     }
   }
-  .box {
+  .box-1 {
     width: 900px;
     height: 500px;
     background-color: $color-bg-light;
     position: absolute;
     right: 5%;
   }
-  .about-us-img-1{
+  .about-us-img-1 {
     width: 500px;
     height: 400px;
-    position: absolute;
-    right: 1%;
     margin-top: $space-6;
+  }
+  .about-us-img-2 {
+    margin-right: auto;
+    width: 45%;
+    height: 60vh;
+    margin-top: $space-5;
+    margin-bottom: $space-5;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .about-us-img-3 {
+    margin-left: auto;
+    width: 40%;
+    height: 40vh;
+    margin-top: $space-3;
+    margin-bottom: $space-4;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .box-2 {
+    width: 80%;
+    height: 50vh;
+    background-color: $color-bg-light;
+    position: absolute;
+    left: 0;
+    margin-top: $space-6;
+  }
+  .about-us-session2-content-wraper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .about-us-session2-content-block1 {
+      order: -1;
+      width: 50%;
+    }
+    .about-us-session2-content-block2 {
+      order: -2;
+      width: 40%;
+    }
+    .about-us-session2-content-block3 {
+      width: 50%;
+      padding-top: $space-5;
+      padding-right: $space-4;
+    }
+    .about-us-session2-content-block4 {
+      width: 40%;
+      padding-top: $space-4;
+    }
   }
 }

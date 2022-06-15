@@ -48,9 +48,13 @@ const GroupDetail = () => {
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-      <div className="container">
-        <div className="page-type1-area-title" id="grouplist-bolck1">
-          活動詳細內容
+      <div className="group-detail-info-wraper">
+        <div className="group-detail-info-bg-square"></div>
+        <div className="container">
+          <div className="page-type1-area-title" id="grouplist-bolck1">
+            活動詳細內容
+          </div>
+          <div></div>
         </div>
       </div>
     </>

@@ -6,9 +6,8 @@ import { Link } from 'react-router-dom';
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination1';
 
-import groupListImg1 from '../../../assets/images/fe/groupList/group-list-img-1.png';
-import groupListImg2 from '../../../assets/images/fe/groupList/group-list-img-2.png';
-import groupListImg3 from '../../../assets/images/fe/groupList/group-list-img-3.png';
+import couponListImg1 from '../../../assets/images/fe/couponList/coupon-list-img-1.png';
+import couponListImg2 from '../../../assets/images/fe/couponList/coupon-list-img-2.png';
 
 const UserCoupon = () => {
   // header 資料
@@ -34,24 +33,32 @@ const UserCoupon = () => {
       },
     ],
     imgs: {
-      m: 'group-list-header-m.png',
-      pc: 'group-list-header.png',
+      m: 'coupon-list-header.png',
+      pc: 'coupon-list-header.png',
     },
     pageSelector: {
       isShow: true,
       pageParent: {
         href: '/',
-        name: '首頁',
+        name: '會員中心',
       },
       selected: 'groupList',
       selectOptions: [
         {
-          name: '揪團專區',
+          name: '優惠券',
           value: 'groupList',
         },
         {
-          name: 'test',
+          name: '優惠券使用規則',
           value: 'groupList2',
+        },
+        {
+          name: '優惠券領取',
+          value: 'groupList3',
+        },
+        {
+          name: '我的優惠券',
+          value: 'groupList4',
         },
       ],
     },
@@ -65,208 +72,127 @@ const UserCoupon = () => {
       <div className="page-type1-list-area activity-list mode-official">
         <div className="container">
           <div className="page-type1-area-title" id="grouplist-bolck1">
-            INJON主辦活動
+            優惠券使用規則
+          </div>
+          <div className="d-flex mb-5">
+            <div className="coupon-direction container">
+              <ol>
+                <li className="coupon-item">請留意您的折扣碼使用期限。</li>
+                <li className="coupon-item">每次結帳，只能使用一張折價券。</li>
+                <li className="coupon-item">折價券不可折抵運費。</li>
+                <li className="coupon-item">折價券可與商店折扣活動併用，訂單會以折價券優先折抵，再計算折扣活動。</li>
+                <li className="coupon-item">折價券有使用期限，到期時會自動於「我的折價券」中刪除。</li>
+                <li className="coupon-item">
+                  折價券<span>最多只能折抵該次購買總金額的30%</span>。(依每個折價劵使用規則而訂)
+                </li>
+                <li className="coupon-item">
+                  折價券僅能使用一次且<span>不找零</span>，一經使用無法恢復。
+                </li>
+                <li className="coupon-item">
+                  使用折價券的訂單<span>如取消或退貨，折價券將自動失效不會歸還</span>。
+                </li>
+              </ol>
+            </div>
+
+            <div className="coupon-item-intro-area pc-view">
+              <div className="coupon-list-img-1 ">
+                <img src={couponListImg1} alt="coupon-list-img-1" className="img-fluid object-cover" />
+              </div>
+            </div>
+          </div>
+
+          {/* <!-- page-type1-intro --> */}
+          <div className="page-coupon-intro-area container">
+            <div className="page-coupon-intro-content ">
+              <div className="coupon-list-img-2">
+                <img src={couponListImg2} alt="coupon-list-img-2" className="img-fluid object-cover " />
+              </div>
+              <div className="page-coupon-intro-text">
+                <div className="page-type1-area-title" id="couponlist-bolck2">
+                  優惠券領取
+                </div>
+                <div class="mt-3">
+                  <ol>
+                    <li> 您可以在「優惠券」中找到「優惠券領取」。</li>
+                    <li>進入「輸入折價券(即折扣代碼)」。</li>
+                    <li> 接著輸入您的折扣代碼，應對的折價券就會儲存在您的帳戶中。</li>
+                    <li>在購物車裡點選「使用優惠券」，方能使用</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <section class="container coupon-sec-area mb-5">
+            <div class="coupon-sec-content">box</div>
+          </section>
+
+          {/* <!-- page-type1-list --> */}
+          <div className="page-type1-area-title" id="grouplist-bolck1">
+            已完成
           </div>
           <div className="page-type1-list-wraper">
             <div className="page-type1-list-title pc-view">
-              <div>活動名稱</div>
-              <div>活動時間</div>
-              <div>活動地點</div>
-              <div>活動狀態</div>
+              <div>優惠代號</div>
+              <div>優惠名稱</div>
+              <div>開始時間</div>
+              <div>截止時間</div>
+              <div>使用狀況</div>
               <div></div>
             </div>
             <div className="page-type1-list-content">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
+              <div className="list-content_coupon_num">1001</div>
+              <div className="list-content_coupon_name">註冊禮券折$100</div>
+              <div className="list-content_coupon_start">2022/05/29</div>
+              <div className="list-content_coupon_end">2022/06/29</div>
+              <div className="list-content_coupon_status">未使用</div>
               <div className="list-content_btn">
                 <Link to="/group/1">詳細內容</Link>
               </div>
             </div>
             <div className="page-type1-list-content">
-              <div className="list-content_activity-name">
-                一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~
-              </div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
+              <div className="list-content_coupon_num">1001</div>
+              <div className="list-content_coupon_name">註冊禮券折$100</div>
+              <div className="list-content_coupon_start">2022/05/29</div>
+              <div className="list-content_coupon_end">2022/06/29</div>
+              <div className="list-content_coupon_status">未使用</div>
               <div className="list-content_btn">
-                <Link to="/">詳細內容</Link>
+                <Link to="/group/1">詳細內容</Link>
               </div>
             </div>
             <div className="page-type1-list-content">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
+              <div className="list-content_coupon_num">1001</div>
+              <div className="list-content_coupon_name">註冊禮券折$100</div>
+              <div className="list-content_coupon_start">2022/05/29</div>
+              <div className="list-content_coupon_end">2022/06/29</div>
+              <div className="list-content_coupon_status">未使用</div>
               <div className="list-content_btn">
-                <Link to="/">詳細內容</Link>
+                <Link to="/group/1">詳細內容</Link>
               </div>
             </div>
             <div className="page-type1-list-content">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
+              <div className="list-content_coupon_num">1001</div>
+              <div className="list-content_coupon_name">註冊禮券折$100</div>
+              <div className="list-content_coupon_start">2022/05/29</div>
+              <div className="list-content_coupon_end">2022/06/29</div>
+              <div className="list-content_coupon_status">未使用</div>
               <div className="list-content_btn">
-                <Link to="/">詳細內容</Link>
+                <Link to="/group/1">詳細內容</Link>
               </div>
             </div>
             <div className="page-type1-list-content">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
+              <div className="list-content_coupon_num">1001</div>
+              <div className="list-content_coupon_name">註冊禮券折$100</div>
+              <div className="list-content_coupon_start">2022/05/29</div>
+              <div className="list-content_coupon_end">2022/06/29</div>
+              <div className="list-content_coupon_status">未使用</div>
               <div className="list-content_btn">
-                <Link to="/">詳細內容</Link>
+                <Link to="/group/1">詳細內容</Link>
               </div>
             </div>
           </div>
+
           <FePagination />
-        </div>
-      </div>
-      {/* <!-- page-type1-intro --> */}
-      <div className="page-group-intro-area container">
-        <div className=" group-list-img-1">
-          <img src={groupListImg1} alt="group-list-img-1" className="img-fluid object-cover" />
-        </div>
-        <div className="page-group-intro-content">
-          <div className="page-group-intro-text">
-            <div>INJON總能陪伴在您生活中的每一個時刻：從威士忌、葡萄酒、清酒再到啤酒，有INJON的每個場合都將更美好。</div>
-          </div>
-          <div className="group-list-img-2">
-            <img src={groupListImg2} alt="group-list-img-2" className="img-fluid object-cover " />
-          </div>
-        </div>
-      </div>
-      <div className="w-100 overflow-hidden mb-5 square-area">
-        <div className="bg-square"></div>
-        {/* <!-- page-type1-list --> */}
-        <div className="container">
-          <div className="page-type1-list-area activity-list mode-user py-4">
-            <div className="container">
-              <div className="page-type1-area-title" id="grouplist-bolck2">
-                私人開團活動
-              </div>
-              <div className="page-type1-list-wraper">
-                <div className="page-type1-list-title pc-view">
-                  <div>活動名稱</div>
-                  <div>活動時間</div>
-                  <div>活動地點</div>
-                  <div>主揪人</div>
-                  <div></div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">
-                    一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~
-                  </div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-              </div>
-              <FePagination />
-            </div>
-          </div>
-          <div className="user-add-group-area">
-            <div className="group-list-img-3 mb-5 mb-md-0">
-              <img src={groupListImg3} className="img-fluid object-cover" alt="group-list-img-3" />
-            </div>
-            <div className="user-add-group-contents ">
-              <div className="user-add-group-content" id="grouplist-bolck3">
-                <div className="page-type1-area-title m-view">我要開團</div>
-                <div className="user-add-group-content-text">
-                  掌握思考過程，也就掌握了我要開團。對我個人而言，我要開團不僅僅是一個重大的事件，還可能會改變我的人生。
-                  <br />
-                  請詳細閱讀我要開團遵循條件，閱讀完，請勾選已詳細閱讀。
-                </div>
-                <div className="user-add-group-content-btn">
-                  <button className=" btn-none">我要開團</button>
-                </div>
-              </div>
-              <div className="user-add-group-content rtl" id="grouplist-bolck4">
-                <div className="page-type1-area-title m-view">報名參加</div>
-                <div className="user-add-group-content-text">
-                  現在就來玩!
-                  <br />
-                  加入或創造一個你有興趣的聚會吧!不要有壓力!
-                </div>
-                <div className="user-add-group-content-btn">
-                  <button className="btn-none">報名參加</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>

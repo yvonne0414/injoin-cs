@@ -55,30 +55,30 @@ const OrderList = () => {
       {/* <!-- page-type1-list official --> */}
       <div className="page-type1-list-area order-list mode-official">
         <div className="container">
-          <nav className="navbar">
-            <ul className="nav">
+          <nav className="navbar order-status-wraper">
+            <ul className="nav order-status">
               <li className="nav-item">
-                <a className="nav-link " href="#/">
+                <a className="nav-select " href="#/">
                   尚未付款
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/">
+                <a className="nav-select" href="#/">
                   處理中
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/">
+                <a className="nav-select" href="#/">
                   待收貨
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/">
+                <a className="nav-select" href="#/">
                   已完成
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/">
+                <a className="nav-select" href="#/">
                   已取消
                 </a>
               </li>

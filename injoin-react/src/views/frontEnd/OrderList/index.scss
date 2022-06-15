@@ -1,9 +1,27 @@
 @import '../../../assets/scss/global.scss';
 
 
-
-  .nav-link{
+// order-select
+.order-status-wraper{
+  margin-bottom: $space-4;
+}
+.order-status{
+  font-size: var(--fs-en-page-type1-title-sm);
+  font-family: $font-family-cn-main;
+  overflow: auto;
+  flex-wrap: nowrap!important;
+  li {
+    margin-right: $space-3;
+  
+    a{
+      white-space: nowrap;
+    }
+  }
+    
+}
+  .nav-select{
     color:$color-font;
+    margin-right: 10px;
   }
 
 
@@ -16,7 +34,7 @@
     }
   }
   .list-content_order_num  {
-    order: 3;
+    order: 1;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -28,12 +46,12 @@
     font-weight: $font-weight-lighter;
     font-family: $font-family-cn-content;
     font-size: var(--fs-en-page-type1-content);
-    order: 1;
+    order: 2;
     width: 50%;
   }
   .list-content_order_statu {
     font-weight: $font-weight-lighter;
-    order: 2;
+    order: 3;
     width: 50%;
     text-align: end;
   }
@@ -43,105 +61,37 @@
     color: $color-font-gold;
   }
   .list-content_order_total {
-    order: 4;
+    order: 5;
     width: 50%;
     color: $color-font-gold;
   }
   .list-content_btn {
-    order: 5;
+    order: 6;
     width: 100%;
     text-align: end;
     font-family: $font-family-cn-main;
   }
 }
-// page-group-intro-area
-.page-group-intro-area {
-  @include cn-list-content();
-  display: flex;
-  flex-flow: column;
-  margin-bottom: $space-5;
-
-  .group-list-img-1,
-  .group-list-img-2 {
-    width: 40%;
-  }
-  .page-group-intro-content {
-    .page-group-intro-text {
-      padding: $space-2;
-      > div {
-        line-height: $line-heght-3;
-        letter-spacing: $letter-space-2;
-      }
-    }
-    .group-list-img-2 {
-      margin-left: auto;
-    }
-  }
-}
-
-.bg-square {
-  background-color: $color-bg-light;
-  position: absolute;
-  width: 80%;
-  height: 100%;
-  right: 0;
-}
-// user-add-group-area
-.user-add-group-area {
-  margin-bottom: $space-5;
-  .group-list-img-3 {
-    width: 60%;
-    margin-left: auto;
-  }
-}
-.user-add-group-contents {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-around;
-  align-items: center;
-}
-.user-add-group-content {
-  margin-bottom: $space-5;
-  width: 100%;
-
-  .user-add-group-content-text {
-    @include cn-list-content;
-    font-weight: $font-weight-lighter;
-    margin-bottom: $space-3;
-  }
-  .user-add-group-content-btn {
-    width: fit-content;
-    border: 1px $color-border solid;
-    margin: auto;
-
-    button {
-      padding: $space-1 $space-3;
-      font-family: $font-family-cn-main;
-      font-size: var(--fs-cn-btn-lg);
-      color: $color-font-gold;
-    }
-  }
-}
 
 @media screen and (min-width: 768px) {
-  .activity-list {
+  .order-list {
     .page-type1-list-content {
       border: unset;
       > div {
         margin-bottom: 0;
       }
     }
-    .list-content_activity-name,
-    .list-content_time,
-    .list-content_place,
-    .list-content_state,
-    .list-content_user,
+    .list-content_order_num,
+    .list-content_order_time,
+    .list-content_order_statu,
+    .list-content_order_pay,
+    .list-content_order_total,
     .list-content_btn {
       order: 0;
       width: unset;
       text-align: center;
     }
-    .list-content_activity-name {
+    .list-content_order_num {
       -webkit-line-clamp: 1;
     }
     .list-content_btn {
@@ -182,49 +132,6 @@
       }
       .group-list-img-2 {
         width: 50%;
-      }
-    }
-  }
-
-  .activity-list.mode-user {
-    .page-type1-area-title {
-      margin-left: 50%;
-    }
-  }
-
-  .square-area {
-    margin-top: -4rem;
-  }
-
-  .bg-square {
-    width: 98%;
-    z-index: -10;
-  }
-
-  .user-add-group-area {
-    display: flex;
-    .group-list-img-3 {
-      order: 2;
-      width: 40%;
-    }
-  }
-  .user-add-group-content-text {
-    width: 60%;
-  }
-  .user-add-group-content {
-    width: 80%;
-    display: flex;
-    padding: $space-3;
-    .user-add-group-content-btn {
-      min-width: fit-content;
-      margin-right: unset;
-      margin-left: auto;
-    }
-    &.rtl {
-      > *:last-child {
-        order: -1;
-        margin-left: unset;
-        margin-right: auto;
       }
     }
   }

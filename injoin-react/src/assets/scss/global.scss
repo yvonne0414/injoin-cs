@@ -30,6 +30,21 @@ a:hover {
   background-color: transparent;
   border: unset;
 }
+.injoin-btn-outline {
+  background-color: $color-bg-block;
+  border: 1px solid $color-border;
+  color: $color-font;
+  padding: $space-2 $space-4;
+  font-family: $font-family-en-main, $font-family-cn-main;
+  border-radius: 0;
+  &:hover {
+    background-color: #222;
+    border-color: $color-font-gold;
+  }
+  &.text-gold {
+    color: $color-font-gold;
+  }
+}
 
 /* ===== select樣式 ===== */
 select {
@@ -48,6 +63,15 @@ select {
 .object-cover {
   width: 100%;
   object-fit: cover;
+}
+
+.ff-cn-main {
+  font-family: $font-family-cn-main;
+}
+
+/* ===== width ===== */
+.w-fit-content {
+  width: fit-content;
 }
 
 /* ==================== 常用 ==================== */

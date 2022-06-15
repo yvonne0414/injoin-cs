@@ -2,11 +2,10 @@ import React from 'react';
 import FePage1Header from '../../../components/FePage1Header';
 import './-membercenter.scss';
 import Button from 'react-bootstrap/Button';
-import iconURL from '../../../assets/images/fe/membercenter/usericon.png'
-
+import iconURL from '../../../assets/images/fe/membercenter/usericon.png';
+import { Checkbox, Form, Input } from 'antd';
 
 const MemberCenter = () => {
-  
   const page1HeaderInfo = {
     titleEn: 'Member',
     titleCn: '會員中心',
@@ -48,7 +47,7 @@ const MemberCenter = () => {
   return (
     <>
       <div className="contianer">
-        <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+        {/* <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
         <section className="member-s1">
           <div className="page-type1-area-title">會員資料</div>
           <div className="member-box">
@@ -64,7 +63,12 @@ const MemberCenter = () => {
                 <div className="user-img">
                   <img src={iconURL} alt="" />
                 </div>
-                <Button className='user-button' variant="light">編輯照片</Button>
+                <Button className="user-button" variant="light">
+                  編輯照片
+                </Button>
+              </div>
+              <div className="member-input">
+               
               </div>
             </div>
           </div>

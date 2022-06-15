@@ -1,4 +1,4 @@
-@import '../../../../assets/scss/global.scss';
+@import '../../../assets/scss/global.scss';
 * {
   box-sizing: border-box;
 }
@@ -42,19 +42,37 @@
 // =====hot-slider=======
 .slider-prd {
   bottom: 5vh;
+
   .prd-card {
     width: 45vw;
+    height: 40vh;
     .prd-img {
-      height: 40vh;
+      width: 100%;
       img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
       }
     }
     .prd-text {
       font-family: $font-family-en-main;
+      white-space: nowrap;
     }
+  }
+}
+// ======bartd-card=====
+.bartd-card {
+  width: 60vw;
+  .bartd-img {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .bartd-text {
+    font-family: $font-family-cn-main;
   }
 }
 
@@ -62,7 +80,7 @@
 .section1 {
   position: relative;
   min-height: 100vh;
-  background: $color-bg-dark no-repeat url(../../../../assets/images//fe//chen//homepage/pc-1.png);
+  background: $color-bg-dark no-repeat url(../../../../public/images/fe/homepage/homepage-head.png);
   background-size: 90vw 95vh;
 
   .mask {
@@ -145,31 +163,65 @@
     }
   }
 }
+// =====section=======
 .section3 {
+  min-height: 100vh;
   .section-content {
     right: 5vw;
   }
   .slider {
-    width: 100%;
+    width: 100vw;
     top: 50vh;
     .slider-button {
       position: absolute;
       top: 35%;
       width: 100vw;
-      .left {
-        position: absolute;
-        left: 0;
-      }
-      .right {
-        position: absolute;
-        right: 0;
+      display: flex;
+      justify-content: space-between;
+      .button-size {
+        width: 1.5rem;
+        height: 1.5rem;
       }
     }
   }
 }
-.section4{
-  .bartd-slider{
+
+// =====section=======
+.section4 {
+  min-height: 100vh;
+  position: relative;
+  .bartd-slider {
     top: 45vh;
+    width: 100vw;
+  }
+  .slider-button {
+    position: absolute;
+    bottom: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+// =====section=======
+.section5 {
+  min-height: 100vh;
+  .section-content {
+    right: 5vw;
+  }
+  .s5-img {
+    // display: none;
+    width: 100vw;
+    opacity: 0.8;
+    height: 80vh;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }
 @media screen and (min-width: 768px) {
@@ -198,6 +250,21 @@
       margin-top: $space-5;
     }
   }
+  // ======bartd-card=====
+  .bartd-card {
+    width: 60vw;
+    .bartd-img {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .bartd-text {
+      font-family: $font-family-cn-main;
+    }
+  }
 
   // =====section-content=======
   .slider-prd {
@@ -217,7 +284,21 @@
       }
     }
   }
-
+  .bartd-card {
+    margin: 0 $space-base;
+    .bartd-img {
+      width: 100%;
+      height: 40vh;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .bartd-text {
+      font-family: $font-family-cn-main;
+    }
+  }
   // =====section1=======
   .section1 {
     width: 100%;
@@ -334,15 +415,15 @@
       }
     }
   }
-  .section3{
-    .section-title-en{
+  .section3 {
+    .section-title-en {
       top: 15vh;
     }
-    .section-content{
+    .section-content {
       right: 5vh;
       top: 30vh;
     }
-    .slider{
+    .slider {
       width: 70%;
       top: 30vh;
       .slider-button {
@@ -357,6 +438,54 @@
           position: absolute;
           right: 0;
         }
+      }
+    }
+  }
+
+  // =====section=======
+  .section4 {
+    min-height: 100vh;
+    position: relative;
+    .bartd-slider {
+      position: absolute;
+      top: 45vh;
+      right: 0;
+      width: 60vw;
+      display: flex;
+    }
+    .slider-button {
+      position: absolute;
+      bottom: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  // =====section=======
+  .section5 {
+    min-height: 100vh;
+    .section-title-en {
+      right: 30vw;
+      top: 40vh;
+    }
+    .section-content {
+      left: 45vw;
+      right: auto;
+      top: 50vh;
+    }
+    .s5-img {
+      // display: none;
+      width: 50vw;
+      height: 70vh;
+      opacity: 0.8;
+      position: absolute;
+      bottom: 10vh;
+      z-index: -1;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
     }
   }

@@ -1,0 +1,51 @@
+@import '../../../assets/scss/global.scss';
+
+.member-s1 {
+  min-height: 100vh;
+
+  .member-box {
+    // display: none;
+    .memberbox-nav {
+      .memberbox-ul {
+        font-family: $font-family-cn-main;
+        background: $color-bg-block;
+        margin: 0 $space-1;
+        li {
+          font-size: var(--fs-cn-page-type1-menu);
+          text-align: center;
+          &:hover,
+          &.active {
+            color: $color-font-gold;
+            border: 2px solid $color-font;
+          }
+        }
+      }
+    }
+    .member-card {
+      width: 100%;
+      .member-user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: lightpink;
+        .user-img {
+          width: 100px;
+          height: 100px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+        .user-button {
+          margin-top: $space-3;
+        }
+      }
+      .member-table{
+        
+      }
+      
+    }
+  }
+}

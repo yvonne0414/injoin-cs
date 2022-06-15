@@ -40,7 +40,28 @@ const FeHeader = () => {
   const onClose = () => {
     setVisible(false);
   };
-  const menu_arr = ['首頁', '關於我們', '商品列表', '調酒酒譜', '現正揪團'];
+  const menu_arr = [
+    {
+      href: '/',
+      name: '首頁',
+    },
+    {
+      href: '/aboutus',
+      name: '關於我們',
+    },
+    {
+      href: '/production',
+      name: '商品列表',
+    },
+    {
+      href: '/bartending',
+      name: '調酒酒譜',
+    },
+    {
+      href: '/group',
+      name: '現正揪團',
+    },
+  ];
 
   return (
     <>
@@ -103,9 +124,9 @@ const FeHeader = () => {
                 {menu_arr.map((item, i) => {
                   return (
                     <li key={i}>
-                      <Link to="/" className="header-menu">
+                      <Link to={item.href} className="header-menu">
                         <span className="header-menu-num">0{i}</span>
-                        <span className="header-menu-content">{item}</span>
+                        <span className="header-menu-content">{item.name}</span>
                       </Link>
                     </li>
                   );

@@ -9,5 +9,15 @@
   background-color: $color-bg-block;
 }
 .prd-detail-title{
-  
+  font-size: var( --fs-cn-page-type1-menu);
+  font-family: $font-family-cn-main;
+  color: $color-font-gold;
+}
+.prd-detial-price{
+  font-size: var(--fs-en-page-type1-title-sm);
+  font-family: $font-family-en-content;
+}
+.prd-detail-number{
+  font-size: var(--fs-cn-page-type1-title-md);
+  font-family: $font-family-cn-content;
 }

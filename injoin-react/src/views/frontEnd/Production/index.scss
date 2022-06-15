@@ -9,25 +9,52 @@
     span{
       margin-left:.5rem;
     }
-  }
-  .prd-btn {
-
-      color: $color-font;
-      background-color: $color-bg-dark;
-      border: 0;
-      font-size: var(--fs-cn-page-list-filter);
-      margin-top: $space-1;
+  }    
+  .prd-sel{
+    .prd-sel-phone {
       display: flex;
-      align-items: center;
-      .prd-btn-icondown {
-        margin-right: $space-1;
+      flex-flow: row;
+      .prd-sel-btn{
+        color: $color-font;
+        background-color: $color-bg-dark;
+        border: 0;
+        font-size: var(--fs-cn-page-list-filter);
+        font-family: $font-family-cn-content ;
+        font-weight: $font-weight-normal;
+        margin-top: $space-1;
+        display: flex;
+        align-items: center;
+        .prd-sel-btn-icondown {
+          margin-right: $space-1;
+        }
+        .prd-sel-btn-iconright{
+           margin-left: $space-1;
+          }
       }
-      .prd-btn-iconright{
-        margin-left: $space-1;
-      }
-     
-    
+    }
   }
+  .prd-sel-pc{
+    display: flex;
+
+    .prd-sel-pc-form{
+      width: 60%;
+      margin-left: $space-3;
+      background-color: $color-font-sp;
+    }
+    .prd-sel-pc-btn{
+        letter-spacing: 0.05rem;
+        padding: $space-1 $space-4;
+        border: solid 1px $color-font-gold;
+        border-radius: 0%;
+        font-family: $font-family-en-main;
+        font-weight: $font-weight-bold;
+        font-size: var(--fs-cn-page-list-title-sm);
+        color: $color-font; 
+        
+    }
+  }
+ 
+  
   .card{
     width: 10rem;
     background-color: $color-bg-block;

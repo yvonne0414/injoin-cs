@@ -2,7 +2,7 @@ import React from 'react';
 import './index.scss';
 import { FaSortAmountDownAlt } from 'react-icons/fa';
 import { FaChevronRight } from 'react-icons/fa';
-import { Form, Input } from 'antd';
+// import { Form, Input } from 'antd';
 
 import FePage2Header from '../../../components/FePage2Header';
 
@@ -67,23 +67,42 @@ const Production = () => {
           </div>
         </div>
         <div>
-          <div className="prd-sel-pc">
+          {/* <div className="prd-sel-pc">
             <Form className="prd-sel-pc-form">
               <Form.Item type="string">
                 <Input className="prd-sel-pc-input" type="text" placeholder="search" />
               </Form.Item>
             </Form>
            
-          </div>
-        </div>
-
-        <div className="row row-cols-1 col-sm-6 row-cols-md-2">
-          <div className="col">
-            <div className="card">
-              <img src="images/productimg.png" className="card-img-top" alt="" />
-              <div className="card-body">
-                <p>NT.550</p>
-              </div>
+          </div> */}
+          {/* <div>
+            <form className="prd-search-form">
+              <label className="prd-search-label" for="prd-search">
+                <input type="search" id="prd-search" placeholder="search" name="q" />
+              </label>
+            </form>
+          </div> */}
+          <form className="prd-search-form d-flex">
+            <input className="prd-search-label form-control form-control-sm me-2" type="search" placeholder="Search" />
+            <button className="btn prd-sel-pc-btn" type="submit">
+              搜尋
+            </button>
+          </form>
+          <div className="prd-sel-pc">
+            <div>
+              <select value="produtlist" className="prd-sel-pcname mx-2 px-2">
+                <option value="">威士忌</option>
+              </select>
+              <select value="produtlist" className="prd-sel-pcname mx-2 px-2">
+                <option value="">蘇格蘭威士忌</option>
+              </select>
+            </div>
+            <div>
+              <span>依</span>
+              <select value="produtlist" className="prd-sel-pcname mx-2 px-2">
+                <option value="">價格高到低</option>
+              </select>
+              <span>排序</span>
             </div>
           </div>
         </div>

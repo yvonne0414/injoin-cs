@@ -33,26 +33,29 @@
       }
     }
   }
-  .prd-sel-pc{
-    display: flex;
-
-    .prd-sel-pc-form{
-      width: 60%;
-      margin-left: $space-3;
-      background-color: $color-font-sp;
-    }
-    .prd-sel-pc-btn{
-        letter-spacing: 0.05rem;
-        padding: $space-1 $space-4;
-        border: solid 1px $color-font-gold;
-        border-radius: 0%;
-        font-family: $font-family-en-main;
-        font-weight: $font-weight-bold;
-        font-size: var(--fs-cn-page-list-title-sm);
-        color: $color-font; 
-        
-    }
-  }
+ .prd-search-form{
+  margin-top: .5rem;
+   .prd-search-label{
+     width: 65%;
+     color: #fff;
+     margin-left: $space-3;
+     background-color: $color-font-sp;
+     opacity:.5;
+   }
+   .prd-sel-pc-btn{
+       letter-spacing: 0.05rem;
+       padding: $space-1 $space-4;
+       border: solid 1px $color-font-gold;
+       border-radius: 0%;
+       font-family: $font-family-en-main;
+       font-weight: $font-weight-bold;
+       font-size: var(--fs-cn-page-list-title-sm);
+       color: $color-font;   
+   }
+   .prd-sel-pc{
+    color: #fff;
+   }
+ }
  
   
   .card{

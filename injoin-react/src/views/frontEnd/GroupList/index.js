@@ -246,24 +246,22 @@ const GroupList = () => {
               <div className="user-add-group-content" id="grouplist-bolck3">
                 <div className="page-type1-area-title m-view">我要開團</div>
                 <div className="user-add-group-content-text">
-                  掌握思考過程，也就掌握了我要開團。對我個人而言，我要開團不僅僅是一個重大的事件，還可能會改變我的人生。
-                  <br />
-                  請詳細閱讀我要開團遵循條件，閱讀完，請勾選已詳細閱讀。
+                  <div>現在就來玩!</div>
+                  <div className="mt-3">加入或創造一個你有興趣的聚會吧!不要有壓力!</div>
                 </div>
-                <div className="user-add-group-content-btn">
+                <Link to="/newgroup" className="user-add-group-content-btn" style={{ display: 'block' }}>
                   <button className=" btn-none">我要開團</button>
-                </div>
+                </Link>
               </div>
               <div className="user-add-group-content rtl" id="grouplist-bolck4">
-                <div className="page-type1-area-title m-view">報名參加</div>
+                <div className="page-type1-area-title m-view">我的揪團</div>
                 <div className="user-add-group-content-text">
-                  現在就來玩!
-                  <br />
-                  加入或創造一個你有興趣的聚會吧!不要有壓力!
+                  <div>了解自己遊玩的足跡，踏出舒適圈，認識新朋友</div>
+                  <div className="mt-3">來聊天室與新的朋友們互動吧！</div>
                 </div>
-                <div className="user-add-group-content-btn">
-                  <button className="btn-none">報名參加</button>
-                </div>
+                <Link to="/account/group" className="user-add-group-content-btn" style={{ display: 'block' }}>
+                  <button className="btn-none">我的揪團</button>
+                </Link>
               </div>
             </div>
           </div>

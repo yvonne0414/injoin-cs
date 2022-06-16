@@ -69,9 +69,9 @@ const UserCoupon = () => {
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
       {/* <!-- page-type1-list official --> */}
-      <div className="page-type1-list-area activity-list mode-official">
+      <div className="page-type1-list-area coupon-list mode-official">
         <div className="container">
-          <div className="page-type1-area-title" id="grouplist-bolck1">
+          <div className="page-type1-area-title" id="couponlist-bolck1">
             優惠券使用規則
           </div>
           <div className="d-flex mb-5">
@@ -111,7 +111,7 @@ const UserCoupon = () => {
                 <div className="page-type1-area-title" id="couponlist-bolck2">
                   優惠券領取
                 </div>
-                <div class="mt-3">
+                <div className="mt-3">
                   <ol>
                     <li> 您可以在「優惠券」中找到「優惠券領取」。</li>
                     <li>進入「輸入折價券(即折扣代碼)」。</li>
@@ -123,8 +123,28 @@ const UserCoupon = () => {
             </div>
           </div>
 
-          <section class="container coupon-sec-area mb-5">
-            <div class="coupon-sec-content">box</div>
+          <section className="container coupon-sec-area mb-5">
+            <div className="coupon-sec-content">
+              <div className="coupon_num_card">
+                <div className="num_card-body">
+                  <div className="ta_num">
+                    <span>請輸入您要使用的折價代碼</span>
+                  </div>
+                  <div>
+                    <input type="text" className="form-control ta_num_name" placeholder="優惠券代碼" />
+                  </div>
+                  <div className="d-flex justify-content-center">
+                    <div className="list-content_decide_btn">
+                      <Link to="/">取消</Link>
+                    </div>
+
+                    <div className="list-content_decide_btn">
+                      <Link to="/group/1">確定</Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </section>
 
           {/* <!-- page-type1-list --> */}

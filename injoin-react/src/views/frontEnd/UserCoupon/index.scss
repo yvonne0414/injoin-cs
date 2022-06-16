@@ -18,6 +18,44 @@
       width: 30%;
     }
 
+
+    .num_card-body{
+      // width: 50%;
+      // height: 20vh;
+      border-radius: 10px;
+      background-color: $color-font-mark-light;
+      padding: $space-2;
+      .ta_num{
+        width: 100%;
+        text-align: center;
+        margin: $space-4 auto;
+        color: #000;
+        .ta_num_name{
+          // width: 60%;
+          color: #000;
+          
+        }
+      }
+    }
+
+  .list-content_decide_btn {
+    margin: $space-2 $space-1;
+    display: flex;
+    justify-content: center;
+    a {
+      background-color: $color-bg-block;
+      width: fit-content;
+      padding: $space-2;
+      &:hover {
+        border: $color-border 1px solid;
+        color:$color-font-gold;
+      }
+    }
+  }
+
+
+  
+
 // coupon-list
 .coupon-list {
   .page-type1-list-content {
@@ -143,16 +181,58 @@
   }
   
   .coupon-sec-area{
-    min-height: 60vh;
+    // min-height: 40vh;
     width: 100%;
     background-color: $color-bg-light;
-    padding: auto;
+    padding: $space-5;
 
     .coupon-sec-content{
       margin-top:$space-2;
       width: 100%;
-      height: 50vh;
-      background-color: $color-font-sp-light;
+      background-color: $color-bg-dark;
+
+    }
+  }
+  
+  .coupon_num_card{
+    @include cn-list-content();
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    padding: $space-6;
+      .num_card-body{
+        width: 50%;
+        // height: 20vh;
+        border-radius: 10px;
+        background-color: $color-font-mark-light;
+        padding: $space-3;
+        .ta_num{
+          width: 100%;
+          text-align: center;
+          margin: $space-4 auto;
+          color: #000;
+          .ta_num_name{
+            // width: 60%;
+            color: #000;
+            
+          }
+        }
+      }
+
+    .list-content_decide_btn {
+      margin: $space-4 $space-2;
+      display: flex;
+      justify-content: center;
+      a {
+        background-color: $color-bg-block;
+        width: fit-content;
+        padding: $space-1;
+        &:hover {
+          border: $color-border 1px solid;
+        }
+      }
     }
   }
  
@@ -193,36 +273,6 @@
   .activity-list.mode-user {
     .page-type1-area-title {
       margin-left: 50%;
-    }
-  }
-
-
-  //section2-2
-  .square-area {
-    margin-top: 10rem;
-  }
-
-  .bg-square {
-    width: 98%;
-    z-index: -10;
-  }
-
-  
-  .user-add-coupon-content {
-    width: 80%;
-    display: flex;
-    padding: $space-3;
-    .user-add-coupon-content-btn {
-      min-width: fit-content;
-      margin-right: unset;
-      margin-left: auto;
-    }
-    &.rtl {
-      > *:last-child {
-        order: -1;
-        margin-left: unset;
-        margin-right: auto;
-      }
     }
   }
 }

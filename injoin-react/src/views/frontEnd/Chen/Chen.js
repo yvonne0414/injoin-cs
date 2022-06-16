@@ -1,8 +1,8 @@
-import MemberCenter from '../MemberCenter';
+import UserVip from '../UserVip';
 const Chen = () => {
   return (
     <>
-      <MemberCenter />
+      <UserVip />
 
     </>
   );

@@ -82,24 +82,25 @@ const Production = () => {
                 </div>
               </div>
             </div>
+            <form className="prd-search-form d-flex">
+              <input className="prd-search-label form-control form-control-sm me-1" type="search" placeholder="Search" />
+              <button className="btn prd-search-btn" type="submit">
+                搜尋
+              </button>
+            </form>
           </div>
-          <form className="prd-search-form d-flex">
-            <input className="prd-search-label form-control form-control-sm me-1" type="search" placeholder="Search" />
-            <button className="btn prd-search-btn" type="submit">
-              搜尋
-            </button>
-          </form>
 
           <div class=" prd-card-all row row-cols-2 row-cols-md-4 ">
             <div class="col">
               <div className="prd-card card ">
                 <div className="prd-card-image">
-                  <Link to="/"></Link>
-                  <img src={productimg} alt="" />
+                  <Link to="/">
+                    <img src={productimg} alt="" />
+                  </Link>
                 </div>
                 <div className="prd-card-body card-body ">
                   <div className="prd-card-title card-title">
-                    <Link to="/"></Link>金黑波本威士忌
+                    <Link to="/">金黑波本威士忌</Link>
                   </div>
                   <div className="prd-card-price">NT.550</div>
                   <div className="prd-card-footer card-footer">
@@ -118,12 +119,13 @@ const Production = () => {
             <div class="col">
               <div className="prd-card card ">
                 <div className="prd-card-image">
-                  <Link to="/"></Link>
-                  <img src={productimg} alt="" />
+                  <Link to="/">
+                    <img src={productimg} alt="" />
+                  </Link>
                 </div>
                 <div className="prd-card-body card-body ">
                   <div className="prd-card-title card-title">
-                    <Link to="/"></Link>金黑波本威士忌
+                    <Link to="/">金黑波本威士忌</Link>
                   </div>
                   <div className="prd-card-price">NT.550</div>
                   <div className="prd-card-footer card-footer">
@@ -142,12 +144,13 @@ const Production = () => {
             <div class="col">
               <div className="prd-card card ">
                 <div className="prd-card-image">
-                  <Link to="/"></Link>
-                  <img src={productimg} alt="" />
+                  <Link to="/">
+                    <img src={productimg} alt="" />
+                  </Link>
                 </div>
                 <div className="prd-card-body card-body ">
                   <div className="prd-card-title card-title">
-                    <Link to="/"></Link>金黑波本威士忌
+                    <Link to="/">金黑波本威士忌</Link>
                   </div>
                   <div className="prd-card-price">NT.550</div>
                   <div className="prd-card-footer card-footer">
@@ -166,12 +169,13 @@ const Production = () => {
             <div class="col">
               <div className="prd-card card ">
                 <div className="prd-card-image">
-                  <Link to="/"></Link>
-                  <img src={productimg} alt="" />
+                  <Link to="/">
+                    <img src={productimg} alt="" />
+                  </Link>
                 </div>
                 <div className="prd-card-body card-body ">
                   <div className="prd-card-title card-title">
-                    <Link to="/"></Link>金黑波本威士忌
+                    <Link to="/">金黑波本威士忌</Link>
                   </div>
                   <div className="prd-card-price">NT.550</div>
                   <div className="prd-card-footer card-footer">

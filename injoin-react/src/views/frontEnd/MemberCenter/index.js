@@ -3,7 +3,7 @@ import FePage1Header from '../../../components/FePage1Header';
 import './-membercenter.scss';
 import Button from 'react-bootstrap/Button';
 import iconURL from '../../../assets/images/fe/membercenter/usericon.png';
-import { Checkbox, Form, Input } from 'antd';
+import { FE_IMAGE_URL } from '../../../utils/config';
 
 const MemberCenter = () => {
   const page1HeaderInfo = {
@@ -48,6 +48,7 @@ const MemberCenter = () => {
     <>
       <div className="contianer">
         {/* <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
+        {/* ===============section2=============== */}
         <section className="member-s1 d-none">
           <div className="page-type1-area-title">會員資料</div>
           <div className="member-box">
@@ -109,16 +110,35 @@ const MemberCenter = () => {
             </div>
           </div>
         </section>
-        <section className="member-s2">
+        {/* ===============section2=============== */}
+        <div className="member-s2">
+          <div className="members2-icon">
+            <img src={`${FE_IMAGE_URL}/membercenter/memberlevel.png`} alt="" />
+          </div>
+          <div className="members2-content">
+            <div className="page-type1-area-title" id="grouplist-bolck2">
+              會員等級
+            </div>
+            <div className="members2-userlevel">黃金會員</div>
+            <div className="members2-usersth">根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員，年度結算日為 1/1，會員期限至 2024/1/1
+</div>
+            <div className="members2-levelrules">了解詳細<span>會員等級說明</span></div>
+          </div>
+        </div>
+        {/* ===============section3=============== */}
+        <section className="member-s3">
           <div className="page-type1-area-title" id="grouplist-bolck2">
             年度升級任務
           </div>
           <div className="memberlevel">
-<div className="levelicon"></div>
-<div className="levelcontext">
-  <div className="leveltitle"></div>
-  
-</div>
+            <div className="levelicon">
+              <img src={`${FE_IMAGE_URL}/member/memberleveldim.png`} alt="" />
+            </div>
+            <div className="levelcontext">
+              <div className="leveltitle"></div>
+              <div className="levelstate"></div>
+              <div className="levelcontext"></div>
+            </div>
           </div>
         </section>
       </div>

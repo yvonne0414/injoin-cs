@@ -28,7 +28,6 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        background: lightpink;
         .user-img {
           width: 100px;
           height: 100px;
@@ -40,13 +39,105 @@
         }
         .user-button {
           margin-top: $space-3;
-
         }
       }
-      .member-table{
-        
+      .member-input {
+        font-family: $font-family-cn-content;
+        font-size: var(--fs-cn-btn-md);
+        margin-left: $space-base;
+        .input-item {
+          .user-input {
+            color: $color-font;
+            background: $color-bg-dark;
+          }
+        }
+        .member-submit {
+          width: 50vw;
+          padding: 0 $space-base;
+          margin: 0 auto;
+          color: $color-font-gold;
+          background: $color-bg-dark;
+          border: 2px solid $color-font-gold;
+        }
       }
-      
+    }
+  }
+}
+.member-s2{
+  min-height: 100vh;
+}
+@media screen and (min-width: 768px) {
+  .member-s1 {
+    padding-top: $space-5;
+    min-height: 100vh;
+
+    .member-box {
+      // display: none;
+      .memberbox-nav {
+        .memberbox-ul {
+          width: 75vw;
+          display: flex;
+          justify-content: space-around;
+          position: absolute;
+          top: -($space-5);
+          left: 15vw;
+          z-index: 1;
+          background: $color-bg-light;
+          margin: 0 $space-1;
+          li {
+            background: $color-bg-block;
+            white-space: nowrap;
+            &:hover,
+            &.active {
+              color: $color-font-gold;
+              border: 2px solid $color-font;
+            }
+          }
+        }
+      }
+      .member-card {
+        position: relative;
+        width: 100%;
+        .member-user {
+          display: flex;
+          height: 300px;
+          width: 300px;
+
+          flex-direction: column;
+          background: transparent;
+          .user-img {
+            width: 150px;
+            height: 150px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+          .user-button {
+            background: transparent;
+            color:$color-font;
+            margin-top: $space-3;
+            border: 2px solid $color-font;
+          }
+        }
+        .member-input {
+          position: absolute;
+top: 5vh;
+          .input-item {
+            .user-input {
+            }
+          }
+          .member-submit {
+            width: auto;
+            padding: 0 $space-6;
+            margin: 0 auto;
+            color: $color-font-gold;
+            background: $color-bg-dark;
+            border: 2px solid $color-font-gold;
+          }
+        }
+      }
     }
   }
 }

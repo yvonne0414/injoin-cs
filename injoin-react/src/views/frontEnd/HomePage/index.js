@@ -2,6 +2,7 @@ import './HomePage.scss';
 import { FE_IMAGE_URL } from '../../../utils/config';
 import FePagination from '../../../components/FePagination1';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
+import Carousel from 'react-bootstrap/Carousel';
 
 const HomePage = () => {
   return (

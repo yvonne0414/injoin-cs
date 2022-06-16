@@ -47,15 +47,15 @@ const MemberCenter = () => {
   return (
     <>
       <div className="contianer">
-        {/* <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
-        <section className="member-s1">
+        {/* <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
+        <section className="member-s1 d-none">
           <div className="page-type1-area-title">會員資料</div>
           <div className="member-box">
             <nav className="memberbox-nav">
               <ul className="memberbox-ul list-unstyled d-flex row">
-                <li className="col-4 active">個人檔案</li>
-                <li className="col-4">關於我</li>
-                <li className="col-4">更改密碼</li>
+                <li className="col-4 col-md-3 active">個人檔案</li>
+                <li className="col-4 col-md-3">關於我</li>
+                <li className="col-4 col-md-3">更改密碼</li>
               </ul>
             </nav>
             <div className="member-card">
@@ -67,10 +67,58 @@ const MemberCenter = () => {
                   編輯照片
                 </Button>
               </div>
-              <div className="member-input">
-               
+              <div className="member-input row">
+                <div className="input-item col-12 my-2 my-md-4">
+                  <label htmlFor="fullname" className="w-25 text-end">
+                    真實姓名：
+                  </label>
+                  <input type="text" name="fullname" className="w-50 user-input" />
+                </div>
+                <div className="input-item col-12 my-2 my-md-4">
+                  <label htmlFor="username" className="w-25 text-end">
+                    線上暱稱：
+                  </label>
+                  <input type="text" name="username" className="w-50 user-input" />
+                </div>
+                <div className="input-item col-12 my-2 my-md-4">
+                  <label htmlFor="useremail" className="w-25 text-end">
+                    電子郵件：
+                  </label>
+                  <input type="text" name="useremail" className="w-50 user-input" />
+                </div>
+                <div className="input-item col-12 my-2 my-md-4">
+                  <label htmlFor="userbirth" className="w-25 text-end">
+                    出生日期：
+                  </label>
+                  <input type="date" name="userbirth" className="w-50 user-input" />
+                </div>
+                <div className="input-item col-12 my-2 my-md-4">
+                  <label htmlFor="userphone" className="w-25 text-end">
+                    手機號碼：
+                  </label>
+                  <input type="text" name="userphone" className="w-50 user-input" />
+                </div>
+                <div className="input-item col-12 my-2 my-md-4">
+                  <label htmlFor="userhome" className="w-25 text-end">
+                    居家住址：
+                  </label>
+                  <textarea type="text" name="userhome" className="w-50 user-input" />
+                </div>
+                <button className="member-submit">更新</button>
               </div>
             </div>
+          </div>
+        </section>
+        <section className="member-s2">
+          <div className="page-type1-area-title" id="grouplist-bolck2">
+            年度升級任務
+          </div>
+          <div className="memberlevel">
+<div className="levelicon"></div>
+<div className="levelcontext">
+  <div className="leveltitle"></div>
+  
+</div>
           </div>
         </section>
       </div>

@@ -14,21 +14,21 @@ const FePage2Header = (props) => {
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = props;
   return (
     <section>
-      <div class="section-title">
-        <div class="background-img">
+      <div className="section-title">
+        <div className="background-img">
           <img src={`${FE_IMAGE_URL}/page2header/${sectionBg}`} alt="" />
         </div>
         {subTitle.isShow && (
-          <div class="title-sub d-flex flex-row">
+          <div className="title-sub d-flex flex-row">
             <span>{subTitle.subName}</span>
-            <div class="title-line">
+            <div className="title-line">
               <div></div>
             </div>
             <span>{subTitle.subContent}</span>
           </div>
         )}
 
-        <div class="title-major">
+        <div className="title-major">
           {majorTitle.contents.map((content, i) => {
             return (
               <React.Fragment key={i}>
@@ -39,46 +39,46 @@ const FePage2Header = (props) => {
           })}
           {/* <span>Blanco Tequila</span>
           <br /> */}
-          <a class="title-major-btn btn btn-outline" href="/">
+          <a className="title-major-btn btn btn-outline" href="/">
             Details
           </a>
         </div>
-        <div class="title-image">
+        <div className="title-image">
           <img src={`${FE_IMAGE_URL}/page2header/${prdImg}`} alt="" />
         </div>
-        <div class="prd-nav">
-          <ul class="list-unstyled d-flex justify-content-center mb-0 nav-justified prd-nav-ul">
+        <div className="prd-nav">
+          <ul className="list-unstyled d-flex justify-content-center mb-0 nav-justified prd-nav-ul">
             {navs.map((nav) => {
               return (
-                <li class="prd-nav-li">
-                  <Link class="nav-link prd-nav-a" to={nav.href}>
+                <li className="prd-nav-li">
+                  <Link className="nav-link prd-nav-a" to={nav.href}>
                     <FaWineBottle className=" prd-nav-icon" />
                     {nav.name}
                   </Link>
                 </li>
               );
             })}
-            {/* <li class="prd-nav-li">
-              <Link class="nav-link prd-nav-a" to="">
+            {/* <li className="prd-nav-li">
+              <Link className="nav-link prd-nav-a" to="">
                 <FaWineBottle className=" prd-nav-icon" />
                 基酒
               </Link>
             </li>
-            <li class="prd-nav-li">
-              <Link class="nav-link prd-nav-a" to="">
+            <li className="prd-nav-li">
+              <Link className="nav-link prd-nav-a" to="">
                 <TbLemon className=" prd-nav-icon" />
                 副材料
               </Link>
             </li>
-            <li class="prd-nav-li">
-              <Link class="nav-link prd-nav-a" to="">
-                {/* <i class="fa-solid fa-bottle-droplet prd-nav-icon"></i> */}
+            <li className="prd-nav-li">
+              <Link className="nav-link prd-nav-a" to="">
+                {/* <i className="fa-solid fa-bottle-droplet prd-nav-icon"></i> */}
             {/* <GiSpoon className=" prd-nav-icon" />
                 工具
               </Link>
             </li>
-            <li class="prd-nav-li">
-              <Link class="nav-link prd-nav-a" to="">
+            <li className="prd-nav-li">
+              <Link className="nav-link prd-nav-a" to="">
                 <IoIosWine className=" prd-nav-icon" />
                 酒杯
               </Link>

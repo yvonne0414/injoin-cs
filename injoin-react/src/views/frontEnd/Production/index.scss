@@ -24,8 +24,8 @@
         }
       }
       .prd-sel-2 {
-        position: absolute;
         width: 70%;
+        left:3.5rem;
       }
     }
   }
@@ -53,17 +53,18 @@
   //   }
   // }
   .prd-search-form {
-    margin-top: 3rem;
+    margin-top: 1rem;
     .prd-search-label {
-      width: 65%;
+      width: 70%;
       color: #fff;
-      margin-left: $space-3;
-      background-color: $color-font-sp;
-      bottom: 0;
+      background-color:$color-font-sp;
+      border: solid .1rem $color-font-sp;
+      border-radius: 0%;
     }
     .prd-search-btn {
-      letter-spacing: 0.05rem;
-      padding: $space-1 $space-4;
+      width: 30%;
+      letter-spacing: 0.1rem;
+      padding: $space-1 1rem;
       border: solid 1px $color-font-gold;
       border-radius: 0%;
       font-family: $font-family-en-main;
@@ -73,8 +74,69 @@
     }
   }
 
-  .card {
-    width: 10rem;
-    background-color: $color-bg-block;
+  .prd-card-all {
+    .prd-card{
+      background-color: $color-bg-block;
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+      padding: 0 0 1rem 0 ;
+      .prd-card-image{
+        width:100%;
+        height: 60%;
+        img{
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .prd-card-body {
+        font-size: var(--fs-cn-page-list-content);
+        .prd-card-title{
+          width: 110%;
+        }
+        .prd-card-price{
+          top:1rem;
+        }
+        .prd-card-footer{
+          display: flex;
+          top: 1rem;
+          .prd-card-reveiw{
+            color: $color-font-gold;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            .prd-card-icon-star{
+              margin-right: .2rem;
+              width: 14px;
+              height: 14px;
+            }
+          }
+          .prd-card-icon{
+            left: 3rem;
+            display: flex;
+            align-items: center;
+            color: $color-font-sp-light;
+            .prd-card-icon-Heart{
+              margin-right: .5rem;
+              &:hover{
+                color: #AC2C32;
+                // background-color: #AC2C32;
+              }
+            }
+          }
+        }
+      }
+    }
   }
+}
+
+@media screen and (min-width: 768px) {
+  .prd-content-top{
+    justify-content: space-between;
+    .span{
+      margin-left: 0;
+    }
+
+  }
+
 }

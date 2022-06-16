@@ -1,5 +1,11 @@
 import React from 'react';
 import './index.scss';
+import productimg from '../../../assets/images/fe/productList/product_1.png';
+import { FaStar } from 'react-icons/fa';
+import { FaRegHeart } from 'react-icons/fa';
+import { FaCartPlus } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+
 // import { FaSortAmountDownAlt } from 'react-icons/fa';
 // import { FaChevronRight } from 'react-icons/fa';
 // import { Form, Input } from 'antd';
@@ -47,7 +53,7 @@ const Production = () => {
       <div className="prd-content">
         <div className="container">
           <div className="prd-content-top">
-            <div className="prd-total">
+            <div className="prd-total m-view">
               <span>副材料</span>
               <span>/</span>
               <span>共16件商品</span>
@@ -65,18 +71,124 @@ const Production = () => {
                     蘇格蘭威士忌
                   </option>
                 </select>
-              </div>
-              <div className="prd-sel-2 d-flex align-items-end ms-4 mt-1">
-                <span>依</span>
-                <select value="" className="mx-2 px-2 prd-sel">
-                  <option value="" className="prd-sel-option">
-                    價格高到低
-                  </option>
-                </select>
-                <span>排序</span>
+                <div className="prd-sel-2 d-flex align-items-end  mt-1">
+                  <span>依</span>
+                  <select value="" className="mx-2 px-2 prd-sel">
+                    <option value="" className="prd-sel-option">
+                      價格高到低
+                    </option>
+                  </select>
+                  <span>排序</span>
+                </div>
               </div>
             </div>
           </div>
+          <form className="prd-search-form d-flex">
+            <input className="prd-search-label form-control form-control-sm me-1" type="search" placeholder="Search" />
+            <button className="btn prd-search-btn" type="submit">
+              搜尋
+            </button>
+          </form>
+
+          <div class=" prd-card-all row row-cols-2 row-cols-md-4 ">
+            <div class="col">
+              <div className="prd-card card ">
+                <div className="prd-card-image">
+                  <Link to="/"></Link>
+                  <img src={productimg} alt="" />
+                </div>
+                <div className="prd-card-body card-body ">
+                  <div className="prd-card-title card-title">
+                    <Link to="/"></Link>金黑波本威士忌
+                  </div>
+                  <div className="prd-card-price">NT.550</div>
+                  <div className="prd-card-footer card-footer">
+                    <div className="prd-card-reveiw">
+                      <FaStar className="prd-card-icon-star" />
+                      4.6
+                    </div>
+                    <div className="prd-card-icon">
+                      <FaRegHeart className="prd-card-icon-Heart" />
+                      <FaCartPlus className="prd-card-icon-cart" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div className="prd-card card ">
+                <div className="prd-card-image">
+                  <Link to="/"></Link>
+                  <img src={productimg} alt="" />
+                </div>
+                <div className="prd-card-body card-body ">
+                  <div className="prd-card-title card-title">
+                    <Link to="/"></Link>金黑波本威士忌
+                  </div>
+                  <div className="prd-card-price">NT.550</div>
+                  <div className="prd-card-footer card-footer">
+                    <div className="prd-card-reveiw">
+                      <FaStar className="prd-card-icon-star" />
+                      4.6
+                    </div>
+                    <div className="prd-card-icon">
+                      <FaRegHeart className="prd-card-icon-Heart" />
+                      <FaCartPlus className="prd-card-icon-cart" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div className="prd-card card ">
+                <div className="prd-card-image">
+                  <Link to="/"></Link>
+                  <img src={productimg} alt="" />
+                </div>
+                <div className="prd-card-body card-body ">
+                  <div className="prd-card-title card-title">
+                    <Link to="/"></Link>金黑波本威士忌
+                  </div>
+                  <div className="prd-card-price">NT.550</div>
+                  <div className="prd-card-footer card-footer">
+                    <div className="prd-card-reveiw">
+                      <FaStar className="prd-card-icon-star" />
+                      4.6
+                    </div>
+                    <div className="prd-card-icon">
+                      <FaRegHeart className="prd-card-icon-Heart" />
+                      <FaCartPlus className="prd-card-icon-cart" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div className="prd-card card ">
+                <div className="prd-card-image">
+                  <Link to="/"></Link>
+                  <img src={productimg} alt="" />
+                </div>
+                <div className="prd-card-body card-body ">
+                  <div className="prd-card-title card-title">
+                    <Link to="/"></Link>金黑波本威士忌
+                  </div>
+                  <div className="prd-card-price">NT.550</div>
+                  <div className="prd-card-footer card-footer">
+                    <div className="prd-card-reveiw">
+                      <FaStar className="prd-card-icon-star" />
+                      4.6
+                    </div>
+                    <div className="prd-card-icon">
+                      <FaRegHeart className="prd-card-icon-Heart" />
+                      <FaCartPlus className="prd-card-icon-cart" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* <div className="prd-sel">
             <div className="prd-sel-phone">
               <button className="prd-sel-btn">
@@ -91,8 +203,7 @@ const Production = () => {
               </button>
             </div>
           </div> */}
-        </div>
-        <div>
+
           {/* <div className="prd-sel-pc">
             <Form className="prd-sel-pc-form">
               <Form.Item type="string">
@@ -108,12 +219,12 @@ const Production = () => {
               </label>
             </form>
           </div> */}
-          <form className="prd-search-form d-flex">
+          {/* <form className="prd-search-form d-flex">
             <input className="prd-search-label form-control form-control-sm me-2" type="search" placeholder="Search" />
             <button className="btn prd-search-btn" type="submit">
               搜尋
             </button>
-          </form>
+          </form> */}
         </div>
       </div>
     </>

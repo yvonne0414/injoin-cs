@@ -64,7 +64,7 @@
   }
 }
 .member-s2 {
-  margin: $space-3 0 ;
+  margin: $space-3 0;
   .members2-icon {
     width: 90vw;
     margin: 0 auto;
@@ -82,7 +82,6 @@
       font-family: $font-family-cn-content;
       color: $color-font-gold;
       font-size: var(--fs-en-home-next);
-      
     }
     .members2-userlevel {
       margin: $space-3 0;
@@ -93,15 +92,62 @@
       margin: $space-3 0;
       font-family: $font-family-cn-content;
       font-size: var(--fs-en-home-prev);
-      span{
+      span {
         color: $color-font-gold;
       }
     }
   }
 }
 .member-s3 {
-  display: none;
   min-height: 100vh;
+
+  // memberlevel-card
+  .memberlevel {
+    margin: $space-3 0;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    &.active{
+      .levelicon{
+        border: $space-1 solid $color-font-gold ;
+        border-radius: 50%;
+      }
+    }
+    .levelicon {
+      width: 30vw;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .levelcontext {
+      border: .5px solid $color-font-sp-light;
+      margin: auto $space-3;
+      .leveltitle {
+        font-family: $font-family-cn-main;
+        font-size: var(--fs-en-home-next);
+      }
+      .levelstate {
+        font-family: $font-family-cn-content;
+        font-size: var(--fs-en-page-type1-content);
+        color: $color-font-gold;
+      }
+      .levelcontextm {
+        font-family: $font-weight-bold;
+        font-size: var(--fs-en-page-type1-content);
+      }
+    }
+    .levellink {
+      position: absolute;
+      border-left: 3px solid $color-font-gold;
+      width: 1px;
+      left: 19vw;
+      height: 130%;
+      z-index: -1;
+    }
+  }
 }
 @media screen and (min-width: 768px) {
   .member-s1 {
@@ -112,7 +158,7 @@
       // display: none;
       .memberbox-nav {
         .memberbox-ul {
-          width: 75vw;
+          width: 75%;
           display: flex;
           justify-content: space-around;
           position: absolute;
@@ -135,6 +181,8 @@
       .member-card {
         position: relative;
         width: 100%;
+        display: flex;
+        margin-top: $space-4;
         .member-user {
           display: flex;
           height: 300px;
@@ -159,8 +207,6 @@
           }
         }
         .member-input {
-          position: absolute;
-          top: 5vh;
           .input-item {
             .user-input {
             }
@@ -178,34 +224,21 @@
     }
   }
   .member-s2 {
-    margin: $space-3 0 ;
-display: flex;
+    margin: $space-3 0;
+    display: flex;
     .members2-icon {
-
-      width: 20vw;
+      width: auto;
+      height: 100%;
       margin: 0 auto;
       img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
       }
     }
     .members2-content {
       width: 90vw;
-      margin: 0 auto;
-      .members2-content {
-
-        
-      }
-      .members2-userlevel {
-
-      }
-      .members2-levelrules {
-
-        span{
-
-        }
-      }
+      margin: 0 $space-6;
     }
   }
 }

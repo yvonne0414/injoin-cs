@@ -6,6 +6,7 @@ import iconURL from '../../../assets/images/fe/membercenter/usericon.png';
 import { FE_IMAGE_URL } from '../../../utils/config';
 
 const MemberCenter = () => {
+
   const page1HeaderInfo = {
     titleEn: 'Member',
     titleCn: '會員中心',
@@ -46,7 +47,7 @@ const MemberCenter = () => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
   return (
     <>
-      <div className="contianer">
+      <div className="container">
         {/* <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
         {/* ===============section2=============== */}
         <section className="member-s1 d-none">
@@ -111,7 +112,7 @@ const MemberCenter = () => {
           </div>
         </section>
         {/* ===============section2=============== */}
-        <div className="member-s2">
+        <div className="member-s2 d-none">
           <div className="members2-icon">
             <img src={`${FE_IMAGE_URL}/membercenter/memberlevel.png`} alt="" />
           </div>
@@ -120,9 +121,10 @@ const MemberCenter = () => {
               會員等級
             </div>
             <div className="members2-userlevel">黃金會員</div>
-            <div className="members2-usersth">根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員，年度結算日為 1/1，會員期限至 2024/1/1
-</div>
-            <div className="members2-levelrules">了解詳細<span>會員等級說明</span></div>
+            <div className="members2-usersth">根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員，年度結算日為 1/1，會員期限至 2024/1/1</div>
+            <div className="members2-levelrules">
+              了解詳細<span>會員等級說明</span>
+            </div>
           </div>
         </div>
         {/* ===============section3=============== */}
@@ -130,16 +132,51 @@ const MemberCenter = () => {
           <div className="page-type1-area-title" id="grouplist-bolck2">
             年度升級任務
           </div>
-          <div className="memberlevel">
-            <div className="levelicon">
-              <img src={`${FE_IMAGE_URL}/member/memberleveldim.png`} alt="" />
-            </div>
-            <div className="levelcontext">
-              <div className="leveltitle"></div>
-              <div className="levelstate"></div>
-              <div className="levelcontext"></div>
-            </div>
-          </div>
+          {[1].map((v, i) => {
+            return (
+              <div className="memberlevel active">
+                <div className="levelicon">
+                  <img src={`${FE_IMAGE_URL}/membercenter/memberlevelgold.png`} alt="" />
+                </div>
+                <div className="levelcontext">
+                  <div className="leveltitle">黃金會員</div>
+                  <div className="levelstate">已達成</div>
+                  <div className="levelcontextm">已升級為黃金會員</div>
+                </div>
+                <div className="levellink"></div>
+              </div>
+            );
+          })}
+          {/*   // memberlevel-card */}
+          {[1].map((v, i) => {
+            return (
+              <div className="memberlevel">
+                <div className="levelicon">
+                  <img src={`${FE_IMAGE_URL}/membercenter/memberlevelgold.png`} alt="" />
+                </div>
+                <div className="levelcontext">
+                  <div className="leveltitle">黃金會員</div>
+                  <div className="levelstate">已達成</div>
+                  <div className="levelcontextm">已升級為黃金會員</div>
+                </div>
+                <div className="levellink"></div>
+              </div>
+            );
+          })}
+          {[1].map((v, i) => {
+            return (
+              <div className="memberlevel">
+                <div className="levelicon">
+                  <img src={`${FE_IMAGE_URL}/membercenter/memberlevelgold.png`} alt="" />
+                </div>
+                <div className="levelcontext">
+                  <div className="leveltitle">黃金會員</div>
+                  <div className="levelstate">已達成</div>
+                  <div className="levelcontextm">已升級為黃金會員</div>
+                </div>
+              </div>
+            );
+          })}
         </section>
       </div>
     </>

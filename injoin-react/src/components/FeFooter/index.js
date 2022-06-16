@@ -2,7 +2,7 @@ import './index.scss';
 import logoImg from '../../assets/images/shared/injoinlogo.png';
 function FeFooter() {
   return (
-    <footer className="footer-wraper mt-5">
+    <footer className="footer-wraper pt-5">
       <div className="footer-content-wraper footer-email">
         <span className="footer-title">聯絡信箱</span>
         <span className="footer-content">INJOIN@gmail.com</span>

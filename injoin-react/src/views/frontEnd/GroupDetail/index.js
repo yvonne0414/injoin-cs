@@ -109,7 +109,7 @@ const GroupDetail = () => {
                     </span>
                   </div>
                 </div>
-                <div className="group-detail-img">
+                <div className="group-detail-img mx-auto">
                   <img src={testimg} alt="" className="img-fluid object-cover" />
                 </div>
               </div>

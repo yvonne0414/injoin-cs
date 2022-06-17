@@ -1,9 +1,8 @@
-import HomePage from './HomePage';
-
+import MemberCenter from '../MemberCenter';
 const Chen = () => {
   return (
     <>
-      <HomePage />
+      <MemberCenter />
     </>
   );
 };

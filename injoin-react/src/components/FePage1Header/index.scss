@@ -7,6 +7,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   margin-bottom: $space-6;
+  min-height: 20rem;
 
   .page-type1-header-select {
     z-index: 10;
@@ -88,8 +89,11 @@
     .page-type1-header-img-mask {
       background-color: transparent;
     }
-    .page-type1-header-content {
-      margin-left: -4rem;
-    }
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  .page-type1-header-content {
+    margin-left: -4rem;
   }
 }

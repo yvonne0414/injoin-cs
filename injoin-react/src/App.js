@@ -20,6 +20,7 @@ import OrderList from './views/frontEnd/OrderList';
 import OrderListDetail from './views/frontEnd/OrderListDetail';
 import GroupList from './views/frontEnd/GroupList/index';
 import GroupDetail from './views/frontEnd/GroupDetail/index';
+import GroupAdd from './views/frontEnd/GroupAdd';
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -38,7 +39,7 @@ function App() {
           {/* 商品 */}
           <Route path="/production" exact element={<Production />} />
           <Route path="/production/1" exact element={<ProductionDetail />}>
-            <Route path=":currentPage" element={<ProductionDetail />} />
+          <Route path=":currentPage" element={<ProductionDetail />} />
           </Route>
 
           {/* 酒譜 */}
@@ -62,6 +63,7 @@ function App() {
           </Route>
 
           {/* 揪團 */}
+          <Route path="/newgroup" exact element={<GroupAdd />} />
           <Route path="/group" exact element={<GroupList />} />
           <Route path="/group/1" exact element={<GroupDetail />}>
             <Route path=":currentPage" element={<GroupDetail />} />

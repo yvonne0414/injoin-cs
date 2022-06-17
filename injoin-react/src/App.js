@@ -39,7 +39,7 @@ function App() {
           {/* 商品 */}
           <Route path="/production" exact element={<Production />} />
           <Route path="/production/1" exact element={<ProductionDetail />}>
-            <Route path=":currentPage" element={<ProductionDetail />} />
+          <Route path=":currentPage" element={<ProductionDetail />} />
           </Route>
 
           {/* 酒譜 */}

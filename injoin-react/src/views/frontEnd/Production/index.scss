@@ -37,7 +37,7 @@
       width: 100%;
       .prd-search-label {
         color: #fff;
-        background-color: $color-font-sp;
+        background-color: #56565650;
         border: solid 0.1rem $color-font-sp;
         border-radius: 0%;
       }
@@ -103,6 +103,7 @@
         }
         .prd-card-footer {
           display: flex;
+          justify-content: space-between;
           top: 1rem;
           .prd-card-reveiw {
             color: $color-font-gold;
@@ -116,7 +117,7 @@
             }
           }
           .prd-card-icon {
-            left: 3rem;
+           
             display: flex;
             align-items: center;
             color: $color-font-sp-light;

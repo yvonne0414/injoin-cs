@@ -69,6 +69,88 @@
     }
   }
 }
+.uservip-s4 {
+  min-height: 100vh;
+  .uservips4-nav {
+    background: $color-bg-dark;
+    font-family: $font-family-cn-main;
+    font-size: var(--fs-cn-page-type1-menu);
+    ul {
+      display: flex;
+      justify-content: space-around;
+      li {
+        list-style: none;
+
+        a {
+          text-align: center;
+          color: $color-font;
+          padding: $space-2 $space-4;
+          background-color: $color-bg-block;
+          &:hover,
+          &.active {
+            color: $color-font-gold;
+            border: 1px solid $color-font;
+          }
+        }
+      }
+    }
+  }
+  .uservips4-main {
+    .s4maincontent {
+      font-family: $font-family-cn-content;
+      .uservips4-title {
+        color: $color-font-gold;
+        font-size: var(--fs-en-page-type1-title-md);
+        font-family: $font-family-cn-main;
+      }
+      .uservips4-text {
+        font-size: var(--fs-en-page-type1-content);
+      }
+      .uservips4-card {
+        margin: $space-3 $space-1;
+        padding: $space-3;
+        background: $color-font;
+        color: $color-bg-block;
+        .card-title {
+          font-family: $font-family-cn-main;
+          font-size: var(--fs-en-page-type1-content);
+          text-align: center;
+        }
+        .card-table {
+          font-size: var(--fs-cn-page-type1-content);
+          margin: $space-4 auto;
+          tr {
+            th {
+              width: 50%;
+              text-align: start;
+              vertical-align: text-top;
+            }
+            td {
+            }
+          }
+        }
+        .card-button {
+          display: block;
+          background: $color-font-gold;
+          color: $color-bg-block;
+          border: 1px solid $color-bg-block;
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .s4mainimg {
+      margin: $space-3 0;
+      width: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
 .uservip-s5 {
   .uservips5-contnet {
     font-family: $font-weight-bold;
@@ -138,11 +220,73 @@
       order: 1;
     }
   }
+  .uservip-s4 {
+    padding: $space-6 $space-5;
+    background: $color-bg-block;
+    min-height: 10vh;
+    position: relative;
+    .uservips4-nav {
+      ul {
+        li {
+          a {
+            &:hover,
+            &.active {
+              border: 2px solid $color-font;
+            }
+          }
+        }
+      }
+    }
+    .uservips4-main {
+      display: flex;
+      .s4maincontent {
+        width: 25vw;
+        margin: 0 $space-3;
+
+        .uservips4-title {
+        }
+        .uservips4-text {
+        }
+        .uservips4-card {
+          margin: $space-3 $space-1;
+          padding: $space-6 $space-3;
+          background: $color-font;
+          color: $color-bg-block;
+          .card-title {
+            text-align: center;
+          }
+          .card-table {
+            margin: $space-4 auto;
+            tr {
+              th {
+                width: 50%;
+                text-align: start;
+                vertical-align: text-top;
+              }
+              td {
+              }
+            }
+          }
+          .card-button {
+            display: block;
+            background: $color-font-gold;
+            color: $color-bg-block;
+            border: 1px solid $color-bg-block;
+            margin: 0 auto;
+          }
+        }
+      }
+
+      .s4mainimg {
+        margin: $space-3 0;
+      }
+    }
+  }
   .uservip-s5 {
     min-height: 80vh;
     position: relative;
     .uservips5-contnet {
-        padding-top: $space-5;
+      padding-top: $space-5;
       .uservips5-ul {
         li {
           margin: $space-3 0;
@@ -155,7 +299,7 @@
       height: 80vh;
       right: 0;
       bottom: 0;
-      opacity: .5;
+      opacity: 0.5;
       img {
         height: 100%;
         width: 100%;

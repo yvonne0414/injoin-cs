@@ -1,1 +1,46 @@
 @import '../../../assets/scss/global.scss';
+
+.reputation-list{
+  .reputation-list-card{
+    background-color: black;
+    padding: 3rem;
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    .reputation-list-content{
+      display: flex;
+      flex-direction: column;
+      .reputation-list-img{
+        width: 100%;
+        img{
+          object-fit: cover;
+          width: 100%;        
+        }
+      }
+    }
+  } 
+  }
+.reputation-orderlist{
+  .page-type1-list-content{
+    display: flex;
+    align-items: center;
+    .reputation-orderlist-button{
+        padding: .5rem;
+        border-radius: .3rem;
+        background-color: black;
+      
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .reputation-orderlist {
+    .page-type1-list-content {
+      border: unset;
+      > div {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

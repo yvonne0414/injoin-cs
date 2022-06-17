@@ -1,8 +1,9 @@
-import UserVip from '../UserVip';
+import HomePage from '../HomePage';
+
 const Chen = () => {
   return (
     <>
-      <UserVip />
+      < HomePage/>
 
     </>
   );

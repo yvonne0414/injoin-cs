@@ -5,6 +5,7 @@ import vips3img from '../../../assets/images/fe/uservip/vips3pic.png';
 import vips5img from '../../../assets/images/fe/uservip/vips5pic.png';
 import vips4img from '../../../assets/images/fe/uservip/gold.png';
 
+
 const page1HeaderInfo = {
   titleEn: 'VIP',
   titleCn: '會員等級說明',

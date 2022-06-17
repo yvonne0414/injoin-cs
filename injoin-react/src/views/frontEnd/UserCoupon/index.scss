@@ -6,10 +6,10 @@
   width: 100%;
     .coupon-item{
       @include cn-list-content();
-      line-height: $line-heght-1;
-      padding: $space-2;
+      line-height: $line-heght-2;
+      padding: $space-1;
       span{
-        color:$color-font-gold
+        color:$color-font-gold;
       }
      }
     }
@@ -18,13 +18,10 @@
       width: 30%;
     }
 
-
     .num_card-body{
-      // width: 50%;
-      // height: 20vh;
       border-radius: 10px;
       background-color: $color-font-mark-light;
-      padding: $space-2;
+      padding: $space-1;
       .ta_num{
         width: 100%;
         text-align: center;
@@ -32,11 +29,12 @@
         color: #000;
         .ta_num_name{
           // width: 60%;
-          color: #000;
-          
+          color: #000;          
         }
       }
     }
+
+
 
   .list-content_decide_btn {
     margin: $space-2 $space-1;
@@ -50,6 +48,11 @@
         border: $color-border 1px solid;
         color:$color-font-gold;
       }
+    }
+  }
+  .coupon-sec-content-notify{
+    span{
+      color: $color-font-gold;
     }
   }
 
@@ -123,9 +126,9 @@
   .page-coupon-intro-content {
     .page-coupon-intro-text {
       padding: $space-2;
-      // position: relative;
+     
       > div {
-        line-height: $line-heght-3;
+        line-height: $line-heght-2;
         letter-spacing: $letter-space-2;
       }
     }
@@ -229,6 +232,7 @@
         background-color: $color-bg-block;
         width: fit-content;
         padding: $space-1;
+        border: transparent 1px solid;
         &:hover {
           border: $color-border 1px solid;
         }

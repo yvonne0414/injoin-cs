@@ -126,7 +126,7 @@ const UserCoupon = () => {
           <section className="container coupon-sec-area mb-5">
             <div className="coupon-sec-content">
               <div className="coupon_num_card">
-                <div className="num_card-body">
+                <div className="num_card-body mb-3">
                   <div className="ta_num">
                     <span>請輸入您要使用的折價代碼</span>
                   </div>
@@ -142,6 +142,13 @@ const UserCoupon = () => {
                       <Link to="/group/1">確定</Link>
                     </div>
                   </div>
+                </div>
+                <div className="coupon-sec-content-notify">
+                  無論您使用哪種方式領取折價券，請注意：
+                  <br />
+                  系統都會在您的購物車結帳時，<span>自動帶入</span>已領取的折價券。
+                  <br />
+                  若您有<span>2張以上</span>折價券，系統會<span>優先選擇即將到期之折價券</span>，但您仍可選擇使用其他折價券。
                 </div>
               </div>
             </div>

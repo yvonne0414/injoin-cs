@@ -2,4 +2,26 @@
 
 .step-status{
   width: 50%;
+  margin: 10px auto;
+}
+
+
+.bg-square {
+  background-color: $color-bg-light;
+  position: absolute;
+  width: 80%;
+  height: 100%;
+  right: 0;
+}
+
+
+@media screen and (min-width: 768px) {
+  .square-area {
+    margin-top: -4rem;
+  }
+
+  .bg-square {
+    width: 98%;
+    z-index: -10;
+  }
 }

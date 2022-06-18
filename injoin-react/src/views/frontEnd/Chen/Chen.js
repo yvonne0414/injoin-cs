@@ -8,16 +8,7 @@ const Chen = () => {
     <>
       {/* < HomePage/> */}
 
-      {/* <UserInfo /> */}
-      {arr.map((v,i)=>{
-        return(
-          <div className="apple" onClick={()=>{
-            console.log({v})
-          }}>
-            {v}
-          </div>
-        )
-      })}
+      <UserInfo />
     </>
   );
 };

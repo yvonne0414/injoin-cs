@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import iconURL from '../../assets/images/fe/membercenter/usericon.png';
+import UserProfile from './UserProfile';
 const UserInfoForm = () => {
   const [userInfoTableMode, setUserInfoTableMode] = useState(0);
   const ularray = ['個人檔案', '關於我', '更改密碼'];
@@ -17,42 +18,18 @@ const UserInfoForm = () => {
                   key={index}
                   className="col-4 col-md-3"
                   onClick={() => {
-                    console.log({ index });
-                    setUserInfoTableMode({ index });
+                    setUserInfoTableMode(index);
                   }}
                 >
                   {value}
                 </li>
               );
             })}
-            {/* <li
-              className="col-4 col-md-3"
-              onClick={() => {
-                setUserInfoTableMode(1);
-              }}
-            >
-              個人檔案
-            </li>
-            <li
-              className="col-4 col-md-3"
-              onClick={() => {
-                setUserInfoTableMode(2);
-              }}
-            >
-              關於我
-            </li>
-            <li
-              className="col-4 col-md-3"
-              onClick={() => {
-                setUserInfoTableMode(3);
-              }}
-            >
-              更改密碼
-            </li> */}
           </ul>
         </nav>
-
-        <div className="member-card">
+        {}
+        <UserProfile />
+        {/* <div className="member-card">
           <div className="member-user">
             <div className="user-img">
               <img src={iconURL} alt="" />
@@ -100,7 +77,7 @@ const UserInfoForm = () => {
             </div>
             <button className="member-submit">更新</button>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

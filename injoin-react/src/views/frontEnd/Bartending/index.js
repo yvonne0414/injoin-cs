@@ -70,8 +70,8 @@ const Bartending = () => {
             </form>
           </div>
 
-          <div class=" Bartending-card-all row row-cols-2 row-cols-md-4 ">
-            <div class="col">
+          <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 g-2  ">
+            <div className="col ">
               <div className="Bartending-card card ">
                 <div className="Bartending-card-image">
                   <Link to="/">
@@ -84,24 +84,6 @@ const Bartending = () => {
                   </div>
                   <div className="Bartending-card-engtitle">Pink Squirrel</div>
                   <div className="Bartending-card-subtitle card-footer">杏仁香甜酒 調味伏特加 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿 </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div className="Bartending-card card ">
-                <div className="Bartending-card-image">
-                  <Link to="/">
-                    <img src={productimg} alt="" />
-                  </Link>
-                </div>
-                <div className="Bartending-card-body card-body ">
-                  <div className="Bartending-card-title card-title">
-                    <Link to="/">粉紅松鼠</Link>
-                  </div>
-                  <div className="Bartending-card-engtitle">Pink Squirrel</div>
-                  <div className="Bartending-card-subtitle card-footer">
-                    杏仁香甜酒 調味伏特加 鮮奶油 調味伏特加調味伏特加 鮮奶油 調味伏特加調味伏特加 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿{' '}
-                  </div>
                 </div>
               </div>
             </div>
@@ -133,7 +115,23 @@ const Bartending = () => {
                     <Link to="/">粉紅松鼠</Link>
                   </div>
                   <div className="Bartending-card-engtitle">Pink Squirrel</div>
-                  <div className="Bartending-card-subtitle card-footer">杏仁香甜酒調味伏特加 鮮奶油 調味伏特加調味伏特加 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿 </div>
+                  <div className="Bartending-card-subtitle card-footer">杏仁香甜酒 調味伏特加 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿 </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div className="Bartending-card card ">
+                <div className="Bartending-card-image">
+                  <Link to="/">
+                    <img src={productimg} alt="" />
+                  </Link>
+                </div>
+                <div className="Bartending-card-body card-body ">
+                  <div className="Bartending-card-title card-title">
+                    <Link to="/">粉紅松鼠</Link>
+                  </div>
+                  <div className="Bartending-card-engtitle">Pink Squirrel</div>
+                  <div className="Bartending-card-subtitle card-footer">杏仁香甜酒 杏仁香甜酒 杏仁香甜酒 調味伏特加 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿 </div>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 @import '../../../assets/scss/global.scss';
 
+// 關於我的卡片
 .userInfo-userCard {
   margin: 0 auto;
   width: 375px;
@@ -49,6 +50,30 @@
         border-bottom: 1px solid $color-font-mark-light;
       }
     }
+  }
+}
+
+// 更改密碼的卡片
+.userInfo-changepassword {
+
+  .change-table {
+    font-size: var(--fs-cn-page-type1-menu);
+    margin-top: $space-5;
+    .change-part {
+      margin: $space-2;
+      width: 100%;
+      display: flex;
+      font-style: $font-family-cn-main;
+      .change-name {
+        width: 40vw;
+      }
+      .change-input {
+      }
+    }
+  }
+  .change-input {
+    margin-top: $space-3;
+    text-align: center;
   }
 }
 
@@ -236,16 +261,16 @@
   }
 }
 @media screen and (min-width: 768px) {
+  // 關於我的卡片
   .userInfo-userCard {
-    margin: 0 auto;
+    padding: $space-6 auto;
     width: 375px;
-  
+
     .upper-half {
       position: relative;
       min-height: 30vh;
       .upper-background {
         height: 25vh;
-
       }
       .upper-usericon {
         bottom: $space-3;
@@ -259,11 +284,25 @@
         .lower-title {
           width: 10vw;
         }
-
       }
     }
   }
-
+  // 更改密碼的卡片
+  .userInfo-changepassword {
+    padding: $space-6 auto;
+    margin-left: 15vw;
+    .change-table {
+      .change-part {
+        .change-name {
+          width: 20vw;
+        }
+        .change-input {
+        }
+      }
+    }
+    .change-input {
+    }
+  }
 
   .member-s1 {
     padding-top: $space-5;

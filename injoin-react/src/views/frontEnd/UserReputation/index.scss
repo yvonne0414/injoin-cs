@@ -1,43 +1,46 @@
 @import '../../../assets/scss/global.scss';
 
 .reputation-list {
-  .reputation-list-content {
-    display: flex;
-    flex-direction: column;
+  .reputation-list-card {
+    // display: flex;
+    // flex-direction: column;
     background-color: black;
     padding: 1rem;
     width: 100%;
     margin-bottom: 0.5rem;
-    // margin: 0 auto;
-    .reputation-list-time {
-      margin-bottom: 0.5rem;
-    }
-    .reputation-list-prd {
-      display: flex;
-      flex-direction: row;
-      .reputation-list-img {
-        width: 30%;
-        margin-right: 0.5rem;
-        img {
-          object-fit: cover;
-          width: 100%;
-        }
-      }
-      .reputation-list-prdname {
-        width: 100%;
-        padding-top: 0.5rem;
-      }
-    }
-    .reputation-list-footer {
+    .reputation-list-content {
+      // margin: 0 auto;
       display: flex;
       flex-direction: column;
-      margin-top: 0.5rem;
-      .reputation-list-star {
-        order: 1;
+      .reputation-list-time {
+        margin-bottom: 0.5rem;
       }
-      .reputation-list-comment {
-        order: 2;
-        width: 90%;
+      .reputation-list-prd {
+        display: flex;
+        flex-wrap: nowrap;
+
+        .reputation-list-img {
+          width: 30%;
+          margin-right: 0.5rem;
+          img {
+            object-fit: cover;
+            width: 100%;
+          }
+        }
+        .reputation-list-prdname {
+          width: 100%;
+          padding-top: 0.5rem;
+        }
+      }
+      .reputation-list-footer {
+        margin-top: 0.5rem;
+        .reputation-list-star {
+          order: 1;
+        }
+        .reputation-list-comment {
+          order: 2;
+          width: 90%;
+        }
       }
     }
   }
@@ -48,6 +51,7 @@
     display: flex;
     align-items: center;
     width: 100%;
+    justify-content: space-between;
 
     .reputation-orderlist-button {
       padding: 0.5rem;
@@ -59,9 +63,28 @@
 
 @media screen and (min-width: 768px) {
   .reputation-list {
-    .reputation-list-content {
-      flex-direction: row;
-      .reputation-list-prd {
+    .reputation-list-card {
+      // flex-direction: row;
+      .reputation-list-content {
+        flex-direction: row;
+        justify-content: space-between;
+
+        .reputation-list-prd {
+          flex-grow: 1;
+        }
+
+        .reputation-list-footer {
+          // flex-grow: 1;
+          display: flex;
+          flex-direction: row;
+
+          .reputation-list-star {
+            order: 2;
+          }
+          .reputation-list-comment {
+            order: 1;
+          }
+        }
       }
     }
   }

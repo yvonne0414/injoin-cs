@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import FePagination from '../../../components/FePagination1';
 import reputationimg from '../../../assets/images/fe/userReputation/reputation_1.png';
 import FePage1Header from '../../../components/FePage1Header';
+import { FaStar } from 'react-icons/fa';
 const UserReputation = () => {
   const page1HeaderInfo = {
     titleEn: 'Reputation',
@@ -50,8 +51,8 @@ const UserReputation = () => {
           <div className="page-type1-area-title" id="user-reputation-bolck1">
             我的評價
           </div>
-          <div className="page-type1-list-wraper">
-            <div className="page-type1-list-title pc-view">
+          <div className="reputation-list-wraper ">
+            <div className="reputation-list-title pc-view">
               <div>評價日期</div>
               <div>商品圖片</div>
               <div>商品名稱</div>
@@ -68,23 +69,13 @@ const UserReputation = () => {
                   <div className="reputation-list-prdname">金黑波本威士忌</div>
                 </div>
                 <div className="reputation-list-footer">
-                  <div className="reputation-list-star">icon</div>
-                  <div className="reputation-list-comment">很快就收到商品了，品質很好，與照片相符，包裝也很完整。</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="reputation-list-card ">
-              <div className="reputation-list-content ">
-                <div className="reputation-list-time">2022-03-20</div>
-                <div className="reputation-list-prd ">
-                  <div className="reputation-list-img">
-                    <img src={reputationimg} alt="" />
+                  <div className="reputation-list-star">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
                   </div>
-                  <div className="reputation-list-prdname">金黑波本威士忌</div>
-                </div>
-                <div className="reputation-list-footer">
-                  <div className="reputation-list-star">icon</div>
                   <div className="reputation-list-comment">很快就收到商品了，品質很好，與照片相符，包裝也很完整。</div>
                 </div>
               </div>
@@ -99,7 +90,10 @@ const UserReputation = () => {
                   <div className="reputation-list-prdname">金黑波本威士忌</div>
                 </div>
                 <div className="reputation-list-footer">
-                  <div className="reputation-list-star">icon</div>
+                  <div className="reputation-list-star">
+                    {' '}
+                    <FaStar /> <FaStar /> <FaStar />
+                  </div>
                   <div className="reputation-list-comment">很快就收到商品了，品質很好，與照片相符，包裝也很完整。</div>
                 </div>
               </div>
@@ -114,7 +108,10 @@ const UserReputation = () => {
                   <div className="reputation-list-prdname">金黑波本威士忌</div>
                 </div>
                 <div className="reputation-list-footer">
-                  <div className="reputation-list-star">icon</div>
+                  <div className="reputation-list-star">
+                    {' '}
+                    <FaStar /> <FaStar /> <FaStar /> <FaStar />
+                  </div>
                   <div className="reputation-list-comment">很快就收到商品了，品質很好，與照片相符，包裝也很完整。</div>
                 </div>
               </div>
@@ -129,7 +126,28 @@ const UserReputation = () => {
                   <div className="reputation-list-prdname">金黑波本威士忌</div>
                 </div>
                 <div className="reputation-list-footer">
-                  <div className="reputation-list-star">icon</div>
+                  <div className="reputation-list-star">
+                    {' '}
+                    <FaStar /> <FaStar />
+                  </div>
+                  <div className="reputation-list-comment">很快就收到商品了，品質很好，與照片相符，包裝也很完整。</div>
+                </div>
+              </div>
+            </div>
+            <div className="reputation-list-card ">
+              <div className="reputation-list-content ">
+                <div className="reputation-list-time">2022-03-20</div>
+                <div className="reputation-list-prd ">
+                  <div className="reputation-list-img">
+                    <img src={reputationimg} alt="" />
+                  </div>
+                  <div className="reputation-list-prdname">金黑波本威士忌</div>
+                </div>
+                <div className="reputation-list-footer">
+                  <div className="reputation-list-star">
+                    {' '}
+                    <FaStar />
+                  </div>
                   <div className="reputation-list-comment">很快就收到商品了，品質很好，與照片相符，包裝也很完整。</div>
                 </div>
               </div>

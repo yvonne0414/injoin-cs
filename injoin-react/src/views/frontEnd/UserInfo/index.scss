@@ -9,6 +9,7 @@
     align-items: center;
     flex-direction: column;
     .user-img {
+      border-radius: 50%;
       width: 100px;
       height: 100px;
       img {
@@ -22,6 +23,8 @@
     }
   }
   .userInfo-membertable {
+    font-size: var(--fs-cn-page-type1-menu);
+    margin-top: $space-5;
     .userInfo-memberinputpart {
       margin: $space-2;
       width: 100%;
@@ -30,6 +33,13 @@
       .userInfo-membertext {
         width: 40vw;
       }
+    }
+  }
+  .userInfo-memberbutton{
+    width: 100%;
+    button{
+      display: block;
+      margin: 0 auto;
     }
   }
 }
@@ -294,6 +304,53 @@
   }
 }
 @media screen and (min-width: 768px) {
+// 個人檔案卡片
+.userInfo-membercard {
+  position: relative;
+  width: 100%;
+  .userInfo-memberuser {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .user-img {
+      width: 150px;
+      height: 150px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .user-button {
+      margin-top: $space-3;
+    }
+  }
+  .userInfo-membertable {
+    padding: $space-6 auto;
+    margin-left: 15vw;
+    .userInfo-memberinputpart {
+      margin: $space-2;
+      width: 100%;
+      display: flex;
+      font-style: $font-family-cn-main;
+      .userInfo-membertext {
+        width: 15vw;
+      }
+    }
+  }
+  .userInfo-memberbutton{
+    width: 100%;
+    button{
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+
+
   // 關於我的卡片
   .userInfo-userCard {
     padding: $space-6 auto;
@@ -320,6 +377,7 @@
       }
     }
   }
+
   // 更改密碼的卡片
   .userInfo-changepassword {
     padding: $space-6 auto;

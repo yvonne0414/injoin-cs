@@ -23,17 +23,33 @@ const UserProfile = () => {
             編輯照片
           </Button>
         </div>
+
         <div className="userInfo-membertable">
           {userInfoMemberarr.map((v, i) => {
-            return (
-              <div key={i} className="userInfo-memberinputpart">
-                <label className='userInfo-membertext' htmlFor="">{v.cn}</label>
-                <Input placeholder={v.cn} name={v.en}/>
-              </div>
-            );
+            if (i !== 0) {
+              return (
+                <div key={i} className="userInfo-memberinputpart">
+                  <label className="userInfo-membertext" htmlFor="">
+                    {v.cn}
+                  </label>
+                  <Input placeholder={v.cn} name={v.en} />
+                </div>
+              );
+            } else {
+              return (
+                <div key={i} className="userInfo-memberinputpart">
+                  <label className="userInfo-membertext" htmlFor="">
+                    {v.cn}
+                  </label>
+                  <Input placeholder={v.cn} name={v.en} disabled={true} />
+                </div>
+              );
+            }
           })}
         </div>
-
+        <div className="userInfo-memberbutton">
+          <button className="injoin-btn-outline">送出</button>
+        </div>
       </div>
     </>
   );

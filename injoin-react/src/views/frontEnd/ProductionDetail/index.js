@@ -88,7 +88,7 @@ const data = [
     actions: [<Rate allowHalf disabled defaultValue={2.5} />],
     author: 'Han Solo',
     avatar: 'https://joeschmoe.io/api/v1/random',
-    content: <p>很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
+    content: <p className="prd-detail-text">很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
     // datetime: (
     //   <Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
     //     <span>{moment().subtract(1, 'days').fromNow()}</span>
@@ -99,7 +99,7 @@ const data = [
     actions: [<Rate allowHalf disabled defaultValue={5} />],
     author: 'Han Solo',
     avatar: 'https://joeschmoe.io/api/v1/random',
-    content: <p>很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
+    content: <p className="prd-detail-text">很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
     // datetime: (
     //   <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
     //     <span>{moment().subtract(2, 'days').fromNow()}</span>
@@ -112,8 +112,8 @@ const settings = {
   className: 'slider variable-width',
   dots: false,
   infinite: true,
-  centerMode: true,
-  slidesToShow: 5,
+  centerMode: false,
+  slidesToShow: 6,
   slidesToScroll: 1,
   // variableWidth: true,
   arrows: true,
@@ -122,6 +122,7 @@ const settings = {
     {
       breakpoint: 480,
       settings: {
+        centerMode: true,
         arrows: false,
         slidesToShow: 1,
       },
@@ -151,7 +152,7 @@ const ProductionDetail = () => {
         {/* Breadcrumb----------------------------------- */}
         <div className="container">
           <div className="w-fit-content ms-auto">
-            <Breadcrumb separator="">
+            <Breadcrumb separator="" className="prd-detail-breadcrumb">
               <Breadcrumb.Item href="">商品</Breadcrumb.Item>
               <Breadcrumb.Separator />
               <Breadcrumb.Item href="">威士忌</Breadcrumb.Item>
@@ -191,7 +192,7 @@ const ProductionDetail = () => {
           <div className="prd-detail-session1-content-block2">
             <div className="container">
               <div className="prd-detail-title mt-4">金賓黑波爾本威士忌</div>
-              <div className="prd-detial-price mt-3">NT. 550</div>
+              <div className="prd-detail-price mt-3">NT. 550</div>
               <div className="star-defaultValue mt-3">
                 <Rate disabled defaultValue={5} />
               </div>
@@ -206,8 +207,8 @@ const ProductionDetail = () => {
                     <FontAwesomeIcon icon={faCartShopping} fixedWidth className="text-black" />
                   </Button>
                 </div>
-                <div className="prd-detail-button-2 ">
-                  <Button>
+                <div className="prd-detail-button-2">
+                  <Button className="text-black">
                     收藏商品 &nbsp;&nbsp;
                     <FontAwesomeIcon icon={faHeart} fixedWidth />
                   </Button>
@@ -225,7 +226,7 @@ const ProductionDetail = () => {
           <div className="prd-detail-collapse">
             <Collapse defaultActiveKey={['1']} onChange={onChange}>
               <Panel className="prd-detail-title-type1" header="產地規格" key="1">
-                <p className="prd-detail-text">
+                <p className="prd-detail-text-1">
                   產地：{specification.origin}
                   <br />
                   容量：{specification.capacity}ml

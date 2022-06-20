@@ -49,13 +49,13 @@ const Bartending = () => {
             </div>
             <div className="Bartending-sel-all">
               <div className="Bartending-sel-1">
-                <select value="" className=" mx-2 px-2 Bartending-sel">
+                <select value="" className=" mx-2 Bartending-sel">
                   {/* <optgroup labal="基酒種類"></optgroup> */}
                   <option value="" className="Bartending-sel-option">
                     酒譜類型
                   </option>
                 </select>
-                <select value="" className="mx-2 px-2 Bartending-sel">
+                <select value="" className="mx-3 Bartending-sel">
                   <option value="" className="Bartending-sel-option">
                     Cocktail
                   </option>
@@ -71,7 +71,23 @@ const Bartending = () => {
           </div>
 
           <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 g-2  ">
-            <div className="col ">
+            <div className="col Bartending-card-col">
+              <div className="Bartending-card card ">
+                <div className="Bartending-card-image">
+                  <Link to="/">
+                    <img src={productimg} alt="" />
+                  </Link>
+                </div>
+                <div className="Bartending-card-body card-body ">
+                  <div className="Bartending-card-title card-title">
+                    <Link to="/">粉紅松鼠</Link>
+                  </div>
+                  <div className="Bartending-card-engtitle">Pink Squirrel</div>
+                  <div className="Bartending-card-subtitle card-footer">杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿 </div>
+                </div>
+              </div>
+            </div>
+            <div class="col Bartending-card-col">
               <div className="Bartending-card card ">
                 <div className="Bartending-card-image">
                   <Link to="/">
@@ -87,7 +103,7 @@ const Bartending = () => {
                 </div>
               </div>
             </div>
-            <div class="col">
+            <div class="col Bartending-card-col">
               <div className="Bartending-card card ">
                 <div className="Bartending-card-image">
                   <Link to="/">
@@ -103,23 +119,7 @@ const Bartending = () => {
                 </div>
               </div>
             </div>
-            <div class="col">
-              <div className="Bartending-card card ">
-                <div className="Bartending-card-image">
-                  <Link to="/">
-                    <img src={productimg} alt="" />
-                  </Link>
-                </div>
-                <div className="Bartending-card-body card-body ">
-                  <div className="Bartending-card-title card-title">
-                    <Link to="/">粉紅松鼠</Link>
-                  </div>
-                  <div className="Bartending-card-engtitle">Pink Squirrel</div>
-                  <div className="Bartending-card-subtitle card-footer">杏仁香甜酒 調味伏特加 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿 </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
+            <div class="col Bartending-card-col">
               <div className="Bartending-card card ">
                 <div className="Bartending-card-image">
                   <Link to="/">

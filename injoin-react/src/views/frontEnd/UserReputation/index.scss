@@ -2,16 +2,16 @@
 
 .reputation-list {
   .reputation-list-card {
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
     background-color: black;
     padding: 1rem;
     width: 100%;
     margin-bottom: 0.5rem;
     .reputation-list-content {
       // margin: 0 auto;
-      display: flex;
-      flex-direction: column;
+      // display: flex;
+      // flex-direction: column;
       .reputation-list-time {
         margin-bottom: 0.5rem;
       }
@@ -64,8 +64,10 @@
 @media screen and (min-width: 768px) {
   .reputation-list {
     .reputation-list-card {
-      // flex-direction: row;
+      flex-direction: row;
+      justify-content: space-between;
       .reputation-list-content {
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
 

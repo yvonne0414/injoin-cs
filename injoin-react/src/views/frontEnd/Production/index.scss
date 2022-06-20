@@ -1,5 +1,6 @@
 @import '../../../assets/scss/global.scss';
 
+
 .prd-content {
   .prd-content-top {
     display: flex;
@@ -11,7 +12,7 @@
       margin-top: $space-2;
       font-weight: $font-weight-lighter;
       span {
-        margin-left: 0.5rem;
+        margin-left:$space-2;
       }
     }
     .prd-sel-all {
@@ -33,18 +34,18 @@
     }
     .prd-search-form {
       order: 3;
-      margin-top: 1rem;
+      margin-top:$space-3;
       width: 100%;
       .prd-search-label {
-        color: #fff;
+        color: $color-font;
         background-color: #56565650;
         border: solid 0.1rem $color-font-sp;
         border-radius: 0%;
       }
       .prd-search-btn {
         width: 30%;
-        letter-spacing: 0.1rem;
-        padding: $space-1 1rem;
+        letter-spacing: $letter-space-1;
+        padding: $space-1 $space-3;
         border: solid 1px $color-font-gold;
         border-radius: 0%;
         font-family: $font-family-en-main;
@@ -81,9 +82,9 @@
   .prd-card-all {
     .prd-card {
       background-color: $color-bg-block;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      padding: 0 0 1rem 0;
+      margin-top: $space-3;
+      margin-bottom: $space-2;
+      padding: 0 0 $space-3 0;
       .prd-card-image {
         width: 100%;
         height: 60%;
@@ -111,18 +112,18 @@
             display: flex;
             align-items: center;
             .prd-card-icon-star {
-              margin-right: 0.2rem;
+              margin-right: ($space-3 * 0.1);
               width: 14px;
               height: 14px;
             }
           }
           .prd-card-icon {
-           
             display: flex;
             align-items: center;
             color: $color-font-sp-light;
             .prd-card-icon-Heart {
-              margin-right: 0.5rem;
+              margin-right: $space-2;
+              color: #ac2c32;
               &:hover {
                 color: #ac2c32;
                 // background-color: #AC2C32;
@@ -151,10 +152,5 @@
         height: 50%;
       }
     }
-  }
-}
-.prd-card-all {
-  .prd-card {
-    width: 80%;
   }
 }

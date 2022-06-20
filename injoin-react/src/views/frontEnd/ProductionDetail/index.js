@@ -113,10 +113,20 @@ const settings = {
   dots: false,
   infinite: true,
   centerMode: true,
-  slidesToShow: 1,
+  slidesToShow: 5,
   slidesToScroll: 1,
-  variableWidth: true,
-  arrows: false,
+  // variableWidth: true,
+  arrows: true,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        arrows: false,
+        slidesToShow: 1,
+      },
+    },
+  ],
 };
 
 // export default class VariableWidth extends Component {
@@ -155,7 +165,7 @@ const ProductionDetail = () => {
         {/* Carousel------------------------------------- */}
         <div className="prd-detail-session1-content-wraper">
           {/* // cn = mt-3 prd-detail-session1-content-block1 */}
-          <Carousel autoplay className="">
+          <Carousel autoplay className=" mt-3 prd-detail-session1-content-block1">
             <div>
               <div style={contentStyle}>
                 <img src={prddetailImg1} alt="prd-detail-img-1" className="mx-auto h-100" />
@@ -254,7 +264,6 @@ const ProductionDetail = () => {
           {/* evaluation----------------------------------- */}
           <div className="prd-detail-evaluation-bg mt-5">
             <div className="container">
-              <div className=""></div>
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>購買評價</p>
               </div>
@@ -295,8 +304,10 @@ const ProductionDetail = () => {
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>同系列商品</p>
               </div>
-              <div className="prd-deatil-card">
+              <div className="prd-deatil-card px-md-3">
                 <Slider {...settings}>
+                  <PrdCard />
+                  <PrdCard />
                   <PrdCard />
                   <PrdCard />
                   <PrdCard />

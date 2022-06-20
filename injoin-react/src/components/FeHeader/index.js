@@ -87,10 +87,10 @@ const FeHeader = () => {
             <Link to="/chen">
               <FontAwesomeIcon icon={faHeart} fixedWidth />
             </Link>
-            <Link to="/">
+            <Link to="/account/group">
               <FontAwesomeIcon icon={faUser} fixedWidth />
             </Link>
-            <Link to="/">
+            <Link to="/cart">
               <FontAwesomeIcon icon={faCartShopping} fixedWidth />
             </Link>
             <Link to="/" className="pc-view">

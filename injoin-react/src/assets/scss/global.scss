@@ -45,6 +45,9 @@ a:hover {
     color: $color-font-gold;
   }
 }
+.ant-back-top-content {
+  background-color: #6e686873;
+}
 
 /* ===== select樣式 ===== */
 select {
@@ -149,7 +152,7 @@ select {
 }
 .page-type1-list-content {
   @include cn-list-content();
-  border: $color-border 1px solid;
+  border: #aaa 1px solid;
   padding: $space-2;
   display: flex;
   flex-wrap: wrap;
@@ -211,9 +214,10 @@ select {
       border-bottom: $color-border 1px solid !important;
       margin-bottom: 0;
       padding: $space-3 $space-2;
-
+      border: unset;
       > div {
         margin: $space-2;
+        margin-bottom: 0;
       }
     }
   }

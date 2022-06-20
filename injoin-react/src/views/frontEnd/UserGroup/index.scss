@@ -1,1 +1,116 @@
 @import '../../../assets/scss/global.scss';
+
+.user-add-group-content-wraper {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: center;
+  > div:last-child {
+    width: 80%;
+  }
+  .bg-square-1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $color-bg-block;
+    left: -15%;
+    bottom: -15%;
+  }
+  .user-add-group-content {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    .user-add-group-content-text {
+      font-family: 'Noto Serif TC';
+      font-size: var(--fs-cn-page-type1-content);
+      font-weight: $font-weight-lighter;
+      margin-bottom: $space-3;
+    }
+  }
+}
+.my-group-list-wraper {
+  .list-content_time,
+  .list-content_place {
+    order: -1;
+  }
+  .list-content_place {
+    svg {
+      fill: $color-like;
+    }
+  }
+  .list-content_activity-name {
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-top: $space-2;
+    margin-bottom: $space-4;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .user-add-group-content-wraper {
+    width: 80%;
+    margin: auto;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+    > div:last-child {
+      width: 40%;
+      order: -1;
+    }
+  }
+  .member-group-list-area {
+    .page-type1-list-wraper {
+      .page-type1-list-title.pc-view {
+        > div {
+          margin: 0px 8px;
+        }
+        > div:first-child {
+          width: 30% !important;
+          text-align: center;
+        }
+        > div:not(:nth-child(1)) {
+          width: 10% !important;
+          text-align: center;
+        }
+        > div.list-content_btn {
+          width: unset !important;
+          flex-grow: 1 !important;
+          text-align: center;
+        }
+      }
+      > div {
+        > div:nth-child(1) {
+          width: 30% !important;
+          text-align: center;
+        }
+        > div:not(:nth-child(1)) {
+          width: 10% !important;
+          text-align: center;
+        }
+        > div.list-content_btn {
+          width: unset !important;
+          flex-grow: 1 !important;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .my-group-list-wraper {
+    .list-content_time,
+    .list-content_place {
+      order: 0;
+    }
+    .list-content_activity-name {
+      -webkit-line-clamp: 1;
+      width: 20%;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}

@@ -2,8 +2,22 @@ import './HomePage.scss';
 import { FE_IMAGE_URL } from '../../../utils/config';
 import FePagination from '../../../components/FePagination1';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
+import Carousel from 'react-bootstrap/Carousel';
+import HomeHotCard from '../../../components/HomePage/HomeHotCard';
+import Slider from 'react-slick';
+import HomeBartdCard from '../../../components/HomePage/HomeBartdCard';
 
 const HomePage = () => {
+  const settings = {
+    className: 'slider variable-width',
+    dots: false,
+    infinite: true,
+    centerMode: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    variableWidth: true,
+  };
+
   return (
     <>
       <div className="container">
@@ -51,32 +65,11 @@ const HomePage = () => {
             <p className="section-content-cn">誰這需要花很多時間來嚴謹地論證。</p>
             <button className="button-style section-button">Buy It !</button>
           </div>
-          <div className="slider position-absolute">
-            <div className="slider-prd row">
-              <div className="col-md-4 prd-card d-none d-md-block">
-                <div className="prd-img">
-                  <img src={`${FE_IMAGE_URL}/homepage/s3-img.png`} alt="" />
-                </div>
-                <p className="prd-text">[ Porton mosto verde ]</p>
-              </div>
-              <div className="col-6 col-md-4 prd-card">
-                <div className="prd-img">
-                  <img src={`${FE_IMAGE_URL}/homepage/s3-img.png`} alt="" />
-                </div>
-                <p className="prd-text">[ Porton mosto verde ]</p>
-              </div>
-              <div className="col-6 col-md-4 prd-card">
-                <div className="prd-img">
-                  <img src={`${FE_IMAGE_URL}/homepage/s3-img.png`} alt="" />
-                </div>
-                <p className="prd-text">[ Porton mosto verde ]</p>
-              </div>
-            </div>
-            <div className="slider-button">
-              <AiFillCaretLeft className="button-size" />
-              <AiFillCaretRight className="button-size" />
-            </div>
-          </div>
+          <Slider {...settings} className="homepages3-slder">
+            {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((v, i) => {
+              return <HomeHotCard />;
+            })}
+          </Slider>
         </section>
         <section className="section4 position-relative">
           <h3 className="section-title-en">C</h3>
@@ -87,30 +80,13 @@ const HomePage = () => {
             <p className="section-content-cn">在人生的歷程中，酒的出現是必然的。</p>
             <button className="button-style section-button">Read More</button>
           </div>
-          <div className="bartd-slider position-absolute">
-            <div className="bartd-card">
-              <div className="bartd-img">
-                <img src={`${FE_IMAGE_URL}/homepage/s4-img.png`} alt="" />
-              </div>
-              <p className="batrd-text">[ 西班牙式琴通寧 ]</p>
-            </div>
-            <div className="bartd-card d-none d-md-block">
-              <div className="bartd-img">
-                <img src={`${FE_IMAGE_URL}/homepage/s4-img.png`} alt="" />
-              </div>
-              <p className="batrd-text">[ 西班牙式琴通寧 ]</p>
-            </div>
-            <div className="bartd-card d-none d-md-block">
-              <div className="bartd-img">
-                <img src={`${FE_IMAGE_URL}/homepage/s4-img.png`} alt="" />
-              </div>
-              <p className="batrd-text">[ 西班牙式琴通寧 ]</p>
-            </div>
-            <div className="slider-button">
-              <AiFillCaretLeft className="button-size" />
-              <AiFillCaretRight className="button-size" />
-            </div>
-          </div>
+          <Slider {...settings} className="homepages4-slider">
+            {[1, 1, 1, 11, 1, 1, 1, 1, 1, 2, 1, 11, 1, 1, 1, 1].map((v, i) => {
+              return (
+                <HomeBartdCard/>
+              );
+            })}
+          </Slider>
         </section>
         <section className="section5 position-relative">
           <h3 className="section-title-en w-100 text-end">T</h3>

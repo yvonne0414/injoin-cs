@@ -1,5 +1,39 @@
 @import '../../../assets/scss/global.scss';
 
+// 個人檔案卡片
+.userInfo-membercard {
+  width: 100%;
+  .userInfo-memberuser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .user-img {
+      width: 100px;
+      height: 100px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .user-button {
+      margin-top: $space-3;
+    }
+  }
+  .userInfo-membertable {
+    .userInfo-memberinputpart {
+      margin: $space-2;
+      width: 100%;
+      display: flex;
+      font-style: $font-family-cn-main;
+      .userInfo-membertext {
+        width: 40vw;
+      }
+    }
+  }
+}
+
 // 關於我的卡片
 .userInfo-userCard {
   margin: 0 auto;
@@ -55,7 +89,6 @@
 
 // 更改密碼的卡片
 .userInfo-changepassword {
-
   .change-table {
     font-size: var(--fs-cn-page-type1-menu);
     margin-top: $space-5;

@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import vips4img from '../../assets/images/fe/uservip/gold.png';
+import vips4vip0 from '../../assets/images/fe/uservip/gold.png';
+import vips4vip1 from '../../assets/images/fe/uservip/platinum.png';
+import vips4vip2 from '../../assets/images/fe/uservip/dim.png';
 
 const UserVipCard = () => {
   const [UserVipCardState, setUserVipCardState] = useState(0);
-
+  const UserVipLevel = ['黃金', '柏金', '鑽石'];
   return (
     <>
       <div className="uservips4-nav">
@@ -42,10 +44,10 @@ const UserVipCard = () => {
       </div>
       <div className="uservips4-main">
         <div className="s4maincontent">
-          <div className="uservips4-title">黃金會員</div>
-          <div className="uservips4-text">註冊會員即享有黃金會員之等級福利</div>
+          <div className="uservips4-title">{UserVipLevel[UserVipCardState]}會員</div>
+          <div className="uservips4-text">註冊會員即享有{UserVipLevel[UserVipCardState]}會員之等級福利</div>
           <div className="uservips4-card">
-            <div className="card-title">黃金會員專屬折扣</div>
+            <div className="card-title">{UserVipLevel[UserVipCardState]}會員專屬折扣</div>
             <table className="card-table">
               <tbody>
                 <tr>
@@ -74,7 +76,9 @@ const UserVipCard = () => {
           </div>
         </div>
         <div className="s4mainimg">
-          <img src={vips4img} alt="" />
+          {UserVipCardState === 0 && <img src={vips4vip0} alt="" />}
+          {UserVipCardState === 1 && <img src={vips4vip1} alt="" />}
+          {UserVipCardState === 2 && <img src={vips4vip2} alt="" />}
         </div>
       </div>
     </>

@@ -49,8 +49,8 @@ const UserVip = () => {
   return (
     <>
       <div className="container">
-        {/* <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
-        <section className="uservip-s1 d-none">
+        <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+        <section className="uservip-s1">
           <div className="page-type1-area-title">如何成為VIP會員</div>
           <div className="uservips1-title">需先至官網註冊會員才能累計消費</div>
           <ul className="uservips1-ul">
@@ -60,7 +60,7 @@ const UserVip = () => {
           </ul>
           <div className="uservips1-notice">*消費累積,一律依照會員註冊Email累計, 忘記登入或不同人購買, 皆無法合併計算累積*</div>
         </section>
-        <section className="uservip-s2 d-none">
+        <section className="uservip-s2">
           <div className="uservips2-title">會員分級標準</div>
           <div className="uservips2-content">
             <div className="vip-part">
@@ -77,7 +77,7 @@ const UserVip = () => {
             <img src={vipimg} alt="" />
           </div>
         </section>
-        <seciton className="uservip-s3 d-none">
+        <seciton className="uservip-s3">
           <div className="uservips3-img">
             <img src={vips3img} alt="" />
           </div>
@@ -97,7 +97,7 @@ const UserVip = () => {
           
           <UserVipCard/>
         </section>
-        <section className="uservip-s5 d-none">
+        <section className="uservip-s5">
           <div className="uservips5-contnet">
             <div className="page-type1-area-title">注意事項</div>
             <ul className="uservips5-ul">

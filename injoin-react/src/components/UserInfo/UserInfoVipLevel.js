@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UserInfoVipLevel = () => {
   const UserInfoVipLevel = {
-    vipLevel: 1,
+    vipLevel: 0,
     vipMessage: '根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員',
   };
 

@@ -70,7 +70,7 @@ const Bartending = () => {
             </form>
           </div>
 
-          <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 g-2  ">
+          <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-4 gy-2  ">
             <div className="col Bartending-card-col">
               <div className="Bartending-card card ">
                 <div className="Bartending-card-image">

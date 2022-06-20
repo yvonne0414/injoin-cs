@@ -6,6 +6,9 @@ import iconURL from '../../../assets/images/fe/membercenter/usericon.png';
 import { FE_IMAGE_URL } from '../../../utils/config';
 import { Link } from 'react-router-dom';
 import UserInfoForm from '../../../components/UserInfo/UserInfoForm';
+import UserInfoVipLevel from '../../../components/UserInfo/UserInfoVipLevel';
+import UserInfoTask from '../../../components/UserInfo/UserInfoTask';
+
 
 const UserInfo = () => {
   const page1HeaderInfo = {
@@ -49,84 +52,18 @@ const UserInfo = () => {
   return (
     <>
       <div className="container">
-        {/* <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
+        <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
         {/* ===============section2=============== */}
-        <section className="member-s1">
-          <UserInfoForm/>
+        <section className="member-s1 d-none">
+          <UserInfoForm />
         </section>
         {/* ===============section2=============== */}
         <div className="member-s2 d-none">
-          <div className="members2-icon">
-            <img src={`${FE_IMAGE_URL}/membercenter/memberlevel.png`} alt="" />
-          </div>
-          <div className="members2-content">
-            <div className="page-type1-area-title" id="grouplist-bolck2">
-              會員等級
-            </div>
-            <div className="members2-userlevel">黃金會員</div>
-            <div className="members2-usersth">根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員，年度結算日為 1/1，會員期限至 2024/1/1</div>
-            <div className="members2-levelrules">
-              了解詳細
-              <Link to="/">
-                <span>會員等級說明</span>
-              </Link>
-            </div>
-          </div>
+          <UserInfoVipLevel />
         </div>
         {/* ===============section3=============== */}
-        <section className="member-s3 d-none">
-          <div className="page-type1-area-title" id="#">
-            年度升級任務
-          </div>
-          {[1].map((v, i) => {
-            return (
-              <div className="memberlevel active">
-                <div className="levelicon">
-                  <img src={`${FE_IMAGE_URL}/membercenter/memberlevelgold.png`} alt="" />
-                </div>
-                <div className="levelcontext">
-                  <div className="leveltitle">黃金會員</div>
-                  <div className="levelstate">已達成</div>
-                  <div className="levelcontextm">已升級為黃金會員</div>
-                </div>
-                <div className="levellink"></div>
-              </div>
-            );
-          })}
-          {/*   // memberlevel-card */}
-          {[1].map((v, i) => {
-            return (
-              <div className="memberlevel">
-                <div className="levelicon">
-                  <img src={`${FE_IMAGE_URL}/membercenter/memberlevelplatinum.png`} alt="" />
-                </div>
-                <div className="levelcontext">
-                  <div className="leveltitle">升級鉑金會員</div>
-                  <div className="levelstate">進行中</div>
-                  <div className="levelcontextm">
-                    達成任務可立即升級為鉑金會員，會員期限會延續至下一個年度
-                    <hr />
-                    達成條件：整年度累積實際消費達 NT$ 5,000，且交易次數達 2 次以上。
-                  </div>
-                </div>
-                <div className="levellink"></div>
-              </div>
-            );
-          })}
-          {[1].map((v, i) => {
-            return (
-              <div className="memberlevel">
-                <div className="levelicon">
-                  <img src={`${FE_IMAGE_URL}/membercenter/memberleveldim.png`} alt="" />
-                </div>
-                <div className="levelcontext">
-                  <div className="leveltitle">黃金會員</div>
-                  <div className="levelstate">已達成</div>
-                  <div className="levelcontextm">已升級為黃金會員</div>
-                </div>
-              </div>
-            );
-          })}
+        <section className="member-s3">
+          <UserInfoTask/>
         </section>
         {/* ===============section4=============== */}
         <section className="member-s4 d-none">

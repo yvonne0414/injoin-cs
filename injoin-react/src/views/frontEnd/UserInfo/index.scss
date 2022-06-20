@@ -35,9 +35,9 @@
       }
     }
   }
-  .userInfo-memberbutton{
+  .userInfo-memberbutton {
     width: 100%;
-    button{
+    button {
       display: block;
       margin: 0 auto;
     }
@@ -219,34 +219,39 @@
   }
 }
 .member-s3 {
-  min-height: 100vh;
-
-  // memberlevel-card
-  .memberlevel {
-    margin: $space-3 0;
-    display: flex;
-    justify-content: space-around;
-    position: relative;
-    &.active {
-      .levelicon {
-        border: $space-1 solid $color-font-gold;
+  position: relative;
+  .levelLight {
+    position: absolute;
+    top: 15vh;
+    left: 12vw;
+    border-left: 3px solid $color-font-gold;
+    width: 1px;
+    height: 50%;
+    z-index: -1;
+  }
+  .userInfo-task {
+    &.active{
+      .levelicon{
+        border: 2px solid $color-font-gold;
         border-radius: 50%;
       }
     }
     .levelicon {
-      width: 30vw;
-
+      position: absolute;
+      width: 25vw;
+      top: -($space-3);
+      z-index: 1;
       img {
         width: 100%;
         height: 100%;
         object-fit: contain;
       }
     }
-    .levelcontext {
-      width: 50vw;
+    .levelcontent {
+      width: 80vw;
       border: 0.5px solid $color-font-sp-light;
-      margin: auto $space-3;
-      padding: $space-3;
+      margin: $space-3;
+      padding: $space-3 $space-1 $space-3 $space-6;
       border-radius: $space-1;
       .leveltitle {
         font-family: $font-family-cn-main;
@@ -261,15 +266,6 @@
         font-family: $font-weight-bold;
         font-size: var(--fs-en-page-type1-content);
       }
-    }
-    .levellink {
-      position: absolute;
-      top: $space-2;
-      border-left: 3px solid $color-font-gold;
-      width: 1px;
-      left: 16vw;
-      height: 130%;
-      z-index: -1;
     }
   }
 }
@@ -304,52 +300,50 @@
   }
 }
 @media screen and (min-width: 768px) {
-// 個人檔案卡片
-.userInfo-membercard {
-  position: relative;
-  width: 100%;
-  .userInfo-memberuser {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    .user-img {
-      width: 150px;
-      height: 150px;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-    }
-    .user-button {
-      margin-top: $space-3;
-    }
-  }
-  .userInfo-membertable {
-    padding: $space-6 auto;
-    margin-left: 15vw;
-    .userInfo-memberinputpart {
-      margin: $space-2;
-      width: 100%;
-      display: flex;
-      font-style: $font-family-cn-main;
-      .userInfo-membertext {
-        width: 15vw;
-      }
-    }
-  }
-  .userInfo-memberbutton{
+  // 個人檔案卡片
+  .userInfo-membercard {
+    position: relative;
     width: 100%;
-    button{
-      display: block;
-      margin: 0 auto;
+    .userInfo-memberuser {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .user-img {
+        width: 150px;
+        height: 150px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      .user-button {
+        margin-top: $space-3;
+      }
+    }
+    .userInfo-membertable {
+      padding: $space-6 auto;
+      margin-left: 15vw;
+      .userInfo-memberinputpart {
+        margin: $space-2;
+        width: 100%;
+        display: flex;
+        font-style: $font-family-cn-main;
+        .userInfo-membertext {
+          width: 15vw;
+        }
+      }
+    }
+    .userInfo-memberbutton {
+      width: 100%;
+      button {
+        display: block;
+        margin: 0 auto;
+      }
     }
   }
-}
-
-
 
   // 關於我的卡片
   .userInfo-userCard {
@@ -475,6 +469,7 @@
       width: auto;
       height: 100%;
       margin: 0 auto;
+      width: 35vw;
       img {
         width: 100%;
         height: 100%;
@@ -487,21 +482,45 @@
     }
   }
   .member-s3 {
-    min-height: 100vh;
-
-    // memberlevel-card
-    .memberlevel {
-      &.active {
-        .levelicon {
-          border: $space-4 solid $color-font-gold;
+    position: relative;
+    .levelLight {
+      position: absolute;
+      top: 15vh;
+      left: 5vw;
+      border-left: 3px solid $color-font-gold;
+      width: 1px;
+      height: 60%;
+      z-index: -1;
+    }
+    .userInfo-task {
+      display: flex;
+      &.active{
+        .levelicon{
+          border: 5px solid $color-font-gold;
+          border-radius: 50%;
         }
       }
       .levelicon {
-        width: 10vw;
+        position: relative;
+        width: 15vw;
+        height: 10vw;
+        display: block;
+        margin: auto 0 ;
+        img {
+
+        }
       }
-      .levellink {
-        left: 6.5vw;
-        border-left: 5px solid $color-font-gold;
+      .levelcontent {
+
+        .leveltitle {
+
+        }
+        .levelstate {
+
+        }
+        .levelcontextm {
+
+        }
       }
     }
   }

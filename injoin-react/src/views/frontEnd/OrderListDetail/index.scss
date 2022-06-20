@@ -6,21 +6,98 @@
   text-align: left;
 }
 
-.bg-square {
-  background-color: $color-bg-light;
-  position: absolute;
-  width: 80%;
+.order-detail-info-bg-square {
+  width: 100%;
   height: 100%;
-  right: 0;
+  background-color: $color-bg-block;
+  position: absolute;
+}
+// orderdetail-list
+  .page-type1-list-section {
+    > div:nth-child(4),
+    > div:nth-child(5) {
+      margin-bottom: unset;
+    }
+    .listdetail-card-bg{
+      width: 100%;
+      height: 10vh;
+      background-color:$color-bg-light;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      // padding: auto;
+    }
+
+  .list-content_orderdetail_num {
+    order: 1;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // display: -webkit-box;
+    // -webkit-line-clamp: 2;
+    // -webkit-box-orient: vertical;
+  }
+  .list-content_orderdetail_img {
+    font-weight: $font-weight-lighter;
+    font-family: $font-family-cn-content;
+    font-size: var(--fs-en-page-type1-content);
+    order: 2;
+    width: 50%;
+  }
+  .list-content_orderdetail_name {
+    font-weight: $font-weight-lighter;
+    order: 3;
+    width: 50%;
+    text-align: end;
+  }
+  .list-content_orderdetail_price {
+    order: 4;
+    width: 50%;
+    color: $color-font-gold;
+  }
+  .list-content_orderdetail_number {
+    order: 5;
+    width: 50%;
+    color: $color-font-gold;
+  }
+  .list-content_orderdetail_total {
+    order: 6;
+    width: 100%;
+    font-family: $font-family-cn-main;
+  }
 }
 
-@media screen and (min-width: 768px) {
-  .square-area {
-    margin-top: -4rem;
-  }
 
-  .bg-square {
-    width: 98%;
-    z-index: -10;
+@media screen and (min-width: 768px) {
+  
+    .page-type1-list-section {
+      border: unset;
+      > div {
+        margin-bottom: 0;
+      }
+    
+    .list-content_orderdetail_num,
+    .list-content_orderdetail_img,
+    .list-content_orderdetail_name,
+    .list-content_orderdetail_price,
+    .list-content_orderdetail_number,
+    .list-content_orderdetail_total {
+      order: 0;
+      width: unset;
+      text-align: center;
+    }
+    .list-content_order_num {
+      -webkit-line-clamp: 1;
+    }
+    .list-content_btn {
+      a {
+        background-color: $color-bg-block;
+        width: fit-content;
+        padding: $space-1;
+        &:hover {
+          border: $color-border 1px solid;
+        }
+      }
+    }
   }
 }

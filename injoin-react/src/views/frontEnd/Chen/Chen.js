@@ -1,8 +1,14 @@
-import MemberCenter from '../MemberCenter';
+import HomePage from '../HomePage';
+import UserInfo from '../UserInfo';
+
+let arr = ['chen', 'paul', 'avery'];
 const Chen = () => {
+
   return (
     <>
-      <MemberCenter />
+      {/* < HomePage/> */}
+
+      <UserInfo />
     </>
   );
 };

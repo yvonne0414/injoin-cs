@@ -7,11 +7,21 @@ import { Comment, List, Tooltip } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 
+// -----Prdcar
+import PrdCard from '../../../components/PrdCard';
+
+// -----Variable width
+import React, { Component } from 'react';
+import Slider from 'react-slick';
+
 import prddetailImg1 from '../../../assets/images/fe/productionDetail/prd-detail-img-1.png';
 import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
 import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
 import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail-img-4.png';
-import React from 'react';
+
+// import '~slick-carousel/slick/slick.css';
+// import '~slick-carousel/slick/slick-theme.css';
+
 const { Panel } = Collapse;
 
 const contentStyle = {
@@ -98,6 +108,31 @@ const data = [
   },
 ];
 
+const settings = {
+  className: 'slider variable-width',
+  dots: false,
+  infinite: true,
+  centerMode: true,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  variableWidth: true,
+  arrows: false,
+};
+
+// export default class VariableWidth extends Component {
+//   render() {
+//     const settings = {
+//       className: "slider variable-width",
+//       dots: true,
+//       infinite: true,
+//       centerMode: true,
+//       slidesToShow: 1,
+//       slidesToScroll: 1,
+//       variableWidth: true
+//     };
+//   }
+// }
+
 const ProductionDetail = () => {
   return (
     <>
@@ -119,7 +154,8 @@ const ProductionDetail = () => {
         </div>
         {/* Carousel------------------------------------- */}
         <div className="prd-detail-session1-content-wraper">
-          <Carousel autoplay className="mt-3 prd-detail-session1-content-block1">
+          {/* // cn = mt-3 prd-detail-session1-content-block1 */}
+          <Carousel autoplay className="">
             <div>
               <div style={contentStyle}>
                 <img src={prddetailImg1} alt="prd-detail-img-1" className="mx-auto h-100" />
@@ -250,6 +286,24 @@ const ProductionDetail = () => {
                   </li>
                 )}
               />
+            </div>
+          </div>
+
+          {/* the same kind  product-------------------------------------*/}
+          <div className="prd-detail-evaluation-bg mt-5">
+            <div className="container">
+              <div className="prd-detail-title-type1 mt-3 ">
+                <p>同系列商品</p>
+              </div>
+              <div className="prd-deatil-card">
+                <Slider {...settings}>
+                  <PrdCard />
+                  <PrdCard />
+                  <PrdCard />
+                  <PrdCard />
+                  <PrdCard />
+                </Slider>
+              </div>
             </div>
           </div>
         </div>

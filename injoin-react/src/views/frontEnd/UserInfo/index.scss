@@ -1,1 +1,543 @@
 @import '../../../assets/scss/global.scss';
+
+// 個人檔案卡片
+.userInfo-membercard {
+  width: 100%;
+  .userInfo-memberuser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .user-img {
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .user-button {
+      margin-top: $space-3;
+    }
+  }
+  .userInfo-membertable {
+    font-size: var(--fs-cn-page-type1-menu);
+    margin-top: $space-5;
+    .userInfo-memberinputpart {
+      margin: $space-2;
+      width: 100%;
+      display: flex;
+      font-style: $font-family-cn-main;
+      .userInfo-membertext {
+        width: 40vw;
+      }
+    }
+  }
+  .userInfo-memberbutton {
+    width: 100%;
+    button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+// 關於我的卡片
+.userInfo-userCard {
+  margin: 0 auto;
+  width: 375px;
+
+  .upper-half {
+    position: relative;
+    min-height: 40vh;
+    .upper-background {
+      position: absolute;
+      width: 100%;
+      height: 35vh;
+      opacity: 0.5;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .upper-usericon {
+      position: absolute;
+      bottom: 0;
+      left: $space-3;
+      height: 15vh;
+      width: 15vh;
+      border-radius: 50%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  .lower-half {
+    max-height: 40vh;
+    font-family: $font-family-cn-main;
+    font-size: var(--fs-cn-home-content);
+    border: 2px solid $color-font-mark-light;
+    .lower-box {
+      display: flex;
+      padding: $space-4;
+      .lower-title {
+        width: 30vw;
+        text-align: end;
+      }
+      .lower-content {
+        width: 100%;
+        border-bottom: 1px solid $color-font-mark-light;
+      }
+    }
+  }
+}
+
+// 更改密碼的卡片
+.userInfo-changepassword {
+  .change-table {
+    font-size: var(--fs-cn-page-type1-menu);
+    margin-top: $space-5;
+    .change-part {
+      margin: $space-2;
+      width: 100%;
+      display: flex;
+      font-style: $font-family-cn-main;
+      .change-name {
+        width: 40vw;
+      }
+      .change-input {
+      }
+    }
+  }
+  .change-input {
+    margin-top: $space-3;
+    text-align: center;
+  }
+}
+
+.member-s1 {
+  min-height: 100vh;
+
+  .member-box {
+    // display: none;
+    .memberbox-nav {
+      .memberbox-ul {
+        font-family: $font-family-cn-main;
+        background: $color-bg-block;
+        margin: 0 $space-1;
+        li {
+          font-size: var(--fs-cn-page-type1-menu);
+          text-align: center;
+          &:hover,
+          &.active {
+            color: $color-font-gold;
+            border: 2px solid $color-font;
+          }
+        }
+      }
+    }
+    .member-card {
+      width: 100%;
+      .member-user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        .user-img {
+          width: 100px;
+          height: 100px;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+        .user-button {
+          margin-top: $space-3;
+        }
+      }
+      .member-input {
+        font-family: $font-family-cn-content;
+        font-size: var(--fs-cn-btn-md);
+        margin-left: $space-base;
+        .input-item {
+          .user-input {
+            color: $color-font;
+            background: $color-bg-dark;
+          }
+        }
+        .member-submit {
+          width: 50vw;
+          padding: 0 $space-base;
+          margin: 0 auto;
+          color: $color-font-gold;
+          background: $color-bg-dark;
+          border: 2px solid $color-font-gold;
+        }
+      }
+    }
+  }
+}
+.member-s2 {
+  margin: $space-3 0;
+  .members2-icon {
+    width: 90vw;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  .members2-content {
+    width: 90vw;
+    margin: 0 auto;
+    .members2-content {
+      margin: $space-3 0;
+      font-family: $font-family-cn-content;
+      color: $color-font-gold;
+      font-size: var(--fs-en-home-next);
+    }
+    .members2-userlevel {
+      margin: $space-3 0;
+      font-family: $font-family-cn-content;
+      font-size: var(--fs-en-home-prev);
+    }
+    .members2-levelrules {
+      margin: $space-3 0;
+      font-family: $font-family-cn-content;
+      font-size: var(--fs-en-home-prev);
+      span {
+        color: $color-font-gold;
+      }
+    }
+  }
+}
+.member-s3 {
+  position: relative;
+  .levelLight {
+    position: absolute;
+    top: 15vh;
+    left: 12vw;
+    border-left: 3px solid $color-font-gold;
+    width: 1px;
+    height: 50%;
+    z-index: -1;
+  }
+  .userInfo-task {
+    &.active{
+      .levelicon{
+        border: 2px solid $color-font-gold;
+        border-radius: 50%;
+      }
+    }
+    .levelicon {
+      position: absolute;
+      width: 25vw;
+      top: -($space-3);
+      z-index: 1;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .levelcontent {
+      width: 80vw;
+      border: 0.5px solid $color-font-sp-light;
+      margin: $space-3;
+      padding: $space-3 $space-1 $space-3 $space-6;
+      border-radius: $space-1;
+      .leveltitle {
+        font-family: $font-family-cn-main;
+        font-size: var(--fs-en-home-next);
+      }
+      .levelstate {
+        font-family: $font-family-cn-content;
+        font-size: var(--fs-en-page-type1-content);
+        color: $color-font-gold;
+      }
+      .levelcontextm {
+        font-family: $font-weight-bold;
+        font-size: var(--fs-en-page-type1-content);
+      }
+    }
+  }
+}
+.member-s4 {
+  min-height: 100vh;
+  .member-directions {
+    font-family: $font-family-cn-content;
+    .direction-title {
+      font-size: var(--fs-en-home-content);
+      font-size: 1.5rem;
+    }
+    .direction-content {
+      font-size: var(--fs-cn-page-list-filter);
+      margin-left: $space-3;
+    }
+    ul {
+      list-style: decimal;
+      font-size: var(--fs-cn-page-list-filter);
+      li {
+        font-size: var(--fs-cn-page-list-filter);
+      }
+    }
+  }
+  .members4-img {
+    z-index: -1;
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  // 個人檔案卡片
+  .userInfo-membercard {
+    position: relative;
+    width: 100%;
+    .userInfo-memberuser {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .user-img {
+        width: 150px;
+        height: 150px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+      .user-button {
+        margin-top: $space-3;
+      }
+    }
+    .userInfo-membertable {
+      padding: $space-6 auto;
+      margin-left: 15vw;
+      .userInfo-memberinputpart {
+        margin: $space-2;
+        width: 100%;
+        display: flex;
+        font-style: $font-family-cn-main;
+        .userInfo-membertext {
+          width: 15vw;
+        }
+      }
+    }
+    .userInfo-memberbutton {
+      width: 100%;
+      button {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  // 關於我的卡片
+  .userInfo-userCard {
+    padding: $space-6 auto;
+    width: 375px;
+
+    .upper-half {
+      position: relative;
+      min-height: 30vh;
+      .upper-background {
+        height: 25vh;
+      }
+      .upper-usericon {
+        bottom: $space-3;
+        left: $space-3;
+        height: 12vh;
+        width: 12vh;
+      }
+    }
+    .lower-half {
+      .lower-box {
+        .lower-title {
+          width: 10vw;
+        }
+      }
+    }
+  }
+
+  // 更改密碼的卡片
+  .userInfo-changepassword {
+    padding: $space-6 auto;
+    margin-left: 15vw;
+    .change-table {
+      .change-part {
+        .change-name {
+          width: 20vw;
+        }
+        .change-input {
+        }
+      }
+    }
+    .change-input {
+    }
+  }
+
+  .member-s1 {
+    padding-top: $space-5;
+    min-height: 100vh;
+
+    .member-box {
+      // display: none;
+      .memberbox-nav {
+        .memberbox-ul {
+          width: 75%;
+          display: flex;
+          justify-content: space-around;
+          position: absolute;
+          top: -($space-5);
+          left: 15vw;
+          z-index: 1;
+          background: $color-bg-light;
+          margin: 0 $space-1;
+          li {
+            background: $color-bg-block;
+            white-space: nowrap;
+            &:hover,
+            &.active {
+              color: $color-font-gold;
+              border: 2px solid $color-font;
+            }
+          }
+        }
+      }
+      .member-card {
+        position: relative;
+        width: 100%;
+        display: flex;
+        margin-top: $space-4;
+        .member-user {
+          display: flex;
+          height: 300px;
+          width: 300px;
+
+          flex-direction: column;
+          background: transparent;
+          .user-img {
+            width: 150px;
+            height: 150px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+          .user-button {
+            background: transparent;
+            color: $color-font;
+            margin-top: $space-3;
+            border: 2px solid $color-font;
+          }
+        }
+        .member-input {
+          .input-item {
+            .user-input {
+            }
+          }
+          .member-submit {
+            width: auto;
+            padding: 0 $space-6;
+            margin: 0 auto;
+            color: $color-font-gold;
+            background: $color-bg-dark;
+            border: 2px solid $color-font-gold;
+          }
+        }
+      }
+    }
+  }
+  .member-s2 {
+    margin: $space-3 0;
+    display: flex;
+    .members2-icon {
+      width: auto;
+      height: 100%;
+      margin: 0 auto;
+      width: 35vw;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .members2-content {
+      width: 90vw;
+      margin: 0 $space-6;
+    }
+  }
+  .member-s3 {
+    position: relative;
+    .levelLight {
+      position: absolute;
+      top: 15vh;
+      left: 5vw;
+      border-left: 3px solid $color-font-gold;
+      width: 1px;
+      height: 60%;
+      z-index: -1;
+    }
+    .userInfo-task {
+      display: flex;
+      &.active{
+        .levelicon{
+          border: 5px solid $color-font-gold;
+          border-radius: 50%;
+        }
+      }
+      .levelicon {
+        position: relative;
+        width: 15vw;
+        height: 10vw;
+        display: block;
+        margin: auto 0 ;
+        img {
+
+        }
+      }
+      .levelcontent {
+
+        .leveltitle {
+
+        }
+        .levelstate {
+
+        }
+        .levelcontextm {
+
+        }
+      }
+    }
+  }
+  .member-s4 {
+    padding: $space-5 0;
+    position: relative;
+    min-height: 100vh;
+    .member-directions {
+      .direction-title {
+        font-size: var(--fs-en-home-content);
+      }
+    }
+    .members4-img {
+      position: absolute;
+      width: 40vw;
+      right: 0;
+      bottom: $space-4;
+    }
+  }
+}

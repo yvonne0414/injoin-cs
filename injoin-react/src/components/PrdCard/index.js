@@ -9,7 +9,7 @@ function PrdCard() {
   return (
     <>
       <div className="col">
-        <div className="prd-card card ">
+        <div className="prd-card">
           <div className="prd-card-image">
             <Link to="/">
               <img src={faveritePrdImg1} alt="" />

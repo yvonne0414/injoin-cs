@@ -99,7 +99,8 @@
   width: 100%;
 
   .user-add-group-content-text {
-    @include cn-list-content;
+    font-family: 'Noto Serif TC';
+    font-size: var(--fs-cn-page-type1-content);
     font-weight: $font-weight-lighter;
     margin-bottom: $space-3;
   }
@@ -119,6 +120,18 @@
 
 @media screen and (min-width: 768px) {
   .activity-list {
+    .page-type1-list-wraper {
+      > div {
+        > div:nth-child(1) {
+          width: 28% !important;
+          text-align: center;
+        }
+        > div:not(:nth-child(1)) {
+          width: 18% !important;
+          text-align: center;
+        }
+      }
+    }
     .page-type1-list-content {
       border: unset;
       > div {

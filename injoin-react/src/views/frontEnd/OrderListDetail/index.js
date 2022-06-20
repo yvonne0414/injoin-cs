@@ -16,11 +16,11 @@ import FePagination from '../../../components/FePagination1';
 import orderDetailImg1 from '../../../assets/images/fe/orderDetail/order-detail-img-1.png';
 
 const { Panel } = Collapse;
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+// const text = `
+//   A dog is a type of domesticated animal.
+//   Known for its loyalty and faithfulness,
+//   it can be found as a welcome guest in many households across the world.
+// `;
 
 const OrderListDetail = () => {
   const customDot = (dot, { status, index }) => (
@@ -80,7 +80,9 @@ const OrderListDetail = () => {
 
   return (
     <>
+      {/* -----------header------------ */}
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+      {/* -----------status------------ */}
       <div class="container">
         <div className="step-status mb-5">
           <Steps current={2} progressDot={customDot}>
@@ -91,10 +93,12 @@ const OrderListDetail = () => {
           </Steps>
         </div>
       </div>
+
+      {/* -----------section 1------------ */}
       <div class="order-detail-info-wraper">
         <div class="container">
           <div className="position-relative">
-            {/* <div className="order-detail-info-bg-square"></div> */}
+            <div className="order-detail-info-wraper"></div>
             <div className="p-3 p-md-5">
               <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;2022/05/22</h3>
               <div class="detailcollapse">
@@ -107,6 +111,8 @@ const OrderListDetail = () => {
                     連絡電話: &nbsp;0900000123
                     <br />
                     配送狀態: &nbsp;<span> 訂單完成</span>
+                    <br />
+                    總金額: &nbsp;<span> NT$1840</span>
                   </Panel>
                   <Panel header="配送方式" key="2">
                     配送方式: &nbsp;宅配
@@ -129,9 +135,11 @@ const OrderListDetail = () => {
             </div>
           </div>
         </div>
+
+        {/* -----------section 2------------ */}
         <div class="container">
           <div className="position-relative">
-            <div className="order-detail-info-bg-square"></div>
+            <div className="order-detail-info-wraper"></div>
             <div className="p-3 p-md-5">
               <div className="page-type1-list-wraper">
                 <div className="page-type1-listdetail-title pc-view row">
@@ -145,22 +153,29 @@ const OrderListDetail = () => {
                 <hr />
               </div>
               <div>
-                <div className="page-type1-list-section">
-                  <div class="listdetail-card-bg row">
-                    <div className="list-content_orderdetail_num col">AB123</div>
-                    <div className="list-content_orderdetail_img col">
-                      <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover " />
+                <div className="page-type1-list-section mb-2">
+                  <div className="listdetail-card-bg ">
+                    <div className="listdetail-card-context">
+                      <div className="list-content_orderdetail_num">AB123</div>
+                      <div className="list-content_orderdetail_img pc-view">
+                        <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
+                      </div>
+                      <div className="list-content_orderdetail_name">金賓黑波本威士忌</div>
+                      <div className="list-content_orderdetail_price pc-view">NT$680</div>
+                      <div className="list-content_orderdetail_number">X1</div>
+                      <div className="list-content_orderdetail_total ">NT$680</div>
                     </div>
-                    <div className="list-content_orderdetail_name col">金賓黑波本威士忌</div>
-                    <div className="list-content_orderdetail_price col">單價</div>
-                    <div className="list-content_orderdetail_number col ">數量</div>
-                    <div className="list-content_orderdetail_total col">小計</div>
+                    <div className="list-content_orderdetail_img m-view">
+                      <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* --------return orderList-------- */}
         <div class="container">
           <Link to="/account/order" className="back-page btn btn-none mt-3">
             <div>

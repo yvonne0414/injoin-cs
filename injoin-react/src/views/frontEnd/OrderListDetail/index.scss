@@ -14,18 +14,18 @@
 }
 // orderdetail-list
   .page-type1-list-section {
+    line-height: 160px;
     > div:nth-child(4),
     > div:nth-child(5) {
       margin-bottom: unset;
     }
     .listdetail-card-bg{
       width: 100%;
-      height: 10vh;
+      height: 15vh;
       background-color:$color-bg-light;
       display: flex;
       justify-content: center;
       text-align: center;
-      // padding: auto;
     }
 
   .list-content_orderdetail_num {
@@ -53,12 +53,10 @@
   .list-content_orderdetail_price {
     order: 4;
     width: 50%;
-    color: $color-font-gold;
   }
   .list-content_orderdetail_number {
     order: 5;
     width: 50%;
-    color: $color-font-gold;
   }
   .list-content_orderdetail_total {
     order: 6;
@@ -70,34 +68,42 @@
 
 @media screen and (min-width: 768px) {
   
+  .listdetail-card-bg{
+    width: 100%;
+    height: 15vh;
+    background-color:$color-bg-light;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
     .page-type1-list-section {
       border: unset;
       > div {
         margin-bottom: 0;
       }
+
     
-    .list-content_orderdetail_num,
-    .list-content_orderdetail_img,
-    .list-content_orderdetail_name,
-    .list-content_orderdetail_price,
-    .list-content_orderdetail_number,
-    .list-content_orderdetail_total {
-      order: 0;
-      width: unset;
-      text-align: center;
-    }
+    // .list-content_orderdetail_num,
+    // .list-content_orderdetail_img,
+    // .list-content_orderdetail_name,
+    // .list-content_orderdetail_price,
+    // .list-content_orderdetail_number,
+    // .list-content_orderdetail_total {
+    //   order: 0;
+    //   width: unset;
+    //   text-align: center;
+    // }
     .list-content_order_num {
       -webkit-line-clamp: 1;
     }
-    .list-content_btn {
-      a {
-        background-color: $color-bg-block;
-        width: fit-content;
-        padding: $space-1;
-        &:hover {
-          border: $color-border 1px solid;
-        }
+    .list-content_orderdetail_img{
+      img{
+        width: 100%;
+        height: 70%;
+        object-fit: contain;
       }
     }
+
   }
 }

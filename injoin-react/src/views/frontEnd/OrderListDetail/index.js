@@ -16,11 +16,11 @@ import FePagination from '../../../components/FePagination1';
 import orderDetailImg1 from '../../../assets/images/fe/orderDetail/order-detail-img-1.png';
 
 const { Panel } = Collapse;
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
+// const text = `
+//   A dog is a type of domesticated animal.
+//   Known for its loyalty and faithfulness,
+//   it can be found as a welcome guest in many households across the world.
+// `;
 
 const OrderListDetail = () => {
   const customDot = (dot, { status, index }) => (
@@ -146,15 +146,15 @@ const OrderListDetail = () => {
               </div>
               <div>
                 <div className="page-type1-list-section">
-                  <div class="listdetail-card-bg row">
+                  <div class="listdetail-card-bg row mb-2">
                     <div className="list-content_orderdetail_num col">AB123</div>
                     <div className="list-content_orderdetail_img col">
                       <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover " />
                     </div>
                     <div className="list-content_orderdetail_name col">金賓黑波本威士忌</div>
-                    <div className="list-content_orderdetail_price col">單價</div>
-                    <div className="list-content_orderdetail_number col ">數量</div>
-                    <div className="list-content_orderdetail_total col">小計</div>
+                    <div className="list-content_orderdetail_price col">NT$680</div>
+                    <div className="list-content_orderdetail_number col ">1</div>
+                    <div className="list-content_orderdetail_total col ">NT$680</div>
                   </div>
                 </div>
               </div>

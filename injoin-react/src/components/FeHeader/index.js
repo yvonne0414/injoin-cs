@@ -124,7 +124,7 @@ const FeHeader = () => {
                 {menu_arr.map((item, i) => {
                   return (
                     <li key={i}>
-                      <Link to={item.href} className="header-menu">
+                      <Link to={item.href} className="header-menu" onClick={()=>onClose()}>
                         <span className="header-menu-num">0{i}</span>
                         <span className="header-menu-content">{item.name}</span>
                       </Link>

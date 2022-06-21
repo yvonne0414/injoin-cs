@@ -5,7 +5,13 @@ import { FaCartPlus } from 'react-icons/fa';
 import faveritePrdImg1 from '../../assets/images/fe/faverite/faverite-product-img-1.png';
 import Heart from '../Heart';
 
-function PrdCard() {
+const PrdCard = () => {
+  const pcard = {
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    review: ' 4.6',
+  };
+
   return (
     <>
       <div className="col">
@@ -17,13 +23,13 @@ function PrdCard() {
           </div>
           <div className="prd-card-body card-body ">
             <div className="prd-card-title card-title">
-              <Link to="/">金黑波本威士忌</Link>
+              <Link to="/">{pcard.name}</Link>
             </div>
-            <div className="prd-card-price">NT.550</div>
+            <div className="prd-card-price">{pcard.price}</div>
             <div className="prd-card-footer card-footer">
               <div className="prd-card-reveiw">
                 <FaStar className="prd-card-icon-star" />
-                4.6
+                {pcard.review}
               </div>
               <div className="prd-card-icon">
                 <Heart />
@@ -35,6 +41,6 @@ function PrdCard() {
       </div>
     </>
   );
-}
+};
 
 export default PrdCard;

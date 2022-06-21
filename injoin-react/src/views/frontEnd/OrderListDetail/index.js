@@ -11,7 +11,7 @@ import { Collapse } from 'antd';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import FePagination from '../../../components/FePagination1';
+// import FePagination from '../../../components/FePagination1';
 
 import orderDetailImg1 from '../../../assets/images/fe/orderDetail/order-detail-img-1.png';
 

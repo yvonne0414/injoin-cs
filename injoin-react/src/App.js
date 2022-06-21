@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
+import { BackTop } from 'antd';
 
 import FeHeader from './components/FeHeader';
 import FeFooter from './components/FeFooter';
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <BackTop />
       <FeHeader />
       <main>
         <Routes>

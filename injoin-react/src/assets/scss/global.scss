@@ -1,3 +1,7 @@
+// React Slick css
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
+
 /* 引入字體 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 /* 引入變數 */
@@ -44,6 +48,9 @@ a:hover {
   &.text-gold {
     color: $color-font-gold;
   }
+}
+.ant-back-top-content {
+  background-color: #6e686873;
 }
 
 /* ===== select樣式 ===== */
@@ -149,7 +156,7 @@ select {
 }
 .page-type1-list-content {
   @include cn-list-content();
-  border: $color-border 1px solid;
+  border: #aaa 1px solid;
   padding: $space-2;
   display: flex;
   flex-wrap: wrap;
@@ -211,9 +218,10 @@ select {
       border-bottom: $color-border 1px solid !important;
       margin-bottom: 0;
       padding: $space-3 $space-2;
-
+      border: unset;
       > div {
         margin: $space-2;
+        margin-bottom: 0;
       }
     }
   }

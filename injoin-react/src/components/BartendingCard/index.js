@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './index.scss';
+import '../BartendingCard/index.scss';
 import bartendingimg from '../../assets/images/fe/bartending/bartending_1.png';
 
 function BartendingCard() {

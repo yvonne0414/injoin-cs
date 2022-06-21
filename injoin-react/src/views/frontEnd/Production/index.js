@@ -1,16 +1,10 @@
 import React from 'react';
 import './index.scss';
-import productimg from '../../../assets/images/fe/productList/product_1.png';
-import { FaStar } from 'react-icons/fa';
-import { FaRegHeart } from 'react-icons/fa';
-import { FaCartPlus } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-
-// import { FaSortAmountDownAlt } from 'react-icons/fa';
-// import { FaChevronRight } from 'react-icons/fa';
-// import { Form, Input } from 'antd';
 
 import FePage2Header from '../../../components/FePage2Header';
+
+import FePagination from '../../../components/FePagination1';
+import PrdCard from '../../../components/PrdCard';
 
 const Production = () => {
   const page2HeaderInfo = {
@@ -47,6 +41,7 @@ const Production = () => {
   };
 
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = page2HeaderInfo;
+  const cardArr = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <>
       <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} prdImg={prdImg} navs={navs} />
@@ -90,108 +85,12 @@ const Production = () => {
             </form>
           </div>
 
-          <div class=" prd-card-all row row-cols-2 row-cols-md-4 ">
-            <div class="col">
-              <div className="prd-card card ">
-                <div className="prd-card-image">
-                  <Link to="/">
-                    <img src={productimg} alt="" />
-                  </Link>
-                </div>
-                <div className="prd-card-body card-body ">
-                  <div className="prd-card-title card-title">
-                    <Link to="/">金黑波本威士忌</Link>
-                  </div>
-                  <div className="prd-card-price">NT.550</div>
-                  <div className="prd-card-footer card-footer">
-                    <div className="prd-card-reveiw">
-                      <FaStar className="prd-card-icon-star" />
-                      4.6
-                    </div>
-                    <div className="prd-card-icon">
-                      <FaRegHeart className="prd-card-icon-Heart" />
-                      <FaCartPlus className="prd-card-icon-cart" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div className="prd-card card ">
-                <div className="prd-card-image">
-                  <Link to="/">
-                    <img src={productimg} alt="" />
-                  </Link>
-                </div>
-                <div className="prd-card-body card-body ">
-                  <div className="prd-card-title card-title">
-                    <Link to="/">金黑波本威士忌</Link>
-                  </div>
-                  <div className="prd-card-price">NT.550</div>
-                  <div className="prd-card-footer card-footer">
-                    <div className="prd-card-reveiw">
-                      <FaStar className="prd-card-icon-star" />
-                      4.6
-                    </div>
-                    <div className="prd-card-icon">
-                      <FaRegHeart className="prd-card-icon-Heart" />
-                      <FaCartPlus className="prd-card-icon-cart" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div className="prd-card card ">
-                <div className="prd-card-image">
-                  <Link to="/">
-                    <img src={productimg} alt="" />
-                  </Link>
-                </div>
-                <div className="prd-card-body card-body ">
-                  <div className="prd-card-title card-title">
-                    <Link to="/">金黑波本威士忌</Link>
-                  </div>
-                  <div className="prd-card-price">NT.550</div>
-                  <div className="prd-card-footer card-footer">
-                    <div className="prd-card-reveiw">
-                      <FaStar className="prd-card-icon-star" />
-                      4.6
-                    </div>
-                    <div className="prd-card-icon">
-                      <FaRegHeart className="prd-card-icon-Heart" />
-                      <FaCartPlus className="prd-card-icon-cart" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div className="prd-card card ">
-                <div className="prd-card-image">
-                  <Link to="/">
-                    <img src={productimg} alt="" />
-                  </Link>
-                </div>
-                <div className="prd-card-body card-body ">
-                  <div className="prd-card-title card-title">
-                    <Link to="/">金黑波本威士忌</Link>
-                  </div>
-                  <div className="prd-card-price">NT.550</div>
-                  <div className="prd-card-footer card-footer">
-                    <div className="prd-card-reveiw">
-                      <FaStar className="prd-card-icon-star" />
-                      4.6
-                    </div>
-                    <div className="prd-card-icon">
-                      <FaRegHeart className="prd-card-icon-Heart" />
-                      <FaCartPlus className="prd-card-icon-cart" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class=" prd-card-all row row-cols-2 row-cols-md-4 g-3">
+            {cardArr.map((v, i) => {
+              return <PrdCard key={i} />;
+            })}
           </div>
+          <FePagination className="pc-view" />
 
           {/* <div className="prd-sel">
             <div className="prd-sel-phone">

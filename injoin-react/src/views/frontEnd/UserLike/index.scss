@@ -1,4 +1,4 @@
-@import '../../../assets/scss/global.scss';
+@import '../../../assets/scss/_variable.scss';
 
 // activity-list
 .faverite-list {
@@ -12,6 +12,7 @@
 
 .prd-card-all {
   .prd-card {
+    width: 100%;
     background-color: $color-bg-block;
     margin-top: 1rem;
     margin-bottom: 0.5rem;
@@ -65,9 +66,6 @@
   }
 }
 
-
-
-
 .bg-square {
   background-color: $color-bg-light;
   position: absolute;
@@ -93,7 +91,6 @@
 .user-add-group-content {
   margin-bottom: $space-5;
   width: 110%;
-  
 
   .user-add-group-content-text {
     @include cn-list-content;
@@ -114,7 +111,6 @@
   }
 }
 
-
 @media screen and (min-width: 768px) {
   .faverite-list {
     .page-type1-list-content {
@@ -131,7 +127,7 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-top: $space-3;
-    
+
     // .add-faverite-list-content {
     //   display: flex;
     //   flex-flow: row;

@@ -9,6 +9,7 @@ function Heart() {
       {fav ? (
         <FaHeart
           className="prd-card-icon-Heart"
+          fill="#ac2c32"
           onClick={() => {
             setFav(false);
           }}

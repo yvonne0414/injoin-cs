@@ -1,6 +1,6 @@
 // scss
 import './index.scss';
-
+import UserCouponList from '../../../components/FeCoupon/UserCoupon';
 import { Link } from 'react-router-dom';
 // component
 import FePage1Header from '../../../components/FePage1Header';
@@ -64,6 +64,26 @@ const UserCoupon = () => {
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+  const usercouponArr = [
+    {
+      id: 1,
+      coupomNum: '1001',
+      couponName: '註冊禮券折$100',
+      couponStart: '2022/05/29',
+      couponEnd: '2022/06/29',
+      couponStatus: '未使用',
+      couponBtn: '詳細內容',
+    },
+    {
+      id: 2,
+      coupomNum: '1001',
+      couponName: '註冊禮券折$100',
+      couponStart: '2022/05/29',
+      couponEnd: '2022/06/29',
+      couponStatus: '未使用',
+      couponBtn: '詳細內容',
+    },
+  ];
 
   return (
     <>
@@ -167,7 +187,20 @@ const UserCoupon = () => {
               <div>使用狀況</div>
               <div></div>
             </div>
+            {usercouponArr.map((v, i) => {
+              return <UserCouponList key={v.id} data={v} />;
+            })}
             <div className="page-type1-list-content">
+              <div className="list-content_coupon_num">1001</div>
+              <div className="list-content_coupon_name">註冊禮券折$100</div>
+              <div className="list-content_coupon_start">2022/05/29</div>
+              <div className="list-content_coupon_end">2022/06/29</div>
+              <div className="list-content_coupon_status">未使用</div>
+              <div className="list-content_btn">
+                <Link to="/group/1">詳細內容</Link>
+              </div>
+            </div>
+            {/* <div className="page-type1-list-content">
               <div className="list-content_coupon_num">1001</div>
               <div className="list-content_coupon_name">註冊禮券折$100</div>
               <div className="list-content_coupon_start">2022/05/29</div>
@@ -206,17 +239,7 @@ const UserCoupon = () => {
               <div className="list-content_btn">
                 <Link to="/group/1">詳細內容</Link>
               </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_coupon_num">1001</div>
-              <div className="list-content_coupon_name">註冊禮券折$100</div>
-              <div className="list-content_coupon_start">2022/05/29</div>
-              <div className="list-content_coupon_end">2022/06/29</div>
-              <div className="list-content_coupon_status">未使用</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
+            </div> */}
           </div>
 
           <FePagination />

@@ -1,13 +1,10 @@
 // scss
 import './index.scss';
-
-import { Link } from 'react-router-dom';
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { Popover, Steps, Collapse } from 'antd';
 import 'antd/dist/antd.css';
-// import './index.css';
-import { Popover, Steps } from 'antd';
-import 'antd/dist/antd.css';
-import { Collapse } from 'antd';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
@@ -82,6 +79,7 @@ const OrderListDetail = () => {
     <>
       {/* -----------header------------ */}
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+
       {/* -----------status------------ */}
       <div class="container">
         <div className="step-status mb-5">
@@ -95,80 +93,126 @@ const OrderListDetail = () => {
       </div>
 
       {/* -----------section 1------------ */}
-      <div class="order-detail-info-wraper">
-        <div class="container">
-          <div className="position-relative">
-            <div className="order-detail-info-wraper"></div>
-            <div className="p-3 p-md-5">
-              <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;2022/05/22</h3>
-              <div class="detailcollapse">
-                <Collapse defaultActiveKey={['1']} onChange={onChange}>
-                  <Panel header="訂單資訊" key="1">
-                    訂單編號: &nbsp;513947
-                    <br />
-                    收件人: &nbsp;王小明
-                    <br />
-                    連絡電話: &nbsp;0900000123
-                    <br />
-                    配送狀態: &nbsp;<span> 訂單完成</span>
-                    <br />
-                    總金額: &nbsp;<span> NT$1840</span>
-                  </Panel>
-                  <Panel header="配送方式" key="2">
-                    配送方式: &nbsp;宅配
-                    <br />
-                    配送日期: &nbsp;2022/05/25
-                    <br />
-                    完成日期: &nbsp;2022/05/28
-                  </Panel>
-                  <Panel header="付款方式" key="3">
-                    付款方式: &nbsp; 信用卡付款
-                    <br />
-                    付款狀態: &nbsp; 已付款
-                    <br />
-                    總金額: &nbsp; 已付款
-                    <br />
-                    備註: &nbsp; 請小心包裝
-                  </Panel>
-                </Collapse>
-              </div>
+      {/* <div class="order-detail-info-wraper"> */}
+      <div class="container">
+        <div className="position-relative">
+          <div className="order-detail-info-wraper"></div>
+          <div className="p-3 p-md-5">
+            <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;2022/05/22</h3>
+            <div class="detailcollapse">
+              <Collapse defaultActiveKey={['1']} onChange={onChange}>
+                <Panel header="訂單資訊" key="1">
+                  訂單編號: &nbsp;513947
+                  <br />
+                  收件人: &nbsp;王小明
+                  <br />
+                  連絡電話: &nbsp;0900000123
+                  <br />
+                  配送狀態: &nbsp;<span> 訂單完成</span>
+                  <br />
+                  總金額: &nbsp;<span> NT$1840</span>
+                </Panel>
+                <Panel header="配送方式" key="2">
+                  配送方式: &nbsp;宅配
+                  <br />
+                  配送日期: &nbsp;2022/05/25
+                  <br />
+                  完成日期: &nbsp;2022/05/28
+                </Panel>
+                <Panel header="付款方式" key="3">
+                  付款方式: &nbsp; 信用卡付款
+                  <br />
+                  付款狀態: &nbsp; 已付款
+                  <br />
+                  總金額: &nbsp; 已付款
+                  <br />
+                  備註: &nbsp; 請小心包裝
+                </Panel>
+              </Collapse>
             </div>
           </div>
         </div>
+        {/* </div> */}
 
         {/* -----------section 2------------ */}
         <div class="container">
-          <div className="position-relative">
-            <div className="order-detail-info-wraper"></div>
-            <div className="p-3 p-md-5">
-              <div className="page-type1-list-wraper">
-                <div className="page-type1-listdetail-title pc-view row">
-                  <div class="col">商品編號</div>
-                  <div class="col">商品圖片</div>
-                  <div class="col">商品名稱</div>
-                  <div class="col">商品單價</div>
-                  <div class="col">數量</div>
-                  <div class="col">小計</div>
-                </div>
-                <hr />
+          {/* <div className="position-relative"> */}
+          <div className="order-detail-info-bg-square p-3 p-md-5">
+            <div className="page-type1-list-wraper">
+              <div className="page-type1-listdetail-title pc-view">
+                <div>商品編號</div>
+                <div>商品圖片</div>
+                <div>商品名稱</div>
+                <div>商品單價</div>
+                <div>數量</div>
+                <div>小計</div>
               </div>
-              <div>
-                <div className="page-type1-list-section mb-2">
-                  <div className="listdetail-card-bg ">
-                    <div className="listdetail-card-context">
-                      <div className="list-content_orderdetail_num">AB123</div>
-                      <div className="list-content_orderdetail_img pc-view">
-                        <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
-                      </div>
-                      <div className="list-content_orderdetail_name">金賓黑波本威士忌</div>
-                      <div className="list-content_orderdetail_price pc-view">NT$680</div>
-                      <div className="list-content_orderdetail_number">X1</div>
-                      <div className="list-content_orderdetail_total ">NT$680</div>
-                    </div>
-                    <div className="list-content_orderdetail_img m-view">
-                      <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
-                    </div>
+              <hr />
+            </div>
+            <div className="page-type1-list-section">
+              <div className="listdetail-card-bg mb-2">
+                <div className="listdetail-card-context ">
+                  <div className="list-content_orderdetail_num">AB123</div>
+                  <div className="list-content_orderdetail_img pc-view">
+                    <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
                   </div>
+                  <div className="list-content_orderdetail_name">金賓黑波本威士忌</div>
+                  <div className="list-content_orderdetail_price pc-view">NT$680</div>
+                  <div className="list-content_orderdetail_number">X1</div>
+                  <div className="list-content_orderdetail_total ">NT$680</div>
+                </div>
+                <div className="list-content_orderdetail_sm_img m-view">
+                  <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
+                </div>
+              </div>
+              <div className="listdetail-card-bg mb-2">
+                <div className="listdetail-card-context ">
+                  <div className="list-content_orderdetail_num">AB123</div>
+                  <div className="list-content_orderdetail_img pc-view">
+                    <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
+                  </div>
+                  <div className="list-content_orderdetail_name">金賓黑波本威士忌</div>
+                  <div className="list-content_orderdetail_price pc-view">NT$680</div>
+                  <div className="list-content_orderdetail_number">X1</div>
+                  <div className="list-content_orderdetail_total ">NT$680</div>
+                </div>
+                <div className="list-content_orderdetail_sm_img m-view">
+                  <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
+                </div>
+              </div>
+              <div className="listdetail-card-bg mb-2">
+                <div className="listdetail-card-context ">
+                  <div className="list-content_orderdetail_num">AB123</div>
+                  <div className="list-content_orderdetail_img pc-view">
+                    <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
+                  </div>
+                  <div className="list-content_orderdetail_name">金賓黑波本威士忌</div>
+                  <div className="list-content_orderdetail_price pc-view">NT$680</div>
+                  <div className="list-content_orderdetail_number">X1</div>
+                  <div className="list-content_orderdetail_total ">NT$680</div>
+                </div>
+                <div className="list-content_orderdetail_sm_img m-view">
+                  <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
+                </div>
+              </div>
+              <div className="summary-section">
+                <div className="summary-title d-flex">
+                  商品小計
+                  <br />
+                  使用優惠券
+                  <br />
+                  訂單金額
+                  <br />
+                  付款方式
+                </div>
+                <div className="summary-item d-flex ms-5">
+                  NT$2040
+                  <br />
+                  -NT$200
+                  <br />
+                  NT$1840
+                  <br />
+                  信用卡
                 </div>
               </div>
             </div>

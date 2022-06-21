@@ -160,83 +160,81 @@ const GroupList = () => {
         {/* <!-- page-type1-list --> */}
         <div className="container">
           <div className="page-type1-list-area activity-list mode-user py-4">
-            <div className="container">
-              <div className="page-type1-area-title" id="grouplist-bolck2">
-                私人開團活動
-              </div>
-              <div className="page-type1-list-wraper">
-                <div className="page-type1-list-title pc-view">
-                  <div>活動名稱</div>
-                  <div>活動時間</div>
-                  <div>活動地點</div>
-                  <div>主揪人</div>
-                  <div></div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">
-                    一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~
-                  </div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <i>icon</i>
-                    台北
-                  </div>
-                  <div className="list-content_user">黃綠紅</div>
-                  <div className="list-content_btn">
-                    <Link to="/">詳細內容</Link>
-                  </div>
-                </div>
-              </div>
-              <FePagination />
+            <div className="page-type1-area-title" id="grouplist-bolck2">
+              私人開團活動
             </div>
+            <div className="page-type1-list-wraper">
+              <div className="page-type1-list-title pc-view">
+                <div>活動名稱</div>
+                <div>活動時間</div>
+                <div>活動地點</div>
+                <div>主揪人</div>
+                <div></div>
+              </div>
+              <div className="page-type1-list-content">
+                <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
+                <div className="list-content_time">2022/01/02</div>
+                <div className="list-content_place">
+                  <i>icon</i>
+                  台北
+                </div>
+                <div className="list-content_user">黃綠紅</div>
+                <div className="list-content_btn">
+                  <Link to="/">詳細內容</Link>
+                </div>
+              </div>
+              <div className="page-type1-list-content">
+                <div className="list-content_activity-name">
+                  一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~
+                </div>
+                <div className="list-content_time">2022/01/02</div>
+                <div className="list-content_place">
+                  <i>icon</i>
+                  台北
+                </div>
+                <div className="list-content_user">黃綠紅</div>
+                <div className="list-content_btn">
+                  <Link to="/">詳細內容</Link>
+                </div>
+              </div>
+              <div className="page-type1-list-content">
+                <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
+                <div className="list-content_time">2022/01/02</div>
+                <div className="list-content_place">
+                  <i>icon</i>
+                  台北
+                </div>
+                <div className="list-content_user">黃綠紅</div>
+                <div className="list-content_btn">
+                  <Link to="/">詳細內容</Link>
+                </div>
+              </div>
+              <div className="page-type1-list-content">
+                <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
+                <div className="list-content_time">2022/01/02</div>
+                <div className="list-content_place">
+                  <i>icon</i>
+                  台北
+                </div>
+                <div className="list-content_user">黃綠紅</div>
+                <div className="list-content_btn">
+                  <Link to="/">詳細內容</Link>
+                </div>
+              </div>
+              <div className="page-type1-list-content">
+                <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
+                <div className="list-content_time">2022/01/02</div>
+                <div className="list-content_place">
+                  <i>icon</i>
+                  台北
+                </div>
+                <div className="list-content_user">黃綠紅</div>
+                <div className="list-content_btn">
+                  <Link to="/">詳細內容</Link>
+                </div>
+              </div>
+            </div>
+            <FePagination />
           </div>
           <div className="user-add-group-area">
             <div className="group-list-img-3 mb-5 mb-md-0">

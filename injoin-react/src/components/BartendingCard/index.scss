@@ -50,9 +50,11 @@
       .Bartending-card-body{
         .Bartending-card-subtitle{
           width: 80%;
-
         }
       }
     }
+  }
+  .Bartending-card-title{
+    font-size: var(--fs-cn-home-prdtext);
   }
 }

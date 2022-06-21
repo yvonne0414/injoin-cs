@@ -14,6 +14,9 @@ import PrdCard from '../../../components/PrdCard';
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 
+// bartendingcar
+import BartendingCard from '../../../components/BartendingCard';
+
 import prddetailImg1 from '../../../assets/images/fe/productionDetail/prd-detail-img-1.png';
 import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
 import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
@@ -88,7 +91,7 @@ const data = [
     actions: [<Rate allowHalf disabled defaultValue={2.5} />],
     author: 'Han Solo',
     avatar: 'https://joeschmoe.io/api/v1/random',
-    content: <p>很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
+    content: <p className="prd-detail-text">很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
     // datetime: (
     //   <Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
     //     <span>{moment().subtract(1, 'days').fromNow()}</span>
@@ -99,7 +102,7 @@ const data = [
     actions: [<Rate allowHalf disabled defaultValue={5} />],
     author: 'Han Solo',
     avatar: 'https://joeschmoe.io/api/v1/random',
-    content: <p>很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
+    content: <p className="prd-detail-text">很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
     // datetime: (
     //   <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
     //     <span>{moment().subtract(2, 'days').fromNow()}</span>
@@ -112,27 +115,45 @@ const settings = {
   className: 'slider variable-width',
   dots: false,
   infinite: true,
-  centerMode: true,
-  slidesToShow: 1,
+  centerMode: false,
+  slidesToShow: 6,
   slidesToScroll: 1,
-  variableWidth: true,
-  arrows: false,
+  // variableWidth: true,
+  arrows: true,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        centerMode: true,
+        arrows: false,
+        slidesToShow: 1,
+      },
+    },
+  ],
 };
 
-// export default class VariableWidth extends Component {
-//   render() {
-//     const settings = {
-//       className: "slider variable-width",
-//       dots: true,
-//       infinite: true,
-//       centerMode: true,
-//       slidesToShow: 1,
-//       slidesToScroll: 1,
-//       variableWidth: true
-//     };
-//   }
-// }
-
+const settings2 = {
+  className: 'slider variable-width',
+  dots: false,
+  infinite: true,
+  centerMode: false,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  // variableWidth: true,
+  arrows: true,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        centerMode: true,
+        arrows: false,
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
 const ProductionDetail = () => {
   return (
     <>
@@ -141,7 +162,7 @@ const ProductionDetail = () => {
         {/* Breadcrumb----------------------------------- */}
         <div className="container">
           <div className="w-fit-content ms-auto">
-            <Breadcrumb separator="">
+            <Breadcrumb separator="" className="prd-detail-breadcrumb">
               <Breadcrumb.Item href="">商品</Breadcrumb.Item>
               <Breadcrumb.Separator />
               <Breadcrumb.Item href="">威士忌</Breadcrumb.Item>
@@ -155,7 +176,7 @@ const ProductionDetail = () => {
         {/* Carousel------------------------------------- */}
         <div className="prd-detail-session1-content-wraper">
           {/* // cn = mt-3 prd-detail-session1-content-block1 */}
-          <Carousel autoplay className="">
+          <Carousel autoplay className=" mt-3 prd-detail-session1-content-block1">
             <div>
               <div style={contentStyle}>
                 <img src={prddetailImg1} alt="prd-detail-img-1" className="mx-auto h-100" />
@@ -181,7 +202,7 @@ const ProductionDetail = () => {
           <div className="prd-detail-session1-content-block2">
             <div className="container">
               <div className="prd-detail-title mt-4">金賓黑波爾本威士忌</div>
-              <div className="prd-detial-price mt-3">NT. 550</div>
+              <div className="prd-detail-price mt-3">NT. 550</div>
               <div className="star-defaultValue mt-3">
                 <Rate disabled defaultValue={5} />
               </div>
@@ -196,8 +217,8 @@ const ProductionDetail = () => {
                     <FontAwesomeIcon icon={faCartShopping} fixedWidth className="text-black" />
                   </Button>
                 </div>
-                <div className="prd-detail-button-2 ">
-                  <Button>
+                <div className="prd-detail-button-2">
+                  <Button className="text-black">
                     收藏商品 &nbsp;&nbsp;
                     <FontAwesomeIcon icon={faHeart} fixedWidth />
                   </Button>
@@ -213,9 +234,9 @@ const ProductionDetail = () => {
         <div className="container">
           {/* collapse------------------------------------------------------------ */}
           <div className="prd-detail-collapse">
-            <Collapse defaultActiveKey={['1']} onChange={onChange}>
+            <Collapse defaultActiveKey={['1']} onChange={onChange} >
               <Panel className="prd-detail-title-type1" header="產地規格" key="1">
-                <p className="prd-detail-text">
+                <p className="prd-detail-text-1">
                   產地：{specification.origin}
                   <br />
                   容量：{specification.capacity}ml
@@ -254,7 +275,6 @@ const ProductionDetail = () => {
           {/* evaluation----------------------------------- */}
           <div className="prd-detail-evaluation-bg mt-5">
             <div className="container">
-              <div className=""></div>
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>購買評價</p>
               </div>
@@ -295,13 +315,34 @@ const ProductionDetail = () => {
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>同系列商品</p>
               </div>
-              <div className="prd-deatil-card">
-                <Slider {...settings}>
+              <div className="px-md-3">
+                <Slider className='prd-deatil-card' {...settings}>
                   <PrdCard />
                   <PrdCard />
                   <PrdCard />
                   <PrdCard />
                   <PrdCard />
+                  <PrdCard />
+                  <PrdCard />
+                </Slider>
+              </div>
+            </div>
+          </div>
+          {/* bartending--------------------------------------------- */}
+          <div className="prd-detail-evaluation-bg mt-5">
+            <div className="container">
+              <div className="prd-detail-title-type1 mt-3 ">
+                <p>相關酒譜</p>
+              </div>
+              <div className="bartending-card px-md-3">
+                <Slider {...settings2}>
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
                 </Slider>
               </div>
             </div>

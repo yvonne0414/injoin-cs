@@ -16,7 +16,6 @@ function BartendingCard() {
             <div className="Bartending-card-title card-title">
               <Link to="/">粉紅松鼠</Link>
             </div>
-            <div className="Bartending-card-engtitle">Pink Squirrel</div>
             <div className="Bartending-card-subtitle card-footer">杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿 </div>
           </div>
         </div>

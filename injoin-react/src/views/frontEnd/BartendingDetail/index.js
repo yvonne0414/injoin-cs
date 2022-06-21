@@ -29,7 +29,7 @@ const contentStyle = {
   color: '#000',
   lineHeight: '300px',
   textAlign: 'center',
-  background: '#fff',
+  // background: '#fff',
   // background: 'transparent',
   overflow: 'hidden',
 };
@@ -176,7 +176,7 @@ const ProductionDetail = () => {
           {/* instructions-------------------------------- */}
           <div className="prd-detail-session1-content-block2">
             <div className="container">
-              <div className="prd-detail-title mt-4">金賓黑波爾本威士忌</div>
+              <div className="prd-detail-title mt-4">粉紅松鼠 Pink Squirrel</div>
               <div className="prd-detail-price mt-3">NT. 550</div>
               <div className="star-defaultValue mt-3">
                 <Rate disabled defaultValue={5} />

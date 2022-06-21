@@ -104,7 +104,7 @@ $font-weight-bold: bold;
   --fs-cn-page-list-menu: var(--font-base);
   --fs-cn-page-list-filter: calc(var(--font-base) * 0.875);
   --fs-cn-page-list-content: calc(var(--font-base) * 0.875);
-  --fs-cn-page-list-: calc(var(--font-base) * 0.75);
+  --fs-cn-page-list-material: calc(var(--font-base) * 0.75);
 
   /* =========== 英文 =========== */
   /* 首頁 
@@ -219,7 +219,7 @@ $font-weight-bold: bold;
     --fs-cn-page-list-menu: calc(var(--font-base) * 2);
     --fs-cn-page-list-filter: calc(var(--font-base) * 1.5);
     --fs-cn-page-list-content: calc(var(--font-base) * 1.5);
-    --fs-cn-page-list-: calc(var(--font-base) * 1);
+    --fs-cn-page-list-material: calc(var(--font-base) * 1);
 
     /* =========== 英文 =========== */
     /* 首頁 
@@ -293,4 +293,13 @@ $font-weight-bold: bold;
     --fs-cn-footer-title: calc(var(--font-base) * 1.5);
     --fs-cn-footer-content: calc(var(--font-base) * 1.25);
   }
+}
+
+@mixin cn-list-content {
+  font-family: $font-family-cn-content;
+  font-size: var(--fs-cn-page-type1-content);
+}
+@mixin cn-list-main {
+  font-family: $font-family-cn-main;
+  font-size: var(--fs-cn-page-type1-content);
 }

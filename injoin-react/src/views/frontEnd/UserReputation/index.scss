@@ -64,10 +64,15 @@
         }
         .reputation-list-footer {
           margin-top: 0.5rem;
+        
           .reputation-list-star {
             order: 1;
             width: 100%;
+            // color:$color-font-gold;
+          .ant-rate{
             color:$color-font-gold;
+            width: 140px;
+          }
           .reputation-list-comment {
             order: 2;
             width: 90%;

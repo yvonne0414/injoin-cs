@@ -36,6 +36,28 @@ const Bartending = () => {
     ],
   };
   const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
+  const bartendcard = [
+    {
+      id: 1,
+      name: '粉紅松鼠',
+      material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+    },
+    {
+      id: 2,
+      name: '粉紅松鼠',
+      material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+    },
+    {
+      id: 3,
+      name: '粉紅松鼠',
+      material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+    },
+    {
+      id: 4,
+      name: '粉紅松鼠',
+      material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+    },
+  ];
   return (
     <>
       <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} BartendingImg={BartendingImg} navs={navs} />
@@ -71,14 +93,9 @@ const Bartending = () => {
           </div>
 
           <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
-            <BartendingCard />
-            <BartendingCard />
-            <BartendingCard />
-            <BartendingCard />
-            <BartendingCard />
-            <BartendingCard />
-            <BartendingCard />
-            <BartendingCard />
+            {bartendcard.map((v, i) => {
+              return <BartendingCard key={i} data={v} />;
+            })}
           </div>
           <FePagination className="pc-view" />
         </div>

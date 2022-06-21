@@ -41,7 +41,32 @@ const Production = () => {
   };
 
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = page2HeaderInfo;
-  const cardArr = [1, 2, 3, 4, 5, 6, 7, 8];
+  const cardArr = [
+    {
+      id: 1,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 2,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 3,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 4,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+  ];
   return (
     <>
       <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} prdImg={prdImg} navs={navs} />
@@ -87,7 +112,7 @@ const Production = () => {
 
           <div class=" prd-card-all row row-cols-2 row-cols-md-4 g-3">
             {cardArr.map((v, i) => {
-              return <PrdCard key={i} />;
+              return <PrdCard key={v.id} data={v} />;
             })}
           </div>
           <FePagination className="pc-view" />

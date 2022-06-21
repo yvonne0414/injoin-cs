@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import '../BartendingCard/index.scss';
-import bartendingimg from '../../assets/images/fe/bartending/bartending_1.png';
 
 function BartendingCard(props) {
   const { data } = props;
@@ -14,8 +13,11 @@ function BartendingCard(props) {
         <div className="Bartending-card card ">
           <div className="Bartending-card-image">
             <Link to="/">
-              <img src={bartendingimg} alt="" />
+              <img src={require(`../../assets/images/fe/bartending/${data.img}`)} alt="" />
             </Link>
+            {/* <Link to="/">
+              <img src={bartendingimg} alt="" />
+            </Link> */}
           </div>
           <div className="Bartending-card-body card-body ">
             <div className="Bartending-card-title card-title">

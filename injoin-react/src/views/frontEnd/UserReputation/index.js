@@ -5,7 +5,9 @@ import reputationimg from '../../../assets/images/fe/userReputation/reputation_1
 import FePage1Header from '../../../components/FePage1Header';
 import { FaStar } from 'react-icons/fa';
 import React, { useState } from 'react';
+import { Rate } from 'antd';
 import ReputationList from '../../../components/FeUserReputation/ReputationList';
+import ReputationOrder from '../../../components/FeUserReputation/ReputationOrder';
 const UserReputation = () => {
   const page1HeaderInfo = {
     titleEn: 'Reputation',
@@ -52,6 +54,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
+      star: <Rate disabled defaultValue={2} />,
     },
     {
       id: 2,
@@ -59,6 +62,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
+      star: <Rate disabled defaultValue={2} />,
     },
     {
       id: 3,
@@ -66,6 +70,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
+      star: <Rate disabled defaultValue={2} />,
     },
     {
       id: 4,
@@ -73,6 +78,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
+      star: <Rate disabled defaultValue={2} />,
     },
     {
       id: 5,
@@ -80,7 +86,31 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
+      star: <Rate disabled defaultValue={2} />,
     },
+  ];
+  const orderarr = [
+    {
+      id: 1,
+      time: '2022/01/02',
+      ordernumber: '20EROVWDCZhV',
+    },
+    {
+      id: 2,
+      time: '2022/01/02',
+      ordernumber: '20EROVWDCZhV',
+    },
+    {
+      id: 3,
+      time: '2022/01/02',
+      ordernumber: '20EROVWDCZhV',
+    },
+    {
+      id: 4,
+      time: '2022/01/02',
+      ordernumber: '20EROVWDCZhV',
+    },
+    { id: 5, time: '2022/01/02', ordernumber: '20EROVWDCZhV' },
   ];
 
   return (
@@ -101,10 +131,11 @@ const UserReputation = () => {
               <div></div>
             </div>
             {listarr.map((v, i) => {
-              return <ReputationList key={i} data={v} />;
+              return <ReputationList key={v.id} data={v} />;
             })}
           </div>
         </div>
+        <FePagination />
       </div>
 
       <div className="page-type1-list-area reputation-orderlist mode-reputation-order">
@@ -118,41 +149,9 @@ const UserReputation = () => {
               <div></div>
               <div className="reputation-orderlist-number">訂單編號</div>
             </div>
-            <div className="page-type1-list-content">
-              <div className="reputation-orderlist-time">2022/01/02</div>
-              <div className="reputation-orderlist-ordernumber">20EROVWDCZhV</div>
-              <div className="reputation-orderlist-button">
-                <button onClick={() => setPop(true)}>評價</button>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="reputation-orderlist-time">2022/01/02</div>
-              <div className="reputation-orderlist-ordernumber">20EROVWDCZhV</div>
-              <div className="reputation-orderlist-button">
-                <button>評價</button>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="reputation-orderlist-time">2022/01/02</div>
-              <div className="reputation-orderlist-ordernumber">20EROVWDCZhV</div>
-              <div className="reputation-orderlist-button">
-                <button>評價</button>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="reputation-orderlist-time">2022/01/02</div>
-              <div className="reputation-orderlist-ordernumber">20EROVWDCZhV</div>
-              <div className="reputation-orderlist-button">
-                <button>評價</button>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="reputation-orderlist-time">2022/01/02</div>
-              <div className="reputation-orderlist-ordernumber">20EROVWDCZhV</div>
-              <div className="reputation-orderlist-button">
-                <button>評價</button>
-              </div>
-            </div>
+            {orderarr.map((v, i) => {
+              return <ReputationOrder key={v.id} data={v} />;
+            })}
           </div>
         </div>
         <FePagination />

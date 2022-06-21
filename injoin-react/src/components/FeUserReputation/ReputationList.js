@@ -1,16 +1,15 @@
 import reputationimg from '../../assets/images/fe/userReputation/reputation_1.png';
-import { FaStar } from 'react-icons/fa';
 import { Rate } from 'antd';
 
 const ReputationList = (props) => {
-  const data = props;
-  const relist = {
-    img: 'reputation_1.png',
-    time: '2022-03-20',
-    name: '金黑波本威士忌',
-    commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
-    star: <Rate disabled defaultValue={2} />,
-  };
+  const { data } = props;
+  // const relist = {
+  //   img: 'reputation_1.png',
+  //   time: '2022-03-20',
+  //   name: '金黑波本威士忌',
+  //   commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
+  //   star: <Rate disabled defaultValue={2} />,
+  // };
   return (
     <>
       <div className="reputation-list-card ">

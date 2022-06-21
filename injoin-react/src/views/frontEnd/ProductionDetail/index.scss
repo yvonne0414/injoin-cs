@@ -1,4 +1,4 @@
-@import '../../../assets/scss/global.scss';
+@import '../../../assets/scss/_variable.scss';
 
 .w-fit-content {
   width: fit-content;
@@ -25,6 +25,11 @@
   color: $color-font-gold;
 }
 .prd-detail-text-1 {
+  font-size: var(--fs-cn-home-content);
+  font-family: $font-family-cn-content;
+  color: $color-font;
+}
+.prd-detail-text {
   font-size: var(--fs-cn-home-content);
   font-family: $font-family-cn-content;
   color: $color-font;
@@ -134,6 +139,13 @@
       }
     }
   }
+}
+.Bartending-card-col .Bartending-card {
+  margin:  1rem;
+}
+
+.prd-card .prd-card-body .prd-card-title {
+  font-family: $font-family-cn-content;
 }
 
 .prd-card {

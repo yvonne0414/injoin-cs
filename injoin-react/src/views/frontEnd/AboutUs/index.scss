@@ -1,4 +1,9 @@
-@import '../../../assets/scss/global.scss';
+@import '../../../assets/scss/_variable.scss';
+
+@mixin cn-list-content {
+  font-family: $font-family-cn-content;
+  font-size: var(--fs-cn-page-type1-content);
+}
 
 // activity-list
 .activity-list {

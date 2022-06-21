@@ -14,6 +14,9 @@ import PrdCard from '../../../components/PrdCard';
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 
+// bartendingcar
+import BartendingCard from '../../../components/BartendingCard';
+
 import prddetailImg1 from '../../../assets/images/fe/productionDetail/prd-detail-img-1.png';
 import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
 import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
@@ -130,20 +133,27 @@ const settings = {
   ],
 };
 
-// export default class VariableWidth extends Component {
-//   render() {
-//     const settings = {
-//       className: "slider variable-width",
-//       dots: true,
-//       infinite: true,
-//       centerMode: true,
-//       slidesToShow: 1,
-//       slidesToScroll: 1,
-//       variableWidth: true
-//     };
-//   }
-// }
-
+const settings2 = {
+  className: 'slider variable-width',
+  dots: false,
+  infinite: true,
+  centerMode: false,
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  // variableWidth: true,
+  arrows: true,
+  initialSlide: 0,
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        centerMode: true,
+        arrows: false,
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
 const ProductionDetail = () => {
   return (
     <>
@@ -305,8 +315,8 @@ const ProductionDetail = () => {
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>同系列商品</p>
               </div>
-              <div className="prd-deatil-card px-md-3">
-                <Slider {...settings}>
+              <div className="px-md-3">
+                <Slider className='prd-deatil-card' {...settings}>
                   <PrdCard />
                   <PrdCard />
                   <PrdCard />
@@ -314,6 +324,25 @@ const ProductionDetail = () => {
                   <PrdCard />
                   <PrdCard />
                   <PrdCard />
+                </Slider>
+              </div>
+            </div>
+          </div>
+          {/* bartending--------------------------------------------- */}
+          <div className="prd-detail-evaluation-bg mt-5">
+            <div className="container">
+              <div className="prd-detail-title-type1 mt-3 ">
+                <p>相關酒譜</p>
+              </div>
+              <div className="bartending-card px-md-3">
+                <Slider {...settings2}>
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
+                  <BartendingCard />
                 </Slider>
               </div>
             </div>

@@ -98,10 +98,17 @@
       flex-flow: nowrap;
       font-size: var(--fs-cn-page-list-content);
   
-      .reputation-orderlist-button {
-        padding: 0.5rem;
-        border-radius: 0.3rem;
-        background-color: black;
+      .reputation-orderlist-button { 
+        button{
+          background-color: black;
+          border:black;
+          padding: .25rem .5rem;
+          border-radius: .25rem;
+          &:hover{
+            color: aqua;
+
+          }
+        }
       }
     }
   }
@@ -176,7 +183,13 @@
       > div {
         margin-bottom: 0;
       }
-     }
+      .reputation-orderlist-button { 
+        button{
+          padding: .25rem 1rem;
+          border-radius: .5rem;
+         }
+        }
+      }
     }
   }
 }

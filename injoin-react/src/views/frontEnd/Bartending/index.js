@@ -1,6 +1,7 @@
 import './index.scss';
 import BartendingCard from '../../../components/BartendingCard/index';
 import FePage2Header from '../../../components/FePage2Header';
+import FePagination from '../../../components/FePagination1';
 const Bartending = () => {
   const page2HeaderInfo = {
     isProduct: true,
@@ -79,6 +80,7 @@ const Bartending = () => {
             <BartendingCard />
             <BartendingCard />
           </div>
+          <FePagination className="pc-view" />
         </div>
       </div>
     </>

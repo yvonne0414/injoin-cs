@@ -12,14 +12,14 @@
       margin-top: $space-2;
       font-weight: $font-weight-lighter;
       span {
-        margin-left: 0.5rem;
+        margin-left: $space-2;
       }
     }
     .Bartending-sel-all {
       order: 2;
       font-size: var(--fs-cn-page-list-);
       margin-top: $space-2;
-      right: -1rem;
+      right: -$space-3;
 
       .Bartending-sel-1 {
         .Bartending-sel {
@@ -30,18 +30,18 @@
     }
     .Bartending-search-form {
       order: 3;
-      margin-top: 1rem;
+      margin-top: $space-3;
       width: 100%;
       .Bartending-search-label {
-        color: #fff;
+        color: $color-font;
         background-color: #56565650;
         border: solid 0.1rem $color-font-sp;
         border-radius: 0%;
       }
       .Bartending-search-btn {
         width: 30%;
-        letter-spacing: 0.1rem;
-        padding: $space-1 1rem;
+        letter-spacing:$letter-space-1;
+        padding: $space-1 $space-3;
         border: solid 1px $color-font-gold;
         border-radius: 0%;
         font-family: $font-family-en-main;
@@ -57,13 +57,13 @@
       .Bartending-card {
         // height: 80%;
         background-color: $color-bg-block;
-        margin-top: 1rem;
-        margin-bottom: 0.5rem;
-        padding: 0 0 1rem 0;
+        margin-top: $space-3;
+        margin-bottom: $space-2;
+        padding: 0 0 $space-3 0;
         flex-grow: 1;
         .Bartending-card-image {
           width: 100%;
-          height: 60%;
+          height: 20vh;
           img {
             object-fit: cover;
             width: 100%;
@@ -75,22 +75,19 @@
           font-weight: $font-weight-bold;
           font-size: var(--fs-cn-page-list-menu);
           overflow: hidden;
+          text-overflow:ellipsis;
           width: 100%;
-          padding: 0.5rem;
+          padding: $space-2;
           margin: 0 auto;
           display: flex;
           flex-direction: column;
           justify-content: start;
-          // height: 40%;
-          // .Bartending-card-title {
-
-          // }
           .Bartending-card-subtitle {
-            padding: 0;
+            padding: $space-2 0;
             font-weight: $font-weight-lighter;
             font-size: var(--fs-cn-page-list-);
-            width: 100%;
-            top: 1rem;
+            width: 90%;
+         
           }
         }
       }
@@ -112,6 +109,22 @@
         order: 1;
         width: 30%;
         height: 50%;
+      }
+    }
+    .Bartending-card-all {
+      .Bartending-card-col {
+        .Bartending-card {
+          .Bartending-card-image {
+            width: 100%;
+            height: 25vh;
+          }
+          .Bartending-card-body{
+            .Bartending-card-subtitle{
+              width: 80%;
+
+            }
+          }
+        }
       }
     }
   }

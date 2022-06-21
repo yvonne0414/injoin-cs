@@ -234,7 +234,7 @@ const ProductionDetail = () => {
         <div className="container">
           {/* collapse------------------------------------------------------------ */}
           <div className="prd-detail-collapse">
-            <Collapse defaultActiveKey={['1']} onChange={onChange}>
+            <Collapse defaultActiveKey={['1']} onChange={onChange} >
               <Panel className="prd-detail-title-type1" header="產地規格" key="1">
                 <p className="prd-detail-text-1">
                   產地：{specification.origin}

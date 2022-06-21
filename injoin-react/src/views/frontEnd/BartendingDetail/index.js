@@ -176,7 +176,7 @@ const ProductionDetail = () => {
           {/* instructions-------------------------------- */}
           <div className="prd-detail-session1-content-block2">
             <div className="container">
-              <div className="prd-detail-title mt-4">粉紅松鼠 Pink Squirrel</div>
+              <div className="prd-detail-title mt-4">粉紅松鼠</div>
               <div className="prd-detail-price mt-3">NT. 550</div>
               <div className="star-defaultValue mt-3">
                 <Rate disabled defaultValue={5} />

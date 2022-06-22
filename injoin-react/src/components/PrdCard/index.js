@@ -12,7 +12,7 @@ function PrdCard(props) {
   //   const pcard = {
   //   name: '金黑波本威士忌',
   //   price: 'NT.550 ',
-  //   review: ' 4.6',
+  //   rating: ' 4.6',
   // };
 
   return (

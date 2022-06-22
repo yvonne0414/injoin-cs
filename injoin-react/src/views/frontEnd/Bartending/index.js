@@ -36,14 +36,24 @@ const Bartending = () => {
       },
     ],
   };
-  const majorType = ['類型', '杯型'];
-  const subType = [
-    ['Cocktail', 'Highball', 'Sour', 'Collins'],
+  //篩選
+  const majorSel = ['類型', '杯型'];
+  const subSel = [
+    ['Cocltail ', 'Highball', 'Sour', 'Collins'],
     ['Mojito Glass', 'Cocktail Glass', ' Cocktail Glass', 'Cocktail Glass'],
   ];
-  const [majorTypeIndex, setmajorTypeIndex] = useState('');
-  const [subTypeIndex, setsubTypeIndex] = useState('');
 
+  //第一種寫法(-1)
+  // const [majorSelIndex, setmajorSelIndex] = useState(-1);
+  // const [subSelIndex, setsubSelIndex] = useState(-1);
+
+  const [majorSelIndex, setmajorSelIndex] = useState('');
+  const [subSelIndex, setsubSelIndex] = useState('');
+
+  //form 搜尋欄
+  const [bartendingSearch, setBartendingSearch] = useState('');
+
+  //bartendingCard
   const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
   const bartendcard = [
     {
@@ -82,58 +92,72 @@ const Bartending = () => {
               <span>/</span>
               <span>共16種酒譜</span>
             </div>
+            {/* 類別篩選 */}
             <div className="Bartending-sel-all">
-              <div className="Bartending-sel-1">
+              <div className="Bartending-sel">
                 <select
-                  value={majorTypeIndex}
+                  value={majorSelIndex}
                   onChange={(e) => {
-                    setmajorTypeIndex(Number(e.target.value));
-                    setsubTypeIndex('');
+                    setmajorSelIndex(e.target.value);
+                    setsubSelIndex('');
                   }}
-                  className=" mx-2 Bartending-sel"
+                  className="Bartending-sel-1"
                 >
                   <option value="" className="Bartending-sel-option">
                     請選擇類別
                   </option>
-                  {majorType.map((v, i) => {
+                  {majorSel.map((v, i) => {
                     return (
-                      <option key={i} value={i}>
+                      <option key={i} value={v}>
                         {v}
                       </option>
                     );
                   })}
                 </select>
                 <select
-                  value={subTypeIndex}
+                  value={subSelIndex}
                   onChange={(e) => {
-                    setsubTypeIndex(e.target.value);
+                    setsubSelIndex(e.target.value);
                   }}
-                  className="mx-3 Bartending-sel"
+                  className="ms-2 Bartending-sel-2"
                 >
                   <option value="" className="Bartending-sel-option">
                     請選擇
                   </option>
-                  {majorTypeIndex !== '' &&
-                    majorType.index(majorTypeIndex) > -1 &&
-                    subType[majorType.index(majorTypeIndex)] &&
-                    subType[majorType.index(majorTypeIndex)].map((v, i) => {
+                  {majorSelIndex !== '' &&
+                    majorSel.indexOf(majorSelIndex) > -1 &&
+                    subSel[majorSel.indexOf(majorSelIndex)] &&
+                    subSel[majorSel.indexOf(majorSelIndex)].map((v, i) => {
                       return (
                         <option key={i} value={v}>
                           {v}
                         </option>
                       );
                     })}
+                  {/* 第一種寫法(-1) */}
+                  {/* {majorSelIndex !== '' &&
+                    majorSel.index(majorSelIndex) > -1 &&
+                    subSel[majorSel.index(majorSelIndex)] &&
+                    subSel[majorSel.index(majorSelIndex)].map((v, i) => {
+                      return (
+                        <option key={i} value={v}>
+                          {v}
+                        </option>
+                      );
+                    })} */}
                 </select>
               </div>
             </div>
+            {/* 搜尋欄 */}
             <form className="Bartending-search-form d-flex">
-              <input className="Bartending-search-label form-control form-control-sm me-1" type="search" placeholder="Search" />
+              <input type="text" placeholder="Search" value={bartendingSearch} className="Bartending-search-label form-control form-control-sm me-1" />
               <button className="btn Bartending-search-btn" type="submit">
                 搜尋
               </button>
             </form>
           </div>
 
+          {/* card */}
           <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
             {bartendcard.map((v, i) => {
               return <BartendingCard key={i.id} data={v} />;

@@ -1,4 +1,4 @@
-@import '../../../assets/scss/global.scss';
+@import '../../../assets/scss/_variable.scss';
 
 
 .prd-content {
@@ -82,6 +82,7 @@
   .prd-card-all {
     .prd-card {
       width: 100%;
+      margin: 1rem auto;
       background-color: $color-bg-block;
       margin-top: $space-3;
       margin-bottom: $space-2;

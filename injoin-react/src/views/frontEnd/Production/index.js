@@ -110,7 +110,7 @@ const Production = () => {
             </form>
           </div>
 
-          <div class=" prd-card-all row row-cols-2 row-cols-md-4 g-3">
+          <div class=" prd-card-all row row-cols-2 row-cols-md-4">
             {cardArr.map((v, i) => {
               return <PrdCard key={v.id} data={v} />;
             })}

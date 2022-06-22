@@ -121,7 +121,7 @@ const GroupAdd = () => {
     console.log('Received values of form: ', values);
   };
 
-  // ladel
+  // label
   const dateLabel = (
     <div className="group-add-info-title">
       <BsCalendar2Date />

@@ -6,7 +6,7 @@ import UserProfile from './UserProfile';
 
 
 const UserInfoForm = () => {
-  const [userInfoTableMode, setUserInfoTableMode] = useState(0);
+  const [userInfoTableMode, setUserInfoTableMode] = useState(1);
   const ularray = ['個人檔案', '關於我', '更改密碼'];
 
   return (

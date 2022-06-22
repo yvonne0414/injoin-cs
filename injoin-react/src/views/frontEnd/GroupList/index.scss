@@ -1,4 +1,4 @@
-@import '../../../assets/scss/global.scss';
+@import '../../../assets/scss/_variable.scss';
 
 // activity-list
 .activity-list {
@@ -29,6 +29,12 @@
     order: 2;
     width: 50%;
     text-align: end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    svg {
+      fill: $color-like;
+    }
   }
   .list-content_state {
     order: 4;
@@ -138,7 +144,11 @@
         margin-bottom: 0;
       }
     }
-    .list-content_activity-name,
+    .list-content_activity-name {
+      order: 0;
+      width: unset;
+      text-align: start;
+    }
     .list-content_time,
     .list-content_place,
     .list-content_state,
@@ -147,6 +157,7 @@
       order: 0;
       width: unset;
       text-align: center;
+      justify-content: center;
     }
     .list-content_activity-name {
       -webkit-line-clamp: 1;

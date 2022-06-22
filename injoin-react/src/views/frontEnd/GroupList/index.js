@@ -2,10 +2,13 @@
 import './index.scss';
 
 import { Link } from 'react-router-dom';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import FePagination from '../../../components/FePagination1';
+import FePagination from '../../../components/FePagination';
 
+// img
 import groupListImg1 from '../../../assets/images/fe/groupList/group-list-img-1.png';
 import groupListImg2 from '../../../assets/images/fe/groupList/group-list-img-2.png';
 import groupListImg3 from '../../../assets/images/fe/groupList/group-list-img-3.png';
@@ -58,6 +61,99 @@ const GroupList = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  const officialList = {
+    pagination: {
+      totalPage: 5,
+      currentPage: 1,
+    },
+    data: [
+      {
+        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+        time: '2022/01/02',
+        place: '台北',
+        status: 1,
+        statusName: '活動報名中',
+        groupId: 1,
+      },
+      {
+        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+        time: '2022/01/02',
+        place: '台北',
+        status: 1,
+        statusName: '活動報名中',
+        groupId: 2,
+      },
+      {
+        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+        time: '2022/01/02',
+        place: '台北',
+        status: 1,
+        statusName: '活動報名中',
+        groupId: 3,
+      },
+      {
+        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+        time: '2022/01/02',
+        place: '台北',
+        status: 1,
+        statusName: '活動報名中',
+        groupId: 4,
+      },
+      {
+        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+        time: '2022/01/02',
+        place: '台北',
+        status: 1,
+        statusName: '活動報名中',
+        groupId: 5,
+      },
+    ],
+  };
+
+  const privateList = {
+    pagination: {
+      totalPage: 6,
+      currentPage: 1,
+    },
+    data: [
+      {
+        name: '酒精路跑！',
+        time: '2022/07/11',
+        place: '新北',
+        holder: '王小明',
+        groupId: 1,
+      },
+      {
+        name: '酒精路跑！',
+        time: '2022/07/11',
+        place: '新北',
+        holder: '王小明',
+        groupId: 2,
+      },
+      {
+        name: '酒精路跑！',
+        time: '2022/07/11',
+        place: '新北',
+        holder: '王小明',
+        groupId: 3,
+      },
+      {
+        name: '酒精路跑！',
+        time: '2022/07/11',
+        place: '新北',
+        holder: '王小明',
+        groupId: 4,
+      },
+      {
+        name: '酒精路跑！',
+        time: '2022/07/11',
+        place: '新北',
+        holder: '王小明',
+        groupId: 5,
+      },
+    ],
+  };
+
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -75,70 +171,24 @@ const GroupList = () => {
               <div>活動狀態</div>
               <div></div>
             </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_activity-name">
-                一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~
-              </div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
-              <div className="list-content_btn">
-                <Link to="/">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
-              <div className="list-content_btn">
-                <Link to="/">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
-              <div className="list-content_btn">
-                <Link to="/">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <i>icon</i>
-                台北
-              </div>
-              <div className="list-content_state">活動報名中</div>
-              <div className="list-content_btn">
-                <Link to="/">詳細內容</Link>
-              </div>
-            </div>
+            {officialList.data.map((item) => {
+              return (
+                <div className="page-type1-list-content" key={item.groupId}>
+                  <div className="list-content_activity-name">{item.name}</div>
+                  <div className="list-content_time">{item.time}</div>
+                  <div className="list-content_place">
+                    <FaMapMarkerAlt />
+                    {item.place}
+                  </div>
+                  <div className="list-content_state">{item.statusName}</div>
+                  <div className="list-content_btn">
+                    <Link to={`/group/${item.groupId}`}>詳細內容</Link>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          <FePagination />
+          <FePagination pagination={officialList.pagination} />
         </div>
       </div>
       {/* <!-- page-type1-intro --> */}
@@ -171,70 +221,24 @@ const GroupList = () => {
                 <div>主揪人</div>
                 <div></div>
               </div>
-              <div className="page-type1-list-content">
-                <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                <div className="list-content_time">2022/01/02</div>
-                <div className="list-content_place">
-                  <i>icon</i>
-                  台北
-                </div>
-                <div className="list-content_user">黃綠紅</div>
-                <div className="list-content_btn">
-                  <Link to="/">詳細內容</Link>
-                </div>
-              </div>
-              <div className="page-type1-list-content">
-                <div className="list-content_activity-name">
-                  一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~
-                </div>
-                <div className="list-content_time">2022/01/02</div>
-                <div className="list-content_place">
-                  <i>icon</i>
-                  台北
-                </div>
-                <div className="list-content_user">黃綠紅</div>
-                <div className="list-content_btn">
-                  <Link to="/">詳細內容</Link>
-                </div>
-              </div>
-              <div className="page-type1-list-content">
-                <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                <div className="list-content_time">2022/01/02</div>
-                <div className="list-content_place">
-                  <i>icon</i>
-                  台北
-                </div>
-                <div className="list-content_user">黃綠紅</div>
-                <div className="list-content_btn">
-                  <Link to="/">詳細內容</Link>
-                </div>
-              </div>
-              <div className="page-type1-list-content">
-                <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                <div className="list-content_time">2022/01/02</div>
-                <div className="list-content_place">
-                  <i>icon</i>
-                  台北
-                </div>
-                <div className="list-content_user">黃綠紅</div>
-                <div className="list-content_btn">
-                  <Link to="/">詳細內容</Link>
-                </div>
-              </div>
-              <div className="page-type1-list-content">
-                <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                <div className="list-content_time">2022/01/02</div>
-                <div className="list-content_place">
-                  <i>icon</i>
-                  台北
-                </div>
-                <div className="list-content_user">黃綠紅</div>
-                <div className="list-content_btn">
-                  <Link to="/">詳細內容</Link>
-                </div>
-              </div>
+              {privateList.data.map((item) => {
+                return (
+                  <div className="page-type1-list-content" key={item.groupId}>
+                    <div className="list-content_activity-name">{item.name}</div>
+                    <div className="list-content_time">{item.time}</div>
+                    <div className="list-content_place">
+                      <FaMapMarkerAlt />
+                      {item.place}
+                    </div>
+                    <div className="list-content_user">{item.holder}</div>
+                    <div className="list-content_btn">
+                      <Link to={`/group/${item.groupId}`}>詳細內容</Link>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-            <FePagination />
+            <FePagination pagination={privateList.pagination} />
           </div>
           <div className="user-add-group-area">
             <div className="group-list-img-3 mb-5 mb-md-0">

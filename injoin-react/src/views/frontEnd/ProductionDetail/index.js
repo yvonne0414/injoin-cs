@@ -314,7 +314,7 @@ const ProductionDetail = () => {
 
           {/* the same kind  product-------------------------------------*/}
           <div className="prd-detail-evaluation-bg mt-5">
-            <div className="container">
+            <div className="container mb-4">
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>同系列商品</p>
               </div>
@@ -332,8 +332,8 @@ const ProductionDetail = () => {
             </div>
           </div>
           {/* bartending--------------------------------------------- */}
-          <div className="prd-detail-evaluation-bg mt-5">
-            <div className="container">
+          <div className="prd-detail-evaluation-bg-sp mt-5">
+            <div className="container mb-4">
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>相關酒譜</p>
               </div>

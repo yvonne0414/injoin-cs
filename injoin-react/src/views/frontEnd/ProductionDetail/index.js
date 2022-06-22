@@ -21,7 +21,7 @@ import prddetailImg1 from '../../../assets/images/fe/productionDetail/prd-detail
 import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
 import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
 import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail-img-4.png';
-
+import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail-img-5.png';
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
 
@@ -159,6 +159,7 @@ const ProductionDetail = () => {
     <>
       {/* session1---------------------------------------------------------------------- */}
       <div className="bg-box prd-detail-session1">
+        <img src={prddetailImg5} alt="prd-detail-img-5" className="mx-auto h-100 prd-detail-img-5 pc-view" />
         {/* Breadcrumb----------------------------------- */}
         <div className="container">
           <div className="w-fit-content ms-auto">
@@ -206,9 +207,11 @@ const ProductionDetail = () => {
               <div className="star-defaultValue mt-3">
                 <Rate disabled defaultValue={5} />
               </div>
-              <div className="prd-detail-number mt-3">數量</div>
-              <div className="prd-detail-input-number mt-3">
-                <InputNumber min={1} max={99} defaultValue={0} onChange={onChange} size="middle" bordered={false} />
+              <div className="prd-detail-number-space">
+                <div className="prd-detail-number mt-3">數量</div>
+                <div className="prd-detail-input-number mt-3">
+                  <InputNumber min={1} max={99} defaultValue={0} onChange={onChange} size="middle" bordered={false} />
+                </div>
               </div>
               <div className="prd-detail-button-position mt-3">
                 <div className="prd-detail-button-1">
@@ -234,7 +237,7 @@ const ProductionDetail = () => {
         <div className="container">
           {/* collapse------------------------------------------------------------ */}
           <div className="prd-detail-collapse">
-            <Collapse defaultActiveKey={['1']} onChange={onChange} >
+            <Collapse defaultActiveKey={['1']} onChange={onChange}>
               <Panel className="prd-detail-title-type1" header="產地規格" key="1">
                 <p className="prd-detail-text-1">
                   產地：{specification.origin}
@@ -284,7 +287,7 @@ const ProductionDetail = () => {
                 </div>
                 <div className="prd-detail-box-text2-bg">
                   <span></span>
-                  <p className="prd-detail-box-text2">評價</p>
+                  <div className="prd-detail-box-text2">評價</div>
                 </div>
               </div>
               <List
@@ -316,7 +319,7 @@ const ProductionDetail = () => {
                 <p>同系列商品</p>
               </div>
               <div className="px-md-3">
-                <Slider className='prd-deatil-card' {...settings}>
+                <Slider className="prd-deatil-card" {...settings}>
                   <PrdCard />
                   <PrdCard />
                   <PrdCard />

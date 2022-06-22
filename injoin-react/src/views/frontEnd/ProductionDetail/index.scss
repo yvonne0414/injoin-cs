@@ -16,6 +16,13 @@
   margin-left: 0;
   margin-right: 0;
 }
+.prd-detail-session1 {
+  position: relative;
+}
+.prd-detail-img-5 {
+  position: absolute;
+  right: 0;
+}
 .prd-detail-breadcrumb {
   font-family: $font-family-cn-main;
 }
@@ -38,6 +45,11 @@
   font-size: var(--fs-en-page-type1-title-sm);
   font-family: $font-family-en-content;
 }
+.prd-detail-number-space {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
 .prd-detail-number {
   font-size: var(--fs-en-page-type1-title-sm);
   font-family: $font-family-cn-content;
@@ -45,7 +57,8 @@
 .prd-detail-input-number {
   border-left: 1px solid $color-font-sp;
   border-bottom: 2px solid $color-font-sp;
-  width: 30%;
+  width: 20%;
+  margin-left: 2rem;
 }
 .text-black {
   font-size: var(--fs-cn-home-content) !important;
@@ -79,6 +92,9 @@
   height: 13vh;
   border: 3px solid $color-font-gold;
   border-radius: 10px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }
 .prd-detail-box-text1 {
   text-align: center;
@@ -88,8 +104,8 @@
 }
 .prd-detail-box-text2-bg {
   background-color: $color-font-gold;
-  height: 2.4rem;
-  line-height: 2.4rem;
+  height: 3rem;
+  line-height: 3rem;
   span {
     width: 10px;
     height: 10px;
@@ -103,9 +119,10 @@
 }
 .prd-detail-box-text2 {
   text-align: center;
-  font-size: var(---fs-cn-page-type1-title-md);
+  font-size: var(--fs-cn-page-type1-content-sp);
   font-family: $font-family-cn-content;
   color: black;
+  background-color: transparent;
 }
 .prd-detail-evaluation-bg {
   border: 1px solid #ffffff16;
@@ -141,7 +158,7 @@
   }
 }
 .Bartending-card-col .Bartending-card {
-  margin:  1rem;
+  margin: 1rem;
 }
 
 .prd-card .prd-card-body .prd-card-title {
@@ -207,6 +224,10 @@
     // 20px
     font-size: var(--fs-cn-page-type1-content) !important;
   }
+  .prd-detail-input-number {
+    margin-left: 10.7rem;
+    width: 24%;
+  }
   .prd-detail-session1-content-wraper {
     display: flex;
     flex-wrap: wrap;
@@ -229,8 +250,8 @@
     width: 10%;
   }
   .prd-detail-box-text2-bg {
-    height: 2.5rem;
-    line-height: 2.5rem;
+    height: 3.5rem;
+    line-height: 3.5rem;
   }
   .prd-detail-price {
     // 24px

@@ -4,10 +4,12 @@
   @include cn-list-content();
   width: 50%;
   margin: 0 auto;
-  text-align: left;
 }
-
-.order-detail-info-wraper {
+.ant-collapse-header-text {
+  @include cn-list-main();
+}
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 30px;
   @include cn-list-content();
 }
 
@@ -48,28 +50,26 @@
       position: absolute;
       right: 0;
       padding: 0;
+    }
 
-      .list-content_orderdetail_num {
-        display: flex;
-      }
-      .list-content_orderdetail_name {
-        width: 100%;
-        // display: flex;
-        // justify-content: center;
-        margin-bottom: $space-3;
-      }
-      .list-content_orderdetail_number {
-        width: 100%;
-        display: block;
-        text-align: end;
-        padding: 0 $space-4;
-      }
-      .list-content_orderdetail_total {
-        width: 100%;
-        display: block;
-        text-align: end;
-        padding: 0 $space-4;
-      }
+    .list-content_orderdetail_num {
+      display: flex;
+    }
+    .list-content_orderdetail_name {
+      width: 100%;
+      margin-bottom: $space-3;
+    }
+    .list-content_orderdetail_number {
+      width: 100%;
+      display: block;
+      text-align: end;
+      padding: 0 $space-4;
+    }
+    .list-content_orderdetail_total {
+      width: 100%;
+      display: block;
+      text-align: end;
+      padding: 0 $space-4;
     }
   }
 }
@@ -83,6 +83,11 @@
 // orderdetail-list
 
 @media screen and (min-width: 768px) {
+  .step-status {
+    display: flex;
+    text-align: left;
+    margin-left: 0;
+  }
   .order-detail-info-bg-square {
     width: 100%;
     background-color: $color-bg-block;
@@ -109,21 +114,30 @@
           flex: 1 1 100px;
         }
         .list-content_orderdetail_num {
+          width: 20%;
           flex: 2 1 100px;
-          margin-right: 2rem;
+          // margin-right: 2rem;
         }
       }
     }
   }
 }
 
-.list-content_orderdetail_num,
 .list-content_orderdetail_name,
-.list-content_orderdetail_price,
+.list-content_orderdetail_price {
+  width: 20%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
 .list-content_orderdetail_number,
 .list-content_orderdetail_total {
-  width: 20%;
+  display: flex;
+  text-align: center;
+  // line-height: 800%;
 }
+
 .list-content_orderdetail_img {
   width: 20%;
   height: 20%;

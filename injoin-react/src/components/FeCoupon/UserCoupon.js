@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 const UserCouponList = (props) => {
   const { data } = props;
   // const [userOrderList, setUserOrderList] = useState(0);
-  // const orderlist = {
-  //   orderNum: '51345',
-  //   orderTime: '2022/01/02',
-  //   orderStatus: '已完成',
-  //   orderPay: '已付款',
-  //   orderTotal: 'NT$5022',
-  //   orderBtn: '詳細內容',
+  // const usercoupon = {
+  //   coupomNum: '1001',
+  //   couponName: '註冊禮券折$100',
+  //   couponStart: '2022/05/29',
+  //   couponEnd: '2022/06/29',
+  //   couponStatus: '未使用',
+  //   couponBtn: '詳細內容',
   // };
 
   return (

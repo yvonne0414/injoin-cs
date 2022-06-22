@@ -2,22 +2,19 @@
 import './index.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import { Popover, Steps, Collapse } from 'antd';
 import 'antd/dist/antd.css';
+
+import OrderDetail from '../../../components/FeOrderlistDetail/OrderDetail';
+import OrderDetailsList from '../../../components/FeOrderlistDetail/OrderDetailsList';
+
+// import orderDetailImg1 from '../../../assets/images/fe/orderDetail/order-detail-img-1.png';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
 // import FePagination from '../../../components/FePagination1';
 
-import orderDetailImg1 from '../../../assets/images/fe/orderDetail/order-detail-img-1.png';
-
 const { Panel } = Collapse;
-// const text = `
-//   A dog is a type of domesticated animal.
-//   Known for its loyalty and faithfulness,
-//   it can be found as a welcome guest in many households across the world.
-// `;
 
 const OrderListDetail = () => {
   const customDot = (dot, { status, index }) => (
@@ -71,6 +68,55 @@ const OrderListDetail = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  const detailone = {
+    orderdetailNum: '513947',
+    orderdetailData: '2022/05/22',
+    orderdetailUser: '王小明',
+    orderdetailTel: '0900000123',
+    orderdetailStatus: '訂單完成',
+  };
+  const detailtwo = {
+    deliverymethod: '宅配',
+    shippingdate: '2022/05/25',
+    deliverycomplet: '2022/05/28',
+  };
+  const detailthree = {
+    paymethod: '信用卡付款',
+    paystatus: '已付款',
+    paytotal: 'NT$1840',
+    remark: '請小心包裝',
+  };
+
+  const orderdetailprdArr = [
+    {
+      prdId: 1,
+      detailprdNum: 'AB123',
+      detailprdImg: 'order-detail-img-1.png',
+      detailprdName: '金彬黑波本威士忌',
+      detailprdPrice: 'NT$680',
+      detailprdNumber: '1',
+      detailprdTotal: 'NT$680',
+    },
+    {
+      prdId: 2,
+      detailprdNum: 'AB456',
+      detailprdImg: 'order-detail-img-1.png',
+      detailprdName: '金彬黑波本威士忌',
+      detailprdPrice: 'NT$680',
+      detailprdNumber: '1',
+      detailprdTotal: 'NT$680',
+    },
+    {
+      prdId: 3,
+      detailprdNum: 'AB789',
+      detailprdImg: 'order-detail-img-1.png',
+      detailprdName: '金彬黑波本威士忌',
+      detailprdPrice: 'NT$680',
+      detailprdNumber: '1',
+      detailprdTotal: 'NT$680',
+    },
+  ];
+
   const onChange = (key) => {
     console.log(key);
   };
@@ -84,49 +130,51 @@ const OrderListDetail = () => {
       <div class="container">
         <div className="step-status mb-5">
           <Steps current={2} progressDot={customDot}>
-            <Step title="Waiting" description="訂單成立" />
-            <Step title="In Progress" description="待出貨" />
-            <Step title="In Progress" description="配送中" />
-            <Step title="Finished " description="訂單完成" />
+            <Step title="訂單成立" />
+            <Step title="待出貨" />
+            <Step title="配送中" />
+            <Step title="訂單完成" />
           </Steps>
         </div>
       </div>
 
       {/* -----------section 1------------ */}
-      {/* <div class="order-detail-info-wraper"> */}
+
       <div class="container">
         <div className="position-relative">
           <div className="order-detail-info-wraper"></div>
           <div className="p-3 p-md-5">
-            <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;2022/05/22</h3>
+            <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;{detailone.orderdetailData}</h3>
             <div class="detailcollapse">
               <Collapse defaultActiveKey={['1']} onChange={onChange}>
                 <Panel header="訂單資訊" key="1">
-                  訂單編號: &nbsp;513947
+                  訂單編號: &nbsp;{detailone.orderdetailNum}
                   <br />
-                  收件人: &nbsp;王小明
+                  收件人: &nbsp;{detailone.orderdetailUser}
                   <br />
-                  連絡電話: &nbsp;0900000123
+                  連絡電話: &nbsp;{detailone.orderdetailTel}
                   <br />
-                  配送狀態: &nbsp;<span> 訂單完成</span>
+                  配送狀態: &nbsp;<span> {detailone.orderdetailStatus}</span>
                   <br />
-                  總金額: &nbsp;<span> NT$1840</span>
+                  總金額: &nbsp;<span> {detailone.orderdetailTotal}</span>
                 </Panel>
+
                 <Panel header="配送方式" key="2">
-                  配送方式: &nbsp;宅配
+                  配送方式: &nbsp;{detailtwo.deliverymethod}
                   <br />
-                  配送日期: &nbsp;2022/05/25
+                  配送日期: &nbsp;{detailtwo.shippingdate}
                   <br />
-                  完成日期: &nbsp;2022/05/28
+                  完成日期: &nbsp;{detailtwo.deliverycomplet}
                 </Panel>
+
                 <Panel header="付款方式" key="3">
-                  付款方式: &nbsp; 信用卡付款
+                  付款方式: &nbsp; {detailthree.paymethod}
                   <br />
-                  付款狀態: &nbsp; 已付款
+                  付款狀態: &nbsp; {detailthree.paystatus}
                   <br />
-                  總金額: &nbsp; 已付款
+                  總金額: &nbsp; {detailthree.paytotal}
                   <br />
-                  備註: &nbsp; 請小心包裝
+                  備註: &nbsp; {detailthree.remark}
                 </Panel>
               </Collapse>
             </div>
@@ -150,51 +198,10 @@ const OrderListDetail = () => {
               <hr />
             </div>
             <div className="page-type1-list-section">
-              <div className="listdetail-card-bg mb-2">
-                <div className="listdetail-card-context ">
-                  <div className="list-content_orderdetail_num">AB123</div>
-                  <div className="list-content_orderdetail_img pc-view">
-                    <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
-                  </div>
-                  <div className="list-content_orderdetail_name">金賓黑波本威士忌</div>
-                  <div className="list-content_orderdetail_price pc-view">NT$680</div>
-                  <div className="list-content_orderdetail_number">X1</div>
-                  <div className="list-content_orderdetail_total ">NT$680</div>
-                </div>
-                <div className="list-content_orderdetail_sm_img m-view">
-                  <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
-                </div>
-              </div>
-              <div className="listdetail-card-bg mb-2">
-                <div className="listdetail-card-context ">
-                  <div className="list-content_orderdetail_num">AB123</div>
-                  <div className="list-content_orderdetail_img pc-view">
-                    <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
-                  </div>
-                  <div className="list-content_orderdetail_name">金賓黑波本威士忌</div>
-                  <div className="list-content_orderdetail_price pc-view">NT$680</div>
-                  <div className="list-content_orderdetail_number">X1</div>
-                  <div className="list-content_orderdetail_total ">NT$680</div>
-                </div>
-                <div className="list-content_orderdetail_sm_img m-view">
-                  <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
-                </div>
-              </div>
-              <div className="listdetail-card-bg mb-2">
-                <div className="listdetail-card-context ">
-                  <div className="list-content_orderdetail_num">AB123</div>
-                  <div className="list-content_orderdetail_img pc-view">
-                    <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
-                  </div>
-                  <div className="list-content_orderdetail_name">金賓黑波本威士忌</div>
-                  <div className="list-content_orderdetail_price pc-view">NT$680</div>
-                  <div className="list-content_orderdetail_number">X1</div>
-                  <div className="list-content_orderdetail_total ">NT$680</div>
-                </div>
-                <div className="list-content_orderdetail_sm_img m-view">
-                  <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover" />
-                </div>
-              </div>
+              {orderdetailprdArr.map((v, i) => {
+                return <OrderDetail key={v.prdId} data={v} />;
+              })}
+
               <div className="summary-section">
                 <div className="summary-title d-flex">
                   商品小計

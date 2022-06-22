@@ -76,7 +76,16 @@ const UserCoupon = () => {
     },
     {
       id: 2,
-      coupomNum: '1001',
+      coupomNum: '1002',
+      couponName: '註冊禮券折$100',
+      couponStart: '2022/05/29',
+      couponEnd: '2022/06/29',
+      couponStatus: '未使用',
+      couponBtn: '詳細內容',
+    },
+    {
+      id: 3,
+      coupomNum: '1003',
       couponName: '註冊禮券折$100',
       couponStart: '2022/05/29',
       couponEnd: '2022/06/29',
@@ -243,6 +252,13 @@ const UserCoupon = () => {
           </div>
 
           <FePagination />
+          <div className="couponlist-footer">
+            <spna>
+              單筆訂單限抵一張折價券。
+              <br />
+              取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。
+            </spna>
+          </div>
         </div>
       </div>
     </>

@@ -15,6 +15,7 @@ import UserInfo from './views/frontEnd/UserInfo';
 import UserLike from './views/frontEnd/UserLike';
 import UserVip from './views/frontEnd/UserVip';
 import UserCoupon from './views/frontEnd/UserCoupon';
+import CouponDetail from './views/frontEnd/CouponDetail';
 import UserReputation from './views/frontEnd/UserReputation';
 import UserGroup from './views/frontEnd/UserGroup';
 import OrderList from './views/frontEnd/OrderList';
@@ -56,6 +57,9 @@ function App() {
           <Route path="/account/like" exact element={<UserLike />} />
           <Route path="/account/vip" exact element={<UserVip />} />
           <Route path="/account/coupon" exact element={<UserCoupon />} />
+          <Route path="/account/coupon/1" exact element={<CouponDetail />}>
+            <Route path=":currentPage" element={<CouponDetail />} />
+          </Route>
           <Route path="/account/reputation" exact element={<UserReputation />} />
           <Route path="/account/group" exact element={<UserGroup />} />
 

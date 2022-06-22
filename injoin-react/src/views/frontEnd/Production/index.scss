@@ -6,35 +6,36 @@
     display: flex;
     flex-wrap: wrap;
     font-family: $font-family-cn-content;
+    justify-content:space-between ;
     .prd-total {
       order: 1;
       font-size: var(--fs-cn-page-list-title-sm);
       margin-top: $space-2;
       font-weight: $font-weight-lighter;
       span {
-        margin-left:$space-2;
+        margin-left:$space-1;
       }
     }
     .prd-sel-all {
       order: 2;
-      font-size: var(--fs-cn-page-list-);
+      font-size: var(--fs-cn-page-list-filter);
       margin-top: $space-2;
-      right: -1rem;
+      .prd-sel-2 {
+        width: 100%;
+        justify-content: end;
+      }   
       .prd-sel-1,
       .prd-sel-2 {
         .prd-sel {
           color: $color-font-sp-light;
           border-bottom: solid 1px;
+          background-color: $color-bg-dark;
         }
-      }
-      .prd-sel-2 {
-        width: 70%;
-        left: 3.5rem;
       }
     }
     .prd-search-form {
       order: 3;
-      margin-top:$space-3;
+      margin-top:$space-4;
       width: 100%;
       .prd-search-label {
         color: $color-font;
@@ -120,6 +121,7 @@
             }
           }
           .prd-card-icon {
+            cursor: pointer;
             display: flex;
             align-items: center;
             color: $color-font-sp-light;
@@ -142,10 +144,11 @@
   .prd-content {
     .prd-content-top {
       justify-content: space-between;
+      margin-bottom: 3rem;
       .prd-sel-all {
-        order: 2;
-        .prd-sel-2 {
-          width: 100%;
+        order: 2; 
+        .prd-sel-1{
+          margin-bottom: 2rem;
         }
       }
       .prd-search-form {

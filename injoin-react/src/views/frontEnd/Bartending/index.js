@@ -95,6 +95,7 @@ const Bartending = () => {
             {/* 類別篩選 */}
             <div className="Bartending-sel-all">
               <div className="Bartending-sel">
+                {/* 大類別 */}
                 <select
                   value={majorSelIndex}
                   onChange={(e) => {
@@ -114,6 +115,7 @@ const Bartending = () => {
                     );
                   })}
                 </select>
+                {/* 小類別 */}
                 <select
                   value={subSelIndex}
                   onChange={(e) => {

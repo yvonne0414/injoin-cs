@@ -1,9 +1,9 @@
 import './index.scss';
-import { Link } from 'react-router-dom';
+
 import FePagination from '../../../components/FePagination1';
 import reputationimg from '../../../assets/images/fe/userReputation/reputation_1.png';
 import FePage1Header from '../../../components/FePage1Header';
-import { FaStar } from 'react-icons/fa';
+
 import React, { useState } from 'react';
 import { Rate } from 'antd';
 import ReputationList from '../../../components/FeUserReputation/ReputationList';
@@ -54,7 +54,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
-      star: <Rate disabled defaultValue={2} />,
+      star: [<Rate disabled defaultValue={2} />],
     },
     {
       id: 2,

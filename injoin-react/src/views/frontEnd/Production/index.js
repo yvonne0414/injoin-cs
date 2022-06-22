@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './index.scss';
 
 import FePage2Header from '../../../components/FePage2Header';
@@ -40,6 +40,16 @@ const Production = () => {
     ],
   };
 
+  const majorPrdSel = ['伏特加', '蘭姆酒', '白蘭地'];
+  const subPrdSel = [
+    ['基礎伏特加', '頂級伏特加', '特殊伏特加'],
+    ['白蘭姆酒', '牙買加蘭姆酒', '高濃度蘭姆酒'],
+    ['干邑白蘭地', '其他水果白蘭地', '皮斯可'],
+  ];
+
+  const [majorPrdSelI, setMajorPrdSelI] = useState('');
+  const [subPrdSelI, setSubPrdSelI] = useState('');
+
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = page2HeaderInfo;
   const cardArr = [
     {
@@ -80,26 +90,56 @@ const Production = () => {
             </div>
             <div className="prd-sel-all">
               <div className="prd-sel-1">
-                <select value="" className=" mx-2 px-2 prd-sel">
+                <select
+                  value={majorPrdSelI}
+                  onChange={(e) => {
+                    setMajorPrdSelI(e.target.value);
+                    setSubPrdSelI('');
+                  }}
+                  className="mx-2 px-2 prd-sel"
+                >
                   {/* <optgroup labal="基酒種類"></optgroup> */}
                   <option value="" className="prd-sel-option">
-                    威士忌
+                    請選擇
                   </option>
+                  {majorPrdSel.map((v, i) => {
+                    return (
+                      <option key={i} value={v}>
+                        {v}
+                      </option>
+                    );
+                  })}
                 </select>
-                <select value="" className="mx-2 px-2 prd-sel">
+                <select
+                  value={subPrdSelI}
+                  onChange={(e) => {
+                    setSubPrdSelI(e.target.value);
+                  }}
+                  className=" px-2 prd-sel"
+                >
                   <option value="" className="prd-sel-option">
-                    蘇格蘭威士忌
+                    請選擇
+                  </option>
+                  {majorPrdSelI !== '' &&
+                    majorPrdSel.indexOf(majorPrdSelI) > -1 &&
+                    subPrdSel[majorPrdSel.indexOf(majorPrdSelI)] &&
+                    subPrdSel[majorPrdSel.indexOf(majorPrdSelI)].map((v, i) => {
+                      return (
+                        <option key={i} value={v}>
+                          {v}
+                        </option>
+                      );
+                    })}
+                </select>
+              </div>
+              <div className="prd-sel-2 d-flex align-items-end  mt-1">
+                <span>依</span>
+                <select value="" className="mx-1 px-2 prd-sel">
+                  <option value="" className="prd-sel-option">
+                    價格高到低
                   </option>
                 </select>
-                <div className="prd-sel-2 d-flex align-items-end  mt-1">
-                  <span>依</span>
-                  <select value="" className="mx-2 px-2 prd-sel">
-                    <option value="" className="prd-sel-option">
-                      價格高到低
-                    </option>
-                  </select>
-                  <span>排序</span>
-                </div>
+                <span>排序</span>
               </div>
             </div>
             <form className="prd-search-form d-flex">
@@ -116,43 +156,6 @@ const Production = () => {
             })}
           </div>
           <FePagination className="pc-view" />
-
-          {/* <div className="prd-sel">
-            <div className="prd-sel-phone">
-              <button className="prd-sel-btn">
-                <FaSortAmountDownAlt className="prd-sel-btn-icondown" />
-                暢銷商品
-                <FaChevronRight className="prd-sel-btn-iconright" />
-              </button>
-              <button className="prd-sel-btn">
-                <FaSortAmountDownAlt className="prd-sel-btn-icondown" />
-                進階篩選
-                <FaChevronRight className="prd-sel-btn-iconright" />
-              </button>
-            </div>
-          </div> */}
-
-          {/* <div className="prd-sel-pc">
-            <Form className="prd-sel-pc-form">
-              <Form.Item type="string">
-                <Input className="prd-sel-pc-input" type="text" placeholder="search" />
-              </Form.Item>
-            </Form>
-           
-          </div> */}
-          {/* <div>
-            <form className="prd-search-form">
-              <label className="prd-search-label" for="prd-search">
-                <input type="search" id="prd-search" placeholder="search" name="q" />
-              </label>
-            </form>
-          </div> */}
-          {/* <form className="prd-search-form d-flex">
-            <input className="prd-search-label form-control form-control-sm me-2" type="search" placeholder="Search" />
-            <button className="btn prd-search-btn" type="submit">
-              搜尋
-            </button>
-          </form> */}
         </div>
       </div>
     </>

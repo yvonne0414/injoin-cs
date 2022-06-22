@@ -52,21 +52,21 @@ const UserInfo = () => {
   return (
     <>
       <div className="container">
-        <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+        {/* <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
         {/* ===============section2=============== */}
         <section className="member-s1">
           <UserInfoForm />
         </section>
         {/* ===============section2=============== */}
-        <div className="member-s2">
+        <div className="member-s2 d-none">
           <UserInfoVipLevel />
         </div>
         {/* ===============section3=============== */}
-        <section className="member-s3">
+        <section className="member-s3 d-none">
           <UserInfoTask/>
         </section>
         {/* ===============section4=============== */}
-        <section className="member-s4">
+        <section className="member-s4 d-none">
           <div className="page-type1-area-title" id="">
             詳細說明
           </div>

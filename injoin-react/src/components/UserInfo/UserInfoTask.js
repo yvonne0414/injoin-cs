@@ -2,7 +2,7 @@ import { FE_IMAGE_URL } from '../../utils/config';
 
 const UserInfoTask = () => {
   const UserInfoVipLevel = {
-    vipLevel: 0,
+    vipLevel: 1,
     vipcount: 1,
     vipmoney: 5000,
   };

@@ -188,7 +188,7 @@ const GroupAdd = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="活動名稱" />
+                  <Input placeholder="活動名稱"  />
                 </Form.Item>
                 <hr />
                 <div className="d-flex flex-column flex-md-row justify-content-between">

@@ -4,7 +4,7 @@ import vips4vip1 from '../../assets/images/fe/uservip/platinum.png';
 import vips4vip2 from '../../assets/images/fe/uservip/dim.png';
 
 const UserVipCard = () => {
-  const [UserVipCardState, setUserVipCardState] = useState(0);
+  const [UserVipCardState, setUserVipCardState] = useState(2);
   const UserVipLevel = ['黃金', '柏金', '鑽石'];
   return (
     <>

@@ -1,46 +1,21 @@
 @import '../../../assets/scss/global.scss';
 
 // 個人檔案卡片
-.userInfo-membercard {
-  width: 100%;
-  .userInfo-memberuser {
+.UserInfoProfile {
+  display: flex;
+  flex-direction: column;
+  .user-info-img {
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    .user-img {
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-      }
-    }
-    .user-button {
-      margin-top: $space-3;
-    }
-  }
-  .userInfo-membertable {
-    font-size: var(--fs-cn-page-type1-menu);
-    margin-top: $space-5;
-    .userInfo-memberinputpart {
-      margin: $space-2;
+    justify-content: center;
+    height: 15vh;
+    img {
       width: 100%;
-      display: flex;
-      font-style: $font-family-cn-main;
-      .userInfo-membertext {
-        width: 40vw;
-      }
+      height: 100%;
+      object-fit: contain;
     }
   }
-  .userInfo-memberbutton {
-    width: 100%;
-    button {
-      display: block;
-      margin: 0 auto;
-    }
+  .userInfo-input {
   }
 }
 
@@ -182,6 +157,9 @@
       }
     }
   }
+  .changeCard {
+    padding-top: $space-3;
+  }
 }
 .member-s2 {
   margin: $space-3 0;
@@ -230,8 +208,8 @@
     z-index: -1;
   }
   .userInfo-task {
-    &.active{
-      .levelicon{
+    &.active {
+      .levelicon {
         border: 2px solid $color-font-gold;
         border-radius: 50%;
       }
@@ -301,50 +279,29 @@
 }
 @media screen and (min-width: 768px) {
   // 個人檔案卡片
-  .userInfo-membercard {
-    position: relative;
+  .UserInfoProfile {
     width: 100%;
-    .userInfo-memberuser {
-      position: absolute;
+    flex-direction: row;
+    .user-info-img {
+      flex: 1 1 100px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      .user-img {
-        width: 150px;
-        height: 150px;
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-        }
-      }
-      .user-button {
-        margin-top: $space-3;
-      }
-    }
-    .userInfo-membertable {
-      padding: $space-6 auto;
-      margin-left: 15vw;
-      .userInfo-memberinputpart {
-        margin: $space-2;
-        width: 100%;
-        display: flex;
-        font-style: $font-family-cn-main;
-        .userInfo-membertext {
-          width: 15vw;
-        }
-      }
-    }
-    .userInfo-memberbutton {
+      align-items: flex-start;
       width: 100%;
-      button {
-        display: block;
-        margin: 0 auto;
+      .ant-upload-list-picture-card .ant-upload-list-item{
+        width: 20vh;
+        height: 20vh;
       }
+      .ant-upload-list-picture-card-container{
+        width: 20vh;
+        height: 20vh;
+      }
+    }
+    .userInfo-input {
+      flex: 3 1 100px;
     }
   }
-
+  
   // 關於我的卡片
   .userInfo-userCard {
     padding: $space-6 auto;
@@ -460,6 +417,9 @@
           }
         }
       }
+      .changeCard {
+        padding-top: 8vh;
+      }
     }
   }
   .member-s2 {
@@ -494,8 +454,8 @@
     }
     .userInfo-task {
       display: flex;
-      &.active{
-        .levelicon{
+      &.active {
+        .levelicon {
           border: 5px solid $color-font-gold;
           border-radius: 50%;
         }
@@ -505,21 +465,16 @@
         width: 15vw;
         height: 10vw;
         display: block;
-        margin: auto 0 ;
+        margin: auto 0;
         img {
-
         }
       }
       .levelcontent {
-
         .leveltitle {
-
         }
         .levelstate {
-
         }
         .levelcontextm {
-
         }
       }
     }

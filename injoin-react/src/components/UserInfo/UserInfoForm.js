@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import UserAboutMe from './UserAboutMe';
 import UserInfoChangePasswd from './UserInfoChangePasswd';
+import UserInfoProfile from './UserInfoProfile';
 import UserProfile from './UserProfile';
 
 
@@ -29,10 +30,13 @@ const UserInfoForm = () => {
             })}
           </ul>
         </nav>
-        {userInfoTableMode === 0 && <UserProfile />}
+        <div className="changeCard">
+        {userInfoTableMode === 0 && <UserInfoProfile />}
         {userInfoTableMode === 1 && <UserAboutMe />}
         {userInfoTableMode === 2 && <UserInfoChangePasswd />}
-        
+
+
+        </div>
         
         
       </div>

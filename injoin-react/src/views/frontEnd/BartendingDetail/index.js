@@ -59,6 +59,56 @@ const settings = {
     },
   ],
 };
+const cardArr = [
+  {
+    id: 1,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 2,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 3,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 4,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 5,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 6,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 7,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 8,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+];
 
 const ProductionDetail = () => {
   return (
@@ -122,8 +172,8 @@ const ProductionDetail = () => {
         <div className="container">
           {/* evaluation----------------------------------- */}
           <div className="bar-detail-evaluation-bg-sp mt-5">
-          <img src={bardetailImg3} alt="bartending-detail-img-3" className="mx-auto  bartending-detail-img-3" />
-          <img src={bardetailImg4} alt="bartending-detail-img-4" className="mx-auto  bartending-detail-img-4" />
+            <img src={bardetailImg3} alt="bartending-detail-img-3" className="mx-auto  bartending-detail-img-3" />
+            <img src={bardetailImg4} alt="bartending-detail-img-4" className="mx-auto  bartending-detail-img-4" />
             <div className="bar-detail-space mx-auto">
               <div className="bar-detail-title-type1 mt-3 ">
                 <p>材料比例</p>
@@ -154,7 +204,6 @@ const ProductionDetail = () => {
               </ol>
               <span className="bar-detail-text-sp">裝飾物：豆蔻粉</span>
             </div>
-             
           </div>
 
           {/* the same kind  product-------------------------------------*/}
@@ -165,13 +214,9 @@ const ProductionDetail = () => {
               </div>
               <div className="prd-deatil-card px-md-3">
                 <Slider {...settings}>
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
+                  {cardArr.map((v, i) => {
+                    return <PrdCard key={v.id} data={v} />;
+                  })}
                 </Slider>
               </div>
             </div>

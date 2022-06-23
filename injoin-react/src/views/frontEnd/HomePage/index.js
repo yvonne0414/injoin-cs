@@ -66,7 +66,7 @@ const HomePage = () => {
             <button className="button-style section-button">Buy It !</button>
           </div>
           <Slider {...settings} className="homepages3-slder">
-            {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((v, i) => {
+            {[1,1,1,1,1,1,11,1,1,1].map((v, i) => {
               return <HomeHotCard />;
             })}
           </Slider>

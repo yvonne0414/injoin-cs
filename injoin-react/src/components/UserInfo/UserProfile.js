@@ -11,6 +11,17 @@ const userInfoMemberarr = [
   { cn: '居家住址', en: 'memberhome' },
 ];
 
+const normFile = (e) => {
+  console.log('Upload event:', e);
+
+  if (Array.isArray(e)) {
+    return e;
+  }
+
+  return e?.fileList;
+};
+
+
 const UserProfile = () => {
   return (
     <>

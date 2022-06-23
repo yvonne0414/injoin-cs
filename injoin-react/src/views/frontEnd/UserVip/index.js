@@ -3,7 +3,8 @@ import FePage1Header from '../../../components/FePage1Header';
 import vipimg from '../../../assets/images/fe/uservip/vips2pic.png';
 import vips3img from '../../../assets/images/fe/uservip/vips3pic.png';
 import vips5img from '../../../assets/images/fe/uservip/vips5pic.png';
-import vips4img from '../../../assets/images/fe/uservip/gold.png';
+import UserVipCard from '../../../components/UserInfo/UserVipCard';
+
 
 
 const page1HeaderInfo = {
@@ -93,56 +94,8 @@ const UserVip = () => {
           </div>
         </seciton>
         <section className="uservip-s4">
-          <div className="uservips4-nav">
-            <ul>
-              <li>
-                <a className="active">黃金</a>
-              </li>
-              <li>
-                <a>柏金</a>
-              </li>
-              <li>
-                <a>鑽石</a>
-              </li>
-            </ul>
-          </div>
-          <div className="uservips4-main">
-            <div className="s4maincontent">
-              <div className="uservips4-title">黃金會員</div>
-              <div className="uservips4-text">註冊會員即享有黃金會員之等級福利</div>
-              <div className="uservips4-card">
-                <div className="card-title">黃金會員專屬折扣</div>
-                <table className="card-table">
-                  <tbody>
-                    <tr>
-                      <th>升級條件 : </th>
-                      <td>首次註冊</td>
-                    </tr>
-                    <tr>
-                      <th>新會員禮 :</th>
-                      <td>購物金 $100</td>
-                    </tr>
-                    <tr>
-                      <th>當月壽星禮: </th>
-                      <td>贈購物金$50</td>
-                    </tr>
-                    <tr>
-                      <th>全館優惠 :</th>
-                      <td>
-                        單筆消費滿$5000
-                        <br />
-                        打95折
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button className="card-button">前往註冊/登入</button>
-              </div>
-            </div>
-            <div className="s4mainimg">
-              <img src={vips4img} alt="" />
-            </div>
-          </div>
+          
+          <UserVipCard/>
         </section>
         <section className="uservip-s5">
           <div className="uservips5-contnet">

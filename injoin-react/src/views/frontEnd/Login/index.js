@@ -1,8 +1,10 @@
 import './index.scss';
 import FePage1Header from '../../../components/FePage1Header';
 import logoimg from '../../../assets/images/shared/injoinlogo.png';
+import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
 
 const Login = () => {
+  const [form] = Form.useForm();
   const page1HeaderInfo = {
     titleEn: 'Log in',
     titleCn: '會員登入',
@@ -31,10 +33,23 @@ const Login = () => {
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+
+  // form label
+  const loginusermailLabel = (
+    <div className="login-title">
+      <span>使用者帳號</span>
+    </div>
+  );
+  const loginuserpasswordLabel = (
+    <div className="login-title">
+      <span>使用者密碼</span>
+    </div>
+  );
+
   return (
     <>
       <div className="container">
-        {/* <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} /> */}
+        <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
         <section className="loginpage">
           <div className="logintitle">
             <div className="page-type1-area-title">登入</div>
@@ -43,23 +58,43 @@ const Login = () => {
             <div className="loginimg">
               <img src={logoimg} alt="" />
             </div>
-            <div className="loginfrom">
-              <form action="">
-                <div className="form-part">
-                  <label htmlFor="">姓名</label>
-                  <input type="text" name="" id="" />
-                </div>
-                <div className="form-part">
-                  <label htmlFor="">密碼</label>
-                  <input type="text" name="" id="" />
-                </div>
-                <div className="form-button">
-                  <button className='injoin-btn-outline'>登入</button>
-                </div>
-              </form>
+            <div className="loginform">
+              <Form form={form}>
+                <Form.Item
+                  className="loginformpart"
+                  name="loginusermail"
+                  label={loginusermailLabel}
+                  rules={[
+                    {
+                      required: true,
+                      message: '請輸入使用者帳號',
+                    },
+                  ]}
+                >
+                  <Input placeholder="使用者帳號" />
+                </Form.Item>
+                <Form.Item
+                  className="loginformpart"
+                  name="loginuserpassword"
+                  label={loginuserpasswordLabel}
+                  rules={[
+                    {
+                      required: true,
+                      message: '請輸入使用者密碼',
+                    },
+                  ]}
+                >
+                  <Input.Password placeholder="使用者密碼" />
+                </Form.Item>
+                <Form.Item className="loginformpart w-100 text-center mt-4">
+                  <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
+                    會員登入
+                  </Button>
+                </Form.Item>
+              </Form>
             </div>
             <div className="signup">
-            還不是會員 ? 點我 <span>註冊會員</span>
+              還不是會員 ? 點我 <span>註冊會員</span>
             </div>
           </div>
         </section>

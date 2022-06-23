@@ -1,1 +1,53 @@
 @import '../../../assets/scss/global.scss';
+
+.loginpage {
+  margin-top: $space-3;
+  padding: $space-3 $space-2;
+  background: $color-bg-block;
+  .logintitle {
+  }
+  .logincard {
+    background-color: $color-bg-dark;
+    padding: $space-3;
+    .loginimg {
+      display: flex;
+      margin: $space-4 auto;
+      align-items: center;
+      justify-content: center;
+    }
+    .loginform {
+    }
+    .signup {
+      text-align: center;
+      span{
+        color: $color-font-gold;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .loginpage {
+
+    padding: $space-3 $space-4;
+
+    .logintitle {
+    }
+    .logincard {
+      background-color: $color-bg-dark;
+      padding: $space-3 20vw;
+      .loginimg {
+
+        margin: 10vh auto;
+
+      }
+      .loginform {
+        margin: 10vh auto;
+        .loginformpart{
+          margin: $space-5 0;
+        }
+      }
+
+    }
+  }
+
+}

@@ -1,10 +1,11 @@
 // scss
 import './index.scss';
-import OrderListForm from '../../../components/FeOrderList/OrderList';
 import { Link } from 'react-router-dom';
+
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination1';
+import OrderListForm from '../../../components/FeOrderList/OrderList';
 
 const OrderList = () => {
   // header 資料
@@ -48,7 +49,9 @@ const OrderList = () => {
       ],
     },
   };
+
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+
   const orderlistArr = [
     {
       id: 1,
@@ -78,6 +81,7 @@ const OrderList = () => {
       orderBtn: '詳細內容',
     },
   ];
+
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -102,7 +106,7 @@ const OrderList = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-select" href="#/">
+                <a className="nav-select" href="/account/order/1">
                   已完成
                 </a>
               </li>
@@ -136,4 +140,5 @@ const OrderList = () => {
     </>
   );
 };
+
 export default OrderList;

@@ -1,11 +1,13 @@
 // scss
 import './index.scss';
-import UserCouponList from '../../../components/FeCoupon/UserCoupon';
 import { Link } from 'react-router-dom';
+
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination1';
+import UserCouponList from '../../../components/FeCoupon/UserCoupon';
 
+//images
 import couponListImg1 from '../../../assets/images/fe/couponList/coupon-list-img-1.png';
 import couponListImg2 from '../../../assets/images/fe/couponList/coupon-list-img-2.png';
 
@@ -42,28 +44,30 @@ const UserCoupon = () => {
         href: '/',
         name: '會員中心',
       },
-      selected: 'groupList',
+      selected: 'couponList',
       selectOptions: [
         {
           name: '優惠券',
-          value: 'groupList',
+          value: 'couponList',
         },
         {
           name: '優惠券使用規則',
-          value: 'groupList2',
+          value: 'couponList2',
         },
         {
           name: '優惠券領取',
-          value: 'groupList3',
+          value: 'couponList3',
         },
         {
           name: '我的優惠券',
-          value: 'groupList4',
+          value: 'couponList4',
         },
       ],
     },
   };
+
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+
   const usercouponArr = [
     {
       id: 1,
@@ -88,15 +92,18 @@ const UserCoupon = () => {
       coupomNum: '1003',
       couponName: '註冊禮券折$100',
       couponStart: '2022/05/29',
+      timeof: '~',
       couponEnd: '2022/06/29',
-      couponStatus: '未使用',
+      couponStatus: '已使用',
       couponBtn: '詳細內容',
     },
   ];
 
   return (
     <>
+      {/* header */}
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+
       {/* <!-- page-type1-list official --> */}
       <div className="page-type1-list-area coupon-list mode-official">
         <div className="container">
@@ -131,7 +138,7 @@ const UserCoupon = () => {
           </div>
 
           {/* <!-- page-type1-intro --> */}
-          <div className="page-coupon-intro-area container">
+          <div className="page-coupon-intro-area container mb-5">
             <div className="page-coupon-intro-content ">
               <div className="coupon-list-img-2">
                 <img src={couponListImg2} alt="coupon-list-img-2" className="img-fluid object-cover " />
@@ -152,7 +159,7 @@ const UserCoupon = () => {
             </div>
           </div>
 
-          <section className="container coupon-sec-area mb-5">
+          {/* <section className="container coupon-sec-area mb-5">
             <div className="coupon-sec-content">
               <div className="coupon_num_card">
                 <div className="num_card-body mb-3">
@@ -181,11 +188,11 @@ const UserCoupon = () => {
                 </div>
               </div>
             </div>
-          </section>
+          </section> */}
 
           {/* <!-- page-type1-list --> */}
-          <div className="page-type1-area-title" id="grouplist-bolck1">
-            已完成
+          <div className="page-type1-area-title" id="couponlist-bolck3">
+            我的優惠券
           </div>
           <div className="page-type1-list-wraper">
             <div className="page-type1-list-title pc-view">
@@ -199,16 +206,6 @@ const UserCoupon = () => {
             {usercouponArr.map((v, i) => {
               return <UserCouponList key={v.id} data={v} />;
             })}
-            <div className="page-type1-list-content">
-              <div className="list-content_coupon_num">1001</div>
-              <div className="list-content_coupon_name">註冊禮券折$100</div>
-              <div className="list-content_coupon_start">2022/05/29</div>
-              <div className="list-content_coupon_end">2022/06/29</div>
-              <div className="list-content_coupon_status">未使用</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
             {/* <div className="page-type1-list-content">
               <div className="list-content_coupon_num">1001</div>
               <div className="list-content_coupon_name">註冊禮券折$100</div>
@@ -216,48 +213,15 @@ const UserCoupon = () => {
               <div className="list-content_coupon_end">2022/06/29</div>
               <div className="list-content_coupon_status">未使用</div>
               <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_coupon_num">1001</div>
-              <div className="list-content_coupon_name">註冊禮券折$100</div>
-              <div className="list-content_coupon_start">2022/05/29</div>
-              <div className="list-content_coupon_end">2022/06/29</div>
-              <div className="list-content_coupon_status">未使用</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_coupon_num">1001</div>
-              <div className="list-content_coupon_name">註冊禮券折$100</div>
-              <div className="list-content_coupon_start">2022/05/29</div>
-              <div className="list-content_coupon_end">2022/06/29</div>
-              <div className="list-content_coupon_status">未使用</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_coupon_num">1001</div>
-              <div className="list-content_coupon_name">註冊禮券折$100</div>
-              <div className="list-content_coupon_start">2022/05/29</div>
-              <div className="list-content_coupon_end">2022/06/29</div>
-              <div className="list-content_coupon_status">未使用</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
+                <Link to="/coupon/1">詳細內容</Link>
               </div>
             </div> */}
           </div>
 
           <FePagination />
           <div className="couponlist-footer">
-            <spna>
-              單筆訂單限抵一張折價券。
-              <br />
-              取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。
-            </spna>
+            <spna>單筆訂單限抵一張折價券。</spna>
+            <p>取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。</p>
           </div>
         </div>
       </div>

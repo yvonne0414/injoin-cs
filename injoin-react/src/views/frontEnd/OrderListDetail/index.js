@@ -2,33 +2,18 @@
 import './index.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Popover, Steps, Collapse } from 'antd';
+
+//antd
+import { Divider, Popover, Steps, Collapse } from 'antd';
 import 'antd/dist/antd.css';
 
-import OrderDetail from '../../../components/FeOrderlistDetail/OrderDetail';
-import OrderDetailsList from '../../../components/FeOrderlistDetail/OrderDetailsList';
-
-// import orderDetailImg1 from '../../../assets/images/fe/orderDetail/order-detail-img-1.png';
-
-// component
+//component
 import FePage1Header from '../../../components/FePage1Header';
-// import FePagination from '../../../components/FePagination1';
-
-const { Panel } = Collapse;
+import OrderDetail from '../../../components/FeOrderlistDetail/OrderDetail';
 
 const OrderListDetail = () => {
-  const customDot = (dot, { status, index }) => (
-    <Popover
-      content={
-        <span>
-          step {index} status: {status}
-        </span>
-      }
-    >
-      {dot}
-    </Popover>
-  );
   const { Step } = Steps;
+
   // header 資料
   const page1HeaderInfo = {
     titleEn: 'Detail',
@@ -36,11 +21,11 @@ const OrderListDetail = () => {
     menuList: [
       {
         href: '#order-detail-bolck1',
-        name: 'test',
+        name: '',
       },
       {
         href: '#order-detail-bolck2',
-        name: 'test2',
+        name: '',
       },
     ],
     imgs: {
@@ -117,6 +102,7 @@ const OrderListDetail = () => {
     },
   ];
 
+  const { Panel } = Collapse;
   const onChange = (key) => {
     console.log(key);
   };
@@ -129,7 +115,7 @@ const OrderListDetail = () => {
       {/* -----------status------------ */}
       <div class="container">
         <div className="step-status mb-5">
-          <Steps current={2} progressDot={customDot}>
+          <Steps current={2} progressDot>
             <Step title="訂單成立" />
             <Step title="待出貨" />
             <Step title="配送中" />
@@ -138,12 +124,12 @@ const OrderListDetail = () => {
         </div>
       </div>
 
-      {/* -----------section 1------------ */}
+      {/* --------- section Collapse ---------- */}
 
       <div class="container">
         <div className="position-relative">
-          <div className="order-detail-info-wraper"></div>
-          <div className="p-3 p-md-5">
+          <div className="order-detail-info-wraper "></div>
+          <div className="p-3 mb-3">
             <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;{detailone.orderdetailData}</h3>
             <div class="detailcollapse">
               <Collapse defaultActiveKey={['1']} onChange={onChange}>
@@ -156,7 +142,6 @@ const OrderListDetail = () => {
                   <br />
                   配送狀態: &nbsp;<span> {detailone.orderdetailStatus}</span>
                   <br />
-                  總金額: &nbsp;<span> {detailone.orderdetailTotal}</span>
                 </Panel>
 
                 <Panel header="配送方式" key="2">
@@ -180,7 +165,6 @@ const OrderListDetail = () => {
             </div>
           </div>
         </div>
-        {/* </div> */}
 
         {/* -----------section 2------------ */}
         <div class="container">

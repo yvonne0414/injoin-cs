@@ -8,9 +8,6 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination';
 
-//api
-import { groupListOfficial } from '../../../apis/groupApi';
-
 // img
 import groupListImg1 from '../../../assets/images/fe/groupList/group-list-img-1.png';
 import groupListImg2 from '../../../assets/images/fe/groupList/group-list-img-2.png';

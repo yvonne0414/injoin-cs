@@ -5,7 +5,7 @@ import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 
 // icon
-import { BsCalendar2Date, BsFillFileEarmarkTextFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
+import { BsCalendar2Date, BsFillFileEarmarkTextFill, BsPeopleFill } from 'react-icons/bs';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { AiFillDollarCircle, AiOutlineFieldTime } from 'react-icons/ai';
 
@@ -15,8 +15,8 @@ import { useNavigate } from 'react-router-dom';
 
 // 圖片upload
 import { PlusOutlined } from '@ant-design/icons';
-import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
-import { useState } from 'react';
+import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, Spin, message } from 'antd';
+import { useState, useEffect } from 'react';
 
 // upload
 const getBase64 = (file) =>
@@ -73,6 +73,18 @@ const GroupAdd = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  // city
+  const [cities, setCities] = useState([]);
+
+  useEffect(() => {
+    let getCities = async () => {
+      // axios.get(URL, config)
+      let response = await axios.get(API_URL + '/cityoptions');
+      setCities(response.data);
+    };
+    getCities();
+  }, []);
+
   // 圖片upload
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
@@ -115,11 +127,21 @@ const GroupAdd = () => {
     </div>
   );
 
+  // loading
+  const [loading, setLoading] = useState(false);
+  // 提示
+  const success = () => {
+    message.success('活動新增成功');
+  };
+  const error = () => {
+    message.error('活動新增失敗');
+  };
   // 表單
   const [form] = Form.useForm();
   const { Option } = Select;
   const { TextArea } = Input;
   const onFinish = async (fieldsValue) => {
+    setLoading(true);
     const groupData = {
       ...fieldsValue,
       groupStartDate: fieldsValue['groupStartDate'].format('YYYY-MM-DD HH:mm'),
@@ -148,6 +170,14 @@ const GroupAdd = () => {
       formData.append('auditStatus', 1);
       let response = await axios.post(`${API_URL}/group/post`, formData);
       console.log(response.data);
+      if (response.data.result == 'OK') {
+        setLoading(false);
+        success();
+        navigate(-1);
+      } else {
+        setLoading(false);
+        error();
+      }
     } catch (e) {
       console.error(e);
     }
@@ -205,174 +235,190 @@ const GroupAdd = () => {
           <div className="page-type1-area-title" id="groupAddB1">
             活動內容
           </div>
+
           <div className="position-relative">
             <div className="group-add-info-bg-square"></div>
             <div className="p-3 p-md-5">
-              <Form
-                layout="vertical"
-                form={form}
-                initialValues={{
-                  layout: 'vertical',
-                }}
-                onFinish={onFinish}
-              >
-                {/* 活動名稱 */}
-                <Form.Item
-                  name="groupName"
-                  rules={[
-                    {
-                      required: true,
-                      message: '請輸入活動名稱',
-                    },
-                  ]}
+              <Spin spinning={loading} tip="Loading...">
+                <Form
+                  layout="vertical"
+                  form={form}
+                  initialValues={{
+                    layout: 'vertical',
+                  }}
+                  onFinish={onFinish}
                 >
-                  <Input placeholder="活動名稱" />
-                </Form.Item>
-                <hr />
-                <div className="d-flex flex-column flex-md-row justify-content-between">
-                  <div className="group-add-info">
-                    {/* 活動開始日期 */}
-                    <Form.Item
-                      label={dateStartLabel}
-                      name="groupStartDate"
-                      rules={[
-                        {
-                          type: 'object',
-                          required: true,
-                          message: '請選擇活動日期',
-                        },
-                      ]}
-                    >
-                      <DatePicker showTime format="YYYY-MM-DD HH:mm" />
-                    </Form.Item>
-                    {/* 活動結束日期 */}
-                    <Form.Item
-                      label={dateEndLabel}
-                      name="groupEndDate"
-                      rules={[
-                        {
-                          type: 'object',
-                          required: true,
-                          message: '請選擇活動日期',
-                        },
-                      ]}
-                    >
-                      <DatePicker showTime format="YYYY-MM-DD HH:mm" />
-                    </Form.Item>
-                    {/* 活動地點 */}
-                    <Form.Item label={addressLabel}>
-                      <Input.Group compact>
-                        <Form.Item
-                          name={['groupAddress', 'city']}
-                          noStyle
-                          rules={[
-                            {
-                              required: true,
-                              message: '請選擇活動縣市',
-                            },
-                          ]}
+                  {/* 活動名稱 */}
+                  <Form.Item
+                    name="groupName"
+                    rules={[
+                      {
+                        required: true,
+                        message: '請輸入活動名稱',
+                      },
+                    ]}
+                  >
+                    <Input placeholder="活動名稱" />
+                  </Form.Item>
+                  <hr />
+                  <div className="d-flex flex-column flex-md-row justify-content-between">
+                    <div className="group-add-info">
+                      {/* 活動開始日期 */}
+                      <Form.Item
+                        label={dateStartLabel}
+                        name="groupStartDate"
+                        rules={[
+                          {
+                            type: 'object',
+                            required: true,
+                            message: '請選擇活動日期',
+                          },
+                        ]}
+                      >
+                        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                      </Form.Item>
+                      {/* 活動結束日期 */}
+                      <Form.Item
+                        label={dateEndLabel}
+                        name="groupEndDate"
+                        rules={[
+                          {
+                            type: 'object',
+                            required: true,
+                            message: '請選擇活動日期',
+                          },
+                        ]}
+                      >
+                        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                      </Form.Item>
+                      {/* 活動地點 */}
+                      <Form.Item label={addressLabel}>
+                        <Input.Group compact>
+                          <Form.Item
+                            name={['groupAddress', 'city']}
+                            noStyle
+                            rules={[
+                              {
+                                required: true,
+                                message: '請選擇活動縣市',
+                              },
+                            ]}
+                          >
+                            <Select placeholder="請選擇縣市">
+                              {cities.map((city) => {
+                                return (
+                                  <Option value={city.code} key={city.code}>
+                                    {city.name}
+                                  </Option>
+                                );
+                              })}
+                              {/* <Option value="1">台北市</Option>
+                            <Option value="2">新北市</Option> */}
+                            </Select>
+                          </Form.Item>
+                          <Form.Item
+                            name={['groupAddress', 'street']}
+                            noStyle
+                            rules={[
+                              {
+                                required: true,
+                                message: '請輸入活動地點',
+                              },
+                            ]}
+                          >
+                            <Input
+                              style={{
+                                width: '60%',
+                              }}
+                              placeholder="活動地址"
+                            />
+                          </Form.Item>
+                        </Input.Group>
+                      </Form.Item>
+                      {/* 預計費用 */}
+                      <Form.Item
+                        label={feeLabel}
+                        name="groupFee"
+                        rules={[
+                          {
+                            required: true,
+                            message: '請輸入預計費用',
+                          },
+                        ]}
+                      >
+                        <InputNumber placeholder="預計費用" />
+                      </Form.Item>
+                      {/* 人數上限 */}
+                      <Form.Item
+                        label={peopleNumLabel}
+                        name="groupPeopleNum"
+                        rules={[
+                          {
+                            required: true,
+                            message: '請輸入人數上限',
+                          },
+                        ]}
+                      >
+                        <InputNumber placeholder="人數上限" />
+                      </Form.Item>
+                      {/* 最終審核日 */}
+                      <Form.Item
+                        label={deadLineLabel}
+                        name="groupDeadLine"
+                        rules={[
+                          {
+                            type: 'object',
+                            required: true,
+                            message: '請輸入最終審核日',
+                          },
+                        ]}
+                      >
+                        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                      </Form.Item>
+                      {/* 活動介紹 */}
+                      <Form.Item
+                        label={discLabel}
+                        name="groupDisc"
+                        rules={[
+                          {
+                            required: true,
+                            message: '請輸入活動介紹',
+                          },
+                        ]}
+                      >
+                        <TextArea showCount maxLength={100} placeholder="活動說明" />
+                      </Form.Item>
+                    </div>
+                    <div className="group-add-img">
+                      <Form.Item name="groupImg" valuePropName="fileList" getValueFromEvent={normFile} rules={[{ required: true, message: '請上傳揪團照片' }]}>
+                        <Upload
+                          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                          listType="picture-card"
+                          fileList={fileList}
+                          onPreview={handlePreview}
+                          onChange={handleChange}
                         >
-                          <Select placeholder="請選擇縣市">
-                            <Option value="1">台北市</Option>
-                            <Option value="2">新北市</Option>
-                          </Select>
-                        </Form.Item>
-                        <Form.Item
-                          name={['groupAddress', 'street']}
-                          noStyle
-                          rules={[
-                            {
-                              required: true,
-                              message: '請輸入活動地點',
-                            },
-                          ]}
-                        >
-                          <Input
-                            style={{
-                              width: '60%',
-                            }}
-                            placeholder="活動地址"
-                          />
-                        </Form.Item>
-                      </Input.Group>
-                    </Form.Item>
-                    {/* 預計費用 */}
-                    <Form.Item
-                      label={feeLabel}
-                      name="groupFee"
-                      rules={[
-                        {
-                          required: true,
-                          message: '請輸入預計費用',
-                        },
-                      ]}
-                    >
-                      <InputNumber placeholder="預計費用" />
-                    </Form.Item>
-                    {/* 人數上限 */}
-                    <Form.Item
-                      label={peopleNumLabel}
-                      name="groupPeopleNum"
-                      rules={[
-                        {
-                          required: true,
-                          message: '請輸入人數上限',
-                        },
-                      ]}
-                    >
-                      <InputNumber placeholder="人數上限" />
-                    </Form.Item>
-                    {/* 最終審核日 */}
-                    <Form.Item
-                      label={deadLineLabel}
-                      name="groupDeadLine"
-                      rules={[
-                        {
-                          type: 'object',
-                          required: true,
-                          message: '請輸入最終審核日',
-                        },
-                      ]}
-                    >
-                      <DatePicker showTime format="YYYY-MM-DD HH:mm" />
-                    </Form.Item>
-                    {/* 活動介紹 */}
-                    <Form.Item
-                      label={discLabel}
-                      name="groupDisc"
-                      rules={[
-                        {
-                          required: true,
-                          message: '請輸入活動介紹',
-                        },
-                      ]}
-                    >
-                      <TextArea showCount maxLength={100} placeholder="活動說明" />
-                    </Form.Item>
+                          {fileList.length >= 1 ? null : uploadButton}
+                        </Upload>
+                      </Form.Item>
+                      <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+                        <img
+                          alt="example"
+                          style={{
+                            width: '100%',
+                          }}
+                          src={previewImage}
+                        />
+                      </Modal>
+                    </div>
                   </div>
-                  <div className="group-add-img">
-                    <Form.Item name="groupImg" valuePropName="fileList" getValueFromEvent={normFile} rules={[{ required: true, message: '請上傳揪團照片' }]}>
-                      <Upload action="https://3001/api/group/post" listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
-                        {fileList.length >= 1 ? null : uploadButton}
-                      </Upload>
-                    </Form.Item>
-                    <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
-                      <img
-                        alt="example"
-                        style={{
-                          width: '100%',
-                        }}
-                        src={previewImage}
-                      />
-                    </Modal>
-                  </div>
-                </div>
-                <Form.Item className="w-100 text-center mt-4">
-                  <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
-                    報名參加
-                  </Button>
-                </Form.Item>
-              </Form>
+                  <Form.Item className="w-100 text-center mt-4">
+                    <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
+                      報名參加
+                    </Button>
+                  </Form.Item>
+                </Form>
+              </Spin>
             </div>
           </div>
 

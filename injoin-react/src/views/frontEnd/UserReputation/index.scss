@@ -110,13 +110,78 @@
           padding: .25rem .5rem;
           border-radius: .25rem;
           &:hover{
-            color: aqua;
+            color: $color-font-gold;
 
           }
+        
         }
       }
     }
   }
+}
+
+
+.ant-modal-body{
+  overflow: overlay;
+  height: 40vh;
+}
+.ant-modal-title {
+  font-family: $font-family-cn-main;
+}
+.reputation-pop {
+
+  width: 100%;
+  border-bottom: solid .1rem #565656;
+  .reputation-pop-orderlist{
+    margin-top: 1rem;
+  }
+  .reputation-pop-content{
+   flex-wrap: wrap;
+   display: flex;
+   flex-direction: row;
+   margin-top: 1rem;
+    .reputation-pop-img{
+      
+      width: 30%;
+      height: 20%;
+      margin-right:1rem ;
+      img{
+        object-fit: cover;
+        width:100%;
+      }
+    }
+    .reputation-pop-prd{
+      font-family: $font-family-cn-main;
+      .reputation-pop-tittle{
+        color: $color-font;
+        font-size: var(--fs-cn-page-list-menu);
+      }
+      .reputation-pop-star{
+        .ant-rate{
+          color: $color-font-gold;
+          font-size: 18px;
+          margin-left: .5rem;
+        }
+      }
+
+      
+    }
+    .reputation-pop-commit{
+      font-family: $font-family-cn-main;
+      margin-top: .5rem;
+      margin-bottom: 1rem;
+      
+      .reputation-pop-commit-context{
+        width: 100%;
+        height:100%;
+        background-color: $color-font-sp;
+        color: $color-font;
+        padding: 1rem;
+        margin-top: .25rem;
+        resize: vertical; 
+      }
+    }
+   }
 }
 
 @media screen and (min-width: 768px) {

@@ -1,7 +1,6 @@
 import './index.scss';
 
 import FePagination from '../../../components/FePagination1';
-import reputationimg from '../../../assets/images/fe/userReputation/reputation_1.png';
 import FePage1Header from '../../../components/FePage1Header';
 
 import React, { useState } from 'react';
@@ -45,7 +44,6 @@ const UserReputation = () => {
       ],
     },
   };
-  const [pop, setPop] = useState(false);
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
   const listarr = [
     {
@@ -155,24 +153,6 @@ const UserReputation = () => {
           </div>
         </div>
         <FePagination />
-      </div>
-
-      <div className="reputation-pop ">
-        <div className="container">
-          <div className="reputation-pop-orderlist">20EROVWDCZhV</div>
-          <div className="reputation-pop-content">
-            <div className="reputation-pop-time">2022-03-20</div>
-            <div className="reputation-pop-img">
-              <img src={reputationimg} alt="" />
-            </div>
-            <div className="reputation-pop-prd">
-              <div className="reputation-pop-tittle"> 金黑波本威士忌</div>
-              <div className="reputation-pop-star">評價 icon</div>
-              <div className="reputation-pop-commit"> 評論</div>
-            </div>
-            <div className="reputation-pop-commit-context"></div>
-          </div>
-        </div>
       </div>
     </>
   );

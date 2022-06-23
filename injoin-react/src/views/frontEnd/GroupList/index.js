@@ -13,7 +13,29 @@ import groupListImg1 from '../../../assets/images/fe/groupList/group-list-img-1.
 import groupListImg2 from '../../../assets/images/fe/groupList/group-list-img-2.png';
 import groupListImg3 from '../../../assets/images/fe/groupList/group-list-img-3.png';
 
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../../utils/config';
+
 const GroupList = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // 私人
+  const [privateList, setPrivateList] = useState([]);
+
+  useEffect(() => {
+    let getPrivateList = async () => {
+      let response = await axios.get(API_URL + '/group/private');
+      // console.log(API_URL + '/group/private');
+      setPrivateList(response.data);
+      // console.log(response.data);
+    };
+    getPrivateList();
+  }, []);
+  // console.log('privateList', privateList);
+
   // header 資料
   const page1HeaderInfo = {
     titleEn: 'Activity',
@@ -63,8 +85,8 @@ const GroupList = () => {
 
   const officialList = {
     pagination: {
-      totalPage: 5,
-      currentPage: 1,
+      page: 1,
+      lastPage: 5,
     },
     data: [
       {
@@ -110,49 +132,54 @@ const GroupList = () => {
     ],
   };
 
-  const privateList = {
-    pagination: {
-      totalPage: 6,
-      currentPage: 1,
-    },
-    data: [
-      {
-        name: '酒精路跑！',
-        time: '2022/07/11',
-        place: '新北',
-        holder: '王小明',
-        groupId: 1,
-      },
-      {
-        name: '酒精路跑！',
-        time: '2022/07/11',
-        place: '新北',
-        holder: '王小明',
-        groupId: 2,
-      },
-      {
-        name: '酒精路跑！',
-        time: '2022/07/11',
-        place: '新北',
-        holder: '王小明',
-        groupId: 3,
-      },
-      {
-        name: '酒精路跑！',
-        time: '2022/07/11',
-        place: '新北',
-        holder: '王小明',
-        groupId: 4,
-      },
-      {
-        name: '酒精路跑！',
-        time: '2022/07/11',
-        place: '新北',
-        holder: '王小明',
-        groupId: 5,
-      },
-    ],
-  };
+  // const privateList = {
+  //   pagination: {
+  //     totalPage: 6,
+  //     currentPage: 1,
+  //   },
+  //   data: [
+  //     {
+  //       name: '酒精路跑！',
+  //       startTime: '2022/07/11 10:00',
+  //       endTime: '2022/07/12 10:00',
+  //       place: '新北',
+  //       holder: '王小明',
+  //       groupId: 1,
+  //     },
+  //     {
+  //       name: '酒精路跑！',
+  //       startTime: '2022/07/11',
+  //       endTime: '2022/07/13',
+  //       place: '新北',
+  //       holder: '王小明',
+  //       groupId: 2,
+  //     },
+  //     {
+  //       name: '酒精路跑！',
+  //       startTime: '2022/07/11',
+  //       endTime: '2022/07/14',
+  //       place: '新北',
+  //       holder: '王小明',
+  //       groupId: 3,
+  //     },
+  //     {
+  //       name: '酒精路跑！',
+  //       startTime: '2022/07/11',
+  //       endTime: '2022/07/13',
+  //       place: '新北',
+  //       holder: '王小明',
+  //       groupId: 4,
+  //     },
+  //     {
+  //       name: '酒精路跑！',
+  //       startTime: '2022/07/11',
+  //       endTime: '2022/07/13',
+  //       place: '新北',
+  //       holder: '王小明',
+  //       groupId: 5,
+  //     },
+  //   ],
+  // };
 
   return (
     <>
@@ -222,17 +249,24 @@ const GroupList = () => {
                 <div></div>
               </div>
               {privateList.data.map((item) => {
+                let startTime = item.start_time;
+                let endTime = item.end_time;
+                startTime = startTime.slice(0, startTime.length - 3);
+                endTime = startTime.slice(0, endTime.length - 3);
+
                 return (
-                  <div className="page-type1-list-content" key={item.groupId}>
+                  <div className="page-type1-list-content" key={item.id}>
                     <div className="list-content_activity-name">{item.name}</div>
-                    <div className="list-content_time">{item.time}</div>
+                    <div className="list-content_time">
+                      {startTime} ~ {endTime}
+                    </div>
                     <div className="list-content_place">
                       <FaMapMarkerAlt />
-                      {item.place}
+                      {item.cityName}
                     </div>
-                    <div className="list-content_user">{item.holder}</div>
+                    <div className="list-content_user">{item.username}</div>
                     <div className="list-content_btn">
-                      <Link to={`/group/${item.groupId}`}>詳細內容</Link>
+                      <Link to={`/group/${item.id}`}>詳細內容</Link>
                     </div>
                   </div>
                 );

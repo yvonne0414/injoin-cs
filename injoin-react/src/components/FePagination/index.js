@@ -1,6 +1,6 @@
 const FePagination = (props) => {
   const { pagination } = props;
-  const { currentPage, totalPage } = pagination;
+  const { page, lastPage } = pagination;
 
   return (
     <div className="page-type1-pagination">
@@ -17,7 +17,7 @@ const FePagination = (props) => {
       <div className="page-type1-pagination-pagenum">
         {pagination ? (
           <>
-            <span className="mx-3">{currentPage}</span> / <span className="mx-3">{totalPage}</span>
+            <span className="mx-3">{page}</span> / <span className="mx-3">{lastPage}</span>
           </>
         ) : (
           <>

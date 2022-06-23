@@ -16,7 +16,14 @@ import { message, Popconfirm, Tabs } from 'antd';
 // img
 import memberGroupImg3 from '../../../assets/images/fe/memberGroup/member-group-img-1.png';
 
+import { useEffect } from 'react';
+
 const UserGroup = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  //header Info
   const page1HeaderInfo = {
     titleEn: 'MyActivity',
     titleCn: '揪團管理',
@@ -128,7 +135,7 @@ const UserGroup = () => {
       <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
         <div className="container">
           <div className="page-type1-area-title" id="grouplist-bolck2">
-            私人開團活動
+            我的揪團
           </div>
           <div className="page-type1-list-wraper">
             <div className="page-type1-list-title pc-view">

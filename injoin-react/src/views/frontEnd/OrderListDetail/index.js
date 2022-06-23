@@ -1,40 +1,19 @@
 // scss
 import './index.scss';
-
-import { Link } from 'react-router-dom';
 import React from 'react';
-import 'antd/dist/antd.css';
-// import './index.css';
-import { Popover, Steps } from 'antd';
-import 'antd/dist/antd.css';
-import { Collapse } from 'antd';
+import { Link } from 'react-router-dom';
 
-// component
+//antd
+import { Divider, Popover, Steps, Collapse } from 'antd';
+import 'antd/dist/antd.css';
+
+//component
 import FePage1Header from '../../../components/FePage1Header';
-import FePagination from '../../../components/FePagination1';
-
-import orderDetailImg1 from '../../../assets/images/fe/orderDetail/order-detail-img-1.png';
-
-const { Panel } = Collapse;
-// const text = `
-//   A dog is a type of domesticated animal.
-//   Known for its loyalty and faithfulness,
-//   it can be found as a welcome guest in many households across the world.
-// `;
+import OrderDetail from '../../../components/FeOrderlistDetail/OrderDetail';
 
 const OrderListDetail = () => {
-  const customDot = (dot, { status, index }) => (
-    <Popover
-      content={
-        <span>
-          step {index} status: {status}
-        </span>
-      }
-    >
-      {dot}
-    </Popover>
-  );
   const { Step } = Steps;
+
   // header 資料
   const page1HeaderInfo = {
     titleEn: 'Detail',
@@ -42,11 +21,11 @@ const OrderListDetail = () => {
     menuList: [
       {
         href: '#order-detail-bolck1',
-        name: 'test',
+        name: '',
       },
       {
         href: '#order-detail-bolck2',
-        name: 'test2',
+        name: '',
       },
     ],
     imgs: {
@@ -74,93 +53,164 @@ const OrderListDetail = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  const detailone = {
+    orderdetailNum: '513947',
+    orderdetailData: '2022/05/22',
+    orderdetailUser: '王小明',
+    orderdetailTel: '0900000123',
+    orderdetailStatus: '訂單完成',
+  };
+  const detailtwo = {
+    deliverymethod: '宅配',
+    shippingdate: '2022/05/25',
+    deliverycomplet: '2022/05/28',
+  };
+  const detailthree = {
+    paymethod: '信用卡付款',
+    paystatus: '已付款',
+    paytotal: 'NT$1840',
+    remark: '請小心包裝',
+  };
+
+  const orderdetailprdArr = [
+    {
+      prdId: 1,
+      detailprdNum: 'AB123',
+      detailprdImg: 'order-detail-img-1.png',
+      detailprdName: '金彬黑波本威士忌',
+      detailprdPrice: 'NT$680',
+      detailprdNumber: '1',
+      detailprdTotal: 'NT$680',
+    },
+    {
+      prdId: 2,
+      detailprdNum: 'AB456',
+      detailprdImg: 'order-detail-img-1.png',
+      detailprdName: '金彬黑波本威士忌',
+      detailprdPrice: 'NT$680',
+      detailprdNumber: '1',
+      detailprdTotal: 'NT$680',
+    },
+    {
+      prdId: 3,
+      detailprdNum: 'AB789',
+      detailprdImg: 'order-detail-img-1.png',
+      detailprdName: '金彬黑波本威士忌',
+      detailprdPrice: 'NT$680',
+      detailprdNumber: '1',
+      detailprdTotal: 'NT$680',
+    },
+  ];
+
+  const { Panel } = Collapse;
   const onChange = (key) => {
     console.log(key);
   };
 
   return (
     <>
+      {/* -----------header------------ */}
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+
+      {/* -----------status------------ */}
       <div class="container">
         <div className="step-status mb-5">
-          <Steps current={2} progressDot={customDot}>
-            <Step title="Waiting" description="訂單成立" />
-            <Step title="In Progress" description="待出貨" />
-            <Step title="In Progress" description="配送中" />
-            <Step title="Finished " description="訂單完成" />
+          <Steps current={2} progressDot>
+            <Step title="訂單成立" />
+            <Step title="待出貨" />
+            <Step title="配送中" />
+            <Step title="訂單完成" />
           </Steps>
         </div>
       </div>
-      <div class="order-detail-info-wraper">
+
+      {/* --------- section Collapse ---------- */}
+
+      <div class="container">
+        <div className="position-relative">
+          <div className="order-detail-info-wraper "></div>
+          <div className="p-3 mb-3">
+            <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;{detailone.orderdetailData}</h3>
+            <div class="detailcollapse">
+              <Collapse defaultActiveKey={['1']} onChange={onChange}>
+                <Panel header="訂單資訊" key="1">
+                  訂單編號: &nbsp;{detailone.orderdetailNum}
+                  <br />
+                  收件人: &nbsp;{detailone.orderdetailUser}
+                  <br />
+                  連絡電話: &nbsp;{detailone.orderdetailTel}
+                  <br />
+                  配送狀態: &nbsp;<span> {detailone.orderdetailStatus}</span>
+                  <br />
+                </Panel>
+
+                <Panel header="配送方式" key="2">
+                  配送方式: &nbsp;{detailtwo.deliverymethod}
+                  <br />
+                  配送日期: &nbsp;{detailtwo.shippingdate}
+                  <br />
+                  完成日期: &nbsp;{detailtwo.deliverycomplet}
+                </Panel>
+
+                <Panel header="付款方式" key="3">
+                  付款方式: &nbsp; {detailthree.paymethod}
+                  <br />
+                  付款狀態: &nbsp; {detailthree.paystatus}
+                  <br />
+                  總金額: &nbsp; {detailthree.paytotal}
+                  <br />
+                  備註: &nbsp; {detailthree.remark}
+                </Panel>
+              </Collapse>
+            </div>
+          </div>
+        </div>
+
+        {/* -----------section 2------------ */}
         <div class="container">
-          <div className="position-relative">
-            {/* <div className="order-detail-info-bg-square"></div> */}
-            <div className="p-3 p-md-5">
-              <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;2022/05/22</h3>
-              <div class="detailcollapse">
-                <Collapse defaultActiveKey={['1']} onChange={onChange}>
-                  <Panel header="訂單資訊" key="1">
-                    訂單編號: &nbsp;513947
-                    <br />
-                    收件人: &nbsp;王小明
-                    <br />
-                    連絡電話: &nbsp;0900000123
-                    <br />
-                    配送狀態: &nbsp;<span> 訂單完成</span>
-                  </Panel>
-                  <Panel header="配送方式" key="2">
-                    配送方式: &nbsp;宅配
-                    <br />
-                    配送日期: &nbsp;2022/05/25
-                    <br />
-                    完成日期: &nbsp;2022/05/28
-                  </Panel>
-                  <Panel header="付款方式" key="3">
-                    付款方式: &nbsp; 信用卡付款
-                    <br />
-                    付款狀態: &nbsp; 已付款
-                    <br />
-                    總金額: &nbsp; 已付款
-                    <br />
-                    備註: &nbsp; 請小心包裝
-                  </Panel>
-                </Collapse>
+          {/* <div className="position-relative"> */}
+          <div className="order-detail-info-bg-square p-3 p-md-5">
+            <div className="page-type1-list-wraper">
+              <div className="page-type1-listdetail-title pc-view">
+                <div>商品編號</div>
+                <div>商品圖片</div>
+                <div>商品名稱</div>
+                <div>商品單價</div>
+                <div>數量</div>
+                <div>小計</div>
+              </div>
+              <hr />
+            </div>
+            <div className="page-type1-list-section">
+              {orderdetailprdArr.map((v, i) => {
+                return <OrderDetail key={v.prdId} data={v} />;
+              })}
+
+              <div className="summary-section">
+                <div className="summary-title d-flex">
+                  商品小計
+                  <br />
+                  使用優惠券
+                  <br />
+                  訂單金額
+                  <br />
+                  付款方式
+                </div>
+                <div className="summary-item d-flex ms-5">
+                  NT$2040
+                  <br />
+                  -NT$200
+                  <br />
+                  NT$1840
+                  <br />
+                  信用卡
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="container">
-          <div className="position-relative">
-            <div className="order-detail-info-bg-square"></div>
-            <div className="p-3 p-md-5">
-              <div className="page-type1-list-wraper">
-                <div className="page-type1-listdetail-title pc-view row">
-                  <div class="col">商品編號</div>
-                  <div class="col">商品圖片</div>
-                  <div class="col">商品名稱</div>
-                  <div class="col">商品單價</div>
-                  <div class="col">數量</div>
-                  <div class="col">小計</div>
-                </div>
-                <hr />
-              </div>
-              <div>
-                <div className="page-type1-list-section">
-                  <div class="listdetail-card-bg row mb-2">
-                    <div className="list-content_orderdetail_num col">AB123</div>
-                    <div className="list-content_orderdetail_img col">
-                      <img src={orderDetailImg1} alt="order-detail-img-1" className="img-fluid object-cover " />
-                    </div>
-                    <div className="list-content_orderdetail_name col">金賓黑波本威士忌</div>
-                    <div className="list-content_orderdetail_price col">NT$680</div>
-                    <div className="list-content_orderdetail_number col ">1</div>
-                    <div className="list-content_orderdetail_total col ">NT$680</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+
+        {/* --------return orderList-------- */}
         <div class="container">
           <Link to="/account/order" className="back-page btn btn-none mt-3">
             <div>

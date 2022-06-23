@@ -1,1 +1,84 @@
-@import '../../../assets/scss/_variable.scss';
+@import '../../../assets/scss/variable';
+
+.coupon-detail-info-bg-square {
+  width: 100%;
+  height: 100%;
+  background-color: $color-bg-block;
+  position: absolute;
+}
+.coupon-detail-info {
+  font-size: var(--fs-cn-page-type1-content);
+  width: 100%;
+  > div {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    margin-bottom: $space-4;
+    &.coupon-detail-info-tag {
+      display: flex;
+      flex-flow: row;
+      > div {
+        margin-right: $space-2;
+        background-color: white;
+        font-size: var(--fs-cn-page-list-title-sm);
+        border-radius: 2rem;
+        padding: 0 $space-2;
+        color: $color-bg-block;
+      }
+    }
+  }
+
+  .coupon-detail-info-title {
+    display: flex;
+    align-items: center;
+    font-family: $font-family-cn-main;
+    span {
+      margin-left: $space-2;
+    }
+  }
+  .coupon-detail-info-content {
+    font-family: $font-family-cn-content;
+    font-weight: $font-weight-lighter;
+    margin-left: $space-4;
+    p {
+      font-size: var(--fs-cn-footer-content);
+    }
+  }
+}
+.back-page {
+  display: flex !important;
+  align-items: center;
+  width: fit-content;
+  svg {
+    width: 2rem;
+  }
+  svg,
+  span {
+    fill: $color-font-mark-light;
+    color: $color-font-mark-light;
+    font-size: calc(var(--font-base) * 1.25);
+  }
+  &:hover {
+    svg,
+    span {
+      fill: $color-font-gold;
+      color: $color-font-gold;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .coupon-detail-info {
+    width: 60%;
+    .coupon-detail-info-content {
+      margin-left: calc(var(--font-base) * 2);
+      p {
+        width: 80%;
+      }
+    }
+  }
+  .coupon-detail-img {
+    max-width: 30rem;
+    margin-right: $space-5;
+  }
+}

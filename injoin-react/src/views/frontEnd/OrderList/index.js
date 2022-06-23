@@ -1,10 +1,11 @@
 // scss
 import './index.scss';
-
 import { Link } from 'react-router-dom';
+
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination1';
+import OrderListForm from '../../../components/FeOrderList/OrderList';
 
 const OrderList = () => {
   // header 資料
@@ -48,7 +49,39 @@ const OrderList = () => {
       ],
     },
   };
+
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+
+  const orderlistArr = [
+    {
+      id: 1,
+      orderNum: '51345',
+      orderTime: '2022/01/02',
+      orderStatus: '已完成',
+      orderPay: '已付款',
+      orderTotal: 'NT$5022',
+      orderBtn: '詳細內容',
+    },
+    {
+      id: 2,
+      orderNum: '12345',
+      orderTime: '2022/01/02',
+      orderStatus: '已完成',
+      orderPay: '已付款',
+      orderTotal: 'NT$5022',
+      orderBtn: '詳細內容',
+    },
+    {
+      id: 3,
+      orderNum: '45678',
+      orderTime: '2022/01/02',
+      orderStatus: '已完成',
+      orderPay: '已付款',
+      orderTotal: 'NT$5022',
+      orderBtn: '詳細內容',
+    },
+  ];
+
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -59,7 +92,7 @@ const OrderList = () => {
             <ul className="nav order-status">
               <li className="nav-item">
                 <a className="nav-select " href="#/">
-                  尚未付款
+                  訂單成立
                 </a>
               </li>
               <li className="nav-item">
@@ -73,7 +106,7 @@ const OrderList = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-select" href="#/">
+                <a className="nav-select" href="/account/order/1">
                   已完成
                 </a>
               </li>
@@ -97,66 +130,9 @@ const OrderList = () => {
               <div>總金額</div>
               <div></div>
             </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_order_num">51345</div>
-              <div className="list-content_order_time">2022/01/02</div>
-              <div className="list-content_order_status">已完成</div>
-              <div className="list-content_order_pay">已付款</div>
-              <div className="list-content_order_total">NT$5022</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_order_num">51345</div>
-              <div className="list-content_order_time">2022/01/02</div>
-              <div className="list-content_order_status">已完成</div>
-              <div className="list-content_order_pay">已付款</div>
-              <div className="list-content_order_total">NT$5022</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_order_num">51345</div>
-              <div className="list-content_order_time">2022/01/02</div>
-              <div className="list-content_order_status">已完成</div>
-              <div className="list-content_order_pay">已付款</div>
-              <div className="list-content_order_total">NT$5022</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_order_num">51345</div>
-              <div className="list-content_order_time">2022/01/02</div>
-              <div className="list-content_order_status">已完成</div>
-              <div className="list-content_order_pay">已付款</div>
-              <div className="list-content_order_total">NT$5022</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_order_num">51345</div>
-              <div className="list-content_order_time">2022/01/02</div>
-              <div className="list-content_order_status">已完成</div>
-              <div className="list-content_order_pay">已付款</div>
-              <div className="list-content_order_total">NT$5022</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
-            <div className="page-type1-list-content">
-              <div className="list-content_order_num">51345</div>
-              <div className="list-content_order_time">2022/01/02</div>
-              <div className="list-content_order_status">已完成</div>
-              <div className="list-content_order_pay">已付款</div>
-              <div className="list-content_order_total">NT$5022</div>
-              <div className="list-content_btn">
-                <Link to="/group/1">詳細內容</Link>
-              </div>
-            </div>
+            {orderlistArr.map((v, i) => {
+              return <OrderListForm key={i} data={v} />;
+            })}
           </div>
           <FePagination />
         </div>
@@ -164,4 +140,5 @@ const OrderList = () => {
     </>
   );
 };
+
 export default OrderList;

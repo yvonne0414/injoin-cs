@@ -1,0 +1,229 @@
+// React Slick css
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+/* 引入字體 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* 引入變數 */
+@import './_variable.scss';
+@import './_customBootstrap.scss';
+
+* {
+  position: relative;
+}
+
+body {
+  background-color: $color-bg-dark;
+  color: $color-font;
+}
+main {
+  padding-top: 3rem;
+}
+
+/* ==================== 全域 ==================== */
+/* ===== a ===== */
+a {
+  color: $color-font;
+  text-decoration: none;
+}
+a:hover {
+  color: $color-font-gold;
+}
+/* ===== buttom ===== */
+.btn-none {
+  background-color: transparent;
+  border: unset;
+}
+.injoin-btn-outline {
+  background-color: $color-bg-block;
+  border: 1px solid $color-border;
+  color: $color-font;
+  padding: $space-2 $space-4;
+  font-family: $font-family-en-main, $font-family-cn-main;
+  border-radius: 0;
+  &:hover {
+    background-color: #222;
+    border-color: $color-font-gold;
+    color: $color-font-gold;
+  }
+  &.text-gold {
+    color: $color-font-gold;
+  }
+}
+.ant-back-top-content {
+  background-color: #6e686873;
+}
+
+/* ===== select樣式 ===== */
+select {
+  background: transparent;
+  color: #fff;
+  border: unset;
+  border-bottom: 0.5px solid #fff;
+}
+
+/* ===== view ===== */
+.pc-view {
+  display: none !important;
+}
+
+/* ===== img-object ===== */
+.object-cover {
+  width: 100%;
+  object-fit: cover;
+}
+
+.ff-cn-main {
+  font-family: $font-family-cn-main;
+}
+
+/* ===== width ===== */
+.w-fit-content {
+  width: fit-content;
+}
+
+/* ==================== 常用 ==================== */
+
+/* ===== page title  ===== */
+.page-type1-area-title {
+  border-left: 10px $color-border solid;
+  padding-left: $space-3;
+  font-size: var(--fs-cn-page-type1-title-sp);
+  font-family: $font-family-cn-main;
+  margin-bottom: $space-4;
+}
+
+/* ===== page pagination  ===== */
+@mixin type1-pagination {
+  font-family: $font-family-en-main;
+  font-size: var(--fs-en-btn-btn);
+}
+@mixin type1-pagination-btn {
+  font-size: var(--fs-en-page-type1-prev);
+  color: $color-font-mark-light;
+  margin-top: $space-1;
+}
+@mixin type1-pagination-btn-active {
+  font-size: var(--fs-en-btn-next);
+  color: $color-font-gold;
+}
+.page-type1-pagination {
+  @include type1-pagination();
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: $space-3 auto;
+  max-width: 12rem;
+  .page-type1-pagination-pagenum {
+    font-size: var(--fs-en-btn-prev);
+  }
+  .page-type1-pagination-btn {
+    padding-top: $space-2;
+    background-color: transparent;
+    border: none;
+    svg {
+      fill: $color-font-mark-light;
+    }
+    .type1-pagination-btn-text {
+      @include type1-pagination-btn();
+    }
+    &.active {
+      svg {
+        fill: $color-font-gold;
+      }
+      .type1-pagination-btn-text {
+        @include type1-pagination-btn-active();
+      }
+    }
+    &:hover {
+      svg {
+        fill: $color-font-gold;
+      }
+      .type1-pagination-btn-text {
+        color: $color-font-gold;
+      }
+    }
+  }
+}
+
+/* ===== page type1 list area ===== */
+@mixin cn-list-content {
+  font-family: $font-family-cn-content;
+  font-size: var(--fs-cn-page-type1-content);
+}
+@mixin cn-list-main {
+  font-family: $font-family-cn-main;
+  font-size: var(--fs-cn-page-type1-content);
+}
+.page-type1-list-content {
+  @include cn-list-content();
+  border: #aaa 1px solid;
+  padding: $space-2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: $space-3;
+
+  > div {
+    margin-bottom: $space-2;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* ==================== 全域 ==================== */
+  main {
+    padding-top: 0rem;
+    margin-left: 7rem;
+  }
+  /* ===== view ===== */
+  .m-view {
+    display: none !important;
+  }
+  .pc-view {
+    display: flex !important;
+  }
+
+  /* ==================== 常用 ==================== */
+
+  /* ===== page title  ===== */
+  .page-type1-area-title {
+    margin-bottom: $space-5;
+  }
+
+  /* ===== page pagination  ===== */
+  .page-type1-pagination {
+    max-width: 15rem;
+  }
+
+  /* ===== page type1 list area ===== */
+  .page-type1-list-wraper {
+    > div {
+      > div:nth-child(1) {
+        width: 28% !important;
+        text-align: center;
+      }
+      > div:not(:nth-child(1)) {
+        width: 18% !important;
+        text-align: center;
+      }
+    }
+    .page-type1-list-title {
+      @include cn-list-main();
+      border-top: $color-border 3px solid;
+      border-bottom: $color-border 3px solid;
+      padding: $space-2;
+    }
+    .page-type1-list-content {
+      flex-wrap: nowrap;
+      align-items: center;
+      border-bottom: $color-border 1px solid !important;
+      margin-bottom: 0;
+      padding: $space-3 $space-2;
+      border: unset;
+      > div {
+        margin: $space-2;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@import '../../assets/scss/_variable.scss';
+
+.group-player-list {
+  .group-player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: #444 0.5px solid;
+    padding: $space-2 $space-3;
+    .group-player-item-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      > div {
+        margin-right: $space-3;
+      }
+    }
+    .group-player-item-info-img {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .group-player-item-info-status {
+      padding: 0 $space-2;
+      border-radius: 10px;
+      background-color: $color-font-sp;
+      &.checked {
+        background-color: $color-font-gold;
+        color: $color-bg-light;
+      }
+    }
+    .group-player-item-function {
+      .btn svg {
+        fill: $color-font-gold;
+      }
+    }
+  }
+  .group-player-item:last-child {
+    border-bottom: unset;
+  }
+}
+.ant-btn-primary,
+.ant-btn-primary:active {
+  border-color: #8e8686 !important;
+  background: #000 !important;
+}
+
+@media screen and (min-width: 768px) {
+  .group-player-list {
+    padding: $space-2 $space-3;
+  }
+}

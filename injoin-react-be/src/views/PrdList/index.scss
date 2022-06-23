@@ -1,0 +1,63 @@
+@import '../../assets/scss/_variable.scss';
+.be-prdlist-area {
+  width: 100%;
+  > div {
+    display: flex;
+    flex-flow: column;
+  }
+}
+@media screen and (min-width: 768px) {
+  .be-prdlist-area {
+    > div {
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: $space-2 $space-3;
+      gap: $space-2;
+      > div {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        gap: $space-3;
+        &:first-child {
+          width: 10%;
+        }
+        &:nth-child(2) {
+          width: 10%;
+        }
+        &:nth-child(3) {
+          width: 20%;
+          justify-content: flex-start;
+        }
+        &:nth-child(4),
+        &:nth-child(5),
+        &:nth-child(6) {
+          width: 10%;
+        }
+        &:nth-child(6) {
+          justify-content: flex-end;
+          svg:hover {
+            fill: $color-font-gold;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .prdlist-title {
+      border-bottom: 2px #333 solid;
+      border-top: 2px #333 solid;
+      font-family: $font-family-cn-main;
+      background-color: #332c22;
+    }
+    .prdlist-content {
+      border-bottom: 1px #333 solid;
+      &:nth-child(2n + 1) {
+        background-color: $color-bg-light;
+      }
+      .prd-img {
+        max-width: 5rem;
+        max-height: 5rem;
+      }
+    }
+  }
+}

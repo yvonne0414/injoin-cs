@@ -154,8 +154,8 @@
       font-family: $font-family-cn-main;
       .reputation-pop-tittle{
         color: $color-font;
-        font-size: var(--fs-cn-page-list-menu);
-      }
+
+      }        font-size: var(--fs-cn-page-type1-content-sp);
       .reputation-pop-star{
         .ant-rate{
           color: $color-font-gold;
@@ -263,3 +263,7 @@
     }
   }
 }
+// .reputation-pop-tittle{
+
+//   font-size: var(--fs-cn-page-list-content);
+// }

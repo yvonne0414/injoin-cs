@@ -1,6 +1,9 @@
 // scss
 import './_index.scss';
 
+import axios from 'axios';
+import { API_URL } from '../../../utils/config';
+
 // icon
 import { BsCalendar2Date, BsFillFileEarmarkTextFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
 import { FaMapMarkerAlt } from 'react-icons/fa';
@@ -38,6 +41,7 @@ const normFile = (e) => {
 
 const GroupAdd = () => {
   const navigate = useNavigate();
+
   // header 資料
   const page1HeaderInfo = {
     titleEn: 'Newgroup',
@@ -93,7 +97,10 @@ const GroupAdd = () => {
     setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
 
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  // const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  const handleChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
 
   const uploadButton = (
     <div>
@@ -112,20 +119,51 @@ const GroupAdd = () => {
   const [form] = Form.useForm();
   const { Option } = Select;
   const { TextArea } = Input;
-  const onFinish = (fieldsValue) => {
-    const values = {
+  const onFinish = async (fieldsValue) => {
+    const groupData = {
       ...fieldsValue,
-      groupDate: fieldsValue['groupDate'].format('YYYY-MM-DD HH:mm'),
+      groupStartDate: fieldsValue['groupStartDate'].format('YYYY-MM-DD HH:mm'),
+      groupEndDate: fieldsValue['groupEndDate'].format('YYYY-MM-DD HH:mm'),
       groupDeadLine: fieldsValue['groupDeadLine'].format('YYYY-MM-DD HH:mm'),
+      groupImg: fieldsValue['groupImg'][0]['originFileObj'],
     };
-    console.log('Received values of form: ', values);
+    console.log('Received values of form: ', groupData);
+
+    // 送出
+    try {
+      let formData = new FormData();
+      formData.append('groupName', groupData.groupName);
+      formData.append('groupStartDate', groupData.groupStartDate);
+      formData.append('groupEndDate', groupData.groupEndDate);
+      formData.append('groupAddressCounty', groupData.groupAddress.city);
+      formData.append('groupAddressDetail', groupData.groupAddress.street);
+      formData.append('groupFee', groupData.groupFee);
+      formData.append('groupPeopleNum', groupData.groupPeopleNum);
+      formData.append('groupDeadLine', groupData.groupDeadLine);
+      formData.append('groupDisc', groupData.groupDisc);
+      formData.append('groupImg', groupData.groupImg);
+      formData.append('groupIsOfficial', 2);
+      formData.append('userId', 2);
+      formData.append('vipLevel', 1);
+      formData.append('auditStatus', 1);
+      let response = await axios.post(`${API_URL}/group/post`, formData);
+      console.log(response.data);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   // ladel
-  const dateLabel = (
+  const dateStartLabel = (
     <div className="group-add-info-title">
       <BsCalendar2Date />
-      <span>活動日期</span>
+      <span>活動開始時間</span>
+    </div>
+  );
+  const dateEndLabel = (
+    <div className="group-add-info-title">
+      <BsCalendar2Date />
+      <span>活動結束時間</span>
     </div>
   );
   const addressLabel = (
@@ -193,10 +231,24 @@ const GroupAdd = () => {
                 <hr />
                 <div className="d-flex flex-column flex-md-row justify-content-between">
                   <div className="group-add-info">
-                    {/* 活動日期 */}
+                    {/* 活動開始日期 */}
                     <Form.Item
-                      label={dateLabel}
-                      name="groupDate"
+                      label={dateStartLabel}
+                      name="groupStartDate"
+                      rules={[
+                        {
+                          type: 'object',
+                          required: true,
+                          message: '請選擇活動日期',
+                        },
+                      ]}
+                    >
+                      <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                    </Form.Item>
+                    {/* 活動結束日期 */}
+                    <Form.Item
+                      label={dateEndLabel}
+                      name="groupEndDate"
                       rules={[
                         {
                           type: 'object',
@@ -299,14 +351,8 @@ const GroupAdd = () => {
                     </Form.Item>
                   </div>
                   <div className="group-add-img">
-                    <Form.Item name="groupImg" getValueFromEvent={normFile} rules={[{ required: true, message: '請上傳揪團照片' }]}>
-                      <Upload
-                        // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                        listType="picture-card"
-                        fileList={fileList}
-                        onPreview={handlePreview}
-                        onChange={handleChange}
-                      >
+                    <Form.Item name="groupImg" valuePropName="fileList" getValueFromEvent={normFile} rules={[{ required: true, message: '請上傳揪團照片' }]}>
+                      <Upload action="https://3001/api/group/post" listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
                         {fileList.length >= 1 ? null : uploadButton}
                       </Upload>
                     </Form.Item>

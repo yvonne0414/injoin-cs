@@ -291,10 +291,11 @@
   .homepages4-slider {
     // display: none;
     position: absolute;
-    top: 45vh;
+    top: 35vh;
+    right: 0;
     // height: 50vh;
     height: 20vw;
-    width: 70vw;
+    width: 50vw;
     .homepages4-card {
       padding: 0 $space-3;
       .card-img {
@@ -363,12 +364,7 @@
       }
     }
     .mask {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background: rgba(0, 0, 0, 0.6);
-      width: 100vw;
-      min-height: 100vh;
+      display: none;
     }
 
     .s1-position {

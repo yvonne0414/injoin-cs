@@ -1,4 +1,4 @@
-@import '../../../assets/scss/global.scss';
+@import '../../../assets/scss/_variable.scss';
 
 
 .prd-content {
@@ -6,35 +6,48 @@
     display: flex;
     flex-wrap: wrap;
     font-family: $font-family-cn-content;
+    justify-content:space-between ;
     .prd-total {
       order: 1;
       font-size: var(--fs-cn-page-list-title-sm);
       margin-top: $space-2;
       font-weight: $font-weight-lighter;
       span {
-        margin-left:$space-2;
+        margin-left:$space-1;
       }
     }
     .prd-sel-all {
       order: 2;
-      font-size: var(--fs-cn-page-list-);
+      font-size: var(--fs-cn-page-list-filter);
       margin-top: $space-2;
-      right: -1rem;
-      .prd-sel-1,
-      .prd-sel-2 {
-        .prd-sel {
+
+      .prd-sel-1{
+        .prd-sel-1-major, .prd-sel-1-minor{
           color: $color-font-sp-light;
           border-bottom: solid 1px;
+          background-color: $color-bg-dark;
+        }
+        .prd-sel-1-major{
+          width: 20vw;
+          overflow: hidden;
+        }
+        .prd-sel-1-minor{
+            width: 36vw;
+            overflow: hidden;
         }
       }
-      .prd-sel-2 {
-        width: 70%;
-        left: 3.5rem;
+      .prd-sel-2{
+        justify-content: end;
+        .prd-sel-seq{
+          color: $color-font-sp-light;
+          border-bottom: solid 1px;
+          background-color: $color-bg-dark;
+        }
       }
     }
     .prd-search-form {
       order: 3;
-      margin-top:$space-3;
+      margin-top:$space-4;
       width: 100%;
       .prd-search-label {
         color: $color-font;
@@ -82,6 +95,7 @@
   .prd-card-all {
     .prd-card {
       width: 100%;
+      margin: $space-3 auto;
       background-color: $color-bg-block;
       margin-top: $space-3;
       margin-bottom: $space-2;
@@ -119,6 +133,7 @@
             }
           }
           .prd-card-icon {
+            cursor: pointer;
             display: flex;
             align-items: center;
             color: $color-font-sp-light;
@@ -141,10 +156,24 @@
   .prd-content {
     .prd-content-top {
       justify-content: space-between;
+      margin-bottom: $space-6;
       .prd-sel-all {
         order: 2;
-        .prd-sel-2 {
-          width: 100%;
+        .prd-sel-1{
+          margin-bottom: 2rem;
+          .prd-sel-1-major{
+            width: 6vw;
+            overflow: hidden;
+          }
+          .prd-sel-1-minor{
+              width: 11vw;
+              overflow: hidden;
+          }
+        }
+        .prd-sel-2{
+          justify-content: end;
+          // .prd-sel-seq{
+          // }
         }
       }
       .prd-search-form {

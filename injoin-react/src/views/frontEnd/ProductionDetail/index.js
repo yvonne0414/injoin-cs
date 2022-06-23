@@ -154,6 +154,108 @@ const settings2 = {
     },
   ],
 };
+
+const cardArr = [
+  {
+    id: 1,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 2,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 3,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 4,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 5,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 6,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 7,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+  {
+    id: 8,
+    name: '金黑波本威士忌',
+    price: 'NT.550 ',
+    rating: ' 4.6',
+  },
+];
+
+const bartendcard = [
+  {
+    id: 1,
+    img: 'bartending_1.png',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  },
+  {
+    id: 2,
+    img: 'bartending_1.png',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  },
+  {
+    id: 3,
+    img: 'bartending_1.png',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  },
+  {
+    id: 4,
+    img: 'bartending_1.png',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  },
+  {
+    id: 5,
+    img: 'bartending_1.png',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  },
+  {
+    id: 6,
+    img: 'bartending_1.png',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  },
+  {
+    id: 7,
+    img: 'bartending_1.png',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  },
+  {
+    id: 8,
+    img: 'bartending_1.png',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  },
+];
 const ProductionDetail = () => {
   return (
     <>
@@ -320,13 +422,9 @@ const ProductionDetail = () => {
               </div>
               <div className="px-md-3">
                 <Slider className="prd-deatil-card" {...settings}>
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
-                  <PrdCard />
+                  {cardArr.map((v, i) => {
+                    return <PrdCard key={v.id} data={v} />;
+                  })}
                 </Slider>
               </div>
             </div>
@@ -339,13 +437,9 @@ const ProductionDetail = () => {
               </div>
               <div className="bartending-card px-md-3">
                 <Slider {...settings2}>
-                  <BartendingCard />
-                  <BartendingCard />
-                  <BartendingCard />
-                  <BartendingCard />
-                  <BartendingCard />
-                  <BartendingCard />
-                  <BartendingCard />
+                  {bartendcard.map((v, i) => {
+                    return <BartendingCard key={i.id} data={v} />;
+                  })}
                 </Slider>
               </div>
             </div>

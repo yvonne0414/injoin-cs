@@ -219,9 +219,11 @@ const UserCoupon = () => {
           </div>
 
           <FePagination />
-          <div className="couponlist-footer">
-            <spna>單筆訂單限抵一張折價券。</spna>
-            <p>取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。</p>
+          <div className="couponlist-footer w-100">
+            <span>
+              單筆訂單限抵一張折價券。
+              <p>取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。</p>
+            </span>
           </div>
         </div>
       </div>

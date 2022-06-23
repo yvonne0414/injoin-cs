@@ -68,20 +68,26 @@
         margin-bottom: 0;
       }
     }
-    .list-content_order_num,
-    .list-content_order_time,
-    .list-content_order_statu,
-    .list-content_order_pay,
-    .list-content_order_total,
-    .list-content_btn {
-      order: 0;
-      width: unset;
-      text-align: center;
-    }
     .list-content_order_num {
-      -webkit-line-clamp: 1;
+      order: 1;
     }
+    .list-content_order_time {
+      order: 2;
+    }
+    .list-content_order_statu {
+      order: 3;
+    }
+    .list-content_order_pay {
+      order: 4;
+    }
+    .list-content_order_total {
+      order: 5;
+    }
+
     .list-content_btn {
+      order: 6;
+      text-align: center;
+
       a {
         background-color: $color-bg-block;
         width: fit-content;

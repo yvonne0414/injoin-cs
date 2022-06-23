@@ -129,7 +129,7 @@ const OrderListDetail = () => {
       <div class="container">
         <div className="position-relative">
           <div className="order-detail-info-wraper "></div>
-          <div className="p-3 mb-3">
+          <div className="p-3 ">
             <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;{detailone.orderdetailData}</h3>
             <div class="detailcollapse">
               <Collapse defaultActiveKey={['1']} onChange={onChange}>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import './index.scss';
+import { useState } from 'react';
 
 import FePage2Header from '../../../components/FePage2Header';
 
@@ -46,9 +46,11 @@ const Production = () => {
     ['白蘭姆酒', '牙買加蘭姆酒', '高濃度蘭姆酒'],
     ['干邑白蘭地', '其他水果白蘭地', '皮斯可'],
   ];
+  const prdSeq = ['價格低到高', '評價高到低', '評價低到高'];
 
   const [majorPrdSelI, setMajorPrdSelI] = useState('');
   const [subPrdSelI, setSubPrdSelI] = useState('');
+  const [prdSeqI, setPrdSeqI] = useState('');
 
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = page2HeaderInfo;
   const cardArr = [
@@ -96,7 +98,7 @@ const Production = () => {
                     setMajorPrdSelI(e.target.value);
                     setSubPrdSelI('');
                   }}
-                  className="mx-2 px-2 prd-sel"
+                  className="mx-2 px-1 prd-sel-1-major"
                 >
                   {/* <optgroup labal="基酒種類"></optgroup> */}
                   <option value="" className="prd-sel-option">
@@ -115,7 +117,7 @@ const Production = () => {
                   onChange={(e) => {
                     setSubPrdSelI(e.target.value);
                   }}
-                  className=" px-2 prd-sel"
+                  className="px-2 prd-sel-1-minor"
                 >
                   <option value="" className="prd-sel-option">
                     請選擇
@@ -134,10 +136,23 @@ const Production = () => {
               </div>
               <div className="prd-sel-2 d-flex align-items-end  mt-1">
                 <span>依</span>
-                <select value="" className="mx-1 px-2 prd-sel">
+                <select
+                  value={prdSeqI}
+                  onChange={(e) => {
+                    setPrdSeqI(e.target.value);
+                  }}
+                  className="mx-2 px-2 prd-sel-seq"
+                >
                   <option value="" className="prd-sel-option">
                     價格高到低
                   </option>
+                  {prdSeq.map((v, i) => {
+                    return (
+                      <option key={i} value={v}>
+                        {v}
+                      </option>
+                    );
+                  })}
                 </select>
                 <span>排序</span>
               </div>

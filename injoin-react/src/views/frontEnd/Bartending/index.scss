@@ -29,6 +29,14 @@
           border-bottom: solid 1px;
           background-color: $color-bg-dark;
         }
+        .Bartending-sel-1{
+          width: 23vw;
+          overflow: hidden;
+        }
+        .Bartending-sel-2{
+          width:35vw;
+          overflow: hidden;
+        }
       }
     }
     .Bartending-search-form {
@@ -63,14 +71,21 @@
     .Bartending-content-top {
       display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      margin-bottom: 5rem;
+      flex-wrap: nowrap;
+      margin-bottom: $space-6;
       .Bartending-sel-all {
         order: 2;
-        width: 20%;
+        margin-top: 0;
+        font-size: var( --fs-cn-page-list-filter);
         .Bartending-sel {
           display: flex;
-          justify-content: center;
+          justify-content: end;
+          .Bartending-sel-1{
+            width: 8vw;
+          }
+          .Bartending-sel-2{
+            width: 12vw;
+          }
         }
       }
       .Bartending-search-form {

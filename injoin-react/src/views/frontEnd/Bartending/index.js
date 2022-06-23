@@ -40,7 +40,7 @@ const Bartending = () => {
   const majorSel = ['類型', '杯型'];
   const subSel = [
     ['Cocltail ', 'Highball', 'Sour', 'Collins'],
-    ['Mojito Glass', 'Cocktail Glass', ' Cocktail Glass', 'Cocktail Glass'],
+    ['Mojito Glass', 'Champagne Saucer', ' Cocktail Glass', 'Cocktail Glass'],
   ];
 
   //第一種寫法(-1)
@@ -51,7 +51,6 @@ const Bartending = () => {
   const [subSelIndex, setsubSelIndex] = useState('');
 
   //form 搜尋欄
-  const [bartendingSearch, setBartendingSearch] = useState('');
 
   //bartendingCard
   const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
@@ -152,7 +151,7 @@ const Bartending = () => {
             </div>
             {/* 搜尋欄 */}
             <form className="Bartending-search-form d-flex">
-              <input type="text" placeholder="Search" value={bartendingSearch} className="Bartending-search-label form-control form-control-sm me-1" />
+              <input type="text" placeholder="Search" className="Bartending-search-label form-control form-control-sm me-1" />
               <button className="btn Bartending-search-btn" type="submit">
                 搜尋
               </button>

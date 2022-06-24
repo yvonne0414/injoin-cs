@@ -37,7 +37,7 @@ const FeAuditModal = () => {
       <Modal title="團員審核" visible={visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} centered>
         <div className="group-player-list">
           {arr.map((item) => {
-            return <GroupPlayItem />;
+            return <GroupPlayItem key={item} />;
           })}
         </div>
       </Modal>

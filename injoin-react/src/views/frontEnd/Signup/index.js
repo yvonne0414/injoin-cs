@@ -90,7 +90,7 @@ const Sighup = () => {
           </div>
           <div className="signupcard">
             <div className="signupform">
-              <Form form={form}>
+              <Form form={form} layout="vertical">
                 <Form.Item
                   className="loginformpart"
                   name="signupusername"
@@ -169,7 +169,8 @@ const Sighup = () => {
           </div>
         </section>
         <section className="notice">
-          注意事項 : <br /> ※未滿18歲請勿註冊。 <br /> ※本頁面只提供會員註冊，如要修改會員資料請至會員中心 > 會員資料，進行更新。
+          注意事項 :<span>※未滿18歲請勿註冊。</span>
+          <span>※本頁面只提供會員註冊，如要修改會員資料請至會員中心 > 會員資料，進行更新。</span>
         </section>
       </div>
     </>

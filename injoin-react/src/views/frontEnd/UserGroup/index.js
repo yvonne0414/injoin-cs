@@ -2,13 +2,13 @@ import './index.scss';
 import { Link } from 'react-router-dom';
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import FePagination from '../../../components/FePagination1';
+import FePagination from '../../../components/FePagination';
 import FeAuditModal from '../../../components/FeAuditModal/index.js';
 
 import { FaMapMarkerAlt, FaEye } from 'react-icons/fa';
 import { BsPencilSquare } from 'react-icons/bs';
-import { ImUserCheck } from 'react-icons/im';
-import { RiWechatLine, RiCheckboxBlankCircleLine, RiCheckboxCircleFill } from 'react-icons/ri';
+import { ImUserMinus } from 'react-icons/im';
+import { RiWechatLine } from 'react-icons/ri';
 import { HiOutlineTrash } from 'react-icons/hi';
 
 import { message, Popconfirm, Tabs } from 'antd';
@@ -16,12 +16,15 @@ import { message, Popconfirm, Tabs } from 'antd';
 // img
 import memberGroupImg3 from '../../../assets/images/fe/memberGroup/member-group-img-1.png';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../../utils/config';
 
 const UserGroup = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  let [userId, setUserId] = useState(2);
 
   //header Info
   const page1HeaderInfo = {
@@ -34,11 +37,11 @@ const UserGroup = () => {
       },
       {
         href: '#grouplist-bolck2',
-        name: '我的揪團',
+        name: '我揪的團',
       },
       {
         href: '#grouplist-bolck3',
-        name: '我參加的揪團',
+        name: '待參加揪團',
       },
       {
         href: '#grouplist-bolck4',
@@ -104,9 +107,137 @@ const UserGroup = () => {
   // tabs
   const { TabPane } = Tabs;
   const onChange = (key) => {
-    console.log(key);
+    // console.log(key);
   };
 
+  // 我揪的團列表
+  let [ownPage, setOwnPage] = useState(1);
+  let [ownData, setOwnData] = useState([]);
+  let [ownPagination, setOwnPagination] = useState({
+    total: 1,
+    page: 1,
+    lastPage: 1,
+  });
+  useEffect(() => {
+    let getOwnAddList = async () => {
+      let response = await axios.get(API_URL + '/group/ownaddgroup', {
+        params: {
+          userId: userId,
+          page: ownPage,
+        },
+      });
+      setOwnData(response.data.data);
+      setOwnPagination(response.data.pagination);
+      // console.log(response.data);
+      // console.log(ownData);
+      // console.log(ownPagination);
+    };
+    getOwnAddList();
+  }, [ownPage, userId]);
+
+  // 待參加官方(wo)
+  let [woPage, setWoPage] = useState(1);
+  let [woData, setWoData] = useState([]);
+  let [woPagination, setWoPagination] = useState({
+    total: 1,
+    page: 1,
+    lastPage: 1,
+  });
+  useEffect(() => {
+    let getWoList = async () => {
+      let response = await axios.get(API_URL + '/group/participant', {
+        params: {
+          // TODO:userId要換成session的
+          userId: userId,
+          groupMaxStatus: 3,
+          groupMinStatus: 0,
+          groupCate: 1,
+          page: woPage,
+        },
+      });
+      setWoData(response.data.data);
+      setWoPagination(response.data.pagination);
+    };
+    getWoList();
+  }, [woPage, userId]);
+
+  // 待參加私人(wp)
+  let [wpPage, setWpPage] = useState(1);
+  let [wpData, setWpData] = useState([]);
+  let [wpPagination, setWpPagination] = useState({
+    total: 1,
+    page: 1,
+    lastPage: 1,
+  });
+  useEffect(() => {
+    let getWpList = async () => {
+      let response = await axios.get(API_URL + '/group/participant', {
+        params: {
+          // TODO:userId要換成session的
+          userId: userId,
+          groupMaxStatus: 3,
+          groupMinStatus: 0,
+          groupCate: 2,
+          page: wpPage,
+        },
+      });
+      setWpData(response.data.data);
+      setWpPagination(response.data.pagination);
+    };
+    getWpList();
+  }, [wpPage, userId]);
+
+  // 歷史官方(ho)
+  let [hoPage, setHoPage] = useState(1);
+  let [hoData, setHoData] = useState([]);
+  let [hoPagination, setHoPagination] = useState({
+    total: 1,
+    page: 1,
+    lastPage: 1,
+  });
+  useEffect(() => {
+    let getHoList = async () => {
+      let response = await axios.get(API_URL + '/group/participant', {
+        params: {
+          // TODO:userId要換成session的
+          userId: userId,
+          groupMaxStatus: 4,
+          groupMinStatus: 2,
+          groupCate: 1,
+          page: hoPage,
+        },
+      });
+      setHoData(response.data.data);
+      setHoPagination(response.data.pagination);
+    };
+    getHoList();
+  }, [hoPage, userId]);
+
+  // 歷史私人(hp)
+  let [hpPage, setHpPage] = useState(1);
+  let [hpData, setHpData] = useState([]);
+  let [hpPagination, setHpPagination] = useState({
+    total: 1,
+    page: 1,
+    lastPage: 1,
+  });
+  useEffect(() => {
+    let getHpList = async () => {
+      let response = await axios.get(API_URL + '/group/participant', {
+        params: {
+          // TODO:userId要換成session的
+          userId: userId,
+          groupMaxStatus: 4,
+          groupMinStatus: 2,
+          groupCate: 2,
+          page: hpPage,
+        },
+      });
+      setHpData(response.data.data);
+      setHpPagination(response.data.pagination);
+    };
+    getHpList();
+  }, [hpPage, userId]);
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -135,7 +266,7 @@ const UserGroup = () => {
       <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
         <div className="container">
           <div className="page-type1-area-title" id="grouplist-bolck2">
-            我的揪團
+            我揪的團
           </div>
           <div className="page-type1-list-wraper">
             <div className="page-type1-list-title pc-view">
@@ -148,185 +279,68 @@ const UserGroup = () => {
               <div className="list-content_btn"></div>
               <div className="list-content_btn"></div>
             </div>
-            <div className="page-type1-list-content my-group-list-wraper">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <FaMapMarkerAlt />
-                台北
-              </div>
-              <div className="list-content_btn" title="查看">
-                <Link to="/group/1">
-                  <FaEye />
-                  {/* 詳細內容 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="編輯">
-                <Link to="/newgroup">
-                  <BsPencilSquare />
-                  {/* 編輯 */}
-                </Link>
-              </div>
+            {ownData.map((item) => {
+              let startTime = item.start_time;
+              let endTime = item.end_time;
+              startTime = startTime.slice(0, startTime.length - 3);
+              endTime = endTime.slice(0, endTime.length - 3);
+              return (
+                <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
+                  <div className="list-content_activity-name">{item.name}</div>
+                  <div className="list-content_time">
+                    {startTime}~{endTime}
+                  </div>
+                  <div className="list-content_place">
+                    <FaMapMarkerAlt />
+                    {item.cityName}
+                  </div>
+                  <div className="list-content_btn" title="查看">
+                    <Link to={`/group/${item.id}`}>
+                      <FaEye />
+                      {/* 詳細內容 */}
+                    </Link>
+                  </div>
+                  <div className="list-content_btn" title="編輯">
+                    <Link to="/newgroup">
+                      <BsPencilSquare />
+                      {/* 編輯 */}
+                    </Link>
+                  </div>
 
-              <FeAuditModal />
+                  <FeAuditModal />
 
-              <div className="list-content_btn" title="聊天室">
-                <Link to="/">
-                  <RiWechatLine />
-                  {/* 聊天室 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="刪除活動">
-                <Popconfirm title="你確定要刪除此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                  <HiOutlineTrash />
-                </Popconfirm>
-              </div>
-            </div>
-            <div className="page-type1-list-content my-group-list-wraper">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <FaMapMarkerAlt />
-                台北
-              </div>
-              <div className="list-content_btn" title="查看">
-                <Link to="/group/1">
-                  <FaEye />
-                  {/* 詳細內容 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="編輯">
-                <Link to="/newgroup">
-                  <BsPencilSquare />
-                  {/* 編輯 */}
-                </Link>
-              </div>
-
-              <FeAuditModal />
-
-              <div className="list-content_btn" title="聊天室">
-                <Link to="/">
-                  <RiWechatLine />
-                  {/* 聊天室 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="刪除活動">
-                <Popconfirm title="你確定要刪除此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                  <HiOutlineTrash />
-                </Popconfirm>
-              </div>
-            </div>
-            <div className="page-type1-list-content my-group-list-wraper">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <FaMapMarkerAlt />
-                台北
-              </div>
-              <div className="list-content_btn" title="查看">
-                <Link to="/group/1">
-                  <FaEye />
-                  {/* 詳細內容 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="編輯">
-                <Link to="/newgroup">
-                  <BsPencilSquare />
-                  {/* 編輯 */}
-                </Link>
-              </div>
-
-              <FeAuditModal />
-
-              <div className="list-content_btn" title="聊天室">
-                <Link to="/">
-                  <RiWechatLine />
-                  {/* 聊天室 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="刪除活動">
-                <Popconfirm title="你確定要刪除此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                  <HiOutlineTrash />
-                </Popconfirm>
-              </div>
-            </div>
-            <div className="page-type1-list-content my-group-list-wraper">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <FaMapMarkerAlt />
-                台北
-              </div>
-              <div className="list-content_btn" title="查看">
-                <Link to="/group/1">
-                  <FaEye />
-                  {/* 詳細內容 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="編輯">
-                <Link to="/newgroup">
-                  <BsPencilSquare />
-                  {/* 編輯 */}
-                </Link>
-              </div>
-
-              <FeAuditModal />
-
-              <div className="list-content_btn" title="聊天室">
-                <Link to="/">
-                  <RiWechatLine />
-                  {/* 聊天室 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="刪除活動">
-                <Popconfirm title="你確定要刪除此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                  <HiOutlineTrash />
-                </Popconfirm>
-              </div>
-            </div>
-            <div className="page-type1-list-content my-group-list-wraper">
-              <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-              <div className="list-content_time">2022/01/02</div>
-              <div className="list-content_place">
-                <FaMapMarkerAlt />
-                台北
-              </div>
-              <div className="list-content_btn" title="查看">
-                <Link to="/group/1">
-                  <FaEye />
-                  {/* 詳細內容 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="編輯">
-                <Link to="/newgroup">
-                  <BsPencilSquare />
-                  {/* 編輯 */}
-                </Link>
-              </div>
-
-              <FeAuditModal />
-
-              <div className="list-content_btn" title="聊天室">
-                <Link to="/">
-                  <RiWechatLine />
-                  {/* 聊天室 */}
-                </Link>
-              </div>
-              <div className="list-content_btn" title="刪除活動">
-                <Popconfirm title="你確定要刪除此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                  <HiOutlineTrash />
-                </Popconfirm>
-              </div>
-            </div>
+                  <div className="list-content_btn" title="聊天室">
+                    <Link to="/chatroom/1">
+                      <RiWechatLine />
+                      {/* 聊天室 */}
+                    </Link>
+                  </div>
+                  <div className="list-content_btn" title="刪除活動">
+                    <Popconfirm
+                      title="你確定要刪除此項活動嗎？?"
+                      onConfirm={() => {
+                        confirm();
+                        console.log('去打刪除api');
+                      }}
+                      onCancel={cancel}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <HiOutlineTrash />
+                    </Popconfirm>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          <FePagination />
+          <FePagination pagination={ownPagination} setPage={setOwnPage} />
         </div>
       </div>
       <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
         <div className="bg-square-2"></div>
         <div className="container">
           <div className="page-type1-area-title" id="grouplist-bolck3">
-            我參加的揪團
+            待參加揪團
           </div>
           <Tabs onChange={onChange} type="card" centered size="large">
             <TabPane tab="官方揪團" key="1">
@@ -340,118 +354,40 @@ const UserGroup = () => {
                   <div className="list-content_btn"></div>
                   <div className="list-content_btn"></div>
                 </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
+                {woData.map((item) => {
+                  let startTime = item.start_time;
+                  let endTime = item.end_time;
+                  startTime = startTime.slice(0, startTime.length - 3);
+                  endTime = endTime.slice(0, endTime.length - 3);
+                  return (
+                    <div className="page-type1-list-content my-group-list-wraper">
+                      <div className="list-content_activity-name">{item.name}</div>
+                      <div className="list-content_time">
+                        {startTime}~{endTime}
+                      </div>
+                      <div className="list-content_place">
+                        <FaMapMarkerAlt />
+                        {item.cityName}
+                      </div>
+                      <div className="list-content_status">
+                        <span>{item.status_name}</span>
+                      </div>
+                      <div className="list-content_btn" title="查看">
+                        <Link to={`/group/${item.id}`}>
+                          <FaEye />
+                          {/* 詳細內容 */}
+                        </Link>
+                      </div>
+                      <div className="list-content_btn" title="取消報名活動">
+                        <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
+                          <ImUserMinus />
+                        </Popconfirm>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-              <FePagination />
+              <FePagination pagination={woPagination} setPage={setWoPage} />
             </TabPane>
             <TabPane tab="私人揪團" key="2">
               <div className="page-type1-list-wraper">
@@ -460,126 +396,50 @@ const UserGroup = () => {
                   <div>活動時間</div>
                   <div>活動地點</div>
                   <div>活動狀態</div>
+                  <div>審核狀態</div>
                   <div className="list-content_btn"></div>
                   <div className="list-content_btn"></div>
                   <div className="list-content_btn"></div>
                 </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-
-                  <div className="list-content_btn" title="聊天室">
-                    <Link to="/">
-                      <RiWechatLine />
-                      {/* 聊天室 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-
-                  <div className="list-content_btn" title="聊天室">
-                    <Link to="/">
-                      <RiWechatLine />
-                      {/* 聊天室 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-
-                  <div className="list-content_btn" title="聊天室">
-                    <Link to="/">
-                      <RiWechatLine />
-                      {/* 聊天室 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-
-                  <div className="list-content_btn" title="聊天室">
-                    <Link to="/">
-                      <RiWechatLine />
-                      {/* 聊天室 */}
-                    </Link>
-                  </div>
-                  <div className="list-content_btn" title="取消報名活動">
-                    <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
-                      <HiOutlineTrash />
-                    </Popconfirm>
-                  </div>
-                </div>
+                {wpData.map((item) => {
+                  let startTime = item.start_time;
+                  let endTime = item.end_time;
+                  startTime = startTime.slice(0, startTime.length - 3);
+                  endTime = endTime.slice(0, endTime.length - 3);
+                  return (
+                    <div className="page-type1-list-content my-group-list-wraper">
+                      <div className="list-content_activity-name">{item.name}</div>
+                      <div className="list-content_time">
+                        {startTime}~{endTime}
+                      </div>
+                      <div className="list-content_place">
+                        <FaMapMarkerAlt />
+                        {item.cityName}
+                      </div>
+                      <div className="list-content_status">
+                        <span>{item.status_name}</span>
+                      </div>
+                      <div className="list-content_status">{item.audit_status === 0 ? '審核中' : item.audit_status === 1 ? '審核通過' : '審核未通過'}</div>
+                      <div className="list-content_btn" title="查看">
+                        <Link to={`/group/${item.id}`}>
+                          <FaEye />
+                          {/* 詳細內容 */}
+                        </Link>
+                      </div>
+                      <div className="list-content_btn" title="聊天室">
+                        <Link to="/chatroom/1">
+                          <RiWechatLine />
+                          {/* 聊天室 */}
+                        </Link>
+                      </div>
+                      <div className="list-content_btn" title="取消報名活動">
+                        <Popconfirm title="你確定要取消報名此項活動嗎？?" onConfirm={confirm} onCancel={cancel} okText="Yes" cancelText="No">
+                          <ImUserMinus />
+                        </Popconfirm>
+                      </div>
+                    </div>
+                  );
+                })}
                 <div className="page-type1-list-content my-group-list-wraper">
                   <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
                   <div className="list-content_time">2022/01/02</div>
@@ -610,7 +470,7 @@ const UserGroup = () => {
                   </div>
                 </div>
               </div>
-              <FePagination />
+              <FePagination pagination={wpPagination} setPage={setWpPage} />
             </TabPane>
           </Tabs>
         </div>
@@ -630,77 +490,34 @@ const UserGroup = () => {
                   <div>活動地點</div>
                   <div>活動狀態</div>
                   <div className="list-content_btn"></div>
-                  <div className="list-content_btn"></div>
-                  <div className="list-content_btn"></div>
                 </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-                </div>
+                {hoData.map((item) => {
+                  let startTime = item.start_time;
+                  let endTime = item.end_time;
+                  startTime = startTime.slice(0, startTime.length - 3);
+                  endTime = endTime.slice(0, endTime.length - 3);
+                  return (
+                    <div className="page-type1-list-content my-group-list-wraper">
+                      <div className="list-content_activity-name">{item.name}</div>
+                      <div className="list-content_time">
+                        {startTime}~{endTime}
+                      </div>
+                      <div className="list-content_place">
+                        <FaMapMarkerAlt />
+                        {item.cityName}
+                      </div>
+                      <div className="list-content_status">
+                        <span>{item.status_name}</span>
+                      </div>
+                      <div className="list-content_btn" title="查看">
+                        <Link to={`/group/${item.id}`}>
+                          <FaEye />
+                          {/* 詳細內容 */}
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
                 <div className="page-type1-list-content my-group-list-wraper">
                   <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
                   <div className="list-content_time">2022/01/02</div>
@@ -719,7 +536,7 @@ const UserGroup = () => {
                   </div>
                 </div>
               </div>
-              <FePagination />
+              <FePagination pagination={hoPagination} setPage={setHoPage} />
             </TabPane>
             <TabPane tab="私人揪團" key="2">
               <div className="page-type1-list-wraper">
@@ -727,11 +544,41 @@ const UserGroup = () => {
                   <div>活動名稱</div>
                   <div>活動時間</div>
                   <div>活動地點</div>
-                  <div>活動狀態</div>
+                  <div>身份</div>
                   <div className="list-content_btn"></div>
                   <div className="list-content_btn"></div>
-                  <div className="list-content_btn"></div>
                 </div>
+                {hpData.map((item) => {
+                  let startTime = item.start_time;
+                  let endTime = item.end_time;
+                  startTime = startTime.slice(0, startTime.length - 3);
+                  endTime = endTime.slice(0, endTime.length - 3);
+                  return (
+                    <div className="page-type1-list-content my-group-list-wraper">
+                      <div className="list-content_activity-name">{item.name}</div>
+                      <div className="list-content_time">
+                        {startTime}~{endTime}
+                      </div>
+                      <div className="list-content_place">
+                        <FaMapMarkerAlt />
+                        {item.cityName}
+                      </div>
+                      <div className="list-content_status">{item.user_id === userId ? '主揪' : '團員'}</div>
+                      <div className="list-content_btn" title="查看">
+                        <Link to={`/group/${item.id}`}>
+                          <FaEye />
+                          {/* 詳細內容 */}
+                        </Link>
+                      </div>
+                      <div className="list-content_btn" title="聊天室">
+                        <Link to="/chatroom/1">
+                          <RiWechatLine />
+                          {/* 聊天室 */}
+                        </Link>
+                      </div>
+                    </div>
+                  );
+                })}
                 <div className="page-type1-list-content my-group-list-wraper">
                   <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
                   <div className="list-content_time">2022/01/02</div>
@@ -739,105 +586,7 @@ const UserGroup = () => {
                     <FaMapMarkerAlt />
                     台北
                   </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-
-                  <div className="list-content_btn" title="聊天室">
-                    <Link to="/">
-                      <RiWechatLine />
-                      {/* 聊天室 */}
-                    </Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-
-                  <div className="list-content_btn" title="聊天室">
-                    <Link to="/">
-                      <RiWechatLine />
-                      {/* 聊天室 */}
-                    </Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-
-                  <div className="list-content_btn" title="聊天室">
-                    <Link to="/">
-                      <RiWechatLine />
-                      {/* 聊天室 */}
-                    </Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
-                  <div className="list-content_btn" title="查看">
-                    <Link to="/group/1">
-                      <FaEye />
-                      {/* 詳細內容 */}
-                    </Link>
-                  </div>
-
-                  <div className="list-content_btn" title="聊天室">
-                    <Link to="/">
-                      <RiWechatLine />
-                      {/* 聊天室 */}
-                    </Link>
-                  </div>
-                </div>
-                <div className="page-type1-list-content my-group-list-wraper">
-                  <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                  <div className="list-content_time">2022/01/02</div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    台北
-                  </div>
-                  <div className="list-content_status">
-                    <span>活動報名中</span>
-                  </div>
+                  <div className="list-content_status">團員</div>
                   <div className="list-content_btn" title="查看">
                     <Link to="/group/1">
                       <FaEye />
@@ -853,7 +602,7 @@ const UserGroup = () => {
                   </div>
                 </div>
               </div>
-              <FePagination />
+              <FePagination pagination={hpPagination} setPage={setHpPage} />
             </TabPane>
           </Tabs>
         </div>

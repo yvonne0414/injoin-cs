@@ -22,7 +22,8 @@ const GroupList = () => {
     window.scrollTo(0, 0);
   }, []);
   //page
-  let [page, setPage] = useState(1);
+  let [officialPage, setOfficialPage] = useState(1);
+  let [privatePage, setPrivatePage] = useState(1);
 
   // 官方
   let [officialList, setOfficialList] = useState({
@@ -38,14 +39,14 @@ const GroupList = () => {
       let response = await axios.get(API_URL + '/group/list', {
         params: {
           groupCate: 1,
-          page: page,
+          page: officialPage,
         },
       });
       setOfficialList(response.data);
       // console.log(officialList.pagination.lastPage);
     };
     getOfficialList();
-  }, [page]);
+  }, [officialPage]);
 
   // 私人
   let [privateList, setPrivateList] = useState({
@@ -62,7 +63,7 @@ const GroupList = () => {
       let response = await axios.get(API_URL + '/group/list', {
         params: {
           groupCate: 2,
-          page: page,
+          page: privatePage,
         },
       });
       // console.log(API_URL + '/group/private');
@@ -70,7 +71,7 @@ const GroupList = () => {
       // console.log(response.data);
     };
     getPrivateList();
-  }, [page]);
+  }, [privatePage]);
   // console.log('privateList', privateList);
 
   // header 資料
@@ -190,7 +191,7 @@ const GroupList = () => {
               let startTime = item.start_time;
               let endTime = item.end_time;
               startTime = startTime.slice(0, startTime.length - 3);
-              endTime = startTime.slice(0, endTime.length - 3);
+              endTime = endTime.slice(0, endTime.length - 3);
               return (
                 <div className="page-type1-list-content" key={item.id}>
                   <div className="list-content_activity-name">{item.name}</div>
@@ -209,7 +210,7 @@ const GroupList = () => {
               );
             })}
           </div>
-          <FePagination pagination={officialList.pagination} setPage={setPage} />
+          <FePagination pagination={officialList.pagination} setPage={setOfficialPage} />
         </div>
       </div>
       {/* <!-- page-type1-intro --> */}
@@ -246,7 +247,7 @@ const GroupList = () => {
                 let startTime = item.start_time;
                 let endTime = item.end_time;
                 startTime = startTime.slice(0, startTime.length - 3);
-                endTime = startTime.slice(0, endTime.length - 3);
+                endTime = endTime.slice(0, endTime.length - 3);
 
                 return (
                   <div className="page-type1-list-content" key={item.id}>
@@ -266,7 +267,7 @@ const GroupList = () => {
                 );
               })}
             </div>
-            <FePagination pagination={privateList.pagination} setPage={setPage} />
+            <FePagination pagination={privateList.pagination} setPage={setPrivatePage} />
           </div>
           <div className="user-add-group-area">
             <div className="group-list-img-3 mb-5 mb-md-0">

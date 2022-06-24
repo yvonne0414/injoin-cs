@@ -46,25 +46,15 @@ const GroupDetail = () => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
   const { groupId } = useParams();
-  let [data, setData] = useState({
-    start_time: '',
-    end_time: '',
-    audit_time: '',
-    image: '',
-  });
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
-  const [auditTime, setAuditTime] = useState('');
+  let [data, setData] = useState([]);
   useEffect(() => {
     let getGroupDetail = async () => {
-      let res = await axios.get(`${API_URL}/group/${groupId}`);
-      setData(res.data.data[0]);
-      setStartTime(data.start_time.slice(0, data.start_time.length - 3));
-      setEndTime(data.end_time.slice(0, data.end_time.length - 3));
-      setAuditTime(data.audit_time.slice(0, data.audit_time.length - 3));
+      let res = await axios.get(`${API_URL}/group/groupdetail/${groupId}`);
+      setData(res.data.data);
+      // console.log(res.data.data);
     };
     getGroupDetail();
-  }, [groupId, data]);
+  }, [groupId]);
 
   // useEffect(() => {
   //   setStartTime(data.start_time.slice(0, data.start_time.length - 3));
@@ -80,73 +70,83 @@ const GroupDetail = () => {
           <div className="page-type1-area-title" id="grouplist-bolck1">
             活動詳細內容
           </div>
+          {data.map((item) => {
+            let startTime = item.start_time;
+            let endTime = item.end_time;
+            let auditTime = item.audit_time;
+            startTime = startTime.slice(0, startTime.length - 3);
+            endTime = endTime.slice(0, endTime.length - 3);
+            auditTime = auditTime.slice(0, auditTime.length - 3);
+            return (
+              <div className="position-relative">
+                <div className="group-detail-info-bg-square"></div>
+                <div className="p-3 p-md-5">
+                  <h3 className="ff-cn-main">{item.name}</h3>
+                  <hr />
+                  <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                    <div className="group-detail-info">
+                      <div className="group-detail-info-tag">
+                        <div>
+                          <AiFillDollarCircle />
+                          <span className="group-detail-info-content ms-2">NT. {item.price}</span>
+                        </div>
+                        <div>
+                          <BsPeopleFill />
+                          <span className="group-detail-info-content ms-2">{item.max_num}</span>
+                        </div>
+                        <div>
+                          <BsFillBellFill />
+                          <span className="group-detail-info-content ms-2">{item.status_name}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <span className="group-detail-info-title">
+                          <BsCalendar2Date />
+                          <span>活動日期</span>
+                        </span>
+                        <span className="group-detail-info-content">
+                          {startTime} ~ {endTime}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="group-detail-info-title">
+                          <FaMapMarkerAlt />
+                          <span>活動地點</span>
+                        </span>
+                        <span className="group-detail-info-content">
+                          {item.cityName}
+                          {item.place_detail}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="group-detail-info-title">
+                          <AiOutlineFieldTime />
+                          <span>最終審核日</span>
+                        </span>
+                        <span className="group-detail-info-content">{auditTime}</span>
+                      </div>
+                      <div>
+                        <span className="group-detail-info-title">
+                          <BsFillFileEarmarkTextFill />
+                          <span>活動介紹</span>
+                        </span>
+                        <span className="group-detail-info-content">
+                          <p>{data.disc}</p>
+                        </span>
+                      </div>
+                    </div>
+                    <div className="group-detail-img mx-auto">
+                      <img src={`${BE_IMAGE_URL}${item.img}`} alt="" className="img-fluid object-cover" />
+                    </div>
+                  </div>
+                  <div className="w-100 text-center mt-4">
+                    <button className="btn btn-none injoin-btn-outline text-gold">報名參加</button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
 
-          <div className="position-relative">
-            <div className="group-detail-info-bg-square"></div>
-            <div className="p-3 p-md-5">
-              <h3 className="ff-cn-main">{data.name}</h3>
-              <hr />
-              <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <div className="group-detail-info">
-                  <div className="group-detail-info-tag">
-                    <div>
-                      <AiFillDollarCircle />
-                      <span className="group-detail-info-content ms-2">NT. {data.price}</span>
-                    </div>
-                    <div>
-                      <BsPeopleFill />
-                      <span className="group-detail-info-content ms-2">{data.max_num}</span>
-                    </div>
-                    <div>
-                      <BsFillBellFill />
-                      <span className="group-detail-info-content ms-2">{data.status_name}</span>
-                    </div>
-                  </div>
-                  <div>
-                    <span className="group-detail-info-title">
-                      <BsCalendar2Date />
-                      <span>活動日期</span>
-                    </span>
-                    <span className="group-detail-info-content">
-                      {startTime} ~ {endTime}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="group-detail-info-title">
-                      <FaMapMarkerAlt />
-                      <span>活動地點</span>
-                    </span>
-                    <span className="group-detail-info-content">
-                      {data.cityName}
-                      {data.place_detail}
-                    </span>
-                  </div>
-                  <div>
-                    <span className="group-detail-info-title">
-                      <AiOutlineFieldTime />
-                      <span>最終審核日</span>
-                    </span>
-                    <span className="group-detail-info-content">{auditTime}</span>
-                  </div>
-                  <div>
-                    <span className="group-detail-info-title">
-                      <BsFillFileEarmarkTextFill />
-                      <span>活動介紹</span>
-                    </span>
-                    <span className="group-detail-info-content">
-                      <p>{data.disc}</p>
-                    </span>
-                  </div>
-                </div>
-                <div className="group-detail-img mx-auto">
-                  <img src={`${BE_IMAGE_URL}${data.img}`} alt="" className="img-fluid object-cover" />
-                </div>
-              </div>
-              <div className="w-100 text-center mt-4">
-                <button className="btn btn-none injoin-btn-outline text-gold">報名參加</button>
-              </div>
-            </div>
-          </div>
           <Link to="/group" className="back-page btn btn-none mt-3">
             <div>
               <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">

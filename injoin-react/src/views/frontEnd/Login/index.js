@@ -2,8 +2,28 @@ import './index.scss';
 import FePage1Header from '../../../components/FePage1Header';
 import logoimg from '../../../assets/images/shared/injoinlogo.png';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
+import { useState } from 'react';
+import axios from 'axios';
 
 const Login = () => {
+  const [member, setMember] = useState({
+    loginusermail: '',
+    loginuserpassword: '',
+  });
+  function handleChange(e) {
+    setMember({ ...member, [e.target.name]: e.target.value });
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      await axios.post('');
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  // Form
   const [form] = Form.useForm();
   const page1HeaderInfo = {
     titleEn: 'Log in',
@@ -71,7 +91,7 @@ const Login = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="使用者帳號" />
+                  <Input name="loginusermail" placeholder="使用者帳號" value={member.loginusermail} onChange={handleChange} />
                 </Form.Item>
                 <Form.Item
                   className="loginformpart"
@@ -84,10 +104,10 @@ const Login = () => {
                     },
                   ]}
                 >
-                  <Input.Password placeholder="使用者密碼" />
+                  <Input.Password name="loginuserpassword" placeholder="使用者密碼" value={member.loginuserpassword} onChange={handleChange} />
                 </Form.Item>
                 <Form.Item className="loginformpart w-100 text-center mt-4">
-                  <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
+                  <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit" onClick={handleSubmit}>
                     會員登入
                   </Button>
                 </Form.Item>

@@ -34,8 +34,8 @@ const FePagination = (props) => {
       <button
         className={`page-type1-pagination-btn next ${Number(page) !== lastPage && 'active'} `}
         onClick={() => {
-          console.log('page', page);
-          console.log('lastPage', lastPage);
+          // console.log('page', page);
+          // console.log('lastPage', lastPage);
           if (page >= lastPage) return;
           setPage(Number(page) + 1);
         }}

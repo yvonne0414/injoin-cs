@@ -1,8 +1,27 @@
 import './index.scss';
 import FePage1Header from '../../../components/FePage1Header';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
+import { useState } from 'react';
+import axios from 'axios';
 
 const Sighup = () => {
+  const [member, setMember] = useState({
+    loginusermail: '',
+    loginuserpassword: '',
+  });
+  function handleChange(e) {
+    setMember({ ...member, [e.target.name]: e.target.value });
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      await axios.post('');
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   const [form] = Form.useForm();
 
   const page1HeaderInfo = {
@@ -71,7 +90,7 @@ const Sighup = () => {
           </div>
           <div className="signupcard">
             <div className="signupform">
-              <Form form={form}>
+              <Form form={form} layout="vertical">
                 <Form.Item
                   className="loginformpart"
                   name="signupusername"
@@ -149,7 +168,10 @@ const Sighup = () => {
             已經是會員 ? 點我 <span>登入會員</span>
           </div>
         </section>
-        <section className="notice">注意事項 : <br/> ※未滿18歲請勿註冊。 <br/> ※本頁面只提供會員註冊，如要修改會員資料請至會員中心 > 會員資料，進行更新。</section>
+        <section className="notice">
+          注意事項 :<span>※未滿18歲請勿註冊。</span>
+          <span>※本頁面只提供會員註冊，如要修改會員資料請至會員中心 > 會員資料，進行更新。</span>
+        </section>
       </div>
     </>
   );

@@ -26,6 +26,12 @@
 .prd-detail-breadcrumb {
   font-family: $font-family-cn-main;
 }
+.prd-detail-collapse .ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  align-items: center;
+}
+.prd-detail-collapse .ant-collapse-expand-icon {
+  display: flex;
+}
 .prd-detail-title {
   font-size: var(--fs-cn-home-title-md) !important;
   font-family: $font-family-cn-main;
@@ -74,12 +80,20 @@
   font-family: $font-family-cn-main;
   color: black;
   border: 2px solid rgba(0, 0, 139, 0);
+  > button {
+    display: flex;
+    align-items: center;
+  }
 }
 .prd-detail-button-2 {
   border: 2px solid $color-font-gold;
   font-family: $font-family-cn-main;
   * {
     color: $color-font-gold;
+  }
+  > button {
+    display: flex;
+    align-items: center;
   }
 }
 .prd-detail-title-type1 {
@@ -128,7 +142,7 @@
   border: 1px solid #ffffff16;
   background-color: #ffffff09;
 }
-.prd-detail-evaluation-bg-sp{
+.prd-detail-evaluation-bg-sp {
   border: 1px solid #ffffff16;
   background-color: #ffffff09;
   margin-bottom: 7rem;
@@ -258,24 +272,24 @@
     height: 3.5rem;
     line-height: 3.5rem;
   }
-  .prd-detail-price {
-    // 24px
-    font-size: var(--fs-cn-home-prdtext) !important;
-  }
-  .prd-detail-number {
-    // 24px
-    font-size: var(--fs-cn-home-prdtext) !important;
-  }
-  .prd-detail-title-type1 {
-    // 32px
-    font-size: var(--fs-cn-page-type1-title-sp) !important;
-  }
-  .prd-detail-text-1 {
-    // 24px
-    font-size: var(--fs-cn-page-type1-content-sp) !important;
-  }
-  .prd-detail-text {
-    // 20px
-    font-size: var(--fs-cn-page-type1-content) !important;
-  }
+  // .prd-detail-price {
+  //   // 24px
+  //   font-size: var(--fs-cn-home-prdtext) !important;
+  // }
+  // .prd-detail-number {
+  //   // 24px
+  //   font-size: var(--fs-cn-home-prdtext) !important;
+  // }
+  // .prd-detail-title-type1 {
+  //   // 32px
+  //   font-size: var(--fs-cn-page-type1-title-sp) !important;
+  // }
+  // .prd-detail-text-1 {
+  //   // 24px
+  //   font-size: var(--fs-cn-page-type1-content-sp) !important;
+  // }
+  // .prd-detail-text {
+  //   // 20px
+  //   font-size: var(--fs-cn-page-type1-content) !important;
+  // }
 }

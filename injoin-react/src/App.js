@@ -72,7 +72,7 @@ function App() {
           {/* 揪團 */}
           <Route path="/newgroup" exact element={<GroupAdd />} />
           <Route path="/group" exact element={<GroupList />} />
-          <Route path="/group/1" exact element={<GroupDetail />}>
+          <Route path="/group/:groupId" element={<GroupDetail />}>
             <Route path=":currentPage" element={<GroupDetail />} />
           </Route>
           <Route path="/chatroom/1" exact element={<ChatRoom />}>

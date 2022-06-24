@@ -8,10 +8,10 @@ import { AiFillDollarCircle, AiOutlineFieldTime } from 'react-icons/ai';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import { Link } from 'react-router-dom';
-
-// images
-import testimg from '../../../assets/images/fe/groupDetail/groupDetail-img-test.png';
+import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 
 const GroupDetail = () => {
   // header 資料
@@ -45,6 +45,26 @@ const GroupDetail = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  const { groupId } = useParams();
+  let [data, setData] = useState({});
+  useEffect(() => {
+    let getGroupDetail = async () => {
+      let res = await axios.get(`${API_URL}/group/${groupId}`);
+      setData(res.data.data[0]);
+    };
+    getGroupDetail();
+  }, [groupId]);
+
+  // const [startTime, setStartTime] = useState();
+  // const [endTime, setEndTime] = useState();
+  // const [auditTime, setAuditTime] = useState();
+
+  // useEffect(() => {
+  //   setStartTime(data.start_time.slice(0, data.start_time.length - 3));
+  //   setEndTime(data.end_time.slice(0, data.end_time.length - 3));
+  //   setAuditTime(data.audit_time.slice(0, data.audit_time.length - 3));
+  // }, [data]);
+
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -53,25 +73,26 @@ const GroupDetail = () => {
           <div className="page-type1-area-title" id="grouplist-bolck1">
             活動詳細內容
           </div>
+
           <div className="position-relative">
             <div className="group-detail-info-bg-square"></div>
             <div className="p-3 p-md-5">
-              <h3 className="ff-cn-main">一起來飲酒囉</h3>
+              <h3 className="ff-cn-main">{data.name}</h3>
               <hr />
-              <div className="d-flex flex-column flex-md-row justify-content-between align-items-start">
+              <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
                 <div className="group-detail-info">
                   <div className="group-detail-info-tag">
                     <div>
                       <AiFillDollarCircle />
-                      <span className="group-detail-info-content ms-2">NT. 1000</span>
+                      <span className="group-detail-info-content ms-2">NT. {data.price}</span>
                     </div>
                     <div>
                       <BsPeopleFill />
-                      <span className="group-detail-info-content ms-2">5</span>
+                      <span className="group-detail-info-content ms-2">{data.max_num}</span>
                     </div>
                     <div>
                       <BsFillBellFill />
-                      <span className="group-detail-info-content ms-2">活動報名中</span>
+                      <span className="group-detail-info-content ms-2">{data.status_name}</span>
                     </div>
                   </div>
                   <div>
@@ -79,21 +100,26 @@ const GroupDetail = () => {
                       <BsCalendar2Date />
                       <span>活動日期</span>
                     </span>
-                    <span className="group-detail-info-content">20220610</span>
+                    <span className="group-detail-info-content">
+                      {data.start_time} ~ {data.end_time}
+                    </span>
                   </div>
                   <div>
                     <span className="group-detail-info-title">
                       <FaMapMarkerAlt />
                       <span>活動地點</span>
                     </span>
-                    <span className="group-detail-info-content">台北市萬華區成都路111號1樓</span>
+                    <span className="group-detail-info-content">
+                      {data.cityName}
+                      {data.place_detail}
+                    </span>
                   </div>
                   <div>
                     <span className="group-detail-info-title">
                       <AiOutlineFieldTime />
                       <span>最終審核日</span>
                     </span>
-                    <span className="group-detail-info-content">20220601</span>
+                    <span className="group-detail-info-content">{data.audit_time}</span>
                   </div>
                   <div>
                     <span className="group-detail-info-title">
@@ -101,16 +127,12 @@ const GroupDetail = () => {
                       <span>活動介紹</span>
                     </span>
                     <span className="group-detail-info-content">
-                      <p>
-                        微醺餐酒交流派對 Wine Tasting Party
-                        精選多達15款產自阿根廷,智利,西班牙,義大利,法國,美國的莊園葡萄酒，佐以主廚精心設計的時令阿根廷經典小食，細細品味拉丁風情，給自己一個輕鬆的異國小周末！
-                        別再猶豫了，現在就約朋友來Chill一下吧！
-                      </p>
+                      <p>{data.disc}</p>
                     </span>
                   </div>
                 </div>
                 <div className="group-detail-img mx-auto">
-                  <img src={testimg} alt="" className="img-fluid object-cover" />
+                  <img src={`${BE_IMAGE_URL}${data.img}`} alt="" className="img-fluid object-cover" />
                 </div>
               </div>
               <div className="w-100 text-center mt-4">
@@ -118,7 +140,6 @@ const GroupDetail = () => {
               </div>
             </div>
           </div>
-
           <Link to="/group" className="back-page btn btn-none mt-3">
             <div>
               <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">

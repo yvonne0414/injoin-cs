@@ -21,20 +21,33 @@ const GroupList = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  //page
+  let [page, setPage] = useState(1);
 
   // 私人
-  const [privateList, setPrivateList] = useState([]);
+  let [privateList, setPrivateList] = useState({
+    pagination: {
+      total: 0,
+      page: 0,
+      lastPage: 0,
+    },
+    data: [],
+  });
 
   useEffect(() => {
     let getPrivateList = async () => {
-      let response = await axios.get(API_URL + '/group/private');
+      let response = await axios.get(API_URL + '/group/private', {
+        params: {
+          page: page,
+        },
+      });
       // console.log(API_URL + '/group/private');
       setPrivateList(response.data);
       // console.log(response.data);
     };
     getPrivateList();
-  }, []);
-  // console.log('privateList', privateList);
+  }, [page]);
+  console.log('privateList', privateList);
 
   // header 資料
   const page1HeaderInfo = {
@@ -132,55 +145,6 @@ const GroupList = () => {
     ],
   };
 
-  // const privateList = {
-  //   pagination: {
-  //     totalPage: 6,
-  //     currentPage: 1,
-  //   },
-  //   data: [
-  //     {
-  //       name: '酒精路跑！',
-  //       startTime: '2022/07/11 10:00',
-  //       endTime: '2022/07/12 10:00',
-  //       place: '新北',
-  //       holder: '王小明',
-  //       groupId: 1,
-  //     },
-  //     {
-  //       name: '酒精路跑！',
-  //       startTime: '2022/07/11',
-  //       endTime: '2022/07/13',
-  //       place: '新北',
-  //       holder: '王小明',
-  //       groupId: 2,
-  //     },
-  //     {
-  //       name: '酒精路跑！',
-  //       startTime: '2022/07/11',
-  //       endTime: '2022/07/14',
-  //       place: '新北',
-  //       holder: '王小明',
-  //       groupId: 3,
-  //     },
-  //     {
-  //       name: '酒精路跑！',
-  //       startTime: '2022/07/11',
-  //       endTime: '2022/07/13',
-  //       place: '新北',
-  //       holder: '王小明',
-  //       groupId: 4,
-  //     },
-  //     {
-  //       name: '酒精路跑！',
-  //       startTime: '2022/07/11',
-  //       endTime: '2022/07/13',
-  //       place: '新北',
-  //       holder: '王小明',
-  //       groupId: 5,
-  //     },
-  //   ],
-  // };
-
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -272,7 +236,7 @@ const GroupList = () => {
                 );
               })}
             </div>
-            <FePagination pagination={privateList.pagination} />
+            <FePagination pagination={privateList.pagination} setPage={setPage} />
           </div>
           <div className="user-add-group-area">
             <div className="group-list-img-3 mb-5 mb-md-0">

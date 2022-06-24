@@ -1,10 +1,16 @@
 const FePagination = (props) => {
-  const { pagination } = props;
+  const { pagination, setPage } = props;
   const { page, lastPage } = pagination;
 
   return (
     <div className="page-type1-pagination">
-      <button className="page-type1-pagination-btn prev">
+      <button
+        className={`page-type1-pagination-btn prev  ${Number(page) !== 1 && 'active'}`}
+        onClick={() => {
+          if (page <= 1) return;
+          setPage(Number(page) - 1);
+        }}
+      >
         <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"
@@ -25,7 +31,15 @@ const FePagination = (props) => {
           </>
         )}
       </div>
-      <button className="page-type1-pagination-btn next active">
+      <button
+        className={`page-type1-pagination-btn next ${Number(page) !== lastPage && 'active'} `}
+        onClick={() => {
+          console.log('page', page);
+          console.log('lastPage', lastPage);
+          if (page >= lastPage) return;
+          setPage(Number(page) + 1);
+        }}
+      >
         <svg width="37" height="23" viewBox="0 0 37 23" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fillRule="evenodd"

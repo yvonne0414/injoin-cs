@@ -24,20 +24,44 @@ const GroupList = () => {
   //page
   let [page, setPage] = useState(1);
 
+  // 官方
+  let [officialList, setOfficialList] = useState({
+    pagination: {
+      total: 1,
+      page: 1,
+      lastPage: 1,
+    },
+    data: [],
+  });
+  useEffect(() => {
+    let getOfficialList = async () => {
+      let response = await axios.get(API_URL + '/group/list', {
+        params: {
+          groupCate: 1,
+          page: page,
+        },
+      });
+      setOfficialList(response.data);
+      // console.log(officialList.pagination.lastPage);
+    };
+    getOfficialList();
+  }, [page]);
+
   // 私人
   let [privateList, setPrivateList] = useState({
     pagination: {
       total: 0,
-      page: 0,
-      lastPage: 0,
+      page: 1,
+      lastPage: 1,
     },
     data: [],
   });
 
   useEffect(() => {
     let getPrivateList = async () => {
-      let response = await axios.get(API_URL + '/group/private', {
+      let response = await axios.get(API_URL + '/group/list', {
         params: {
+          groupCate: 2,
           page: page,
         },
       });
@@ -47,7 +71,7 @@ const GroupList = () => {
     };
     getPrivateList();
   }, [page]);
-  console.log('privateList', privateList);
+  // console.log('privateList', privateList);
 
   // header 資料
   const page1HeaderInfo = {
@@ -96,54 +120,54 @@ const GroupList = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
-  const officialList = {
-    pagination: {
-      page: 1,
-      lastPage: 5,
-    },
-    data: [
-      {
-        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
-        time: '2022/01/02',
-        place: '台北',
-        status: 1,
-        statusName: '活動報名中',
-        groupId: 1,
-      },
-      {
-        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
-        time: '2022/01/02',
-        place: '台北',
-        status: 1,
-        statusName: '活動報名中',
-        groupId: 2,
-      },
-      {
-        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
-        time: '2022/01/02',
-        place: '台北',
-        status: 1,
-        statusName: '活動報名中',
-        groupId: 3,
-      },
-      {
-        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
-        time: '2022/01/02',
-        place: '台北',
-        status: 1,
-        statusName: '活動報名中',
-        groupId: 4,
-      },
-      {
-        name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
-        time: '2022/01/02',
-        place: '台北',
-        status: 1,
-        statusName: '活動報名中',
-        groupId: 5,
-      },
-    ],
-  };
+  // const officialList = {
+  //   pagination: {
+  //     page: 1,
+  //     lastPage: 5,
+  //   },
+  //   data: [
+  //     {
+  //       name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+  //       time: '2022/01/02',
+  //       place: '台北',
+  //       status: 1,
+  //       statusName: '活動報名中',
+  //       groupId: 1,
+  //     },
+  //     {
+  //       name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+  //       time: '2022/01/02',
+  //       place: '台北',
+  //       status: 1,
+  //       statusName: '活動報名中',
+  //       groupId: 2,
+  //     },
+  //     {
+  //       name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+  //       time: '2022/01/02',
+  //       place: '台北',
+  //       status: 1,
+  //       statusName: '活動報名中',
+  //       groupId: 3,
+  //     },
+  //     {
+  //       name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+  //       time: '2022/01/02',
+  //       place: '台北',
+  //       status: 1,
+  //       statusName: '活動報名中',
+  //       groupId: 4,
+  //     },
+  //     {
+  //       name: '一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~',
+  //       time: '2022/01/02',
+  //       place: '台北',
+  //       status: 1,
+  //       statusName: '活動報名中',
+  //       groupId: 5,
+  //     },
+  //   ],
+  // };
 
   return (
     <>
@@ -163,23 +187,29 @@ const GroupList = () => {
               <div></div>
             </div>
             {officialList.data.map((item) => {
+              let startTime = item.start_time;
+              let endTime = item.end_time;
+              startTime = startTime.slice(0, startTime.length - 3);
+              endTime = startTime.slice(0, endTime.length - 3);
               return (
-                <div className="page-type1-list-content" key={item.groupId}>
+                <div className="page-type1-list-content" key={item.id}>
                   <div className="list-content_activity-name">{item.name}</div>
-                  <div className="list-content_time">{item.time}</div>
+                  <div className="list-content_time">
+                    {startTime} ~ {endTime}
+                  </div>
                   <div className="list-content_place">
                     <FaMapMarkerAlt />
-                    {item.place}
+                    {item.cityName}
                   </div>
-                  <div className="list-content_state">{item.statusName}</div>
+                  <div className="list-content_state">{item.status_name}</div>
                   <div className="list-content_btn">
-                    <Link to={`/group/${item.groupId}`}>詳細內容</Link>
+                    <Link to={`/group/${item.id}`}>詳細內容</Link>
                   </div>
                 </div>
               );
             })}
           </div>
-          <FePagination pagination={officialList.pagination} />
+          <FePagination pagination={officialList.pagination} setPage={setPage} />
         </div>
       </div>
       {/* <!-- page-type1-intro --> */}

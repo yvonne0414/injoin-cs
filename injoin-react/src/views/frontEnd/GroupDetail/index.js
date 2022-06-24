@@ -46,18 +46,25 @@ const GroupDetail = () => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
   const { groupId } = useParams();
-  let [data, setData] = useState({});
+  let [data, setData] = useState({
+    start_time: '',
+    end_time: '',
+    audit_time: '',
+    image: '',
+  });
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [auditTime, setAuditTime] = useState('');
   useEffect(() => {
     let getGroupDetail = async () => {
       let res = await axios.get(`${API_URL}/group/${groupId}`);
       setData(res.data.data[0]);
+      setStartTime(data.start_time.slice(0, data.start_time.length - 3));
+      setEndTime(data.end_time.slice(0, data.end_time.length - 3));
+      setAuditTime(data.audit_time.slice(0, data.audit_time.length - 3));
     };
     getGroupDetail();
-  }, [groupId]);
-
-  // const [startTime, setStartTime] = useState();
-  // const [endTime, setEndTime] = useState();
-  // const [auditTime, setAuditTime] = useState();
+  }, [groupId, data]);
 
   // useEffect(() => {
   //   setStartTime(data.start_time.slice(0, data.start_time.length - 3));
@@ -101,7 +108,7 @@ const GroupDetail = () => {
                       <span>活動日期</span>
                     </span>
                     <span className="group-detail-info-content">
-                      {data.start_time} ~ {data.end_time}
+                      {startTime} ~ {endTime}
                     </span>
                   </div>
                   <div>
@@ -119,7 +126,7 @@ const GroupDetail = () => {
                       <AiOutlineFieldTime />
                       <span>最終審核日</span>
                     </span>
-                    <span className="group-detail-info-content">{data.audit_time}</span>
+                    <span className="group-detail-info-content">{auditTime}</span>
                   </div>
                   <div>
                     <span className="group-detail-info-title">

@@ -196,6 +196,7 @@ const OrderListDetail = () => {
                   <br />
                   付款方式
                 </div>
+                
                 <div className="summary-item d-flex ms-5">
                   NT$2040
                   <br />

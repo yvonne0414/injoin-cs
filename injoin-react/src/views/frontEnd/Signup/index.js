@@ -1,15 +1,24 @@
 import './index.scss';
 import FePage1Header from '../../../components/FePage1Header';
-import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+// 圖片upload
+import { PlusOutlined } from '@ant-design/icons';
+import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, Spin, message } from 'antd';
+const { Option } = Select;
 const Sighup = () => {
   const [member, setMember] = useState({
-    loginusermail: '',
-    loginuserpassword: '',
+    username: '',
+    userpassword: '',
+    userconfirmpassword: '',
+    usergender: 'F',
+    userbirthday: '',
+    useremail: '',
+    userphone: '',
+    userphoto: '',
   });
-  function handleChange(e) {
+  function handleOnChange(e) {
     setMember({ ...member, [e.target.name]: e.target.value });
   }
   async function handleSubmit(e) {
@@ -54,6 +63,11 @@ const Sighup = () => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
   // form label
+  const signupuserimgLabel = (
+    <div className="login-title">
+      <span>使用者頭像</span>
+    </div>
+  );
   const signupusernameLabel = (
     <div className="login-title">
       <span>使用者姓名</span>
@@ -62,6 +76,11 @@ const Sighup = () => {
   const signupuserbirthLabel = (
     <div className="login-title">
       <span>出生年月</span>
+    </div>
+  );
+  const signupusergenderLabel = (
+    <div className="login-title">
+      <span>使用者性別</span>
     </div>
   );
   const signupuseremailLabel = (
@@ -80,6 +99,69 @@ const Sighup = () => {
     </div>
   );
 
+  // 圖片upload
+  // upload
+  const getBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = () => resolve(reader.result);
+
+      reader.onerror = (error) => reject(error);
+    });
+
+  const normFile = (e) => {
+    console.log('Upload event:', e);
+
+    if (Array.isArray(e)) {
+      return e;
+    }
+
+    return e?.fileList;
+  };
+
+  const [previewVisible, setPreviewVisible] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
+  const [fileList, setFileList] = useState([
+    // {
+    //   uid: '-1',
+    //   name: 'image.png',
+    //   status: 'done',
+    //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    // },
+  ]);
+
+  const handleCancel = () => setPreviewVisible(false);
+
+  const handlePreview = async (file) => {
+    if (!file.url && !file.preview) {
+      file.preview = await getBase64(file.originFileObj);
+    }
+    setPreviewImage(file.url || file.preview);
+    setPreviewVisible(true);
+    setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+  };
+
+  // const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  const handleChange = ({ fileList: newFileList }) => {
+    setFileList(newFileList);
+  };
+
+  const uploadButton = (
+    <div>
+      <PlusOutlined />
+      <div
+        style={{
+          marginTop: 8,
+        }}
+      >
+        Upload
+      </div>
+    </div>
+  );
+
   return (
     <>
       <div className="container">
@@ -91,6 +173,23 @@ const Sighup = () => {
           <div className="signupcard">
             <div className="signupform">
               <Form form={form} layout="vertical">
+                <Form.Item className="loginformimg" name="signupuserimg" label={signupuserimgLabel}>
+                  <Upload action="https://www.mocky.io/v2/5cc8019d300000980a055e76" listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
+                    {fileList.length >= 1 ? null : uploadButton}
+                  </Upload>
+
+                  <div>
+                    <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+                      <img
+                        alt="example"
+                        style={{
+                          width: '100%',
+                        }}
+                        src={previewImage}
+                      />
+                    </Modal>
+                  </div>
+                </Form.Item>
                 <Form.Item
                   className="loginformpart"
                   name="signupusername"
@@ -102,7 +201,7 @@ const Sighup = () => {
                     },
                   ]}
                 >
-                  <Input placeholder="使用者姓名" />
+                  <Input placeholder="使用者姓名" name="username" value={member.username} onChange={handleOnChange} />
                 </Form.Item>
                 <Form.Item
                   className="loginformpart"
@@ -117,6 +216,13 @@ const Sighup = () => {
                 >
                   <DatePicker />
                 </Form.Item>
+                <Form.Item className="loginformpart" name="signupusergender" label={signupusergenderLabel} rules={[{ required: true, message: '請輸入使用者性別' }]}>
+                  <Select name="usergender" value={member.usergender} onChange={handleOnChange}>
+                    <Option value="M">男生</Option>
+                    <Option value="F">女生</Option>
+                  </Select>
+                </Form.Item>
+
                 <Form.Item
                   className="loginformpart"
                   name="signupuseremail"
@@ -124,11 +230,11 @@ const Sighup = () => {
                   rules={[
                     {
                       required: true,
-                      message: '請輸入使用者姓名',
+                      message: '請輸入使用者信箱',
                     },
                   ]}
                 >
-                  <Input placeholder="使用者姓名" />
+                  <Input name="useremail" value={member.useremail} onChange={handleOnChange} placeholder="使用者信箱" />
                 </Form.Item>
                 <Form.Item
                   className="loginformpart"
@@ -137,11 +243,11 @@ const Sighup = () => {
                   rules={[
                     {
                       required: true,
-                      message: '請輸入使用者姓名',
+                      message: '請輸入使用者密碼',
                     },
                   ]}
                 >
-                  <Input.Password placeholder="使用者姓名" />
+                  <Input.Password name="userpassword" value={member.userpassword} onChange={handleOnChange} placeholder="使用者密碼" />
                 </Form.Item>
                 <Form.Item
                   className="loginformpart"
@@ -150,11 +256,11 @@ const Sighup = () => {
                   rules={[
                     {
                       required: true,
-                      message: '請輸入使用者姓名',
+                      message: '請輸入使用者密碼',
                     },
                   ]}
                 >
-                  <Input.Password placeholder="使用者姓名" />
+                  <Input.Password placeholder="使用者密碼" name="userconfirmpassword" value={member.userconfirmpassword} onChange={handleOnChange} />
                 </Form.Item>
                 <Form.Item className="loginformpart w-100 text-center mt-4">
                   <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">

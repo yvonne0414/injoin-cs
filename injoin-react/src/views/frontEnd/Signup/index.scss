@@ -26,6 +26,11 @@
   color: $color-font;
   font-size: var(--fs-cn-page-list-material);
 }
+.loginformimg{
+  position: relative;
+  left: 0;
+  
+}
 
 @media screen and (min-width: 768px) {
   .signuppage {
@@ -59,4 +64,9 @@
 }
 .login-title{
   font-size: 18px;
+}
+.loginformimg{
+  // position: absolute;
+  // left: -10vw;
+  
 }

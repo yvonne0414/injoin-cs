@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { API_URL,BE_IMAGE_URL } from '../../../utils/config';
+import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 
 const ChenAbout = () => {
   const [member, setMember] = useState(null);
@@ -25,8 +25,7 @@ const ChenAbout = () => {
         <>
           <h3>Hi, {member.name}</h3>
           <h2>useriD : {member.id}</h2>
-          <img src={`${BE_IMAGE_URL}${member.img}`} />
-          
+          {member.img === '' ? '' : <img src={`${BE_IMAGE_URL}${member.img}`} />}
         </>
       ) : (
         <h3>尚未登入</h3>

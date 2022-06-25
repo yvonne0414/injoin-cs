@@ -25,8 +25,7 @@ const ChenAbout = () => {
         <>
           <h3>Hi, {member.name}</h3>
           <h2>useriD : {member.id}</h2>
-          <img src={`localhost:3001/images${member.img}`} />
-          <img src={`http://localhost:3001/images/members/1656142795971.jpg`} alt="" />
+          <img src={`${BE_IMAGE_URL}${member.img}`} />
           
         </>
       ) : (

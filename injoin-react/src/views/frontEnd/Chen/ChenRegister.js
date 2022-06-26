@@ -23,6 +23,7 @@ const ChenRegister = () => {
   }
 
   function handlePhoto(e) {
+    console.log(e.target.files[0])
     setMember({ ...member, photo: e.target.files[0] });
   }
 
@@ -44,7 +45,7 @@ const ChenRegister = () => {
       formData.append('confirmPassword', member.confirmPassword);
       formData.append('photo', member.photo);
       let response = axios.post(`${API_URL}/auth/register`, formData);
-      console.log(response.data);
+      // console.log(response.data);
     } catch (e) {
       console.error(e);
     }

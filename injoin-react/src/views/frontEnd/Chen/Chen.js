@@ -8,7 +8,7 @@ import ChenTest from './ChenTest';
 
 
 let arr = ['chen', 'paul', 'avery'];
-const state = 6;
+const state = 2;
 const Chen = () => {
   return (
     <>
@@ -21,6 +21,7 @@ const Chen = () => {
       {state === 4 && <ChenTest />}
 
       {state === 5 && <Login />}
+
       {state === 6 && <Sighup />}
       
     </>

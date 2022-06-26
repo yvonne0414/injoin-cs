@@ -16,7 +16,6 @@ const ChenLogin = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      // 方法1: 當你的表單沒有圖片的時候，可以直接傳輸 json 到後端去
       // axios.post(URL, data, config)
       let response = await axios.post(`${API_URL}/auth/login`, member, {
         // 如果想要跨源讀寫 cookie

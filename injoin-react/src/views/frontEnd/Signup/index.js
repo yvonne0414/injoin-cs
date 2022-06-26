@@ -1,5 +1,7 @@
 import './index.scss';
 import FePage1Header from '../../../components/FePage1Header';
+import { API_URL } from '../../../utils/config';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -7,25 +9,37 @@ import axios from 'axios';
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, Spin, message } from 'antd';
 const { Option } = Select;
-const Sighup = () => {
+const Sighup = ({ setlogoutState }) => {
   const [member, setMember] = useState({
     username: '',
+    useremail: '',
     userpassword: '',
     userconfirmpassword: '',
-    usergender: 'F',
+    usergender: '',
     userbirthday: '',
-    useremail: '',
+    userage: '',
     userphone: '',
     userphoto: '',
   });
+
   function handleOnChange(e) {
     setMember({ ...member, [e.target.name]: e.target.value });
   }
   async function handleSubmit(e) {
-    e.preventDefault();
-
+    // e.preventDefault();
     try {
-      await axios.post('');
+      let formData = new FormData();
+      formData.append('username', member.username);
+      formData.append('useremail', member.useremail);
+      formData.append('userpassword', member.userpassword);
+      formData.append('userconfirmpassword', member.userconfirmpassword);
+      formData.append('usergender', member.usergender);
+      formData.append('userbirthday', member.userbirthday);
+      formData.append('userage', member.userage);
+      formData.append('userphone', member.userphone);
+      formData.append('userphoto', member.userphoto);
+      let response = axios.post(`${API_URL}/auth/register`, formData);
+      console.log(response.data);
     } catch (e) {
       console.error(e);
     }
@@ -145,8 +159,10 @@ const Sighup = () => {
   };
 
   // const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
-  const handleChange = ({ fileList: newFileList }) => {
+  const handleChange = ({ fileList: newFileList }, e) => {
     setFileList(newFileList);
+    console.log(newFileList[0]['originFileObj']);
+    setMember({ ...member, userphoto: newFileList[0]['originFileObj'] });
   };
 
   const uploadButton = (
@@ -214,10 +230,26 @@ const Sighup = () => {
                     },
                   ]}
                 >
-                  <DatePicker />
+                  <DatePicker
+                    onChange={(e) => {
+                      let newDate = new Date(e._d);
+                      let nowDate = new Date();
+                      let age = nowDate.getFullYear() - newDate.getFullYear();
+                      let result = `${newDate.getFullYear()}-${newDate.getMonth() + 1}-${newDate.getDate()}`;
+                      // console.log(age);
+                      // console.log(result);
+                      setMember({ ...member, userbirthday: result, userage: age });
+                    }}
+                  />
                 </Form.Item>
                 <Form.Item className="loginformpart" name="signupusergender" label={signupusergenderLabel} rules={[{ required: true, message: '請輸入使用者性別' }]}>
-                  <Select name="usergender" value={member.usergender} onChange={handleOnChange}>
+                  <Select
+                    name="usergender"
+                    value={member.usergender}
+                    onChange={(e) => {
+                      setMember({ ...member, usergender: e });
+                    }}
+                  >
                     <Option value="M">男生</Option>
                     <Option value="F">女生</Option>
                   </Select>
@@ -263,7 +295,7 @@ const Sighup = () => {
                   <Input.Password placeholder="使用者密碼" name="userconfirmpassword" value={member.userconfirmpassword} onChange={handleOnChange} />
                 </Form.Item>
                 <Form.Item className="loginformpart w-100 text-center mt-4">
-                  <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
+                  <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit" onClick={handleSubmit}>
                     會員註冊
                   </Button>
                 </Form.Item>
@@ -271,7 +303,15 @@ const Sighup = () => {
             </div>
           </div>
           <div className="login">
-            已經是會員 ? 點我 <span>登入會員</span>
+            已經是會員 ? 點我{' '}
+            <span
+              onClick={() => {
+                
+                setlogoutState(1);
+              }}
+            >
+              登入會員
+            </span>
           </div>
         </section>
         <section className="notice">

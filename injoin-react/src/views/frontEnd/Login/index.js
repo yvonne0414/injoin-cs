@@ -4,8 +4,9 @@ import logoimg from '../../../assets/images/shared/injoinlogo.png';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
 import { useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../../../utils/config';
 
-const Login = () => {
+const Login = ({ setlogoutState }) => {
   const [member, setMember] = useState({
     loginusermail: '',
     loginuserpassword: '',
@@ -15,14 +16,17 @@ const Login = () => {
   }
   async function handleSubmit(e) {
     e.preventDefault();
-
     try {
-      await axios.post('');
+      // axios.post(URL, data, config)
+      let response = await axios.post(`${API_URL}/auth/login`, member, {
+        // 如果想要跨源讀寫 cookie
+        withCredentials: true,
+      });
+      console.log('登入成功', response.data);
     } catch (e) {
-      console.error(e);
+      console.error('登入失敗', e.response.data);
     }
   }
-
   // Form
   const [form] = Form.useForm();
   const page1HeaderInfo = {
@@ -114,7 +118,15 @@ const Login = () => {
               </Form>
             </div>
             <div className="signup">
-              還不是會員 ? 點我 <span>註冊會員</span>
+              還不是會員 ? 點我{' '}
+              <span
+                onClick={() => {
+                  console.log("click")
+                  setlogoutState(2);
+                }}
+              >
+                註冊會員
+              </span>
             </div>
           </div>
         </section>

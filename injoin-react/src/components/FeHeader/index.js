@@ -7,14 +7,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCartShopping, faHeart, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 
 // // 引用antd
-import { Drawer } from 'antd';
-import React, { useState, useEffect } from 'react';
+import { Drawer, Modal, message } from 'antd';
+import React, { useState, useEffect, useContext } from 'react';
 
 // 引用圖片
 import logoImg from '../../assets/images/shared/injoinlogo.png';
 import logoImgA from '../../assets/images/shared/injoinlogo-a.png';
+import { GiWingedLeg } from 'react-icons/gi';
+
+// 登出按鈕
+import axios from 'axios';
+import { API_URL } from '../../utils/config';
+import { userState } from '../../App';
+const { confirm } = Modal;
+
+
 
 const FeHeader = () => {
+ const app = useContext(userState)
+//  console.log("header: ", app)
+
+
   const [visible, setVisible] = useState(false);
 
   const [ismobile, setIsMobile] = useState(true);
@@ -63,6 +76,45 @@ const FeHeader = () => {
     },
   ];
 
+  // 登出用
+  // console.log("header: ", app)
+  // console.log("islogin: ", app.islogin)
+  const [member, setMember] = useState(null);
+  useEffect(() => {
+    let getMemberInfo = async () => {
+      let response = await axios.get(`${API_URL}/member/info`, {
+        // 允許跨源讀寫 cookie
+        // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
+        withCredentials: true,
+      });
+      console.log(response.data);
+      setMember(response.data);
+    };
+    getMemberInfo();
+  }, []);
+
+  const showConfirm = async (e) => {
+    // e.preventdefault();
+    if (app.islogin) {
+      confirm({
+        title: '登出',
+        content: '確定要登出嗎?',
+        async onOk() {
+          app.setislogin(false)
+        },
+
+        onCancel() {
+          // console.log('Cancel');
+        },
+      });
+    } else {
+      const error = () => {
+        message.error('請先登入');
+      };
+      error();
+    }
+  };
+
   return (
     <>
       <header className="fe-header">
@@ -93,7 +145,8 @@ const FeHeader = () => {
             <Link to="/cart">
               <FontAwesomeIcon icon={faCartShopping} fixedWidth />
             </Link>
-            <Link to="/" className="pc-view">
+            {/* 登出 */}
+            <Link to="#" className="pc-view" onClick={showConfirm}>
               <FontAwesomeIcon icon={faArrowRightToBracket} fixedWidth className="pc-view" />
             </Link>
           </div>
@@ -124,7 +177,7 @@ const FeHeader = () => {
                 {menu_arr.map((item, i) => {
                   return (
                     <li key={i}>
-                      <Link to={item.href} className="header-menu" onClick={()=>onClose()}>
+                      <Link to={item.href} className="header-menu" onClick={() => onClose()}>
                         <span className="header-menu-num">0{i}</span>
                         <span className="header-menu-content">{item.name}</span>
                       </Link>

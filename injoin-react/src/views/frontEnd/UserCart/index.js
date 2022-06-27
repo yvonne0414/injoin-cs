@@ -13,8 +13,6 @@ import PrdCard from '../../../components/PrdCard';
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
 import { BsTrashFill } from 'react-icons/bs';
 
-
-
 const UserCart = () => {
   const page1HeaderInfo = {
     titleEn: 'Cart',
@@ -57,7 +55,7 @@ const UserCart = () => {
   const { Option } = Select;
 
   const handleChange = (value) => {
-    console.log(value); 
+    console.log(value);
   };
 
   const settings = {
@@ -138,7 +136,7 @@ const UserCart = () => {
       <div className="cart-area">
         <div className="container">
           {/* status-section-1 */}
-          <div className="cart-step-content mb-5 justify-content-center flex-nowrap">
+          <div className="cart-step-content d-flex flex-column flex-md-row ">
             <div className="col cart-step d-flex flex-column flex-md-row">
               <div className="step-left">01</div>
               <div className="step-right">
@@ -223,7 +221,7 @@ const UserCart = () => {
                           <div className="cart-prd-price">NT$680</div>
                         </div>
                         <div className="cart-prd-number-content d-flex flex-column flex-md-row">
-                          <div className="cart-prd-icon text-center">
+                          <div className="cart-prd-icon">
                             <BsTrashFill />
                           </div>
                           <div className="cart-prd-number d-flex border border-white ">
@@ -327,8 +325,8 @@ const UserCart = () => {
             </div>
             <span className="ms-3 ff-cn-main">返回上一頁</span>
           </Link>
-           {/* the same kind  product-------------------------------------*/}
-           <div className="prd-detail-evaluation-bg mt-5">
+          {/* the same kind  product-------------------------------------*/}
+          <div className="prd-detail-evaluation-bg mt-5">
             <div className="container mb-4">
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>同系列商品</p>

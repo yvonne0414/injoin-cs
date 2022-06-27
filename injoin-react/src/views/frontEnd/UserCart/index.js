@@ -166,8 +166,8 @@ const UserCart = () => {
           <div className="position-relative">
             <div className="cart-add-info-bg-square"></div>
             <div className="p-3 p-md-5">
-              <div className="shopping-cart-area">
-                <div className="d-flex flex-column flex-md-row justify-content-between">
+              <div className="shopping-cart-area d-flex justify-content-between d-flex flex-column flex-md-row">
+                <div className="d-flex flex-column flex-md-row">
                   <div className="shopping-cart-bg mb-md-5 mb-3">
                     <div className="shopping-cart-info">
                       <div className="shopping-cart-info-title">
@@ -238,7 +238,7 @@ const UserCart = () => {
                   </div>
                 </div>
                 {/* check-section-3 */}
-                <div className="position-relative">
+                <div className="position-relative shopping-cart-check-content">
                   <div className="shopping-cart-check-bg">
                     <div className="shopping-cart-info">
                       <div className="shopping-cart-info-title">

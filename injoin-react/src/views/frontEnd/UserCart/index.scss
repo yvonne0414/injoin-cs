@@ -23,7 +23,7 @@
     width: 100%;
   }
   .step-right {
-    padding: 5px;
+    padding: $space-2;
     width: 100%;
     font-weight: $font-weight-lighter;
     font-family: $font-family-cn-content;
@@ -45,10 +45,16 @@
     width: 100%;
     // height: 500px;
     background-color: $color-bg-light;
-    padding: 10px;
+    padding: $space-2;
 
     .shopping-cart-info {
       font-size: var(--fs-cn-page-type1-menu);
+    }
+  }
+  .shopping-cart-check-content {
+    max-width: 100%;
+    .shopping-cart-check-bg{
+      width: 100%;
     }
   }
 }
@@ -59,7 +65,7 @@
     min-height: 25%;
   }
   .cart-prd-content {
-    min-width: 40%;
+    min-width: 100%;
   }
 }
 
@@ -79,6 +85,7 @@
     align-items: center;
   }
 }
+
 .shopping-cart-summary-area {
   width: 100%;
   .shopping-cart-summary-content {
@@ -93,7 +100,7 @@
     border: 1px solid transparent;
     background: $color-border-gray;
     border-radius: 5px;
-    margin: 5px;
+    margin: $space-2;
     overflow: hidden;
 
     .step-left {
@@ -103,7 +110,7 @@
       align-items: center;
     }
     .step-right {
-      padding: 20px;
+      padding: $space-4;
       width: 80%;
       font-weight: $font-weight-lighter;
       font-family: $font-family-cn-content;
@@ -121,7 +128,7 @@
   }
   .cart-prd-content {
     min-width: 40%;
-    padding: 20px;
+    padding: $space-4;
   }
 }
 
@@ -130,9 +137,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: $space-2;
   .cart-prd-icon {
-    margin: 30px;
+    margin: $space-4;
   }
 }
 .cart-prd-number {
@@ -158,20 +165,25 @@
 }
 .ant-select-arrow {
   height: 40px;
-  font-size: 18px;
+  font-size: var(--fs-cn-page-type1-menu);
 }
 
 .shopping-cart-area {
   width: 100%;
   background-color: $color-bg-light;
-  padding: 5px;
+  padding: $space-2;
 
-  .shopping-cart-info {
-    font-size: var(--fs-cn-page-type1-menu);
+  .shopping-cart-check-content {
+    width: 40%;
   }
 
   .shopping-cart-check-bg {
     width: 100%;
+    padding: 10px;
+
+    .shopping-cart-info {
+      font-size: var(--fs-cn-page-type1-menu);
+    }
   }
 }
 .check-content {

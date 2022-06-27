@@ -17,6 +17,7 @@ import UserVip from './views/frontEnd/UserVip';
 import UserCoupon from './views/frontEnd/UserCoupon';
 import CouponDetail from './views/frontEnd/CouponDetail';
 import UserCart from './views/frontEnd/UserCart';
+import UserCartStep3 from './views/frontEnd/UserCartStep3';
 import UserReputation from './views/frontEnd/UserReputation';
 import UserGroup from './views/frontEnd/UserGroup';
 import OrderList from './views/frontEnd/OrderList';
@@ -84,7 +85,7 @@ function App() {
           <Route path="/cart" exact element={<UserCart />} auth={auth} setAuth={setAuth} />
           <Route path="/cart/step1" component={<GroupDetail />} />
           <Route path="/cart/step2" component={<GroupDetail />} />
-          <Route path="/cart/step3" component={<GroupDetail />} />
+          <Route path="/cart/step3" element={<UserCartStep3 />} />
         </Routes>
         <FeFooter />
       </main>

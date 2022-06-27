@@ -1,8 +1,9 @@
 import './index.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import BartendingCard from '../../../components/BartendingCard/index';
 import FePage2Header from '../../../components/FePage2Header';
 import FePagination from '../../../components/FePagination1';
+import axios from 'axios';
 const Bartending = () => {
   const page2HeaderInfo = {
     isProduct: true,
@@ -54,32 +55,44 @@ const Bartending = () => {
 
   //bartendingCard
   const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
-  const bartendcard = [
-    {
-      id: 1,
-      img: 'bartending_1.png',
-      name: '粉紅松鼠',
-      material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-    },
-    {
-      id: 2,
-      img: 'bartending_1.png',
-      name: '粉紅松鼠',
-      material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-    },
-    {
-      id: 3,
-      img: 'bartending_1.png',
-      name: '粉紅松鼠',
-      material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-    },
-    {
-      id: 4,
-      img: 'bartending_1.png',
-      name: '粉紅松鼠',
-      material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-    },
-  ];
+  // const bartendcard = [
+  //   {
+  //     id: 1,
+  //     img: 'bartending_1.png',
+  //     name: '粉紅松鼠',
+  //     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  //   },
+  //   {
+  //     id: 2,
+  //     img: 'bartending_1.png',
+  //     name: '粉紅松鼠',
+  //     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  //   },
+  //   {
+  //     id: 3,
+  //     img: 'bartending_1.png',
+  //     name: '粉紅松鼠',
+  //     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  //   },
+  //   {
+  //     id: 4,
+  //     img: 'bartending_1.png',
+  //     name: '粉紅松鼠',
+  //     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  //   },
+  // ];
+  const [barted, setBarted] = useState([]);
+
+  useEffect(() => {
+    let getApple = async () => {
+      let response = await axios.get('http://localhost:3001/api/bar');
+      // console.log('res', response.data);
+      setBarted(response.data);
+    };
+    getApple();
+  }, []);
+
+  // console.log('sp', barted);
   return (
     <>
       <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} BartendingImg={BartendingImg} navs={navs} />
@@ -160,7 +173,8 @@ const Bartending = () => {
 
           {/* card */}
           <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
-            {bartendcard.map((v, i) => {
+            {barted.map((v, i) => {
+              console.log(v);
               return <BartendingCard key={i.id} data={v} />;
             })}
           </div>

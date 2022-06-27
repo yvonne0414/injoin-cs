@@ -414,7 +414,7 @@ const GroupAdd = () => {
                   </div>
                   <Form.Item className="w-100 text-center mt-4">
                     <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
-                      報名參加
+                      新增揪團
                     </Button>
                   </Form.Item>
                 </Form>

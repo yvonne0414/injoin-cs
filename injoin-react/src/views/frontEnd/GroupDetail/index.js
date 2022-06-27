@@ -5,6 +5,7 @@ import './_index.scss';
 import { BsCalendar2Date, BsFillFileEarmarkTextFill, BsPeopleFill, BsFillBellFill } from 'react-icons/bs';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { AiFillDollarCircle, AiOutlineFieldTime } from 'react-icons/ai';
+import { message } from 'antd';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
@@ -45,22 +46,51 @@ const GroupDetail = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  const [memberInfo, setMemberInfo] = useState({
+    userId: 3,
+  });
+
+  // 提示
+  const success = () => {
+    message.success('報名成功');
+  };
+  const info = () => {
+    message.info('您已報名');
+  };
+
+  // 取得詳細資訊
   const { groupId } = useParams();
   let [data, setData] = useState([]);
+  let [isJoin, setIsJoin] = useState(false);
   useEffect(() => {
     let getGroupDetail = async () => {
-      let res = await axios.get(`${API_URL}/group/groupdetail/${groupId}`);
+      let res = await axios.get(`${API_URL}/group/groupdetail/${groupId}`, {
+        params: {
+          // TODO:待接sesssion
+          userId: memberInfo.userId,
+        },
+      });
       setData(res.data.data);
+      setIsJoin(res.data.isJoin);
       // console.log(res.data.data);
     };
     getGroupDetail();
-  }, [groupId]);
+  }, [groupId, memberInfo]);
 
-  // useEffect(() => {
-  //   setStartTime(data.start_time.slice(0, data.start_time.length - 3));
-  //   setEndTime(data.end_time.slice(0, data.end_time.length - 3));
-  //   setAuditTime(data.audit_time.slice(0, data.audit_time.length - 3));
-  // }, [data]);
+  // 報名活動
+  const joinGroup = async () => {
+    try {
+      let res = await axios.post(`${API_URL}/group/join/${groupId}`, {
+        // TODO:待接sesssion
+        userId: memberInfo.userId,
+      });
+      success();
+      // console.log(res.data);
+      setIsJoin(true);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <>
@@ -131,7 +161,7 @@ const GroupDetail = () => {
                           <span>活動介紹</span>
                         </span>
                         <span className="group-detail-info-content">
-                          <p>{data.disc}</p>
+                          <p>{item.disc}</p>
                         </span>
                       </div>
                     </div>
@@ -140,13 +170,22 @@ const GroupDetail = () => {
                     </div>
                   </div>
                   <div className="w-100 text-center mt-4">
-                    <button className="btn btn-none injoin-btn-outline text-gold">報名參加</button>
+                    {isJoin ? (
+                      <button className="btn btn-none injoin-btn-outline text-gold" onClick={info}>
+                        已報名
+                      </button>
+                    ) : (
+                      <button className="btn btn-none injoin-btn-outline text-gold" onClick={joinGroup}>
+                        報名參加
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
             );
           })}
 
+          {/* 回現正揪團 */}
           <Link to="/group" className="back-page btn btn-none mt-3">
             <div>
               <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -23,6 +23,7 @@ import OrderListDetail from './views/frontEnd/OrderListDetail';
 import GroupList from './views/frontEnd/GroupList/index';
 import GroupDetail from './views/frontEnd/GroupDetail/index';
 import GroupAdd from './views/frontEnd/GroupAdd';
+import GroupEdit from './views/frontEnd/GroupEdit';
 import ChatRoom from './views/frontEnd/ChatRoom';
 
 function App() {
@@ -71,6 +72,9 @@ function App() {
 
           {/* 揪團 */}
           <Route path="/newgroup" exact element={<GroupAdd />} />
+          <Route path="/editgroup/:groupId" element={<GroupEdit />}>
+            <Route path=":currentPage" element={<GroupEdit />} />
+          </Route>
           <Route path="/group" exact element={<GroupList />} />
           <Route path="/group/1" exact element={<GroupDetail />}>
             <Route path=":currentPage" element={<GroupDetail />} />

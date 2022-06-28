@@ -67,7 +67,7 @@ function App() {
 
           {/* 訂單 */}
           <Route path="/account/order" exact element={<OrderList />} />
-          <Route path="/account/order/1" exact element={<OrderListDetail />}>
+          <Route path="/account/order/:order" exact element={<OrderListDetail />}>
             <Route path=":currentPage" element={<OrderListDetail />} />
           </Route>
 

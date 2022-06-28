@@ -1,8 +1,9 @@
 @import '../../../assets/scss/_variable.scss';
 
-// order-select
+// ------order-status------
 .order-status-wraper {
   margin-bottom: $space-4;
+  width: 100%;
 }
 .order-status {
   font-size: var(--fs-en-page-type1-title-sm);
@@ -20,9 +21,12 @@
 .nav-select {
   color: $color-font;
   margin-right: 10px;
+  &:hover {
+    border-bottom: $color-border 1px solid;
+  }
 }
 
-// order-list
+// ------Order-List------
 .order-list {
   .list-content_order_num {
     order: 1;
@@ -61,6 +65,21 @@
 }
 
 @media screen and (min-width: 768px) {
+  // ------order-status------
+  .order-status-wraper {
+    margin-bottom: $space-4;
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+    .order-status{
+      width: 60%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  // ------Order-List------
   .order-list {
     .page-type1-list-content {
       border: unset;
@@ -95,36 +114,6 @@
         &:hover {
           border: $color-border 1px solid;
         }
-      }
-    }
-  }
-
-  .page-group-intro-area {
-    @include cn-list-content();
-    flex-flow: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: unset;
-    .group-list-img-1 {
-      width: 30%;
-      margin-top: $space-6;
-    }
-
-    .page-group-intro-content {
-      display: flex;
-      flex-flow: row;
-      width: 55%;
-      background-color: $color-bg-light;
-      .page-group-intro-text {
-        flex-grow: 1;
-        > div {
-          margin: auto;
-          max-width: 14rem;
-          line-height: $line-heght-3;
-        }
-      }
-      .group-list-img-2 {
-        width: 50%;
       }
     }
   }

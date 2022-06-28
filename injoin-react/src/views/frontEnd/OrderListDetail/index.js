@@ -1,10 +1,14 @@
 // scss
 import './index.scss';
-import React from 'react';
-import { Link } from 'react-router-dom';
+
+//react
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { API_URL } from '../../../utils/config';
 
 //antd
-import { Divider, Popover, Steps, Collapse } from 'antd';
+import { Steps, Collapse } from 'antd';
 import 'antd/dist/antd.css';
 
 //component
@@ -53,6 +57,7 @@ const OrderListDetail = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  //假資料
   const detailone = {
     orderdetailNum: '513947',
     orderdetailData: '2022/05/22',
@@ -107,6 +112,19 @@ const OrderListDetail = () => {
     console.log(key);
   };
 
+  //連接後端資料
+  const [ordersDetail, setOrdersDetail] = useState();
+  const { orderId } = useParams();
+  useEffect(() => {
+    let getOrdersDetail = async () => {
+      //axios.get(URL, config)
+      let response = await axios.get(API_URL + `/order/detail/${orderId}`);
+      setOrdersDetail(response.data.data);
+      console.log(response.data.data);
+    };
+    getOrdersDetail();
+  }, []);
+
   return (
     <>
       {/* -----------header------------ */}
@@ -124,7 +142,7 @@ const OrderListDetail = () => {
         </div>
       </div>
 
-      {/* --------- section Collapse ---------- */}
+      {/* ---------訂購資料 section Collapse ---------- */}
 
       <div class="container">
         <div className="position-relative">
@@ -166,7 +184,7 @@ const OrderListDetail = () => {
           </div>
         </div>
 
-        {/* -----------section 2------------ */}
+        {/* -----------商品區 section 2------------ */}
         <div class="container">
           {/* <div className="position-relative"> */}
           <div className="order-detail-info-bg-square p-3 p-md-5">
@@ -185,7 +203,7 @@ const OrderListDetail = () => {
               {orderdetailprdArr.map((v, i) => {
                 return <OrderDetail key={v.prdId} data={v} />;
               })}
-
+              {/* ---------金額計算-------- */}
               <div className="summary-section">
                 <div className="summary-title d-flex">
                   商品小計
@@ -196,7 +214,7 @@ const OrderListDetail = () => {
                   <br />
                   付款方式
                 </div>
-                
+
                 <div className="summary-item d-flex ms-5">
                   NT$2040
                   <br />

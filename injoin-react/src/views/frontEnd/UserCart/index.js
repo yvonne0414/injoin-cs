@@ -3,6 +3,7 @@ import './index.scss';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Select } from 'antd';
+
 // -----Variable width
 import Slider from 'react-slick';
 
@@ -12,6 +13,8 @@ import PrdCard from '../../../components/PrdCard';
 
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
 import { BsTrashFill } from 'react-icons/bs';
+
+
 
 const UserCart = () => {
   const page1HeaderInfo = {
@@ -136,15 +139,15 @@ const UserCart = () => {
       <div className="cart-area">
         <div className="container">
           {/* status-section-1 */}
-          <div className="cart-step-content d-flex flex-column flex-md-row ">
-            <div className="col cart-step d-flex flex-column flex-md-row">
+          <div className="cart-step-content d-flex flex-column flex-md-row">
+            <div className="col cart-step d-flex flex-column flex-md-row cart-step1">
               <div className="step-left">01</div>
               <div className="step-right">
                 確認訂單及付款方式 <br />
                 Cart & Check out
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row">
+            <div className="col cart-step d-flex flex-column flex-md-row ">
               <div className="step-left">02</div>
               <div className="step-right">
                 填寫訂單資料 <br />
@@ -165,8 +168,8 @@ const UserCart = () => {
             <div className="cart-add-info-bg-square"></div>
             <div className="p-3 p-md-5">
               <div className="shopping-cart-area d-flex justify-content-between d-flex flex-column flex-md-row">
-                <div className="d-flex flex-column flex-md-row">
-                  <div className="shopping-cart-bg mb-md-5 mb-3">
+                <div className="shopping-cart-prd-content">
+                  <div className="shopping-cart-bg  mb-3">
                     <div className="shopping-cart-info">
                       <div className="shopping-cart-info-title">
                         <span>
@@ -175,7 +178,7 @@ const UserCart = () => {
                           Your shopping bag
                         </span>
                       </div>
-                      <div className="cart-prd-info-content d-flex mt-3 flex-nowrap">
+                      <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
                         <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
                         <div className="cart-prd-content d-flex flex-column ms-2">
                           <div className="cart-prd-num">AA001234</div>
@@ -186,15 +189,16 @@ const UserCart = () => {
                           <div className="cart-prd-icon text-center">
                             <BsTrashFill />
                           </div>
-                          <div className="cart-prd-number d-flex ms-2 border border-white ">
+                          <div className="cart-prd-number d-flex ms-2 border border-white justify-content-between
+                        ">
                             <div className="prd-plus">+</div>
-                            <div className="border-end border-start prd-number text-center">1</div>
-                            <div className="prd-minus">-</div>
+                            <div className=" border-end border-start prd-number text-center">1</div>
+                            <div className=" prd-minus">-</div>
                           </div>
                         </div>
                       </div>
                       <hr className="" />
-                      <div className="cart-prd-info-content d-flex mt-2 flex-nowrap">
+                      <div className="cart-prd-info-content d-flex mt-2 flex-nowrap justify-content-between">
                         <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25  faverite-product-img-1 " />
                         <div className="cart-prd-content d-flex flex-column ">
                           <div className="cart-prd-num">AA001234</div>
@@ -205,7 +209,7 @@ const UserCart = () => {
                           <div className="cart-prd-icon text-center">
                             <BsTrashFill />
                           </div>
-                          <div className="cart-prd-number d-flex ms-2 border border-white ">
+                          <div className="cart-prd-number d-flex ms-2 border border-white justify-content-between">
                             <div className="prd-plus">+</div>
                             <div className="border-end border-start prd-number text-center">1</div>
                             <div className="prd-minus">-</div>
@@ -213,7 +217,7 @@ const UserCart = () => {
                         </div>
                       </div>
                       <hr className="" />
-                      <div className="cart-prd-info-content d-flex mt-3 flex-nowrap">
+                      <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
                         <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
                         <div className="cart-prd-content d-flex flex-column">
                           <div className="cart-prd-num">AA001234</div>
@@ -224,7 +228,7 @@ const UserCart = () => {
                           <div className="cart-prd-icon">
                             <BsTrashFill />
                           </div>
-                          <div className="cart-prd-number d-flex border border-white ">
+                          <div className="cart-prd-number d-flex border border-white justify-content-between">
                             <div className="prd-plus">+</div>
                             <div className="border-end border-start prd-number text-center">1</div>
                             <div className="prd-minus">-</div>
@@ -236,71 +240,73 @@ const UserCart = () => {
                   </div>
                 </div>
                 {/* check-section-3 */}
-                <div className="position-relative shopping-cart-check-content">
-                  <div className="shopping-cart-check-bg">
-                    <div className="shopping-cart-info">
-                      <div className="shopping-cart-info-title">
-                        <span>
-                          付款方式
+                <div className="shopping-cart-check-content">
+                  <div className="position-relative ">
+                    <div className="shopping-cart-check-bg">
+                      <div className="shopping-cart-info">
+                        <div className="shopping-cart-info-title">
+                          <span>
+                            付款方式
+                            <br />
+                            Payment Method
+                          </span>
+                        </div>
+                        <div className="cart-prd-info-content mt-5">
+                          <div className="delivery-section mb-3">
+                            <label>配送區域</label>
+                            <br />
+                            <Select labelInValue defaultValue={{ value: 1, label: '台灣本島' }} style={{ width: 250, size: 30 }} onChange={handleChange}>
+                              <Option value="1">台灣本島</Option>
+                              <Option value="2">偏遠地區及離島 </Option>
+                            </Select>
+                          </div>
+                        </div>
+                        <div className="check-info-area mb-3">
+                          <label>付款方式</label>
+                          <div className="check-content border border-white mt-2 p-3">
+                            <div className="form-check">
+                              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                              <label>信用卡線上付款</label>
+                            </div>
+                            <div className="form-check">
+                              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                              <label>貨到付款</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="delivery-section mb-5">
+                          <label>運送方式</label>
                           <br />
-                          Payment Method
-                        </span>
-                      </div>
-                      <div className="cart-prd-info-content mt-5">
-                        <div className="delivery-section mb-3">
-                          <label>配送區域</label>
-                          <br />
-                          <Select labelInValue defaultValue={{ value: 1, label: '台灣本島' }} style={{ width: 250, size: 30 }} onChange={handleChange}>
-                            <Option value="1">台灣本島</Option>
-                            <Option value="2">偏遠地區及離島 </Option>
+                          <Select labelInValue defaultValue={{ value: 1, label: '宅配' }} style={{ width: 250, size: 30 }} onChange={handleChange}>
+                            <Option value="1">宅配</Option>
+                            <Option value="2">郵局</Option>
                           </Select>
                         </div>
-                      </div>
-                      <div className="check-info-area mb-3">
-                        <label>付款方式</label>
-                        <div className="check-content border border-white mt-2 p-3">
-                          <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                            <label>信用卡線上付款</label>
-                          </div>
-                          <div className="form-check">
-                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                            <label>貨到付款</label>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="delivery-section mb-5">
-                        <label>運送方式</label>
-                        <br />
-                        <Select labelInValue defaultValue={{ value: 1, label: '宅配' }} style={{ width: 250, size: 30 }} onChange={handleChange}>
-                          <Option value="1">宅配</Option>
-                          <Option value="2">郵局</Option>
-                        </Select>
-                      </div>
-                      <div className="shopping-cart-summary-area">
-                        <span>訂單摘要</span>
-                        <div className="shopping-cart-summary-content mt-3">
-                          <div className="shopping-cart-summary-total d-flex justify-content-start">
-                            <div className="m-3">
-                              商品總計
-                              <br />
-                              使用優惠券
-                              <br />
-                              折扣金額
+                        <div className="shopping-cart-summary-area">
+                          <span>訂單摘要</span>
+                          <div className="shopping-cart-summary-content mt-3">
+                            <div className="shopping-cart-summary-total d-flex justify-content-start">
+                              <div className="m-3">
+                                商品總計
+                                <br />
+                                使用優惠券
+                                <br />
+                                折扣金額
+                              </div>
+                              <div className="m-3 ms-5">
+                                NT$680
+                                <br />
+                                優惠券
+                                <br />
+                                -NT$100
+                              </div>
                             </div>
-                            <div className="m-3 ms-5">
-                              NT$680
-                              <br />
-                              優惠券
-                              <br />
-                              -NT$100
+                            <hr />
+                            <div className="shopping-cart-summary-total d-flex justify-content-start mb-5">
+                              <div className="me-4">實付總金額</div>
+                              <div className="ms-5">NT$580</div>
                             </div>
-                          </div>
-                          <hr />
-                          <div className="shopping-cart-summary-total d-flex justify-content-start mb-5">
-                            <div className="me-4">實付總金額</div>
-                            <div className="ms-5">NT$580</div>
                           </div>
                         </div>
                       </div>

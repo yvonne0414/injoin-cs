@@ -16,13 +16,13 @@ const OrderListForm = (props) => {
   return (
     <>
       <div className="page-type1-list-content">
-        <div className="list-content_order_num">{data.orderNum}</div>
-        <div className="list-content_order_time">{data.orderTime}</div>
-        <div className="list-content_order_status">{data.orderStatus}</div>
-        <div className="list-content_order_pay">{data.orderPay}</div>
-        <div className="list-content_order_total">{data.orderTotal}</div>
+        <div className="list-content_order_num">{data.id}</div>
+        <div className="list-content_order_time">{data.order_time}</div>
+        <div className="list-content_order_status">{data.logiStaCateName}</div>
+        <div className="list-content_order_pay">{data.logiCateName}</div>
+        <div className="list-content_order_total">{data.user_id}</div>
         <div className="list-content_btn">
-          <Link to="/account/order/1">{data.orderBtn}</Link>
+          <Link to={`/account/order/${data.id}`}>詳細內容</Link>
         </div>
       </div>
     </>

@@ -23,7 +23,7 @@ const Chen = () => {
       {state === 5 && <Login />}
 
       {state === 6 && <Sighup />}
-      
+    
     </>
   );
 };

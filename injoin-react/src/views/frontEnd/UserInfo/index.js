@@ -1,6 +1,6 @@
 import './index.scss';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 import FePage1Header from '../../../components/FePage1Header';
 import Button from 'react-bootstrap/Button';
@@ -12,21 +12,41 @@ import UserInfoVipLevel from '../../../components/UserInfo/UserInfoVipLevel';
 import UserInfoTask from '../../../components/UserInfo/UserInfoTask';
 import LogoutPage from './LogoutPage';
 
+import { userState } from '../../../App';
+
 const UserInfo = () => {
+  const apple = useContext(userState);
+  console.log("usetInfo:" , apple);
   // 檢查登入
   const [member, setMember] = useState(null);
-  useEffect(() => {
-    let getMemberInfo = async () => {
-      let response = await axios.get(`${API_URL}/member/info`, {
-        // 允許跨源讀寫 cookie
-        // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
-        withCredentials: true,
-      });
-      console.log(response.data);
-      setMember(response.data);
-    };
-    getMemberInfo();
-  }, []);
+  const [isLogin, setisLogin] = useState('');
+  // useEffect(() => {
+  //   let getMemberInfo = async () => {
+  //     let response = await axios.get(`${API_URL}/member/info`, {
+  //       // 允許跨源讀寫 cookie
+  //       // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
+  //       withCredentials: true,
+  //     });
+  //     // console.log(response.data);
+  //     // console.log(response.data.id);
+  //     setMember(response.data);
+  //   };
+  //   getMemberInfo();
+  // }, []);
+
+  // useEffect(() => {
+  //   let getMemberInfo = async () => {
+  //     let response = await axios.get(`${API_URL}/member/info`, {
+  //       // 允許跨源讀寫 cookie
+  //       // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
+  //       withCredentials: true,
+  //     });
+  //     console.log(response.data);
+  //     console.log(response.data.id);
+  //     setMember(response.data);
+  //   };
+  //   getMemberInfo();
+  // }, [isLogin]);
 
   const page1HeaderInfo = {
     titleEn: 'Member',
@@ -68,7 +88,7 @@ const UserInfo = () => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
   return (
     <>
-      {member ? (
+      {apple.islogin ? (
         <div className="container">
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
           {/* ===============section2=============== */}
@@ -110,7 +130,7 @@ const UserInfo = () => {
           </section>
         </div>
       ) : (
-        <LogoutPage />
+        <LogoutPage setisLogin={setisLogin} />
       )}
     </>
   );

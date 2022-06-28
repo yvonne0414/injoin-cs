@@ -38,10 +38,12 @@ const Sighup = ({ setlogoutState }) => {
       formData.append('userage', member.userage);
       formData.append('userphone', member.userphone);
       formData.append('userphoto', member.userphoto);
-      let response = axios.post(`${API_URL}/auth/register`, formData);
-      console.log(response.data);
+      let response = await axios.post(`${API_URL}/auth/register`, formData);
+      // console.log(response.data.result);
+
+      message.success('註冊成功');
     } catch (e) {
-      console.error(e);
+      message.error(e.response.data.error);
     }
   }
 
@@ -228,6 +230,9 @@ const Sighup = ({ setlogoutState }) => {
                       required: true,
                       message: '請填寫出生年月',
                     },
+                    {
+                      
+                    }
                   ]}
                 >
                   <DatePicker
@@ -306,7 +311,6 @@ const Sighup = ({ setlogoutState }) => {
             已經是會員 ? 點我{' '}
             <span
               onClick={() => {
-                
                 setlogoutState(1);
               }}
             >

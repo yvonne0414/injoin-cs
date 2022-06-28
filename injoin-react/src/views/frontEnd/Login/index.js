@@ -1,12 +1,18 @@
 import './index.scss';
 import FePage1Header from '../../../components/FePage1Header';
 import logoimg from '../../../assets/images/shared/injoinlogo.png';
-import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
-import { useState } from 'react';
+import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, message } from 'antd';
+import { useState,useContext } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
+import { userState } from '../../../App';
 
-const Login = ({ setlogoutState }) => {
+
+const Login = ({ setlogoutState, setisLogin }) => {
+
+  const apple = useContext(userState);
+  // console.log("login: ", apple);
+
   const [member, setMember] = useState({
     loginusermail: '',
     loginuserpassword: '',
@@ -23,8 +29,21 @@ const Login = ({ setlogoutState }) => {
         withCredentials: true,
       });
       console.log('登入成功', response.data);
+      message.success('登入成功');
+      apple.setislogin(true)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     } catch (e) {
-      console.error('登入失敗', e.response.data);
+      console.log(e);
+      message.error('帳號或密碼錯誤');
+
+      // if (e.response.data.code == 3003) {
+      //   帳號沒註冊;
+      // } else {
+      //   密碼錯誤;
+      // }
     }
   }
   // Form
@@ -121,7 +140,7 @@ const Login = ({ setlogoutState }) => {
               還不是會員 ? 點我{' '}
               <span
                 onClick={() => {
-                  console.log("click")
+                  console.log('click');
                   setlogoutState(2);
                 }}
               >

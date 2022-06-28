@@ -386,7 +386,7 @@ const UserGroup = () => {
                       startTime = startTime.slice(0, startTime.length - 3);
                       endTime = endTime.slice(0, endTime.length - 3);
                       return (
-                        <div className="page-type1-list-content my-group-list-wraper">
+                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                           <div className="list-content_activity-name">{item.name}</div>
                           <div className="list-content_time">
                             {startTime}~{endTime}
@@ -446,7 +446,7 @@ const UserGroup = () => {
                       startTime = startTime.slice(0, startTime.length - 3);
                       endTime = endTime.slice(0, endTime.length - 3);
                       return (
-                        <div className="page-type1-list-content my-group-list-wraper">
+                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                           <div className="list-content_activity-name">{item.name}</div>
                           <div className="list-content_time">
                             {startTime}~{endTime}
@@ -520,7 +520,7 @@ const UserGroup = () => {
                       startTime = startTime.slice(0, startTime.length - 3);
                       endTime = endTime.slice(0, endTime.length - 3);
                       return (
-                        <div className="page-type1-list-content my-group-list-wraper">
+                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                           <div className="list-content_activity-name">{item.name}</div>
                           <div className="list-content_time">
                             {startTime}~{endTime}
@@ -583,7 +583,7 @@ const UserGroup = () => {
                       startTime = startTime.slice(0, startTime.length - 3);
                       endTime = endTime.slice(0, endTime.length - 3);
                       return (
-                        <div className="page-type1-list-content my-group-list-wraper">
+                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                           <div className="list-content_activity-name">{item.name}</div>
                           <div className="list-content_time">
                             {startTime}~{endTime}

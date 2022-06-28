@@ -91,7 +91,7 @@ const UserCartStep3 = () => {
           <div className="shopping-cart-section ">
             <div className="cart-checkbox-area">
               <div className="cart-checkbox">
-                <FaCheck style={{ width: 32, height: 32  }} />
+                <FaCheck style={{ width: 32, height: 32 }} />
               </div>
             </div>
             <div className="finish-checkbox">完成訂單</div>

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { userState } from '../../App';
 import UserAboutMe from './UserAboutMe';
 import UserInfoChangePasswd from './UserInfoChangePasswd';
 import UserInfoProfile from './UserInfoProfile';
@@ -6,6 +7,9 @@ import UserProfile from './UserProfile';
 
 
 const UserInfoForm = () => {
+  const userstate = useContext(userState);
+  // console.log('userinfoFrom', userstate);
+
   const [userInfoTableMode, setUserInfoTableMode] = useState(1);
   const ularray = ['個人檔案', '關於我', '更改密碼'];
 
@@ -31,14 +35,10 @@ const UserInfoForm = () => {
           </ul>
         </nav>
         <div className="changeCard">
-        {userInfoTableMode === 0 && <UserInfoProfile />}
-        {userInfoTableMode === 1 && <UserAboutMe />}
-        {userInfoTableMode === 2 && <UserInfoChangePasswd />}
-
-
+          {userInfoTableMode === 0 && <UserInfoProfile />}
+          {userInfoTableMode === 1 && <UserAboutMe />}
+          {userInfoTableMode === 2 && <UserInfoChangePasswd />}
         </div>
-        
-        
       </div>
     </>
   );

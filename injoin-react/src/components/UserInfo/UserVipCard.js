@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import vips4vip0 from '../../assets/images/fe/uservip/gold.png';
 import vips4vip1 from '../../assets/images/fe/uservip/platinum.png';
 import vips4vip2 from '../../assets/images/fe/uservip/dim.png';
+import { userState } from '../../App';
+
 
 const UserVipCard = () => {
+  const userstate = useContext(userState)
+  console.log("vipcard, ", userstate);
   const [UserVipCardState, setUserVipCardState] = useState(2);
   const UserVipLevel = ['黃金', '柏金', '鑽石'];
   return (

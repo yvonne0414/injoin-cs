@@ -1,11 +1,14 @@
 // 圖片upload
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import moment from 'moment';
+import { userState } from '../../App';
+
 
 // upload
 const getBase64 = (file) =>
+
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -38,6 +41,8 @@ const UserInfoProfile = () => {
     //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
     // },
   ]);
+  // const usermember = useContext(userState)
+  // console.log('userinfopro: ', usermember);
 
   const handleCancel = () => setPreviewVisible(false);
 

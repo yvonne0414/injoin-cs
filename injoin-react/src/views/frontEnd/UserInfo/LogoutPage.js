@@ -5,6 +5,7 @@ import Sighup from '../Signup'
 
 
 const LogoutPage = ({setisLogin}) => {
+  // const userstate = useContext(userState)
   let [logoutstate, setlogoutState] = useState(1)
   return (
     <>

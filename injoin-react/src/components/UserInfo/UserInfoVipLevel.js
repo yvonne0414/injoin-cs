@@ -6,10 +6,10 @@ import { useContext } from 'react';
 
 
 const UserInfoVipLevel = () => {
-  const apple = useContext(userState)
-  console.log(apple)
+  const userstate = useContext(userState)
+  // console.log("suerVIp:" , userstate)
   const UserInfoVipLevel = {
-    vipLevel: 0,
+    vipLevel: userstate.member.vip_level,
     vipMessage: '根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員',
   };
 
@@ -31,7 +31,7 @@ const UserInfoVipLevel = () => {
         <div className="members2-usersth">{UserInfoVipLevel.vipMessage}，年度結算日為 1/1，會員期限至 2024/1/1</div>
         <div className="members2-levelrules">
           了解詳細
-          <Link to="/">
+          <Link to="#">
             <span>會員等級說明</span>
           </Link>
         </div>

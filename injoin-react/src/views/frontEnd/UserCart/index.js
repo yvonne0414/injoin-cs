@@ -154,7 +154,7 @@ const UserCart = () => {
                 Shipping & Billing info
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row">
+            <div className="col cart-step d-flex flex-column flex-md-row cart-step3">
               <div className="step-left">03</div>
               <div className="step-right">
                 購物完成! <br />

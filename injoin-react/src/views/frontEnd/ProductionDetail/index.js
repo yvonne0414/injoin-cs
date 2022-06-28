@@ -24,6 +24,8 @@ import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail
 import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail-img-5.png';
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const { Panel } = Collapse;
 
@@ -206,57 +208,71 @@ const cardArr = [
   },
 ];
 
-const bartendcard = [
-  {
-    id: 1,
-    img: 'bartending_1.png',
-    name: '粉紅松鼠',
-    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  },
-  {
-    id: 2,
-    img: 'bartending_1.png',
-    name: '粉紅松鼠',
-    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  },
-  {
-    id: 3,
-    img: 'bartending_1.png',
-    name: '粉紅松鼠',
-    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  },
-  {
-    id: 4,
-    img: 'bartending_1.png',
-    name: '粉紅松鼠',
-    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  },
-  {
-    id: 5,
-    img: 'bartending_1.png',
-    name: '粉紅松鼠',
-    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  },
-  {
-    id: 6,
-    img: 'bartending_1.png',
-    name: '粉紅松鼠',
-    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  },
-  {
-    id: 7,
-    img: 'bartending_1.png',
-    name: '粉紅松鼠',
-    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  },
-  {
-    id: 8,
-    img: 'bartending_1.png',
-    name: '粉紅松鼠',
-    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  },
-];
+// const bartendcard = [
+//   {
+//     id: 1,
+//     img: 'bartending_1.png',
+//     name: '粉紅松鼠',
+//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+//   },
+//   {
+//     id: 2,
+//     img: 'bartending_1.png',
+//     name: '粉紅松鼠',
+//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+//   },
+//   {
+//     id: 3,
+//     img: 'bartending_1.png',
+//     name: '粉紅松鼠',
+//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+//   },
+//   {
+//     id: 4,
+//     img: 'bartending_1.png',
+//     name: '粉紅松鼠',
+//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+//   },
+//   {
+//     id: 5,
+//     img: 'bartending_1.png',
+//     name: '粉紅松鼠',
+//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+//   },
+//   {
+//     id: 6,
+//     img: 'bartending_1.png',
+//     name: '粉紅松鼠',
+//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+//   },
+//   {
+//     id: 7,
+//     img: 'bartending_1.png',
+//     name: '粉紅松鼠',
+//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+//   },
+//   {
+//     id: 8,
+//     img: 'bartending_1.png',
+//     name: '粉紅松鼠',
+//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+//   },
+// ];
+
+// const Bartending = () => {}
+
 const ProductionDetail = () => {
+  const [barted, setBarted] = useState([]);
+
+  useEffect(() => {
+    let getApple = async () => {
+      let response = await axios.get('http://localhost:3001/api/bar');
+      // console.log('res', response.data);
+      setBarted(response.data);
+    };
+    getApple();
+  }, []);
+
   return (
     <>
       {/* session1---------------------------------------------------------------------- */}
@@ -437,7 +453,8 @@ const ProductionDetail = () => {
               </div>
               <div className="bartending-card px-md-3">
                 <Slider {...settings2}>
-                  {bartendcard.map((v, i) => {
+                  {barted.map((v, i) => {
+                    console.log(v);
                     return <BartendingCard key={i.id} data={v} />;
                   })}
                 </Slider>

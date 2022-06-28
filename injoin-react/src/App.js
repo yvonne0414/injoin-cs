@@ -106,7 +106,7 @@ function App() {
             <Route path=":currentPage" element={<GroupEdit />} />
           </Route>
           <Route path="/group" exact element={<GroupList />} />
-          <Route path="/group/1" exact element={<GroupDetail />}>
+          <Route path="/group/:groupId" exact element={<GroupDetail />}>
             <Route path=":currentPage" element={<GroupDetail />} />
           </Route>
           <Route path="/chatroom/1" exact element={<ChatRoom />}>

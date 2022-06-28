@@ -1,11 +1,12 @@
 import { Modal } from 'antd';
 import { ImUserCheck } from 'react-icons/im';
-import { useState } from 'react';
 
 import GroupPlayItem from './GroupPlayItem';
 import './index.scss';
 
-const FeAuditModal = () => {
+import { useEffect, useState } from 'react';
+
+const FeAuditModal = (props) => {
   // modal
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -23,11 +24,19 @@ const FeAuditModal = () => {
   };
 
   const handleCancel = () => {
-    console.log('Clicked cancel button');
+    // console.log('Clicked cancel button');
     setVisible(false);
   };
 
-  const arr = [1, 2, 3];
+  // 取得參加者資訊
+  const { groupId, groupMaxNum, groupNowNum, groupMember } = props;
+  let [groupNum, setGroupNum] = useState(groupNowNum);
+  let [isFull, setIsFull] = useState(false);
+  useEffect(() => {
+    if (groupMaxNum === groupNum) {
+      setIsFull(true);
+    }
+  });
   return (
     <>
       <div className="list-content_btn" title="審查" onClick={showModal}>
@@ -35,9 +44,12 @@ const FeAuditModal = () => {
         {/* 審查 */}
       </div>
       <Modal title="團員審核" visible={visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} centered>
+        <div className="text-end">
+          目前團員：{groupNum} / {groupMaxNum}
+        </div>
         <div className="group-player-list">
-          {arr.map((item) => {
-            return <GroupPlayItem key={item} />;
+          {groupMember.map((item) => {
+            return <GroupPlayItem key={item.id} data={item} groupId={groupId} setGroupNum={setGroupNum} groupNum={groupNum} isFull={isFull} />;
           })}
         </div>
       </Modal>

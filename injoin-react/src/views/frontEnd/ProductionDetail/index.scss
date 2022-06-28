@@ -37,11 +37,11 @@
   font-family: $font-family-cn-main;
   color: $color-font-gold;
 }
-.prd-detail-text-1 {
-  font-size: var(--fs-cn-home-content);
-  font-family: $font-family-cn-content;
-  color: $color-font;
-}
+// .prd-detail-text-1 {
+//   font-size: var(--fs-cn-home-content);
+//   font-family: $font-family-cn-content;
+//   color: $color-font;
+// }
 .prd-detail-text {
   font-size: var(--fs-cn-home-content);
   font-family: $font-family-cn-content;
@@ -95,6 +95,10 @@
     display: flex;
     align-items: center;
   }
+}
+.ant-collapse-header-text {
+  font-family: "Noto Serif TC";
+  font-size: var(--fs-cn-page-list-title-lg) !important;
 }
 .prd-detail-title-type1 {
   font-size: var(--fs-cn-page-type1-title-md);
@@ -280,13 +284,17 @@
   //   // 24px
   //   font-size: var(--fs-cn-home-prdtext) !important;
   // }
-  // .prd-detail-title-type1 {
-  //   // 32px
-  //   font-size: var(--fs-cn-page-type1-title-sp) !important;
-  // }
+  .ant-collapse-header-text {
+    // 24px
+    font-size: var(--fs-cn-page-list-content) !important;
+  }
+  .prd-detail-title-type1 {
+    // 24px
+    font-size: var(--fs-cn-page-list-content) !important;
+  }
   // .prd-detail-text-1 {
-  //   // 24px
-  //   font-size: var(--fs-cn-page-type1-content-sp) !important;
+  //   // 20px
+  //   font-size: var(--fs-cn-page-type1-content) !important;
   // }
   // .prd-detail-text {
   //   // 20px

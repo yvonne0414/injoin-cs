@@ -15,16 +15,18 @@ function BartendingCard(props) {
       <div className="col Bartending-card-col">
         <div className="Bartending-card card ">
           <div className="Bartending-card-image">
-            <Link to="/">{/* <img src={require(`../../assets/images/fe/bartending/${data.img}`)} alt="" /> */}</Link>
+            <Link to="/">
+              <img src={`http://localhost:3001/images${data.img}`} alt="" />
+            </Link>
             {/* <Link to="/">
               <img src={bartendingimg} alt="" />
-            </Link> */}
+            </Link>  */}
           </div>
           <div className="Bartending-card-body card-body ">
             <div className="Bartending-card-title card-title">
               <Link to="/">{data.name}</Link>
             </div>
-            <div className="Bartending-card-subtitle card-footer">{data.bartd_material_name} </div>
+            <div className="Bartending-card-subtitle card-footer">{data.material} </div>
           </div>
         </div>
       </div>

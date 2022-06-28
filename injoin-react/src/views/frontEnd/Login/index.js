@@ -28,7 +28,7 @@ const Login = ({ setlogoutState, setisLogin }) => {
         // 如果想要跨源讀寫 cookie
         withCredentials: true,
       });
-      console.log('登入成功', response.data);
+      // console.log('登入成功', response.data);
       message.success('登入成功');
       apple.setislogin(true)
       window.scrollTo({
@@ -36,7 +36,7 @@ const Login = ({ setlogoutState, setisLogin }) => {
         behavior: 'smooth',
       });
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       message.error('帳號或密碼錯誤');
 
       // if (e.response.data.code == 3003) {
@@ -140,8 +140,12 @@ const Login = ({ setlogoutState, setisLogin }) => {
               還不是會員 ? 點我{' '}
               <span
                 onClick={() => {
-                  console.log('click');
+                  // console.log('click');
                   setlogoutState(2);
+                  window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                  });
                 }}
               >
                 註冊會員

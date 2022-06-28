@@ -39,11 +39,9 @@ function App() {
   useEffect(() => {
     let getMemberInfo = async () => {
       let response = await axios.get(`${API_URL}/member/info`, {
-        // 允許跨源讀寫 cookie
-        // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
         withCredentials: true,
       });
-      setMember()
+      setMember(response.data)
     };
     getMemberInfo();
   }, []);
@@ -51,12 +49,10 @@ function App() {
   useEffect(() => {
     let getMemberInfo = async () => {
       let response = await axios.get(`${API_URL}/member/info`, {
-        // 允許跨源讀寫 cookie
-        // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
         withCredentials: true,
       });
-      console.log("app.js" ,response.data);
-      setMember()
+      // console.log("app.js" ,response.data);
+      setMember(response.data)
     };
     getMemberInfo();
   }, [islogin]);

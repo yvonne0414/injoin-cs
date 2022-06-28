@@ -87,7 +87,7 @@ const FeHeader = () => {
         // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
         withCredentials: true,
       });
-      console.log(response.data);
+      // console.log(response.data);
       setMember(response.data);
     };
     getMemberInfo();

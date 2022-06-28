@@ -16,38 +16,9 @@ import { userState } from '../../../App';
 
 const UserInfo = () => {
   const apple = useContext(userState);
-  console.log("usetInfo:" , apple);
+  // console.log("usetInfo:" , apple);
   // 檢查登入
-  const [member, setMember] = useState(null);
   const [isLogin, setisLogin] = useState('');
-  // useEffect(() => {
-  //   let getMemberInfo = async () => {
-  //     let response = await axios.get(`${API_URL}/member/info`, {
-  //       // 允許跨源讀寫 cookie
-  //       // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
-  //       withCredentials: true,
-  //     });
-  //     // console.log(response.data);
-  //     // console.log(response.data.id);
-  //     setMember(response.data);
-  //   };
-  //   getMemberInfo();
-  // }, []);
-
-  // useEffect(() => {
-  //   let getMemberInfo = async () => {
-  //     let response = await axios.get(`${API_URL}/member/info`, {
-  //       // 允許跨源讀寫 cookie
-  //       // 這樣才可以把之前有紀錄登入資料的 session id 送回去後端
-  //       withCredentials: true,
-  //     });
-  //     console.log(response.data);
-  //     console.log(response.data.id);
-  //     setMember(response.data);
-  //   };
-  //   getMemberInfo();
-  // }, [isLogin]);
-
   const page1HeaderInfo = {
     titleEn: 'Member',
     titleCn: '會員中心',

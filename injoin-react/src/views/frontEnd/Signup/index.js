@@ -27,6 +27,10 @@ const Sighup = ({ setlogoutState }) => {
   }
   async function handleSubmit(e) {
     // e.preventDefault();
+    if (member.userage < 18) {
+      message.error('未滿18歲');
+      return;
+    }
     try {
       let formData = new FormData();
       formData.append('username', member.username);
@@ -42,7 +46,13 @@ const Sighup = ({ setlogoutState }) => {
       // console.log(response.data.result);
 
       message.success('註冊成功');
+      setlogoutState(1);
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     } catch (e) {
+      // console.log(e.response.data.error);
       message.error(e.response.data.error);
     }
   }
@@ -128,7 +138,7 @@ const Sighup = ({ setlogoutState }) => {
     });
 
   const normFile = (e) => {
-    console.log('Upload event:', e);
+    // console.log('Upload event:', e);
 
     if (Array.isArray(e)) {
       return e;
@@ -223,16 +233,13 @@ const Sighup = ({ setlogoutState }) => {
                 </Form.Item>
                 <Form.Item
                   className="loginformpart"
-                  name="signupuserbirth"
                   label={signupuserbirthLabel}
                   rules={[
                     {
                       required: true,
                       message: '請填寫出生年月',
                     },
-                    {
-                      
-                    }
+                    {},
                   ]}
                 >
                   <DatePicker
@@ -312,6 +319,10 @@ const Sighup = ({ setlogoutState }) => {
             <span
               onClick={() => {
                 setlogoutState(1);
+                window.scrollTo({
+                  top: 0,
+                  behavior: 'smooth',
+                });
               }}
             >
               登入會員

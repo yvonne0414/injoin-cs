@@ -1,10 +1,12 @@
 import './index.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import FePage2Header from '../../../components/FePage2Header';
 
 import FePagination from '../../../components/FePagination1';
 import PrdCard from '../../../components/PrdCard';
+
+import axios from 'axios';
 
 const Production = () => {
   const page2HeaderInfo = {
@@ -79,6 +81,18 @@ const Production = () => {
       rating: ' 4.6',
     },
   ];
+
+  const [prded, setPrded] = useState([]);
+
+  useEffect(() => {
+    let getprded = async () => {
+      let response = await axios.get('http://localhost:3001/api/prd');
+      // console.log('res', response.data);
+      setPrded(response.data);
+    };
+    getprded();
+  }, []);
+
   return (
     <>
       <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} prdImg={prdImg} navs={navs} />
@@ -166,7 +180,7 @@ const Production = () => {
           </div>
 
           <div class=" prd-card-all row row-cols-2 row-cols-md-4">
-            {cardArr.map((v, i) => {
+            {prded.map((v, i) => {
               return <PrdCard key={v.id} data={v} />;
             })}
           </div>

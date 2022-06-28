@@ -208,59 +208,6 @@ const cardArr = [
   },
 ];
 
-// const bartendcard = [
-//   {
-//     id: 1,
-//     img: 'bartending_1.png',
-//     name: '粉紅松鼠',
-//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-//   },
-//   {
-//     id: 2,
-//     img: 'bartending_1.png',
-//     name: '粉紅松鼠',
-//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-//   },
-//   {
-//     id: 3,
-//     img: 'bartending_1.png',
-//     name: '粉紅松鼠',
-//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-//   },
-//   {
-//     id: 4,
-//     img: 'bartending_1.png',
-//     name: '粉紅松鼠',
-//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-//   },
-//   {
-//     id: 5,
-//     img: 'bartending_1.png',
-//     name: '粉紅松鼠',
-//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-//   },
-//   {
-//     id: 6,
-//     img: 'bartending_1.png',
-//     name: '粉紅松鼠',
-//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-//   },
-//   {
-//     id: 7,
-//     img: 'bartending_1.png',
-//     name: '粉紅松鼠',
-//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-//   },
-//   {
-//     id: 8,
-//     img: 'bartending_1.png',
-//     name: '粉紅松鼠',
-//     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-//   },
-// ];
-
-// const Bartending = () => {}
-
 const ProductionDetail = () => {
   const [barted, setBarted] = useState([]);
 
@@ -278,8 +225,8 @@ const ProductionDetail = () => {
       {/* session1---------------------------------------------------------------------- */}
       <div className="bg-box prd-detail-session1">
         <img src={prddetailImg5} alt="prd-detail-img-5" className="mx-auto h-100 prd-detail-img-5 pc-view" />
-        {/* Breadcrumb----------------------------------- */}
         <div className="container">
+        {/* Breadcrumb----------------------------------- */}
           <div className="w-fit-content ms-auto">
             <Breadcrumb separator="" className="prd-detail-breadcrumb">
               <Breadcrumb.Item href="">商品</Breadcrumb.Item>
@@ -357,7 +304,7 @@ const ProductionDetail = () => {
           <div className="prd-detail-collapse">
             <Collapse defaultActiveKey={['1']} onChange={onChange}>
               <Panel className="prd-detail-title-type1" header="產地規格" key="1">
-                <p className="prd-detail-text-1">
+                <p className="prd-detail-text">
                   產地：{specification.origin}
                   <br />
                   容量：{specification.capacity}ml
@@ -430,7 +377,7 @@ const ProductionDetail = () => {
             </div>
           </div>
 
-          {/* the same kind  product-------------------------------------*/}
+          {/* the same kind product-------------------------------------*/}
           <div className="prd-detail-evaluation-bg mt-5">
             <div className="container mb-4">
               <div className="prd-detail-title-type1 mt-3 ">
@@ -445,7 +392,7 @@ const ProductionDetail = () => {
               </div>
             </div>
           </div>
-          {/* bartending--------------------------------------------- */}
+          {/* the same kind bartending--------------------------------------------- */}
           <div className="prd-detail-evaluation-bg-sp mt-5">
             <div className="container mb-4">
               <div className="prd-detail-title-type1 mt-3 ">

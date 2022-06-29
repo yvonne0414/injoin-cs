@@ -31,20 +31,28 @@ import AboutUser from './views/frontEnd/AboutUser';
 
 export const userState = createContext();
 
-
 function App() {
   const [auth, setAuth] = useState(false);
   const [islogin, setislogin] = useState(false);
-  const [member, setMember] =useState(null)
+  const [member, setMember] = useState(null);
 
   useEffect(() => {
     let getMemberInfo = async () => {
       let response = await axios.get(`${API_URL}/member/info`, {
         withCredentials: true,
       });
-      setMember(response.data)
+      setMember(response.data);
     };
     getMemberInfo();
+
+    let getUserLike = async () => {
+      let response = await axios.get(`${API_URL}/userlike/1`);
+
+      // console.log("app",response.data);
+      localStorage.removeItem('userLike');
+      localStorage.setItem('userLike', JSON.stringify(response.data));
+    };
+    getUserLike();
   }, []);
 
   useEffect(() => {
@@ -53,13 +61,13 @@ function App() {
         withCredentials: true,
       });
       // console.log("app.js" ,response.data);
-      setMember(response.data)
+      setMember(response.data);
     };
     getMemberInfo();
   }, [islogin]);
 
   return (
-    <userState.Provider value={{islogin, setislogin, member}}>
+    <userState.Provider value={{ islogin, setislogin, member }}>
       <BrowserRouter>
         <BackTop />
         <FeHeader />
@@ -100,18 +108,18 @@ function App() {
               <Route path=":currentPage" element={<OrderListDetail />} />
             </Route>
 
-          {/* 揪團 */}
-          <Route path="/newgroup" exact element={<GroupAdd />} />
-          <Route path="/editgroup/:groupId" element={<GroupEdit />}>
-            <Route path=":currentPage" element={<GroupEdit />} />
-          </Route>
-          <Route path="/group" exact element={<GroupList />} />
-          <Route path="/group/:groupId" exact element={<GroupDetail />}>
-            <Route path=":currentPage" element={<GroupDetail />} />
-          </Route>
-          <Route path="/chatroom/1" exact element={<ChatRoom />}>
-            <Route path=":currentPage" element={<ChatRoom />} />
-          </Route>
+            {/* 揪團 */}
+            <Route path="/newgroup" exact element={<GroupAdd />} />
+            <Route path="/editgroup/:groupId" element={<GroupEdit />}>
+              <Route path=":currentPage" element={<GroupEdit />} />
+            </Route>
+            <Route path="/group" exact element={<GroupList />} />
+            <Route path="/group/:groupId" exact element={<GroupDetail />}>
+              <Route path=":currentPage" element={<GroupDetail />} />
+            </Route>
+            <Route path="/chatroom/1" exact element={<ChatRoom />}>
+              <Route path=":currentPage" element={<ChatRoom />} />
+            </Route>
 
             {/* 購物車 */}
             <Route path="/cart" component={<GroupDetail />} auth={auth} setAuth={setAuth} />
@@ -120,8 +128,8 @@ function App() {
             <Route path="/cart/step3" component={<GroupDetail />} />
 
             {/* 會員資料 */}
-            <Route path="/aboutuser" component={<AboutUser/>}> 
-            <Route path=":userid" element={<AboutUser />} />
+            <Route path="/aboutuser" component={<AboutUser />}>
+              <Route path=":userid" element={<AboutUser />} />
             </Route>
           </Routes>
           <FeFooter />

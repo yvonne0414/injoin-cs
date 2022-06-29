@@ -1,6 +1,6 @@
 // scss
 import './index.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import faveritePrdImg1 from '../../../../src/assets/images/fe/faverite/';
 
@@ -8,8 +8,27 @@ import { Link } from 'react-router-dom';
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination1';
 import LikePrdCard from '../../../components/FeUserLike/UserLike';
+import axios from 'axios';
+import { API_URL } from '../../../utils/config';
 
 const UserLike = () => {
+  const [arr, setArr] = useState([]);
+  let userid = 1;
+  const [userlike, setUserlike] = useState([]);
+
+  useEffect(() => {
+    // console.log(JSON.parse(localStorage.getItem('userLike')));
+    // setArr(JSON.parse(localStorage.getItem('userLike')));
+    let getUserLike = async () => {
+      let response = await axios.get(`${API_URL}/userlike/${userid}`);
+
+      // console.log("app",response.data);
+      setArr(response.data);
+    };
+    getUserLike();
+  }, []);
+  // console.log('arr:', arr);
+
   const page1HeaderInfo = {
     titleEn: 'Faverite',
     titleCn: '我的收藏',
@@ -47,6 +66,21 @@ const UserLike = () => {
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+console.log(arr);
+  const apparr = [];
+  arr.forEach((e) => {
+    // console.log(e);
+    let obj = {
+      id: e.id,
+      likeImg: e.main_img,
+      likePrdName: e.name,
+      likePrdPrice: `NT ${e.price}`,
+      likePrdStar: '4.6',
+    };
+    apparr.push(obj);
+  });
+  // console.log("apparr", apparr);
+
   const likecardArr = [
     {
       id: 1,
@@ -77,6 +111,7 @@ const UserLike = () => {
       likePrdStar: '4.6',
     },
   ];
+  // console.log("likecardArr", likecardArr);
 
   return (
     <>
@@ -92,7 +127,7 @@ const UserLike = () => {
       <div className="user-add-faverite-content" id="faverite-bolck1">
         <div className="container">
           <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
-            {likecardArr.map((v, i) => {
+            {apparr.map((v, i) => {
               return <LikePrdCard key={v.id} data={v} />;
             })}
           </div>

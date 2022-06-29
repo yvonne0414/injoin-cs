@@ -83,7 +83,7 @@ const [isTrue,setIsTrue] = useState(true)
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
   
-  console.log(isTrue);
+  // console.log(isTrue);
 
   return (
     <>

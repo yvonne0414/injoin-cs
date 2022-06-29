@@ -87,40 +87,64 @@ const UserCartStep2 = () => {
           {/* prd-section-2 */}
           <div className="position-relative">
             <div className="cart-add-info-bg-square"></div>
-            <div className="p-5">
-              <div className="shopping-cart-prd-content">
-                <div className="shopping-cart-bg  mb-3">
-                  <div className="shopping-cart-info">
-                    <div className="shopping-cart-info-title">
-                      <span>
-                        我的購物車
-                        <br />
-                        Your shopping bag
-                      </span>
-                    </div>
-                    <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                        <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
-                        <div className="cart-prd-content d-flex flex-column ms-2">
-                          <div className="cart-prd-num">AA001234</div>
-                          <div className="cart-prd-name">AA001234</div>
-                          <div className="cart-prd-price">NT$680</div>
-                        </div>
-                        <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
-                          <div className="cart-prd-icon text-center">
-                            <BsTrashFill />
-                          </div>
-                          <div
-                            className="cart-prd-number d-flex ms-2 border border-white justify-content-between
-                        "
-                          >
-                            <button className="prd-plus btn-none">+</button>
-                            <div className=" border-end border-start prd-number text-center">1</div>
-                            <button className="prd-minus btn-none">-</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="border-bottom m-3"></div>
+            <div className="cart-prd-bg-area">
+              <div className="cart-prd-content">
+                <div className="cart-prd-info ">
+                  <div className="shopping-cart-info-title">
+                    <h4>
+                      訂單商品資訊
+                      <br />
+                      Order Information
+                    </h4>
                   </div>
+                  <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
+                    <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
+                    <div className="cart-detail-prd-content d-flex flex-column">
+                      <div className="cart-prd-num">AA001234</div>
+                      <div className="cart-prd-name">AA001234</div>
+                      <div></div>
+                      <br />
+                      <div className="cart-prd-price">NT$680</div>
+                    </div>
+                    <div className="prd-number-content">
+                      <div className="prd-number">
+                        <span>數量:</span>1
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bottom-line"></div>
+                  <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
+                    <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
+                    <div className="cart-detail-prd-content d-flex flex-column">
+                      <div className="cart-prd-num">AA001234</div>
+                      <div className="cart-prd-name">AA001234</div>
+                      <div></div>
+                      <br />
+                      <div className="cart-prd-price">NT$680</div>
+                    </div>
+                    <div className="prd-number-content">
+                      <div className="prd-number">
+                        <span>數量:</span>1
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bottom-line"></div>
+                  <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
+                    <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
+                    <div className="cart-detail-prd-content d-flex flex-column">
+                      <div className="cart-prd-num">AA001234</div>
+                      <div className="cart-prd-name">AA001234</div>
+                      <div></div>
+                      <br />
+                      <div className="cart-prd-price">NT$680</div>
+                    </div>
+                    <div className="prd-number-content">
+                      <div className="prd-number">
+                        <span>數量:</span>1
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bottom-line"></div>
                 </div>
               </div>
             </div>

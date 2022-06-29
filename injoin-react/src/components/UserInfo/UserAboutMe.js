@@ -2,8 +2,15 @@ import upperUsericon from '../../assets/images/fe/membercenter/usericon.png';
 import upperBackground from '../../assets/images/fe/membercenter/UserInfo-AboutCard.jpg';
 import { Form, Input, Button } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
+import { userState } from '../../App';
+import { useContext } from 'react';
 
 const UserAboutMe = () => {
+  const userstate = useContext(userState);
+  // console.log("about ",userstate);
+  // console.log(userstate.member.name);
+  // console.log(userstate.member.name);
+
   const usernicknameLabel = (
     <div className="userinfo-about-title">
       <span>顯示暱稱</span>

@@ -27,6 +27,7 @@ import GroupEdit from './views/frontEnd/GroupEdit';
 import ChatRoom from './views/frontEnd/ChatRoom';
 import axios from 'axios';
 import { API_URL } from './utils/config';
+import AboutUser from './views/frontEnd/AboutUser';
 
 export const userState = createContext();
 
@@ -105,7 +106,7 @@ function App() {
             <Route path=":currentPage" element={<GroupEdit />} />
           </Route>
           <Route path="/group" exact element={<GroupList />} />
-          <Route path="/group/1" exact element={<GroupDetail />}>
+          <Route path="/group/:groupId" exact element={<GroupDetail />}>
             <Route path=":currentPage" element={<GroupDetail />} />
           </Route>
           <Route path="/chatroom/1" exact element={<ChatRoom />}>
@@ -117,6 +118,11 @@ function App() {
             <Route path="/cart/step1" component={<GroupDetail />} />
             <Route path="/cart/step2" component={<GroupDetail />} />
             <Route path="/cart/step3" component={<GroupDetail />} />
+
+            {/* 會員資料 */}
+            <Route path="/aboutuser" component={<AboutUser/>}> 
+            <Route path=":userid" element={<AboutUser />} />
+            </Route>
           </Routes>
           <FeFooter />
         </main>

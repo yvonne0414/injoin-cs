@@ -96,8 +96,6 @@ const UserGroup = () => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
   // 刪除活動：popconfirm
-  // let [ownUpdate, setOwnUpdate] = useState(0);
-
   const delGroup = async (groupId) => {
     try {
       let res = await axios.post(`${API_URL}/group/delete/${groupId}`, {});
@@ -133,7 +131,7 @@ const UserGroup = () => {
   let [ownPage, setOwnPage] = useState(1);
   let [ownData, setOwnData] = useState([]);
   let [ownPagination, setOwnPagination] = useState({
-    total: 1,
+    total: 0,
     page: 1,
     lastPage: 1,
   });
@@ -158,7 +156,7 @@ const UserGroup = () => {
   let [woPage, setWoPage] = useState(1);
   let [woData, setWoData] = useState([]);
   let [woPagination, setWoPagination] = useState({
-    total: 1,
+    total: 0,
     page: 1,
     lastPage: 1,
   });
@@ -184,7 +182,7 @@ const UserGroup = () => {
   let [wpPage, setWpPage] = useState(1);
   let [wpData, setWpData] = useState([]);
   let [wpPagination, setWpPagination] = useState({
-    total: 1,
+    total: 0,
     page: 1,
     lastPage: 1,
   });
@@ -211,7 +209,7 @@ const UserGroup = () => {
   let [hoPage, setHoPage] = useState(1);
   let [hoData, setHoData] = useState([]);
   let [hoPagination, setHoPagination] = useState({
-    total: 1,
+    total: 0,
     page: 1,
     lastPage: 1,
   });
@@ -237,7 +235,7 @@ const UserGroup = () => {
   let [hpPage, setHpPage] = useState(1);
   let [hpData, setHpData] = useState([]);
   let [hpPagination, setHpPagination] = useState({
-    total: 1,
+    total: 0,
     page: 1,
     lastPage: 1,
   });
@@ -331,7 +329,7 @@ const UserGroup = () => {
                         </Link>
                       </div>
 
-                      <FeAuditModal />
+                      <FeAuditModal groupId={item.id} groupMaxNum={item.max_num} groupNowNum={item.now_num} groupMember={item.member} />
 
                       <div className="list-content_btn" title="聊天室">
                         <Link to="/chatroom/1">
@@ -388,7 +386,7 @@ const UserGroup = () => {
                       startTime = startTime.slice(0, startTime.length - 3);
                       endTime = endTime.slice(0, endTime.length - 3);
                       return (
-                        <div className="page-type1-list-content my-group-list-wraper">
+                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                           <div className="list-content_activity-name">{item.name}</div>
                           <div className="list-content_time">
                             {startTime}~{endTime}
@@ -448,7 +446,7 @@ const UserGroup = () => {
                       startTime = startTime.slice(0, startTime.length - 3);
                       endTime = endTime.slice(0, endTime.length - 3);
                       return (
-                        <div className="page-type1-list-content my-group-list-wraper">
+                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                           <div className="list-content_activity-name">{item.name}</div>
                           <div className="list-content_time">
                             {startTime}~{endTime}
@@ -522,7 +520,7 @@ const UserGroup = () => {
                       startTime = startTime.slice(0, startTime.length - 3);
                       endTime = endTime.slice(0, endTime.length - 3);
                       return (
-                        <div className="page-type1-list-content my-group-list-wraper">
+                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                           <div className="list-content_activity-name">{item.name}</div>
                           <div className="list-content_time">
                             {startTime}~{endTime}
@@ -585,7 +583,7 @@ const UserGroup = () => {
                       startTime = startTime.slice(0, startTime.length - 3);
                       endTime = endTime.slice(0, endTime.length - 3);
                       return (
-                        <div className="page-type1-list-content my-group-list-wraper">
+                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                           <div className="list-content_activity-name">{item.name}</div>
                           <div className="list-content_time">
                             {startTime}~{endTime}

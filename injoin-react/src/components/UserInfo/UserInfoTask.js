@@ -1,8 +1,11 @@
+import { useContext } from 'react';
+import { userState } from '../../App';
 import { FE_IMAGE_URL } from '../../utils/config';
 
 const UserInfoTask = () => {
+  const userstate = useContext(userState)
   const UserInfoVipLevel = {
-    vipLevel: 1,
+    vipLevel: userstate.member.vip_level,
     vipcount: 1,
     vipmoney: 5000,
   };

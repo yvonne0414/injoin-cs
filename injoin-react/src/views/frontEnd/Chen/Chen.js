@@ -7,8 +7,9 @@ import UserVip from '../UserVip';
 import ChenTest from './ChenTest';
 
 
+
 let arr = ['chen', 'paul', 'avery'];
-const state = 2;
+const state = 7;
 const Chen = () => {
   return (
     <>
@@ -23,6 +24,9 @@ const Chen = () => {
       {state === 5 && <Login />}
 
       {state === 6 && <Sighup />}
+      {state === 7 && <AboutUser />}
+      
+      
     
     </>
   );

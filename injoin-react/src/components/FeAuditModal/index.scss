@@ -21,6 +21,9 @@
       border-radius: 50%;
       overflow: hidden;
     }
+    .group-player-item-info-name {
+      min-width: 4.5rem;
+    }
     .group-player-item-info-status {
       padding: 0 $space-2;
       border-radius: 10px;

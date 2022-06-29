@@ -256,6 +256,7 @@ const UserGroup = () => {
   useEffect(() => {
     getHpList();
   }, [hpPage, userId]);
+
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -332,7 +333,7 @@ const UserGroup = () => {
                       <FeAuditModal groupId={item.id} groupMaxNum={item.max_num} groupNowNum={item.now_num} groupMember={item.member} />
 
                       <div className="list-content_btn" title="聊天室">
-                        <Link to="/chatroom/1">
+                        <Link to={`/chatroom/${item.id}`}>
                           <RiWechatLine />
                           {/* 聊天室 */}
                         </Link>

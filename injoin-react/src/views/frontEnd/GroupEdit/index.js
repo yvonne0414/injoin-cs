@@ -96,7 +96,7 @@ const GroupEdit = () => {
   let [data, setData] = useState([]);
   let [isOwn, setIsOwn] = useState(false);
 
-  const formRef = useRef([]);
+  const formRef = useRef(null);
 
   useEffect(() => {
     let getGroupDetail = async () => {

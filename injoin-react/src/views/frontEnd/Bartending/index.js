@@ -37,24 +37,47 @@ const Bartending = () => {
       },
     ],
   };
+  const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
+
   //篩選
-  const majorSel = ['類型', '杯型'];
-  const subSel = [
-    ['Cocltail ', 'Highball', 'Sour', 'Collins'],
-    ['Mojito Glass', 'Champagne Saucer', ' Cocktail Glass', 'Cocktail Glass'],
-  ];
+  //大類別
+  const [majorSelIndex, setmajorSelIndex] = useState([]);
+  //小類別
+  const [subSelIndex, setsubSelIndex] = useState([]);
 
   //第一種寫法(-1)
   // const [majorSelIndex, setmajorSelIndex] = useState(-1);
   // const [subSelIndex, setsubSelIndex] = useState(-1);
+  //第二種寫法('')
+  // const [majorSelIndex, setmajorSelIndex] = useState('');
+  // const [subSelIndex, setsubSelIndex] = useState('');
 
-  const [majorSelIndex, setmajorSelIndex] = useState('');
-  const [subSelIndex, setsubSelIndex] = useState('');
+  //篩選 假資料
+  // const majorSel = ['類型', '杯型'];
+  const subSel = [
+    ['Cocltail ', 'Highball', 'Sour', 'Collins'],
+    ['Mojito Glass', 'Champagne Saucer', ' Cocktail Glass', 'Cocktail Glass'],
+  ];
+  let majorSel = [];
+  let subSel1 = [];
+  // console.log('maj', majorSelIndex);
+  console.log('subSel1', subSelIndex);
+  majorSelIndex.map((v, i) => {
+    if (v.level === 1) {
+      // console.log('aa', v);
+      majorSel.push(v.name);
+    }
+  });
+  // subSelIndex.map((v, i) => {
+  //   if (v.level === 2) {
+  //     subSel.push(v.name);
+  //   }
+  // });
+  // console.log('majorSel', majorSel);
 
   //form 搜尋欄
 
-  //bartendingCard
-  const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
+  // bartendindcard 假資料
   // const bartendcard = [
   //   {
   //     id: 1,
@@ -84,12 +107,27 @@ const Bartending = () => {
   const [barted, setBarted] = useState([]);
 
   useEffect(() => {
-    let getApple = async () => {
+    //bartendingCard
+    let getbarted = async () => {
       let response = await axios.get('http://localhost:3001/api/bar');
       // console.log('res', response.data);
       setBarted(response.data);
     };
-    getApple();
+    getbarted();
+    //篩選大類別
+    let getmajorSelIndex = async () => {
+      let response = await axios.get('http://localhost:3001/api/bar/typem');
+      // console.log('res', response.data);
+      setmajorSelIndex(response.data);
+    };
+    getmajorSelIndex();
+    //篩選小類別
+    let getsubSelIndex = async () => {
+      let response = await axios.get('http://localhost:3001/api/bar/typem');
+      // console.log('res', response.data);
+      setsubSelIndex(response.data);
+    };
+    getsubSelIndex();
   }, []);
 
   // console.log('sp', barted);

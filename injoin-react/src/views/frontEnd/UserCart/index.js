@@ -316,7 +316,7 @@ const UserCart = () => {
               </div>
             </div>
             <div className="position-relative text-center p-3">
-              <button className="btn btn-none injoin-btn-outline text-gold">完成，下一步</button>
+              <button className="btn btn-none injoin-btn-outline text-gold" htmlType="sumbit" >完成，下一步</button>
             </div>
           </div>
           <Link to="/cart" className="back-page btn btn-none mt-3">

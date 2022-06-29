@@ -59,7 +59,7 @@ const UserCartStep3 = () => {
       <div className="cart-area">
         <div className="container">
           {/* status-section-1 */}
-          <div className="cart-step-content mb-5 justify-content-center flex-nowrap">
+          <div className="cart-step-content mb-5 justify-content-center flex-nowrap d-flex flex-column flex-md-row">
             <div className="col cart-step d-flex flex-column flex-md-row">
               <div className="step-left">01</div>
               <div className="step-right">
@@ -86,19 +86,18 @@ const UserCartStep3 = () => {
       </div>
       {/* prd-section-2 */}
       <div className="container">
-        <div className="position-relative">
+        <div className="position-relative cart-bg">
           <div className="cart-add-info-bg-square"></div>
           <div className="shopping-cart-section ">
-            <div className="cart-checkbox-area">
-              <div className="cart-checkbox">
+            <div className="cart-checkbox-area d-flex flex-column">
+              <div className="cart-checkbox mb-3">
                 <FaCheck style={{ width: 32, height: 32 }} />
               </div>
+              <div className="finish-checkbox mb-2">完成訂單</div>
+              <div className="order-num-check">
+                <span>您的訂單編號:123456789</span>
+              </div>
             </div>
-            <div className="finish-checkbox">完成訂單</div>
-            <div className="order-num-check">
-              <span>您的訂單編號:123456789</span>
-            </div>
-            <div></div>
             <div className="d-flex justify-content-center">
               <div className="me-3 me-md-5">
                 <button className="btn btn-none injoin-btn-outline text-gold p-2 ">查看訂單</button>

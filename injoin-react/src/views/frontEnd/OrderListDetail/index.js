@@ -1,10 +1,14 @@
 // scss
 import './index.scss';
-import React from 'react';
-import { Link } from 'react-router-dom';
+
+//react
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { API_URL } from '../../../utils/config';
 
 //antd
-import { Divider, Popover, Steps, Collapse } from 'antd';
+import { Steps, Collapse } from 'antd';
 import 'antd/dist/antd.css';
 
 //component
@@ -53,6 +57,7 @@ const OrderListDetail = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  //假資料
   const detailone = {
     orderdetailNum: '513947',
     orderdetailData: '2022/05/22',
@@ -102,72 +107,136 @@ const OrderListDetail = () => {
     },
   ];
 
+  //Collapse 收合套件
   const { Panel } = Collapse;
   const onChange = (key) => {
     console.log(key);
   };
 
+  //連接後端資料
+
+  //取得詳細資料
+  //假裝設定user.id=3
+  const [memberInfo, setMemberInfo] = useState({
+    userId: 3,
+  });
+  const { orderId } = useParams();
+  //商品訂單狀態設定
+  const [ordersDetailData, setOrdersDetailData] = useState([]);
+  //訂購人訂單狀態設定
+  const [ordersUserInfo, setOrdersUserInfo] = useState([]);
+  //訂購人訂單商品設定
+  const [ordersPrd, setOrdersPrd] = useState([]);
+  
+  //商品陣列
+  // console.log('prdarr',ordersPrd);
+
+  useEffect(() => {
+    //取得訂購人訂單詳細資料
+    let getOrdersDetailData = async () => {
+      //axios.get(URL, config)
+      // console.log('a',orderId);
+
+      let response = await axios.get(API_URL + `/order/detail/${orderId}`, {
+        params: {
+          //TODO:待接sesssion
+
+          orderId: orderId,
+        },
+      });
+      //設定狀態函式呼叫(回傳資料)
+      setOrdersDetailData(response.data.data[0]);
+      setOrdersUserInfo(response.data.orderuser[0]);
+      setOrdersPrd(response.data.orderprd);
+      // console.log('..', response.data);
+      // console.log('ordersUserInfo', response.data.orderuser);
+      // console.log('ordersDetailData', response.data.data);
+    };
+    getOrdersDetailData();
+  }, []);
+
+  // console.log('ordersUserInfo', ordersUserInfo);
+  // console.log('ordersDetailData', ordersDetailData);
+  // console.log('ordersPrd', ordersPrd);
+  // console.log('test', ordersPrd);
+  console.log('orderdetailprdArr', orderdetailprdArr);
+  const arr = [
+    // TODO: 建一個向假資料一樣的格式
+    // TODO: 給一個新的空陣列
+    // TODO: 跑迴圈找到要的資料，PUSH到新陣列內
+  ];
+
+  console.log('arr', arr);
   return (
     <>
       {/* -----------header------------ */}
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 
       {/* -----------status------------ */}
-      <div class="container">
+      <div className="container">
         <div className="step-status mb-5">
           <Steps current={2} progressDot>
             <Step title="訂單成立" />
             <Step title="待出貨" />
-            <Step title="配送中" />
+            <Step title="已出貨" />
             <Step title="訂單完成" />
           </Steps>
         </div>
       </div>
 
-      {/* --------- section Collapse ---------- */}
+      {/* ---------訂購資料 section Collapse ---------- */}
 
-      <div class="container">
+      <div className="container">
         <div className="position-relative">
           <div className="order-detail-info-wraper "></div>
           <div className="p-3 ">
-            <h3 className="ff-cn-main">訂單明細 &nbsp;&nbsp;&nbsp;{detailone.orderdetailData}</h3>
-            <div class="detailcollapse">
+            <h3 className="ff-cn-main">
+              <span className="me-3">訂單明細</span> {ordersDetailData.order_time}
+            </h3>
+            <div className="detailcollapse">
               <Collapse defaultActiveKey={['1']} onChange={onChange}>
                 <Panel header="訂單資訊" key="1">
-                  訂單編號: &nbsp;{detailone.orderdetailNum}
+                  <span className="me-3">訂單編號:</span>
+                  {orderId}
                   <br />
-                  收件人: &nbsp;{detailone.orderdetailUser}
+                  <span className="me-3">收件人:</span> {ordersUserInfo.name}
                   <br />
-                  連絡電話: &nbsp;{detailone.orderdetailTel}
+                  <span className="me-3">連絡電話:</span>
+                  {ordersUserInfo.phone}
                   <br />
-                  配送狀態: &nbsp;<span> {detailone.orderdetailStatus}</span>
+                  <span className="me-3">地區: </span>
+                  {ordersUserInfo.countyName}
+                  <br />
+                  <span className="me-3">地址: </span>
+                  {ordersUserInfo.address_detail}
                   <br />
                 </Panel>
 
                 <Panel header="配送方式" key="2">
-                  配送方式: &nbsp;{detailtwo.deliverymethod}
-                  <br />
-                  配送日期: &nbsp;{detailtwo.shippingdate}
+                  <apan>配送方式: </apan>
+                  {ordersDetailData.logisticsName}
                   <br />
                   完成日期: &nbsp;{detailtwo.deliverycomplet}
+                  <br />
+                  訂單狀態: &nbsp;<span> {ordersDetailData.stateName}</span>
                 </Panel>
 
                 <Panel header="付款方式" key="3">
-                  付款方式: &nbsp; {detailthree.paymethod}
+                  付款方式: {detailthree.paymethod}
                   <br />
-                  付款狀態: &nbsp; {detailthree.paystatus}
+                  付款狀態:{detailthree.paystatus}
                   <br />
-                  總金額: &nbsp; {detailthree.paytotal}
+                  總金額: {detailthree.paytotal}
                   <br />
-                  備註: &nbsp; {detailthree.remark}
+                  備註: {detailthree.remark}
                 </Panel>
               </Collapse>
             </div>
           </div>
         </div>
 
-        {/* -----------section 2------------ */}
-        <div class="container">
+        {/* -----------商品區 section 2------------ */}
+        <div className="container">
           {/* <div className="position-relative"> */}
           <div className="order-detail-info-bg-square p-3 p-md-5">
             <div className="page-type1-list-wraper">
@@ -185,7 +254,7 @@ const OrderListDetail = () => {
               {orderdetailprdArr.map((v, i) => {
                 return <OrderDetail key={v.prdId} data={v} />;
               })}
-
+              {/* ---------金額計算-------- */}
               <div className="summary-section">
                 <div className="summary-title d-flex">
                   商品小計
@@ -196,7 +265,7 @@ const OrderListDetail = () => {
                   <br />
                   付款方式
                 </div>
-                
+
                 <div className="summary-item d-flex ms-5">
                   NT$2040
                   <br />
@@ -212,7 +281,7 @@ const OrderListDetail = () => {
         </div>
 
         {/* --------return orderList-------- */}
-        <div class="container">
+        <div className="container">
           <Link to="/account/order" className="back-page btn btn-none mt-3">
             <div>
               <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">

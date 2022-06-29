@@ -16,6 +16,9 @@ import UserLike from './views/frontEnd/UserLike';
 import UserVip from './views/frontEnd/UserVip';
 import UserCoupon from './views/frontEnd/UserCoupon';
 import CouponDetail from './views/frontEnd/CouponDetail';
+import UserCart from './views/frontEnd/UserCart';
+import UserCartStep2 from './views/frontEnd/UserCartStep2';
+import UserCartStep3 from './views/frontEnd/UserCartStep3';
 import UserReputation from './views/frontEnd/UserReputation';
 import UserGroup from './views/frontEnd/UserGroup';
 import OrderList from './views/frontEnd/OrderList';
@@ -31,18 +34,17 @@ import AboutUser from './views/frontEnd/AboutUser';
 
 export const userState = createContext();
 
-
 function App() {
   const [auth, setAuth] = useState(false);
   const [islogin, setislogin] = useState(false);
-  const [member, setMember] =useState(null)
+  const [member, setMember] = useState(null);
 
   useEffect(() => {
     let getMemberInfo = async () => {
       let response = await axios.get(`${API_URL}/member/info`, {
         withCredentials: true,
       });
-      setMember(response.data)
+      setMember(response.data);
     };
     getMemberInfo();
   }, []);
@@ -53,13 +55,13 @@ function App() {
         withCredentials: true,
       });
       // console.log("app.js" ,response.data);
-      setMember(response.data)
+      setMember(response.data);
     };
     getMemberInfo();
   }, [islogin]);
 
   return (
-    <userState.Provider value={{islogin, setislogin, member}}>
+    <userState.Provider value={{ islogin, setislogin, member }}>
       <BrowserRouter>
         <BackTop />
         <FeHeader />
@@ -96,33 +98,28 @@ function App() {
 
             {/* 訂單 */}
             <Route path="/account/order" exact element={<OrderList />} />
-            <Route path="/account/order/1" exact element={<OrderListDetail />}>
+            <Route path="/account/order/:orderId" exact element={<OrderListDetail />}>
               <Route path=":currentPage" element={<OrderListDetail />} />
             </Route>
 
-          {/* 揪團 */}
-          <Route path="/newgroup" exact element={<GroupAdd />} />
-          <Route path="/editgroup/:groupId" element={<GroupEdit />}>
-            <Route path=":currentPage" element={<GroupEdit />} />
-          </Route>
-          <Route path="/group" exact element={<GroupList />} />
-          <Route path="/group/:groupId" exact element={<GroupDetail />}>
-            <Route path=":currentPage" element={<GroupDetail />} />
-          </Route>
-          <Route path="/chatroom/1" exact element={<ChatRoom />}>
-            <Route path=":currentPage" element={<ChatRoom />} />
-          </Route>
+            {/* 揪團 */}
+            <Route path="/newgroup" exact element={<GroupAdd />} />
+            <Route path="/editgroup/:groupId" element={<GroupEdit />}>
+              <Route path=":currentPage" element={<GroupEdit />} />
+            </Route>
+            <Route path="/group" exact element={<GroupList />} />
+            <Route path="/group/:groupId" exact element={<GroupDetail />}>
+              <Route path=":currentPage" element={<GroupDetail />} />
+            </Route>
+            <Route path="/chatroom/1" exact element={<ChatRoom />}>
+              <Route path=":currentPage" element={<ChatRoom />} />
+            </Route>
 
             {/* 購物車 */}
-            <Route path="/cart" component={<GroupDetail />} auth={auth} setAuth={setAuth} />
+            <Route path="/cart" exact element={<UserCart />} auth={auth} setAuth={setAuth} />
             <Route path="/cart/step1" component={<GroupDetail />} />
-            <Route path="/cart/step2" component={<GroupDetail />} />
-            <Route path="/cart/step3" component={<GroupDetail />} />
-
-            {/* 會員資料 */}
-            <Route path="/aboutuser" component={<AboutUser/>}> 
-            <Route path=":userid" element={<AboutUser />} />
-            </Route>
+            <Route path="/cart/step2" element={<UserCartStep2 />} />
+            <Route path="/cart/step3" element={<UserCartStep3 />} />
           </Routes>
           <FeFooter />
         </main>

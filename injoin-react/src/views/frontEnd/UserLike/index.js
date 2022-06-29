@@ -49,24 +49,44 @@ const UserLike = () => {
     pageSelector: {
       isShow: true,
       pageParent: {
-        href: '/',
+        href: '/account/user',
         name: '會員中心',
       },
-      selected: 'faveRite',
+      selected: '我的收藏',
       selectOptions: [
         {
-          name: '商品收藏',
-          value: 'faveRite',
+          name: '會員資訊',
+          value: '/account/user',
         },
         {
-          name: '酒譜收藏',
-          value: 'faveRite2',
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
+          name: '優惠券',
+          value: '/account/coupon',
+        },
+        {
+          name: '評價',
+          value: '/account/reputation',
+        },
+        {
+          name: '我的訂單',
+          value: '/account/order',
+        },
+        {
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
-console.log(arr);
+  console.log(arr);
   const apparr = [];
   arr.forEach((e) => {
     // console.log(e);

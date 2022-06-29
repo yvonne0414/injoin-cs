@@ -192,8 +192,8 @@ const Sighup = ({ setlogoutState }) => {
 
   return (
     <>
+      <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
       <div className="container">
-        <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
         <section className="signuppage">
           <div className="signuptitle">
             <div className="page-type1-area-title">註冊</div>

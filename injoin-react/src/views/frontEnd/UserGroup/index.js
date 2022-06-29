@@ -22,11 +22,16 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 
+import { userState } from '../../../App';
+import { useContext } from 'react';
+
 const UserGroup = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   let [userId, setUserId] = useState(2);
+  const userstate = useContext(userState);
+  // console.log('about ', userstate);
 
   //header Info
   const page1HeaderInfo = {
@@ -60,35 +65,35 @@ const UserGroup = () => {
         href: '/account/user',
         name: '會員中心',
       },
-      selected: 'group',
+      selected: '揪團管理',
       selectOptions: [
         {
           name: '會員資訊',
-          value: 'user',
+          value: '/account/user',
         },
         {
           name: '我的收藏',
-          value: 'like',
+          value: '/account/like',
         },
         {
           name: '會員等級',
-          value: 'vip',
+          value: '/account/vip',
         },
         {
           name: '優惠券',
-          value: 'coupon',
+          value: '/account/coupon',
         },
         {
           name: '留言',
-          value: 'reputation',
+          value: '/account/reputation',
         },
         {
           name: '我的訂單',
-          value: 'order',
+          value: '/account/order',
         },
         {
           name: '揪團管理',
-          value: 'group',
+          value: '/account/group',
         },
       ],
     },

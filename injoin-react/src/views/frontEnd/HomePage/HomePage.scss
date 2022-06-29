@@ -104,10 +104,13 @@
 
 // =====section1=======
 .section1 {
-  position: relative;
-  min-height: 100vh;
-  background: $color-bg-dark no-repeat url(../../../assets/images/fe/homepage/homepage-head.png);
-  background-size: 90vw 95vh;
+  background-color: $color-bg-dark;
+  .container {
+    position: relative;
+    min-height: 100vh;
+    background: $color-bg-dark no-repeat url(../../../assets/images/fe/homepage/homepage-head.png);
+    background-size: 90vw 95vh;
+  }
 
   .mask {
     position: absolute;
@@ -347,11 +350,14 @@
   }
   // =====section1=======
   .section1 {
-    width: 100%;
-    position: relative;
-    min-height: 100vh;
     background: $color-bg-block;
-    background-size: 90vw 95vh;
+    .container {
+      background: $color-bg-block;
+      width: 100%;
+      position: relative;
+      min-height: 100vh;
+      background-size: 90vw 95vh;
+    }
     .pc-img {
       position: absolute;
       width: 55vw;

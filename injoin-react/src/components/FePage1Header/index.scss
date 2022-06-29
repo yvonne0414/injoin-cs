@@ -8,7 +8,12 @@
   padding-bottom: 2rem;
   margin-bottom: $space-6;
   min-height: 20rem;
-
+  .ant-dropdown-trigger {
+    padding-bottom: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-bottom: #ccc 1px solid;
+  }
   .page-type1-header-select {
     z-index: 10;
     color: $color-font-mark-light;

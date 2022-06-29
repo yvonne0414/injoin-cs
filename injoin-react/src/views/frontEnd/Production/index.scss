@@ -95,6 +95,7 @@
   .prd-card-all {
     .prd-card {
       width: 100%;
+      height: 22rem;
       margin: $space-3 auto;
       background-color: $color-bg-block;
       margin-top: $space-3;
@@ -102,11 +103,22 @@
       padding: 0 0 $space-3 0;
       .prd-card-image {
         width: 100%;
-        height: 60%;
         img {
-          object-fit: cover;
+          background: white;
+          object-fit: contain;
           width: 100%;
-          height: 100%;
+          // height: 100%;
+        }
+      }
+      .prd-card-title{
+        >a{
+          height: 2.7rem;
+          width: 100%;
+          display: -webkit-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
         }
       }
       .prd-card-body {
@@ -153,6 +165,19 @@
 }
 
 @media screen and (min-width: 768px) {
+  .prd-content {
+    .prd-card-all {
+      .prd-card {
+        height: 35rem;
+        .prd-card-title{
+          >a{
+            height: 4.5rem;
+          }
+        }
+      }
+    }
+  }
+ 
   .prd-content {
     .prd-content-top {
       justify-content: space-between;

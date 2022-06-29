@@ -53,28 +53,22 @@ const Bartending = () => {
   // const [subSelIndex, setsubSelIndex] = useState('');
 
   //篩選 假資料
-  // const majorSel = ['類型', '杯型'];
-  const subSel = [
-    ['Cocltail ', 'Highball', 'Sour', 'Collins'],
-    ['Mojito Glass', 'Champagne Saucer', ' Cocktail Glass', 'Cocktail Glass'],
-  ];
-  let majorSel = [];
-  let subSel1 = [];
+  const majorSel = [];
+  console.log('maj', majorSel);
+  const subSel = [[], [], [], []];
+  // let majorSel = [];
+  // let subSel1 = [];
   // console.log('maj', majorSelIndex);
-  console.log('subSel1', subSelIndex);
-  majorSelIndex.map((v, i) => {
-    if (v.level === 1) {
-      // console.log('aa', v);
-      majorSel.push(v.name);
-    }
-  });
-  // subSelIndex.map((v, i) => {
-  //   if (v.level === 2) {
-  //     subSel.push(v.name);
+  // majorSelIndex.map((v, i) => {
+  //   if (v.level === 1) {
+  //     // console.log('aa', v);
+  //     majorSel.push(v.name);
   //   }
   // });
-  // console.log('majorSel', majorSel);
 
+  [majorSelIndex.majorSel].map((v, i) => {
+    majorSel.push(v);
+  });
   //form 搜尋欄
 
   // bartendindcard 假資料
@@ -114,21 +108,15 @@ const Bartending = () => {
       setBarted(response.data);
     };
     getbarted();
-    //篩選大類別
+    //篩選
     let getmajorSelIndex = async () => {
-      let response = await axios.get('http://localhost:3001/api/bar/typem');
+      let response = await axios.get('http://localhost:3001/api/bar/type');
       // console.log('res', response.data);
-      setmajorSelIndex(response.data);
+      setmajorSelIndex(response.data.data);
     };
     getmajorSelIndex();
-    //篩選小類別
-    let getsubSelIndex = async () => {
-      let response = await axios.get('http://localhost:3001/api/bar/typem');
-      // console.log('res', response.data);
-      setsubSelIndex(response.data);
-    };
-    getsubSelIndex();
   }, []);
+  console.log('major', majorSelIndex);
 
   // console.log('sp', barted);
   return (

@@ -5,8 +5,6 @@ import vips3img from '../../../assets/images/fe/uservip/vips3pic.png';
 import vips5img from '../../../assets/images/fe/uservip/vips5pic.png';
 import UserVipCard from '../../../components/UserInfo/UserVipCard';
 
-
-
 const page1HeaderInfo = {
   titleEn: 'VIP',
   titleCn: '會員等級說明',
@@ -31,14 +29,38 @@ const page1HeaderInfo = {
   pageSelector: {
     isShow: true,
     pageParent: {
-      href: '/',
+      href: '/account/user',
       name: '會員中心',
     },
-    selected: 'groupList',
+    selected: '會員等級',
     selectOptions: [
       {
-        name: '揪團專區',
-        value: 'groupList',
+        name: '會員資訊',
+        value: '/account/user',
+      },
+      {
+        name: '我的收藏',
+        value: '/account/like',
+      },
+      {
+        name: '會員等級',
+        value: '/account/vip',
+      },
+      {
+        name: '優惠券',
+        value: '/account/coupon',
+      },
+      {
+        name: '評價',
+        value: '/account/reputation',
+      },
+      {
+        name: '我的訂單',
+        value: '/account/order',
+      },
+      {
+        name: '揪團管理',
+        value: '/account/group',
       },
     ],
   },
@@ -48,8 +70,8 @@ const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 const UserVip = () => {
   return (
     <>
+      <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
       <div className="container">
-        <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
         <section className="uservip-s1">
           <div className="page-type1-area-title">如何成為VIP會員</div>
           <div className="uservips1-title">需先至官網註冊會員才能累計消費</div>
@@ -94,8 +116,7 @@ const UserVip = () => {
           </div>
         </seciton>
         <section className="uservip-s4">
-          
-          <UserVipCard/>
+          <UserVipCard />
         </section>
         <section className="uservip-s5">
           <div className="uservips5-contnet">

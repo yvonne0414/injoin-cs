@@ -41,26 +41,38 @@ const UserCoupon = () => {
     pageSelector: {
       isShow: true,
       pageParent: {
-        href: '/',
+        href: '/account/user',
         name: '會員中心',
       },
-      selected: 'couponList',
+      selected: '優惠券',
       selectOptions: [
         {
+          name: '會員資訊',
+          value: '/account/user',
+        },
+        {
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
           name: '優惠券',
-          value: 'couponList',
+          value: '/account/coupon',
         },
         {
-          name: '優惠券使用規則',
-          value: 'couponList2',
+          name: '評價',
+          value: '/account/reputation',
         },
         {
-          name: '優惠券領取',
-          value: 'couponList3',
+          name: '我的訂單',
+          value: '/account/order',
         },
         {
-          name: '我的優惠券',
-          value: 'couponList4',
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },

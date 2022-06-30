@@ -1,26 +1,40 @@
 import './index.scss';
 import { FE_IMAGE_URL } from '../../utils/config';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
+import { DownOutlined } from '@ant-design/icons';
+import { Dropdown, Menu, Space } from 'antd';
 
 const FePage1Header = (props) => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = props;
   let titleEnCaption = titleEn.substring(0, 1).toUpperCase();
   let titleEnContent = titleEn.substring(1).toLowerCase();
   let selectOptions = pageSelector.selectOptions;
+  let selected = pageSelector.selected;
+  let selector = [];
+  selectOptions.map((v) => {
+    selector.push({ label: <Link to={`${v.value}`}>{v.name}</Link>, key: v.value });
+  });
+  console.log(selector);
+
+  let menu = <Menu items={selector} />;
 
   return (
     <div className="page-type1-header">
       {pageSelector.isShow && (
         <div className="page-type1-header-select text-end me-2 me-md-5">
-          <span className="mx-2">{pageSelector.pageParent.name}</span>/
-          <select defaultValue={pageSelector.selected} className="mx-2 px-2">
-            {selectOptions.map((selectOption) => {
-              return (
-                <option key={selectOption.value} value={selectOption.value}>
-                  {selectOption.name}
-                </option>
-              );
-            })}
-          </select>
+          <span className="mx-2">{pageSelector.pageParent.name}</span>
+          <span className="mx-3">/</span>
+
+          <Dropdown overlay={menu} trigger={['click']}>
+            <a onClick={(e) => e.preventDefault()}>
+              <Space>
+                {selected}
+                <DownOutlined />
+              </Space>
+            </a>
+          </Dropdown>
         </div>
       )}
       <div className="container">

@@ -1,10 +1,12 @@
 import './index.scss';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import FePage2Header from '../../../components/FePage2Header';
 
-import FePagination from '../../../components/FePagination1';
+import FePagination from '../../../components/FePagination';
 import PrdCard from '../../../components/PrdCard';
+
+import axios from 'axios';
 
 const Production = () => {
   const page2HeaderInfo = {
@@ -53,32 +55,61 @@ const Production = () => {
   const [prdSeqI, setPrdSeqI] = useState('');
 
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = page2HeaderInfo;
-  const cardArr = [
-    {
-      id: 1,
-      name: '金黑波本威士忌',
-      price: 'NT.550 ',
-      rating: ' 4.6',
-    },
-    {
-      id: 2,
-      name: '金黑波本威士忌',
-      price: 'NT.550 ',
-      rating: ' 4.6',
-    },
-    {
-      id: 3,
-      name: '金黑波本威士忌',
-      price: 'NT.550 ',
-      rating: ' 4.6',
-    },
-    {
-      id: 4,
-      name: '金黑波本威士忌',
-      price: 'NT.550 ',
-      rating: ' 4.6',
-    },
-  ];
+
+  // const cardArr = [
+  //   {
+  //     id: 1,
+  //     name: '金黑波本威士忌',
+  //     price: 'NT.550 ',
+  //     rating: ' 4.6',
+  //   },
+  //   {
+  //     id: 2,
+  //     name: '金黑波本威士忌',
+  //     price: 'NT.550 ',
+  //     rating: ' 4.6',
+  //   },
+  //   {
+  //     id: 3,
+  //     name: '金黑波本威士忌',
+  //     price: 'NT.550 ',
+  //     rating: ' 4.6',
+  //   },
+  //   {
+  //     id: 4,
+  //     name: '金黑波本威士忌',
+  //     price: 'NT.550 ',
+  //     rating: ' 4.6',
+  //   },
+  // ];
+
+// 換頁
+  const [prded, setPrded] = useState([]);
+  const [category, setCategory] = useState(1);
+  let [page, setPage] = useState(1);
+  let [pagination, setPagination] = useState({
+    total: 1,
+    page: 1,
+    lastPage: 1,
+  });
+
+  // prdList
+  let getprded = async () => {
+    let response = await axios.get('http://localhost:3001/api/prd/prdList', {
+      params: {
+        category: category,
+        page: page
+      },
+    });
+    // console.log('res', response.data);
+    setPrded(response.data.data);
+    setPagination(response.data.pagination);
+    console.log(response.data.pagination);
+  };
+  useEffect(() => {
+    getprded();
+  }, [page]);
+
   return (
     <>
       <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} prdImg={prdImg} navs={navs} />
@@ -165,12 +196,12 @@ const Production = () => {
             </form>
           </div>
 
-          <div class=" prd-card-all row row-cols-2 row-cols-md-4">
-            {cardArr.map((v, i) => {
+          <div className=" prd-card-all row row-cols-2 row-cols-md-4">
+            {prded.map((v, i) => {
               return <PrdCard key={v.id} data={v} />;
             })}
           </div>
-          <FePagination className="pc-view" />
+          <FePagination pagination={pagination} setPage={setPage} />
         </div>
       </div>
     </>

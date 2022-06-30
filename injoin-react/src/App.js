@@ -45,14 +45,14 @@ function App() {
     };
     getMemberInfo();
 
-    let getUserLike = async () => {
-      let response = await axios.get(`${API_URL}/userlike/1`);
+    // let getUserLike = async () => {
+    //   let response = await axios.get(`${API_URL}/userlike/1`);
 
-      // console.log("app",response.data);
-      localStorage.removeItem('userLike');
-      localStorage.setItem('userLike', JSON.stringify(response.data));
-    };
-    getUserLike();
+    //   // console.log("app",response.data);
+    //   localStorage.removeItem('userLike');
+    //   localStorage.setItem('userLike', JSON.stringify(response.data));
+    // };
+    // getUserLike();
   }, []);
 
   useEffect(() => {

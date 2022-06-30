@@ -145,6 +145,7 @@ const Login = ({ setlogoutState, setisLogin }) => {
                     behavior: 'smooth',
                   });
                 }}
+                style={{ cursor: 'pointer' }}
               >
                 註冊會員
               </span>

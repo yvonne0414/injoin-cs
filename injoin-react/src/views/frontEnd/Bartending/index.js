@@ -4,6 +4,7 @@ import BartendingCard from '../../../components/BartendingCard/index';
 import FePage2Header from '../../../components/FePage2Header';
 import FePagination from '../../../components/FePagination1';
 import axios from 'axios';
+import { TbChevronDownLeft } from 'react-icons/tb';
 const Bartending = () => {
   const page2HeaderInfo = {
     isProduct: true,
@@ -37,24 +38,37 @@ const Bartending = () => {
       },
     ],
   };
-  //篩選
-  const majorSel = ['類型', '杯型'];
-  const subSel = [
-    ['Cocltail ', 'Highball', 'Sour', 'Collins'],
-    ['Mojito Glass', 'Champagne Saucer', ' Cocktail Glass', 'Cocktail Glass'],
-  ];
+  const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
+
+  //篩選 ([])
+  //const sampleObj = JSON.parse(sampleJson);
+  //const [majorSelIndex, setmajorSelIndex] = useState([]);
+  //const [subSelIndex, setsubSelIndex] = useState([]);
 
   //第一種寫法(-1)
-  // const [majorSelIndex, setmajorSelIndex] = useState(-1);
-  // const [subSelIndex, setsubSelIndex] = useState(-1);
+  //大類別
+  const [majorSelIndex, setmajorSelIndex] = useState(-1);
+  //小類別
+  const [subSelIndex, setsubSelIndex] = useState(-1);
 
-  const [majorSelIndex, setmajorSelIndex] = useState('');
-  const [subSelIndex, setsubSelIndex] = useState('');
+  const [majorSel, setMajorSel] = useState([]);
+  const [subSel, setSubSel] = useState([]);
+  //第二種寫法('')
+  // const [majorSelIndex, setmajorSelIndex] = useState('');
+  // const [subSelIndex, setsubSelIndex] = useState('');
+
+  //篩選 假資料
+  //const majorSel = ['類型', '2'];
+  // const subSel = [
+  //   ['1', '2', '3'],
+  //   ['a', 'b', 'c'],
+  //   ['1', '2', '3'],
+  //   ['1', '2', '3'],
+  // ];
 
   //form 搜尋欄
 
-  //bartendingCard
-  const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
+  // bartendindcard 假資料
   // const bartendcard = [
   //   {
   //     id: 1,
@@ -84,15 +98,36 @@ const Bartending = () => {
   const [barted, setBarted] = useState([]);
 
   useEffect(() => {
-    let getApple = async () => {
+    //bartendingCard
+    let getbarted = async () => {
       let response = await axios.get('http://localhost:3001/api/bar');
       // console.log('res', response.data);
       setBarted(response.data);
     };
-    getApple();
+    getbarted();
+    //篩選
+    //大類別
+    let getMajorSel = async () => {
+      let response = await axios.get('http://localhost:3001/api/bar/type');
+      setMajorSel(response.data.data.majorSel);
+    };
+    getMajorSel();
+    //小類別
+    let getSubSel = async () => {
+      let response = await axios.get('http://localhost:3001/api/bar/type');
+      setSubSel(response.data.data.subSel);
+    };
+    getSubSel();
   }, []);
+  //老師
+  // useEffect(() => {
+  //   axios.get('http://localhost:3001/api/bar/type').then((response) => {
+  //     console.log(response);
+  //     setMajorSel(response.data.data.maSel);
+  //     setSubSel(response.data.data.suSel);
+  //   });
+  // }, []);
 
-  // console.log('sp', barted);
   return (
     <>
       <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} BartendingImg={BartendingImg} navs={navs} />

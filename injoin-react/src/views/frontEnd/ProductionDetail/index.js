@@ -243,11 +243,11 @@ const ProductionDetail = () => {
         <div className="prd-detail-session1-content-wraper">
           {/* // cn = mt-3 prd-detail-session1-content-block1 */}
           <Carousel autoplay className=" mt-3 prd-detail-session1-content-block1">
-            <div>
+            {/* <div>
               <div style={contentStyle}>
                 <img src={prddetailImg1} alt="prd-detail-img-1" className="mx-auto h-100" />
               </div>
-            </div>
+            </div> */}
             <div>
               <div style={contentStyle}>
                 <img src={prddetailImg2} alt="prd-detail-img-2" className="mx-auto h-100" />

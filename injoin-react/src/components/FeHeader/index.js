@@ -4,7 +4,7 @@ import './index.scss';
 
 // 引用fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faCartShopping, faHeart, faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faCartShopping, faHeart, faArrowRightToBracket, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 // // 引用antd
 import { Drawer, Modal, message } from 'antd';
@@ -21,12 +21,9 @@ import { API_URL } from '../../utils/config';
 import { userState } from '../../App';
 const { confirm } = Modal;
 
-
-
 const FeHeader = () => {
- const app = useContext(userState)
-//  console.log("header: ", app)
-
+  const app = useContext(userState);
+  //  console.log("header: ", app)
 
   const [visible, setVisible] = useState(false);
 
@@ -100,7 +97,7 @@ const FeHeader = () => {
         title: '登出',
         content: '確定要登出嗎?',
         async onOk() {
-          app.setislogin(false)
+          app.setislogin(false);
         },
 
         onCancel() {
@@ -136,19 +133,27 @@ const FeHeader = () => {
             </div>
           </div>
           <div className="shortcut-btns text-end">
-            <Link to="/chen">
+            <Link to="/account/like" title="我的收藏">
               <FontAwesomeIcon icon={faHeart} fixedWidth />
             </Link>
-            <Link to="/account/group">
+            <Link to="/account/user" title="會員中心">
               <FontAwesomeIcon icon={faUser} fixedWidth />
             </Link>
-            <Link to="/cart">
+            <Link to="/cart" title="購物車">
               <FontAwesomeIcon icon={faCartShopping} fixedWidth />
             </Link>
+            {/* 登入 */}
+            {!app.islogin && (
+              <Link to="/account/user" className="pc-view" title="登入">
+                <FontAwesomeIcon icon={faArrowRightToBracket} fixedWidth className="pc-view" />
+              </Link>
+            )}
             {/* 登出 */}
-            <Link to="#" className="pc-view" onClick={showConfirm}>
-              <FontAwesomeIcon icon={faArrowRightToBracket} fixedWidth className="pc-view" />
-            </Link>
+            {app.islogin && (
+              <Link to="#" className="pc-view" onClick={showConfirm} title="登出">
+                <FontAwesomeIcon icon={faArrowRightFromBracket} fixedWidth className="pc-view" />
+              </Link>
+            )}
           </div>
         </div>
       </header>

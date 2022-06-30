@@ -47,6 +47,15 @@ function App() {
       setMember(response.data);
     };
     getMemberInfo();
+
+    // let getUserLike = async () => {
+    //   let response = await axios.get(`${API_URL}/userlike/1`);
+
+    //   // console.log("app",response.data);
+    //   localStorage.removeItem('userLike');
+    //   localStorage.setItem('userLike', JSON.stringify(response.data));
+    // };
+    // getUserLike();
   }, []);
 
   useEffect(() => {
@@ -111,7 +120,9 @@ function App() {
             <Route path="/group/:groupId" exact element={<GroupDetail />}>
               <Route path=":currentPage" element={<GroupDetail />} />
             </Route>
-            <Route path="/chatroom/1" exact element={<ChatRoom />}>
+
+            <Route path="/chatroom/:groupId" exact element={<ChatRoom />}>
+
               <Route path=":currentPage" element={<ChatRoom />} />
             </Route>
 
@@ -120,6 +131,11 @@ function App() {
             <Route path="/cart/step1" component={<GroupDetail />} />
             <Route path="/cart/step2" element={<UserCartStep2 />} />
             <Route path="/cart/step3" element={<UserCartStep3 />} />
+
+            {/* 會員資料 */}
+            <Route path="/aboutuser" component={<AboutUser />}>
+              <Route path=":userid" element={<AboutUser />} />
+            </Route>
           </Routes>
           <FeFooter />
         </main>

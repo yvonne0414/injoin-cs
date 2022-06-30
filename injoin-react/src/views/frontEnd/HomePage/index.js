@@ -20,8 +20,8 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="container">
-        <section className="section1">
+      <section className="section1">
+        <div className="container">
           <div className="mask"></div>
           <div className="pc-img d-none d-md-flex">
             <img src={`${FE_IMAGE_URL}/homepage/pc-img.svg`} alt="" />
@@ -39,7 +39,9 @@ const HomePage = () => {
             <FePagination />
           </div>
           <div className="box"></div>
-        </section>
+        </div>
+      </section>
+      <div className="container">
         <section className="section2">
           <h3 className="section-title-en">W</h3>
           <div className="section-content">
@@ -66,7 +68,7 @@ const HomePage = () => {
             <button className="button-style section-button">Buy It !</button>
           </div>
           <Slider {...settings} className="homepages3-slder">
-            {[1,1,1,1,1,1,11,1,1,1].map((v, i) => {
+            {[1, 1, 1, 1, 1, 1, 11, 1, 1, 1].map((v, i) => {
               return <HomeHotCard />;
             })}
           </Slider>
@@ -82,9 +84,7 @@ const HomePage = () => {
           </div>
           <Slider {...settings} className="homepages4-slider">
             {[1, 1, 1, 11, 1, 1, 1, 1, 1, 2, 1, 11, 1, 1, 1, 1].map((v, i) => {
-              return (
-                <HomeBartdCard/>
-              );
+              return <HomeBartdCard />;
             })}
           </Slider>
         </section>

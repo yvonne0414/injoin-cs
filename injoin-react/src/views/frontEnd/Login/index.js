@@ -2,14 +2,12 @@ import './index.scss';
 import FePage1Header from '../../../components/FePage1Header';
 import logoimg from '../../../assets/images/shared/injoinlogo.png';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, message } from 'antd';
-import { useState,useContext } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { userState } from '../../../App';
 
-
 const Login = ({ setlogoutState, setisLogin }) => {
-
   const apple = useContext(userState);
   // console.log("login: ", apple);
 
@@ -30,7 +28,7 @@ const Login = ({ setlogoutState, setisLogin }) => {
       });
       // console.log('登入成功', response.data);
       message.success('登入成功');
-      apple.setislogin(true)
+      apple.setislogin(true);
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
@@ -91,8 +89,8 @@ const Login = ({ setlogoutState, setisLogin }) => {
 
   return (
     <>
+      <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
       <div className="container">
-        <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
         <section className="loginpage">
           <div className="logintitle">
             <div className="page-type1-area-title">登入</div>

@@ -17,21 +17,31 @@ import { message, Popconfirm, Tabs } from 'antd';
 // img
 import memberGroupImg3 from '../../../assets/images/fe/memberGroup/member-group-img-1.png';
 
-import { useEffect, useState } from 'react';
+import LogoutPage from '../LogoutPage/LogoutPage.js';
+import { userState } from '../../../App';
+
+import { useEffect, useState, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
-
-import { userState } from '../../../App';
-import { useContext } from 'react';
 
 const UserGroup = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  let [userId, setUserId] = useState(2);
-  const userstate = useContext(userState);
-  // console.log('about ', userstate);
+  // 檢查登入
+  const [isLogin, setisLogin] = useState('');
+  const loginInfo = useContext(userState);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.islogin ? loginInfo.member.id : -1,
+  });
+
+  // useEffect(() => {
+  //   console.log('about ', loginInfo);
+  //   setUserId(loginInfo.member.id);
+  // }, []);
 
   //header Info
   const page1HeaderInfo = {
@@ -40,7 +50,7 @@ const UserGroup = () => {
     menuList: [
       {
         href: '#new-group-block1',
-        name: '我要開團',
+        name: '來揪團吧',
       },
       {
         href: '#grouplist-bolck2',
@@ -116,7 +126,7 @@ const UserGroup = () => {
   const unJoin = async (groupId) => {
     try {
       let res = await axios.post(`${API_URL}/group/unjoin/${groupId}`, {
-        userId: userId,
+        userId: memberInfo.userId,
       });
       message.success('已取消報名');
       getWoList();
@@ -143,7 +153,7 @@ const UserGroup = () => {
   const getOwnAddList = async () => {
     let response = await axios.get(API_URL + '/group/ownaddgroup', {
       params: {
-        userId: userId,
+        userId: memberInfo.userId,
         page: ownPage,
       },
     });
@@ -155,7 +165,7 @@ const UserGroup = () => {
   };
   useEffect(() => {
     getOwnAddList();
-  }, [ownPage, userId]);
+  }, [ownPage, memberInfo.userId]);
 
   // 待參加官方(wo)
   let [woPage, setWoPage] = useState(1);
@@ -169,7 +179,7 @@ const UserGroup = () => {
     let response = await axios.get(API_URL + '/group/participant', {
       params: {
         // TODO:userId要換成session的
-        userId: userId,
+        userId: memberInfo.userId,
         groupMaxStatus: 4,
         groupMinStatus: 0,
         groupCate: 1,
@@ -181,7 +191,7 @@ const UserGroup = () => {
   };
   useEffect(() => {
     getWoList();
-  }, [woPage, userId]);
+  }, [woPage, memberInfo.userId]);
 
   // 待參加私人(wp)
   let [wpPage, setWpPage] = useState(1);
@@ -195,7 +205,7 @@ const UserGroup = () => {
     let response = await axios.get(API_URL + '/group/participant', {
       params: {
         // TODO:userId要換成session的
-        userId: userId,
+        userId: memberInfo.userId,
         groupMaxStatus: 4,
         groupMinStatus: 0,
         groupCate: 2,
@@ -208,7 +218,7 @@ const UserGroup = () => {
   };
   useEffect(() => {
     getWpList();
-  }, [wpPage, userId]);
+  }, [wpPage, memberInfo.userId]);
 
   // 歷史官方(ho)
   let [hoPage, setHoPage] = useState(1);
@@ -222,7 +232,7 @@ const UserGroup = () => {
     let response = await axios.get(API_URL + '/group/participant', {
       params: {
         // TODO:userId要換成session的
-        userId: userId,
+        userId: memberInfo.userId,
         groupMaxStatus: 5,
         groupMinStatus: 3,
         groupCate: 1,
@@ -234,7 +244,7 @@ const UserGroup = () => {
   };
   useEffect(() => {
     getHoList();
-  }, [hoPage, userId]);
+  }, [hoPage, memberInfo.userId]);
 
   // 歷史私人(hp)
   let [hpPage, setHpPage] = useState(1);
@@ -248,7 +258,7 @@ const UserGroup = () => {
     let response = await axios.get(API_URL + '/group/participant', {
       params: {
         // TODO:userId要換成session的
-        userId: userId,
+        userId: memberInfo.userId,
         groupMaxStatus: 5,
         groupMinStatus: 3,
         groupCate: 2,
@@ -260,119 +270,46 @@ const UserGroup = () => {
   };
   useEffect(() => {
     getHpList();
-  }, [hpPage, userId]);
+  }, [hpPage, memberInfo.userId]);
 
   return (
     <>
-      <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-      <div className="user-add-group-area">
-        <div className="container">
-          <div className="page-type1-area-title" id="new-group-block1">
-            我要開團
-          </div>
-          <div className="d-flex user-add-group-content-wraper">
-            <div className="user-add-group-content">
-              <div className="user-add-group-content-text px-2">
-                <div>現在就來玩!</div>
-                <div className="mt-3">加入或創造一個你有興趣的聚會吧!不要有壓力!</div>
+      {loginInfo.islogin ? (
+        <>
+          <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+          <div className="user-add-group-area">
+            <div className="container">
+              <div className="page-type1-area-title" id="new-group-block1">
+                來揪團吧
               </div>
-              <Link to="/newgroup" className="user-add-group-content-btn mx-auto w-fit-content" style={{ display: 'block' }}>
-                <button className="injoin-btn-outline btn-none text-gold">我要開團</button>
-              </Link>
-            </div>
-            <div className="mb-5 mb-md-0 position-relative">
-              <div className="bg-square-1"></div>
-              <img src={memberGroupImg3} className="img-fluid object-cover" alt="group-list-img-3" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
-        <div className="container">
-          <div className="page-type1-area-title" id="grouplist-bolck2">
-            我揪的團
-          </div>
-          {ownPagination.total === 0 ? (
-            <EmptyImage discText="暫無活動" />
-          ) : (
-            <>
-              <div className="page-type1-list-wraper">
-                <div className="page-type1-list-title pc-view">
-                  <div>活動名稱</div>
-                  <div>活動時間</div>
-                  <div>活動地點</div>
-                  <div className="list-content_btn"></div>
-                  <div className="list-content_btn"></div>
-                  <div className="list-content_btn"></div>
-                  <div className="list-content_btn"></div>
-                  <div className="list-content_btn"></div>
+              <div className="d-flex user-add-group-content-wraper">
+                <div className="user-add-group-content">
+                  <div className="user-add-group-content-text px-2">
+                    <div>現在就來玩!</div>
+                    <div className="mt-3">加入或創造一個你有興趣的聚會吧!不要有壓力!</div>
+                  </div>
+                  <div className="d-flex">
+                    <Link to="/newgroup" className="user-add-group-content-btn w-fit-content mx-3" style={{ display: 'block' }}>
+                      <button className="injoin-btn-outline btn-none text-gold">我要開團</button>
+                    </Link>
+                    <Link to="/group" className="user-add-group-content-btn w-fit-content  mx-3" style={{ display: 'block' }}>
+                      <button className="injoin-btn-outline btn-none text-gold">我要報名</button>
+                    </Link>
+                  </div>
                 </div>
-                {ownData.map((item) => {
-                  let startTime = item.start_time;
-                  let endTime = item.end_time;
-                  startTime = startTime.slice(0, startTime.length - 3);
-                  endTime = endTime.slice(0, endTime.length - 3);
-                  return (
-                    <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
-                      <div className="list-content_activity-name">{item.name}</div>
-                      <div className="list-content_time">
-                        {startTime}~{endTime}
-                      </div>
-                      <div className="list-content_place">
-                        <FaMapMarkerAlt />
-                        {item.cityName}
-                      </div>
-                      <div className="list-content_btn" title="查看">
-                        <Link to={`/group/${item.id}`}>
-                          <FaEye />
-                          {/* 詳細內容 */}
-                        </Link>
-                      </div>
-                      <div className="list-content_btn" title="編輯">
-                        <Link to={`/editgroup/${item.id}`}>
-                          <BsPencilSquare />
-                          {/* 編輯 */}
-                        </Link>
-                      </div>
-
-                      <FeAuditModal groupId={item.id} groupMaxNum={item.max_num} groupNowNum={item.now_num} groupMember={item.member} />
-
-                      <div className="list-content_btn" title="聊天室">
-                        <Link to={`/chatroom/${item.id}`}>
-                          <RiWechatLine />
-                          {/* 聊天室 */}
-                        </Link>
-                      </div>
-                      <div className="list-content_btn" title="刪除活動">
-                        <Popconfirm
-                          title="你確定要刪除此項活動嗎?"
-                          onConfirm={() => {
-                            delGroup(item.id);
-                          }}
-                          okText="確定"
-                          cancelText="取消"
-                        >
-                          <HiOutlineTrash />
-                        </Popconfirm>
-                      </div>
-                    </div>
-                  );
-                })}
+                <div className="mb-5 mb-md-0 position-relative">
+                  <div className="bg-square-1"></div>
+                  <img src={memberGroupImg3} className="img-fluid object-cover" alt="group-list-img-3" />
+                </div>
               </div>
-              <FePagination pagination={ownPagination} setPage={setOwnPage} />
-            </>
-          )}
-        </div>
-      </div>
-      <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
-        <div className="bg-square-2"></div>
-        <div className="container">
-          <div className="page-type1-area-title" id="grouplist-bolck3">
-            待參加揪團
+            </div>
           </div>
-          <Tabs onChange={onChange} type="card" centered size="large">
-            <TabPane tab="官方揪團" key="1">
-              {woPagination.total === 0 ? (
+          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
+            <div className="container">
+              <div className="page-type1-area-title" id="grouplist-bolck2">
+                我揪的團
+              </div>
+              {ownPagination.total === 0 ? (
                 <EmptyImage discText="暫無活動" />
               ) : (
                 <>
@@ -381,12 +318,13 @@ const UserGroup = () => {
                       <div>活動名稱</div>
                       <div>活動時間</div>
                       <div>活動地點</div>
-                      <div>活動狀態</div>
+                      <div className="list-content_btn"></div>
+                      <div className="list-content_btn"></div>
                       <div className="list-content_btn"></div>
                       <div className="list-content_btn"></div>
                       <div className="list-content_btn"></div>
                     </div>
-                    {woData.map((item) => {
+                    {ownData.map((item) => {
                       let startTime = item.start_time;
                       let endTime = item.end_time;
                       startTime = startTime.slice(0, startTime.length - 3);
@@ -401,249 +339,343 @@ const UserGroup = () => {
                             <FaMapMarkerAlt />
                             {item.cityName}
                           </div>
-                          <div className="list-content_status">
-                            <span>{item.status_name}</span>
-                          </div>
                           <div className="list-content_btn" title="查看">
                             <Link to={`/group/${item.id}`}>
                               <FaEye />
                               {/* 詳細內容 */}
                             </Link>
                           </div>
-                          <div className="list-content_btn" title="取消報名活動">
-                            <Popconfirm
-                              title="你確定要取消報名此項活動嗎？"
-                              onConfirm={() => {
-                                unJoin(item.id);
-                              }}
-                              okText="Yes"
-                              cancelText="No"
-                            >
-                              <ImUserMinus />
-                            </Popconfirm>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <FePagination pagination={woPagination} setPage={setWoPage} />
-                </>
-              )}
-            </TabPane>
-            <TabPane tab="私人揪團" key="2">
-              {wpPagination.total === 0 ? (
-                <EmptyImage discText="暫無活動" />
-              ) : (
-                <>
-                  <div className="page-type1-list-wraper">
-                    <div className="page-type1-list-title pc-view">
-                      <div>活動名稱</div>
-                      <div>活動時間</div>
-                      <div>活動地點</div>
-                      <div>活動狀態</div>
-                      <div>審核狀態</div>
-                      <div className="list-content_btn"></div>
-                      <div className="list-content_btn"></div>
-                      <div className="list-content_btn"></div>
-                    </div>
-                    {wpData.map((item) => {
-                      let startTime = item.start_time;
-                      let endTime = item.end_time;
-                      startTime = startTime.slice(0, startTime.length - 3);
-                      endTime = endTime.slice(0, endTime.length - 3);
-                      return (
-                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
-                          <div className="list-content_activity-name">{item.name}</div>
-                          <div className="list-content_time">
-                            {startTime}~{endTime}
-                          </div>
-                          <div className="list-content_place">
-                            <FaMapMarkerAlt />
-                            {item.cityName}
-                          </div>
-                          <div className="list-content_status">
-                            <span>{item.status_name}</span>
-                          </div>
-                          <div className="list-content_status">{item.audit_status === 0 ? '審核中' : item.audit_status === 1 ? '審核通過' : '審核未通過'}</div>
-                          <div className="list-content_btn" title="查看">
-                            <Link to={`/group/${item.id}`}>
-                              <FaEye />
-                              {/* 詳細內容 */}
+                          <div className="list-content_btn" title="編輯">
+                            <Link to={`/editgroup/${item.id}`}>
+                              <BsPencilSquare />
+                              {/* 編輯 */}
                             </Link>
                           </div>
-                          <div className="list-content_btn" title="聊天室">
-                            <Link to="/chatroom/1">
-                              <RiWechatLine />
-                              {/* 聊天室 */}
-                            </Link>
-                          </div>
-                          <div className="list-content_btn" title="取消報名活動">
-                            <Popconfirm
-                              title="你確定要取消報名此項活動嗎?"
-                              onConfirm={() => {
-                                unJoin(item.id);
-                              }}
-                              okText="Yes"
-                              cancelText="No"
-                            >
-                              <ImUserMinus />
-                            </Popconfirm>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <FePagination pagination={wpPagination} setPage={setWpPage} />
-                </>
-              )}
-            </TabPane>
-          </Tabs>
-        </div>
-      </div>
-      <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
-        <div className="bg-square-3"></div>
-        <div className="container">
-          <div className="page-type1-area-title" id="grouplist-bolck4">
-            歷史揪團紀錄
-          </div>
-          <Tabs onChange={onChange} type="card" centered size="large">
-            <TabPane tab="官方揪團" key="1">
-              {hoPagination.total === 0 ? (
-                <EmptyImage discText="暫無紀錄" />
-              ) : (
-                <>
-                  <div className="page-type1-list-wraper">
-                    <div className="page-type1-list-title pc-view">
-                      <div>活動名稱</div>
-                      <div>活動時間</div>
-                      <div>活動地點</div>
-                      <div>活動狀態</div>
-                      <div className="list-content_btn"></div>
-                    </div>
-                    {hoData.map((item) => {
-                      let startTime = item.start_time;
-                      let endTime = item.end_time;
-                      startTime = startTime.slice(0, startTime.length - 3);
-                      endTime = endTime.slice(0, endTime.length - 3);
-                      return (
-                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
-                          <div className="list-content_activity-name">{item.name}</div>
-                          <div className="list-content_time">
-                            {startTime}~{endTime}
-                          </div>
-                          <div className="list-content_place">
-                            <FaMapMarkerAlt />
-                            {item.cityName}
-                          </div>
-                          <div className="list-content_status">
-                            <span>{item.status_name}</span>
-                          </div>
-                          <div className="list-content_btn" title="查看">
-                            <Link to={`/group/${item.id}`}>
-                              <FaEye />
-                              {/* 詳細內容 */}
-                            </Link>
-                          </div>
-                        </div>
-                      );
-                    })}
-                    <div className="page-type1-list-content my-group-list-wraper">
-                      <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                      <div className="list-content_time">2022/01/02</div>
-                      <div className="list-content_place">
-                        <FaMapMarkerAlt />
-                        台北
-                      </div>
-                      <div className="list-content_status">
-                        <span>活動報名中</span>
-                      </div>
-                      <div className="list-content_btn" title="查看">
-                        <Link to="/group/1">
-                          <FaEye />
-                          {/* 詳細內容 */}
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                  <FePagination pagination={hoPagination} setPage={setHoPage} />
-                </>
-              )}
-            </TabPane>
-            <TabPane tab="私人揪團" key="2">
-              {hpPagination.total === 0 ? (
-                <EmptyImage discText="暫無紀錄" />
-              ) : (
-                <>
-                  <div className="page-type1-list-wraper">
-                    <div className="page-type1-list-title pc-view">
-                      <div>活動名稱</div>
-                      <div>活動時間</div>
-                      <div>活動地點</div>
-                      <div>身份</div>
-                      <div className="list-content_btn"></div>
-                      <div className="list-content_btn"></div>
-                    </div>
-                    {hpData.map((item) => {
-                      let startTime = item.start_time;
-                      let endTime = item.end_time;
-                      startTime = startTime.slice(0, startTime.length - 3);
-                      endTime = endTime.slice(0, endTime.length - 3);
-                      return (
-                        <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
-                          <div className="list-content_activity-name">{item.name}</div>
-                          <div className="list-content_time">
-                            {startTime}~{endTime}
-                          </div>
-                          <div className="list-content_place">
-                            <FaMapMarkerAlt />
-                            {item.cityName}
-                          </div>
-                          <div className="list-content_status">{item.user_id === userId ? '主揪' : '團員'}</div>
-                          <div className="list-content_btn" title="查看">
-                            <Link to={`/group/${item.id}`}>
-                              <FaEye />
-                              {/* 詳細內容 */}
-                            </Link>
-                          </div>
-                          <div className="list-content_btn" title="聊天室">
-                            <Link to="/chatroom/1">
-                              <RiWechatLine />
-                              {/* 聊天室 */}
-                            </Link>
-                          </div>
-                        </div>
-                      );
-                    })}
-                    <div className="page-type1-list-content my-group-list-wraper">
-                      <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                      <div className="list-content_time">2022/01/02</div>
-                      <div className="list-content_place">
-                        <FaMapMarkerAlt />
-                        台北
-                      </div>
-                      <div className="list-content_status">團員</div>
-                      <div className="list-content_btn" title="查看">
-                        <Link to="/group/1">
-                          <FaEye />
-                          {/* 詳細內容 */}
-                        </Link>
-                      </div>
 
-                      <div className="list-content_btn" title="聊天室">
-                        <Link to="/">
-                          <RiWechatLine />
-                          {/* 聊天室 */}
-                        </Link>
-                      </div>
-                    </div>
+                          <FeAuditModal groupId={item.id} groupMaxNum={item.max_num} groupNowNum={item.now_num} groupMember={item.member} />
+
+                          <div className="list-content_btn" title="聊天室">
+                            <Link to={`/chatroom/${item.id}`}>
+                              <RiWechatLine />
+                              {/* 聊天室 */}
+                            </Link>
+                          </div>
+                          <div className="list-content_btn" title="刪除活動">
+                            <Popconfirm
+                              title="你確定要刪除此項活動嗎?"
+                              onConfirm={() => {
+                                delGroup(item.id);
+                              }}
+                              okText="確定"
+                              cancelText="取消"
+                            >
+                              <HiOutlineTrash />
+                            </Popconfirm>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
-                  <FePagination pagination={hpPagination} setPage={setHpPage} />
+                  <FePagination pagination={ownPagination} setPage={setOwnPage} />
                 </>
               )}
-            </TabPane>
-          </Tabs>
-        </div>
-      </div>
+            </div>
+          </div>
+          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
+            <div className="bg-square-2"></div>
+            <div className="container">
+              <div className="page-type1-area-title" id="grouplist-bolck3">
+                待參加揪團
+              </div>
+              <Tabs onChange={onChange} type="card" centered size="large">
+                <TabPane tab="官方揪團" key="1">
+                  {woPagination.total === 0 ? (
+                    <EmptyImage discText="暫無活動" />
+                  ) : (
+                    <>
+                      <div className="page-type1-list-wraper">
+                        <div className="page-type1-list-title pc-view">
+                          <div>活動名稱</div>
+                          <div>活動時間</div>
+                          <div>活動地點</div>
+                          <div>活動狀態</div>
+                          <div className="list-content_btn"></div>
+                          <div className="list-content_btn"></div>
+                          <div className="list-content_btn"></div>
+                        </div>
+                        {woData.map((item) => {
+                          let startTime = item.start_time;
+                          let endTime = item.end_time;
+                          startTime = startTime.slice(0, startTime.length - 3);
+                          endTime = endTime.slice(0, endTime.length - 3);
+                          return (
+                            <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
+                              <div className="list-content_activity-name">{item.name}</div>
+                              <div className="list-content_time">
+                                {startTime}~{endTime}
+                              </div>
+                              <div className="list-content_place">
+                                <FaMapMarkerAlt />
+                                {item.cityName}
+                              </div>
+                              <div className="list-content_status">
+                                <span>{item.status_name}</span>
+                              </div>
+                              <div className="list-content_btn" title="查看">
+                                <Link to={`/group/${item.id}`}>
+                                  <FaEye />
+                                  {/* 詳細內容 */}
+                                </Link>
+                              </div>
+                              <div className="list-content_btn" title="取消報名活動">
+                                <Popconfirm
+                                  title="你確定要取消報名此項活動嗎？"
+                                  onConfirm={() => {
+                                    unJoin(item.id);
+                                  }}
+                                  okText="Yes"
+                                  cancelText="No"
+                                >
+                                  <ImUserMinus />
+                                </Popconfirm>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <FePagination pagination={woPagination} setPage={setWoPage} />
+                    </>
+                  )}
+                </TabPane>
+                <TabPane tab="私人揪團" key="2">
+                  {wpPagination.total === 0 ? (
+                    <EmptyImage discText="暫無活動" />
+                  ) : (
+                    <>
+                      <div className="page-type1-list-wraper">
+                        <div className="page-type1-list-title pc-view">
+                          <div>活動名稱</div>
+                          <div>活動時間</div>
+                          <div>活動地點</div>
+                          <div>活動狀態</div>
+                          <div>審核狀態</div>
+                          <div className="list-content_btn"></div>
+                          <div className="list-content_btn"></div>
+                          <div className="list-content_btn"></div>
+                        </div>
+                        {wpData.map((item) => {
+                          let startTime = item.start_time;
+                          let endTime = item.end_time;
+                          startTime = startTime.slice(0, startTime.length - 3);
+                          endTime = endTime.slice(0, endTime.length - 3);
+                          console.log(item);
+                          return (
+                            <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
+                              <div className="list-content_activity-name">{item.name}</div>
+                              <div className="list-content_time">
+                                {startTime}~{endTime}
+                              </div>
+                              <div className="list-content_place">
+                                <FaMapMarkerAlt />
+                                {item.cityName}
+                              </div>
+                              <div className="list-content_status">
+                                <span>{item.status_name}</span>
+                              </div>
+                              <div className="list-content_status">{item.audit_status === 0 ? '審核中' : item.audit_status === 1 ? '審核通過' : '審核未通過'}</div>
+                              <div className="list-content_btn" title="查看">
+                                <Link to={`/group/${item.id}`}>
+                                  <FaEye />
+                                  {/* 詳細內容 */}
+                                </Link>
+                              </div>
+                              {item.audit_status ? (
+                                <div className="list-content_btn" title="聊天室">
+                                  <Link to={`/chatroom/${item.id}`}>
+                                    <RiWechatLine />
+                                    {/* 聊天室 */}
+                                  </Link>
+                                </div>
+                              ) : (
+                                // <div className="list-content_btn"></div>
+                                ''
+                              )}
+                              {item.user_id !== memberInfo.userId ? (
+                                <div className="list-content_btn" title="取消報名活動">
+                                  <Popconfirm
+                                    title="你確定要取消報名此項活動嗎?"
+                                    onConfirm={() => {
+                                      unJoin(item.id);
+                                    }}
+                                    okText="Yes"
+                                    cancelText="No"
+                                  >
+                                    <ImUserMinus />
+                                  </Popconfirm>
+                                </div>
+                              ) : (
+                                // <div className="list-content_btn"></div>
+                                ''
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <FePagination pagination={wpPagination} setPage={setWpPage} />
+                    </>
+                  )}
+                </TabPane>
+              </Tabs>
+            </div>
+          </div>
+          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
+            <div className="bg-square-3"></div>
+            <div className="container">
+              <div className="page-type1-area-title" id="grouplist-bolck4">
+                歷史揪團紀錄
+              </div>
+              <Tabs onChange={onChange} type="card" centered size="large">
+                <TabPane tab="官方揪團" key="1">
+                  {hoPagination.total === 0 ? (
+                    <EmptyImage discText="暫無紀錄" />
+                  ) : (
+                    <>
+                      <div className="page-type1-list-wraper">
+                        <div className="page-type1-list-title pc-view">
+                          <div>活動名稱</div>
+                          <div>活動時間</div>
+                          <div>活動地點</div>
+                          <div>活動狀態</div>
+                          <div className="list-content_btn"></div>
+                        </div>
+                        {hoData.map((item) => {
+                          let startTime = item.start_time;
+                          let endTime = item.end_time;
+                          startTime = startTime.slice(0, startTime.length - 3);
+                          endTime = endTime.slice(0, endTime.length - 3);
+                          return (
+                            <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
+                              <div className="list-content_activity-name">{item.name}</div>
+                              <div className="list-content_time">
+                                {startTime}~{endTime}
+                              </div>
+                              <div className="list-content_place">
+                                <FaMapMarkerAlt />
+                                {item.cityName}
+                              </div>
+                              <div className="list-content_status">
+                                <span>{item.status_name}</span>
+                              </div>
+                              <div className="list-content_btn" title="查看">
+                                <Link to={`/group/${item.id}`}>
+                                  <FaEye />
+                                  {/* 詳細內容 */}
+                                </Link>
+                              </div>
+                            </div>
+                          );
+                        })}
+                        <div className="page-type1-list-content my-group-list-wraper">
+                          <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
+                          <div className="list-content_time">2022/01/02</div>
+                          <div className="list-content_place">
+                            <FaMapMarkerAlt />
+                            台北
+                          </div>
+                          <div className="list-content_status">
+                            <span>活動報名中</span>
+                          </div>
+                          <div className="list-content_btn" title="查看">
+                            <Link to="/group/1">
+                              <FaEye />
+                              {/* 詳細內容 */}
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                      <FePagination pagination={hoPagination} setPage={setHoPage} />
+                    </>
+                  )}
+                </TabPane>
+                <TabPane tab="私人揪團" key="2">
+                  {hpPagination.total === 0 ? (
+                    <EmptyImage discText="暫無紀錄" />
+                  ) : (
+                    <>
+                      <div className="page-type1-list-wraper">
+                        <div className="page-type1-list-title pc-view">
+                          <div>活動名稱</div>
+                          <div>活動時間</div>
+                          <div>活動地點</div>
+                          <div>身份</div>
+                          <div className="list-content_btn"></div>
+                          <div className="list-content_btn"></div>
+                        </div>
+                        {hpData.map((item) => {
+                          let startTime = item.start_time;
+                          let endTime = item.end_time;
+                          startTime = startTime.slice(0, startTime.length - 3);
+                          endTime = endTime.slice(0, endTime.length - 3);
+                          return (
+                            <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
+                              <div className="list-content_activity-name">{item.name}</div>
+                              <div className="list-content_time">
+                                {startTime}~{endTime}
+                              </div>
+                              <div className="list-content_place">
+                                <FaMapMarkerAlt />
+                                {item.cityName}
+                              </div>
+                              <div className="list-content_status">{item.user_id === memberInfo.userId ? '主揪' : '團員'}</div>
+                              <div className="list-content_btn" title="查看">
+                                <Link to={`/group/${item.id}`}>
+                                  <FaEye />
+                                  {/* 詳細內容 */}
+                                </Link>
+                              </div>
+                              <div className="list-content_btn" title="聊天室">
+                                <Link to={`/chatroom/${item.id}`}>
+                                  <RiWechatLine />
+                                  {/* 聊天室 */}
+                                </Link>
+                              </div>
+                            </div>
+                          );
+                        })}
+                        <div className="page-type1-list-content my-group-list-wraper">
+                          <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
+                          <div className="list-content_time">2022/01/02</div>
+                          <div className="list-content_place">
+                            <FaMapMarkerAlt />
+                            台北
+                          </div>
+                          <div className="list-content_status">團員</div>
+                          <div className="list-content_btn" title="查看">
+                            <Link to="/group/1">
+                              <FaEye />
+                              {/* 詳細內容 */}
+                            </Link>
+                          </div>
+
+                          <div className="list-content_btn" title="聊天室">
+                            <Link to="/">
+                              <RiWechatLine />
+                              {/* 聊天室 */}
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                      <FePagination pagination={hpPagination} setPage={setHpPage} />
+                    </>
+                  )}
+                </TabPane>
+              </Tabs>
+            </div>
+          </div>
+        </>
+      ) : (
+        <LogoutPage setisLogin={setisLogin} />
+      )}
     </>
   );
 };

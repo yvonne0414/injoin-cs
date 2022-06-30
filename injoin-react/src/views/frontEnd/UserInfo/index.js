@@ -37,20 +37,40 @@ const UserInfo = () => {
       pc: 'member-head.png',
     },
     pageSelector: {
-      isShow: false,
+      isShow: true,
       pageParent: {
-        href: '/',
-        name: '首頁',
+        href: '/account/user',
+        name: '會員中心',
       },
-      selected: 'groupList',
+      selected: '會員資訊',
       selectOptions: [
         {
-          name: '揪團專區',
-          value: 'groupList',
+          name: '會員資訊',
+          value: '/account/user',
         },
         {
-          name: 'test',
-          value: 'groupList2',
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
+          name: '優惠券',
+          value: '/account/coupon',
+        },
+        {
+          name: '評價',
+          value: '/account/reputation',
+        },
+        {
+          name: '我的訂單',
+          value: '/account/order',
+        },
+        {
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },
@@ -60,46 +80,48 @@ const UserInfo = () => {
   return (
     <>
       {apple.islogin ? (
-        <div className="container">
+        <>
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-          {/* ===============section2=============== */}
-          <section className="member-s1">
-            <div className="member-s1-bg"></div>
-            <UserInfoForm />
-          </section>
-          {/* ===============section2=============== */}
-          <div className="member-s2 ">
-            <UserInfoVipLevel />
-          </div>
-          {/* ===============section3=============== */}
-          <section className="member-s3 ">
-            <UserInfoTask />
-          </section>
-          {/* ===============section4=============== */}
-          <section className="member-s4 ">
-            <div className="page-type1-area-title" id="">
-              詳細說明
+          <div className="container">
+            {/* ===============section2=============== */}
+            <section className="member-s1">
+              <div className="member-s1-bg"></div>
+              <UserInfoForm />
+            </section>
+            {/* ===============section2=============== */}
+            <div className="member-s2 ">
+              <UserInfoVipLevel />
             </div>
-            <div className="member-directions">
-              <div className="direction-title">保級狀態</div>
-              <div className="direction-content">
-                你上一個結算日 2022/1/1 的級別為黃金會員，下一個結算日 2023/1/1 的級別為黃金會員，尚未符合保級資格。立即累積消費，於下個年度繼續享受尊貴會員專屬的特別禮遇！
+            {/* ===============section3=============== */}
+            <section className="member-s3 ">
+              <UserInfoTask />
+            </section>
+            {/* ===============section4=============== */}
+            <section className="member-s4 ">
+              <div className="page-type1-area-title" id="">
+                詳細說明
               </div>
               <div className="member-directions">
-                <div className="direction-title">累積規則</div>
-                <ul>
-                  <li>消費金額與次數會自動累積到下一個任務。</li>
-                  <li>消費金額與次數累積將於結帳日 7 天後生效。</li>
-                  <li>年度結算日前 6 日內訂單，消費金額與次數累積將提前於結算日當日生效。</li>
-                  <li>若取消交易或退款，該筆消費則不會計算在累積消費金額與次數中。</li>
-                </ul>
+                <div className="direction-title">保級狀態</div>
+                <div className="direction-content">
+                  你上一個結算日 2022/1/1 的級別為黃金會員，下一個結算日 2023/1/1 的級別為黃金會員，尚未符合保級資格。立即累積消費，於下個年度繼續享受尊貴會員專屬的特別禮遇！
+                </div>
+                <div className="member-directions">
+                  <div className="direction-title">累積規則</div>
+                  <ul>
+                    <li>消費金額與次數會自動累積到下一個任務。</li>
+                    <li>消費金額與次數累積將於結帳日 7 天後生效。</li>
+                    <li>年度結算日前 6 日內訂單，消費金額與次數累積將提前於結算日當日生效。</li>
+                    <li>若取消交易或退款，該筆消費則不會計算在累積消費金額與次數中。</li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className="members4-img">
-              <img src={`${FE_IMAGE_URL}/membercenter/memberdirection.png`} alt="" />
-            </div>
-          </section>
-        </div>
+              <div className="members4-img">
+                <img src={`${FE_IMAGE_URL}/membercenter/memberdirection.png`} alt="" />
+              </div>
+            </section>
+          </div>
+        </>
       ) : (
         <LogoutPage setisLogin={setisLogin} />
       )}

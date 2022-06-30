@@ -93,7 +93,7 @@ const GroupList = () => {
       },
       {
         href: '#grouplist-bolck4',
-        name: '報名參加',
+        name: '我的揪團',
       },
     ],
     imgs: {

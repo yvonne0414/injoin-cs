@@ -16,7 +16,7 @@ const FePage1Header = (props) => {
   selectOptions.map((v) => {
     selector.push({ label: <Link to={`${v.value}`}>{v.name}</Link>, key: v.value });
   });
-  console.log(selector);
+  // console.log(selector);
 
   let menu = <Menu items={selector} />;
 

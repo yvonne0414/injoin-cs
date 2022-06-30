@@ -26,20 +26,40 @@ const UserReputation = () => {
       pc: 'user-reputation-header.png',
     },
     pageSelector: {
-      isShow: false,
+      isShow: true,
       pageParent: {
-        href: '/',
-        name: '首頁',
+        href: '/account/user',
+        name: '會員中心',
       },
-      selected: 'UserReputation',
+      selected: '評價',
       selectOptions: [
         {
-          name: '揪團專區',
-          value: 'UserReputation',
+          name: '會員資訊',
+          value: '/account/user',
         },
         {
-          name: 'test',
-          value: 'UserReputation2',
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
+          name: '優惠券',
+          value: '/account/coupon',
+        },
+        {
+          name: '評價',
+          value: '/account/reputation',
+        },
+        {
+          name: '我的訂單',
+          value: '/account/order',
+        },
+        {
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },

@@ -25,20 +25,40 @@ const MemberCenter = () => {
       pc: 'member-head.png',
     },
     pageSelector: {
-      isShow: false,
+      isShow: true,
       pageParent: {
-        href: '/',
-        name: '首頁',
+        href: '/account/user',
+        name: '會員中心',
       },
-      selected: 'groupList',
+      selected: '會員資訊',
       selectOptions: [
         {
-          name: '揪團專區',
-          value: 'groupList',
+          name: '會員資訊',
+          value: '/account/user',
         },
         {
-          name: 'test',
-          value: 'groupList2',
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
+          name: '優惠券',
+          value: '/account/coupon',
+        },
+        {
+          name: '評價',
+          value: '/account/reputation',
+        },
+        {
+          name: '我的訂單',
+          value: '/account/order',
+        },
+        {
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },
@@ -47,8 +67,8 @@ const MemberCenter = () => {
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
   return (
     <>
+      <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
       <div className="container">
-        <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
         {/* ===============section2=============== */}
         <section className="member-s1">
           <div className="page-type1-area-title">會員資料</div>

@@ -83,6 +83,7 @@ const Production = () => {
   //   },
   // ];
 
+// 換頁
   const [prded, setPrded] = useState([]);
   const [category, setCategory] = useState(1);
   let [page, setPage] = useState(1);
@@ -92,6 +93,7 @@ const Production = () => {
     lastPage: 1,
   });
 
+  // prdList
   let getprded = async () => {
     let response = await axios.get('http://localhost:3001/api/prd/prdList', {
       params: {

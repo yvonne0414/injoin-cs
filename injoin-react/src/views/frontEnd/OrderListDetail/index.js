@@ -123,13 +123,14 @@ const OrderListDetail = () => {
   const { orderId } = useParams();
   //商品訂單狀態設定
   const [ordersDetailData, setOrdersDetailData] = useState([]);
+  const [ordersDetailStatus, setOrdersDetailStatus] = useState([]);
   //訂購人訂單狀態設定
   const [ordersUserInfo, setOrdersUserInfo] = useState([]);
   //訂購人訂單商品設定
   const [ordersPrd, setOrdersPrd] = useState([]);
-  
+
   //商品陣列
-  // console.log('prdarr',ordersPrd);
+  console.log('prdarr', ordersPrd);
 
   useEffect(() => {
     //取得訂購人訂單詳細資料
@@ -148,25 +149,32 @@ const OrderListDetail = () => {
       setOrdersDetailData(response.data.data[0]);
       setOrdersUserInfo(response.data.orderuser[0]);
       setOrdersPrd(response.data.orderprd);
+      setOrdersDetailStatus(Number(response.data.data[0].logistics_state));
       // console.log('..', response.data);
       // console.log('ordersUserInfo', response.data.orderuser);
       // console.log('ordersDetailData', response.data.data);
+      console.log('OrdersPrd', response.data);
+      // console.log('ordersDetailStatus', response.data.data[0]);
     };
+    // console.log(ordersDetailStatus);
     getOrdersDetailData();
-  }, []);
+  }, [orderId]);
 
   // console.log('ordersUserInfo', ordersUserInfo);
   // console.log('ordersDetailData', ordersDetailData);
   // console.log('ordersPrd', ordersPrd);
   // console.log('test', ordersPrd);
-  console.log('orderdetailprdArr', orderdetailprdArr);
-  const arr = [
-    // TODO: 建一個向假資料一樣的格式
-    // TODO: 給一個新的空陣列
-    // TODO: 跑迴圈找到要的資料，PUSH到新陣列內
-  ];
+  // console.log('orderdetailprdArr', orderdetailprdArr);
 
-  console.log('arr', arr);
+  //商品總價函式跑for迴圈
+  function prdTotal() {
+    let sum = 0;
+    for (let i = 0; i < ordersPrd.length; i++) {
+      sum += ordersPrd[i].price * ordersPrd[i].amount;
+    }
+    return sum;
+  }
+
   return (
     <>
       {/* -----------header------------ */}
@@ -175,7 +183,7 @@ const OrderListDetail = () => {
       {/* -----------status------------ */}
       <div className="container">
         <div className="step-status mb-5">
-          <Steps current={2} progressDot>
+          <Steps current={ordersDetailStatus} progressDot>
             <Step title="訂單成立" />
             <Step title="待出貨" />
             <Step title="已出貨" />
@@ -191,34 +199,32 @@ const OrderListDetail = () => {
           <div className="order-detail-info-wraper "></div>
           <div className="p-3 ">
             <h3 className="ff-cn-main">
-              <span className="me-3">訂單明細</span> {ordersDetailData.order_time}
+              <span className="me-2">訂單明細</span> {ordersDetailData.order_time}
             </h3>
             <div className="detailcollapse">
               <Collapse defaultActiveKey={['1']} onChange={onChange}>
                 <Panel header="訂單資訊" key="1">
-                  <span className="me-3">訂單編號:</span>
+                  <span className="me-2">訂單編號:</span>
                   {orderId}
                   <br />
-                  <span className="me-3">收件人:</span> {ordersUserInfo.name}
+                  <span className="me-2">收件人:</span> {ordersUserInfo.name}
                   <br />
-                  <span className="me-3">連絡電話:</span>
+                  <span className="me-2">連絡電話:</span>
                   {ordersUserInfo.phone}
                   <br />
-                  <span className="me-3">地區: </span>
+                  <span className="me-2">地址: </span>
                   {ordersUserInfo.countyName}
-                  <br />
-                  <span className="me-3">地址: </span>
                   {ordersUserInfo.address_detail}
                   <br />
                 </Panel>
 
                 <Panel header="配送方式" key="2">
                   <apan>配送方式: </apan>
-                  {ordersDetailData.logisticsName}
+                  {ordersDetailData.logisticsCateName}
                   <br />
-                  完成日期: &nbsp;{detailtwo.deliverycomplet}
+                  完成日期: &nbsp;{ordersDetailData.order_time}
                   <br />
-                  訂單狀態: &nbsp;<span> {ordersDetailData.stateName}</span>
+                  訂單狀態: &nbsp;<span> {ordersDetailData.logisticsStatename}</span>
                 </Panel>
 
                 <Panel header="付款方式" key="3">
@@ -251,7 +257,8 @@ const OrderListDetail = () => {
               <hr />
             </div>
             <div className="page-type1-list-section">
-              {orderdetailprdArr.map((v, i) => {
+              {/* 商品迴圈 */}
+              {ordersPrd.map((v, i) => {
                 return <OrderDetail key={v.prdId} data={v} />;
               })}
               {/* ---------金額計算-------- */}
@@ -262,18 +269,14 @@ const OrderListDetail = () => {
                   使用優惠券
                   <br />
                   訂單金額
-                  <br />
-                  付款方式
                 </div>
 
                 <div className="summary-item d-flex ms-5">
-                  NT$2040
+                  NT${prdTotal()}
                   <br />
                   -NT$200
                   <br />
-                  NT$1840
-                  <br />
-                  信用卡
+                  NT${prdTotal() - 200}
                 </div>
               </div>
             </div>

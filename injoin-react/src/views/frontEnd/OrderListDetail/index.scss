@@ -56,8 +56,12 @@
       display: flex;
     }
     .list-content_orderdetail_name {
-      width: 100%;
+      width: 60%;
       margin-bottom: $space-3;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+      
     }
     .list-content_orderdetail_number {
       width: 100%;

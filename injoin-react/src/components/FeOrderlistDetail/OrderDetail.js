@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { BE_IMAGE_URL } from '../../utils/config';
 const OrderDetail = (props) => {
   const { data } = props;
+  // console.log('props', props);
+  // console.log('props.data', data);
 
   // const orderlistDetail = [
   //   {
@@ -19,19 +21,21 @@ const OrderDetail = (props) => {
     <>
       <div className="listdetail-card-bg mb-2">
         <div className="listdetail-card-context ">
-          <div className="list-content_orderdetail_num">{data.detailprdNum}</div>
+          <div className="list-content_orderdetail_num">{data.prd_num}</div>
 
           <div className="list-content_orderdetail_img pc-view">
-            <img src={require(`../../assets/images/fe/orderDetail/${data.detailprdImg}`)} alt="" className="img-fluid object-cover" />
+            <img src={`${BE_IMAGE_URL}/production/${data.main_img}`} alt="" className="img-fluid object-cover" />
           </div>
 
-          <div className="list-content_orderdetail_name">{data.detailprdName}</div>
-          <div className="list-content_orderdetail_price pc-view">{data.detailprdPrice}</div>
-          <div className="list-content_orderdetail_number text-md-center">{data.detailprdNumber}</div>
-          <div className="list-content_orderdetail_total text-md-center">{data.detailprdTotal}</div>
+          <div className="list-content_orderdetail_name">
+            {data.name}
+          </div>
+          <div className="list-content_orderdetail_price pc-view">NT${data.price}</div>
+          <div className="list-content_orderdetail_number text-md-center">數量:{data.amount}</div>
+          <div className="list-content_orderdetail_total text-md-center">NT${data.price * data.amount}</div>
         </div>
         <div className="list-content_orderdetail_sm_img m-view">
-          <img src={require(`../../assets/images/fe/orderDetail/${data.detailprdImg}`)} alt="order-detail-img-1.png" className="img-fluid object-cover" />
+          <img src={`${BE_IMAGE_URL}/production/${data.main_img}`} alt="order-detail-img-1.png" className="img-fluid object-cover" />
         </div>
       </div>
     </>

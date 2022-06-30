@@ -195,9 +195,12 @@ const OrderList = () => {
               <div>總金額</div>
               <div></div>
             </div>
+            
+            {/* 假資料測試 */}
             {/* {orderlistArr.map((v, i) => {
               return <OrderListForm key={i} data={v} />;
             })} */}
+
             {ordersarr.map((v, i) => {
               // console.log(v);
               // if (v.logistics_state === orderStatus) {

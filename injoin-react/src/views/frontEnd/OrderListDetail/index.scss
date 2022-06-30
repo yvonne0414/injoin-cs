@@ -56,12 +56,14 @@
       display: flex;
     }
     .list-content_orderdetail_name {
-      width: 60%;
-      margin-bottom: $space-3;
+      width: 80%;
+      height: 3rem;
+      // margin-bottom: $space-1;
       overflow: hidden;
-      text-overflow:ellipsis;
-      white-space: nowrap;
-      
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
     .list-content_orderdetail_number {
       width: 100%;

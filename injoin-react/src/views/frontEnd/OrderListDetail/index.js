@@ -120,6 +120,7 @@ const OrderListDetail = () => {
   const [memberInfo, setMemberInfo] = useState({
     userId: 3,
   });
+
   const { orderId } = useParams();
   //商品訂單狀態設定
   const [ordersDetailData, setOrdersDetailData] = useState([]);
@@ -130,7 +131,7 @@ const OrderListDetail = () => {
   const [ordersPrd, setOrdersPrd] = useState([]);
 
   //商品陣列
-  console.log('prdarr', ordersPrd);
+  // console.log('prdarr', ordersPrd);
 
   useEffect(() => {
     //取得訂購人訂單詳細資料
@@ -232,7 +233,7 @@ const OrderListDetail = () => {
                   <br />
                   付款狀態:{detailthree.paystatus}
                   <br />
-                  總金額: {detailthree.paytotal}
+                  訂單總金額: NT${prdTotal()}
                   <br />
                   備註: {detailthree.remark}
                 </Panel>
@@ -257,6 +258,7 @@ const OrderListDetail = () => {
               <hr />
             </div>
             <div className="page-type1-list-section">
+              
               {/* 商品迴圈 */}
               {ordersPrd.map((v, i) => {
                 return <OrderDetail key={v.prdId} data={v} />;
@@ -268,7 +270,7 @@ const OrderListDetail = () => {
                   <br />
                   使用優惠券
                   <br />
-                  訂單金額
+                  訂單總金額
                 </div>
 
                 <div className="summary-item d-flex ms-5">

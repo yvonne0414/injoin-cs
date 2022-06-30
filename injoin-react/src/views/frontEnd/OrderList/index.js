@@ -191,11 +191,11 @@ const OrderList = () => {
               <div>訂單編號</div>
               <div>訂單時間</div>
               <div>訂單狀態</div>
-              <div>付款狀態</div>
+              <div>配送方式</div>
               <div>總金額</div>
               <div></div>
             </div>
-            
+
             {/* 假資料測試 */}
             {/* {orderlistArr.map((v, i) => {
               return <OrderListForm key={i} data={v} />;

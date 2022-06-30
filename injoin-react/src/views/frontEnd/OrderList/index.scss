@@ -8,7 +8,7 @@
 .order-status {
   font-size: var(--fs-en-page-type1-title-sm);
   font-family: $font-family-cn-main;
-  overflow: auto;
+  overflow: hidden;
   flex-wrap: nowrap !important;
   li {
     margin-right: $space-3;
@@ -72,7 +72,7 @@
     display: flex;
     justify-content: space-between;
     margin-right: 10px;
-    .order-status{
+    .order-status {
       width: 60%;
       display: flex;
       justify-content: space-between;

@@ -31,7 +31,7 @@ const OrderDetail = (props) => {
             {data.name}
           </div>
           <div className="list-content_orderdetail_price pc-view">NT${data.price}</div>
-          <div className="list-content_orderdetail_number text-md-center">數量:{data.amount}</div>
+          <div className="list-content_orderdetail_number text-md-center">{data.amount}</div>
           <div className="list-content_orderdetail_total text-md-center">NT${data.price * data.amount}</div>
         </div>
         <div className="list-content_orderdetail_sm_img m-view">

@@ -13,6 +13,7 @@ import PrdCard from '../../../components/PrdCard';
 
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
 import { BsTrashFill } from 'react-icons/bs';
+import CartStep1 from '../../../components/FeUserCart/CartStep1';
 
 const UserCart = () => {
   const page1HeaderInfo = {
@@ -80,6 +81,18 @@ const UserCart = () => {
       },
     ],
   };
+  const cartprdArr = [
+    {
+      id: 1,
+      cartprdImg: 'faverite-product-img-1.png',
+      cartprdNum: 'AB123',
+      cartprdName: '金彬黑波本威士忌',
+      cartprdPrice: 'NT$680',
+      cartprdNumber: '2',
+      cartprdTotal: 'NT$680',
+    },
+  ];
+
   const cardArr = [
     {
       id: 1,
@@ -176,6 +189,11 @@ const UserCart = () => {
                           Your shopping bag
                         </span>
                       </div>
+                      {/* 商品迴圈 */}
+                      {cartprdArr.map((item, i) => {
+                        return <CartStep1 key={item.id} data={item} />;
+                      })}
+
                       <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
                         <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
                         <div className="cart-prd-content d-flex flex-column ms-2">
@@ -261,13 +279,13 @@ const UserCart = () => {
                           <div className="delivery-section mb-3">
                             <label>配送區域</label>
                             <br />
-                            <Select labelInValue defaultValue={{ value: 1, label: '台灣本島' }} style={{ width: 250, size: 30 }} onChange={handleChange}>
+                            <Select labelInValue defaultValue={{ value: 1, label: '台灣本島' }} style={{ width: 250, size: 25 }} onChange={handleChange}>
                               <Option value="1">台灣本島</Option>
                               <Option value="2">偏遠地區及離島 </Option>
                             </Select>
                           </div>
                         </div>
-                        <div className="check-info-area mb-3">
+                        {/* <div className="check-info-area mb-3">
                           <label>付款方式</label>
                           <div className="check-content border border-white mt-2 p-3">
                             <div className="form-check">
@@ -279,17 +297,17 @@ const UserCart = () => {
                               <label>貨到付款</label>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
 
                         <div className="delivery-section mb-5">
                           <label>運送方式</label>
                           <br />
-                          <Select labelInValue defaultValue={{ value: 1, label: '宅配' }} style={{ width: 250, size: 30 }} onChange={handleChange}>
+                          <Select labelInValue defaultValue={{ value: 1, label: '宅配' }} style={{ width: 250, size: 25 }} onChange={handleChange}>
                             <Option value="1">宅配</Option>
                             <Option value="2">郵局</Option>
                           </Select>
                         </div>
-                        <div className="shopping-cart-summary-area">
+                        <div className="shopping-cart-summary-area border-top border-white">
                           <span>訂單摘要</span>
                           <div className="shopping-cart-summary-content mt-3">
                             <div className="shopping-cart-summary-total d-flex justify-content-start">

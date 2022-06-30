@@ -57,6 +57,7 @@ const OrderListDetail = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  
   //假資料
   const detailone = {
     orderdetailNum: '513947',

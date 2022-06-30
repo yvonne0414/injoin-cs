@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { BE_IMAGE_URL } from '../../utils/config';
+
 const OrderDetail = (props) => {
   const { data } = props;
   // console.log('props', props);
@@ -31,7 +32,7 @@ const OrderDetail = (props) => {
             {data.name}
           </div>
           <div className="list-content_orderdetail_price pc-view">NT${data.price}</div>
-          <div className="list-content_orderdetail_number text-md-center">{data.amount}</div>
+          <div className="list-content_orderdetail_number text-md-center"><span className="m-view">數量</span>{data.amount}</div>
           <div className="list-content_orderdetail_total text-md-center">NT${data.price * data.amount}</div>
         </div>
         <div className="list-content_orderdetail_sm_img m-view">

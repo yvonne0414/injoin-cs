@@ -9,12 +9,17 @@ import { message } from 'antd';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import { useParams, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import LogoutPage from '../LogoutPage/LogoutPage.js';
+
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 
+import { userState } from '../../../App';
+
 const GroupDetail = () => {
+  const navigate = useNavigate();
   // header 資料
   const page1HeaderInfo = {
     titleEn: 'details',
@@ -46,8 +51,13 @@ const GroupDetail = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  // 檢查登入
+  const [isLogin, setisLogin] = useState(false);
+  const loginInfo = useContext(userState);
+  // console.log(loginInfo.member.id);
+
   const [memberInfo, setMemberInfo] = useState({
-    userId: 3,
+    userId: loginInfo.islogin ? loginInfo.member.id : -1,
   });
 
   // 提示
@@ -100,7 +110,7 @@ const GroupDetail = () => {
           <div className="page-type1-area-title" id="grouplist-bolck1">
             活動詳細內容
           </div>
-          {data.map((item) => {
+          {data.map((item, i) => {
             let startTime = item.start_time;
             let endTime = item.end_time;
             let auditTime = item.audit_time;
@@ -108,7 +118,7 @@ const GroupDetail = () => {
             endTime = endTime.slice(0, endTime.length - 3);
             auditTime = auditTime.slice(0, auditTime.length - 3);
             return (
-              <div className="position-relative">
+              <div className="position-relative" key={i}>
                 <div className="group-detail-info-bg-square"></div>
                 <div className="p-3 p-md-5">
                   <h3 className="ff-cn-main">{item.name}</h3>
@@ -169,24 +179,32 @@ const GroupDetail = () => {
                       <img src={`${BE_IMAGE_URL}${item.img}`} alt="" className="img-fluid object-cover" />
                     </div>
                   </div>
-                  <div className="w-100 text-center mt-4">
-                    {isJoin ? (
-                      <button className="btn btn-none injoin-btn-outline text-gold" onClick={info}>
-                        已報名
-                      </button>
-                    ) : (
-                      <button className="btn btn-none injoin-btn-outline text-gold" onClick={joinGroup}>
-                        報名參加
-                      </button>
-                    )}
-                  </div>
+                  {loginInfo.islogin ? (
+                    <div className="w-100 text-center mt-4">
+                      {isJoin ? (
+                        <button className="btn btn-none injoin-btn-outline text-gold" onClick={info}>
+                          已報名
+                        </button>
+                      ) : (
+                        <button className="btn btn-none injoin-btn-outline text-gold" onClick={joinGroup}>
+                          報名參加
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="w-100 text-center mt-4">
+                      <Link className="btn btn-none injoin-btn-outline text-gold" to="/account/group">
+                        請先登入
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             );
           })}
 
-          {/* 回現正揪團 */}
-          <Link to="/group" className="back-page btn btn-none mt-3">
+          {/* 回上一頁 */}
+          <button onClick={() => navigate(-1)} className="back-page btn btn-none mt-3">
             <div>
               <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -196,8 +214,8 @@ const GroupDetail = () => {
                 />
               </svg>
             </div>
-            <span className="ms-3 ff-cn-main">返回揪團列表</span>
-          </Link>
+            <span className="ms-3 ff-cn-main">返回上一頁</span>
+          </button>
         </div>
       </div>
     </>

@@ -17,8 +17,9 @@ import EmptyImage from '../../../components/EmptyImage';
 // 圖片upload
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, Spin, message } from 'antd';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { userState } from '../../../App';
 
 // upload
 const getBase64 = (file) =>
@@ -43,6 +44,10 @@ const normFile = (e) => {
 
 const GroupEdit = () => {
   const navigate = useNavigate();
+  // 檢查登入
+  const [isLogin, setisLogin] = useState(false);
+  const loginInfo = useContext(userState);
+  // console.log(loginInfo);
 
   // header 資料
   const page1HeaderInfo = {
@@ -88,7 +93,7 @@ const GroupEdit = () => {
   }, []);
 
   const [memberInfo, setMemberInfo] = useState({
-    userId: 2,
+    userId: loginInfo.member.id,
   });
 
   // 取得詳細資訊
@@ -278,7 +283,7 @@ const GroupEdit = () => {
             <div className="group-add-info-bg-square"></div>
             <div className="p-3 p-md-5">
               {isOwn ? (
-                data.map((item) => {
+                data.map((item, i) => {
                   let startTime = item.start_time;
                   let endTime = item.end_time;
                   let auditTime = item.audit_time;
@@ -286,7 +291,7 @@ const GroupEdit = () => {
                   endTime = endTime.slice(0, endTime.length - 3);
                   auditTime = auditTime.slice(0, auditTime.length - 3);
                   return (
-                    <Spin spinning={loading} tip="Loading...">
+                    <Spin spinning={loading} tip="Loading..." key={i}>
                       <Form
                         layout="vertical"
                         form={form}

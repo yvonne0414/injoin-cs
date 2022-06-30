@@ -5,7 +5,6 @@ import UserInfoChangePasswd from './UserInfoChangePasswd';
 import UserInfoProfile from './UserInfoProfile';
 import UserProfile from './UserProfile';
 
-
 const UserInfoForm = () => {
   const userstate = useContext(userState);
   // console.log('userinfoFrom', userstate);
@@ -15,8 +14,8 @@ const UserInfoForm = () => {
 
   return (
     <>
-      <div className="page-type1-area-title">會員資料</div>
-      <div className="member-box">
+      <div className="member-box p-2 p-md-4">
+        <div className="page-type1-area-title">會員資料</div>
         <nav className="memberbox-nav">
           <ul className="memberbox-ul list-unstyled d-flex row">
             {ularray.map((value, index) => {

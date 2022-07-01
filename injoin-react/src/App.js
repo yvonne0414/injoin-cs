@@ -44,7 +44,7 @@ function App() {
       if(response.data !== null){
         setislogin(true)
       }
-      console.log("app.js" ,response.data);
+      // console.log("app.js" ,response.data);
       setMember(response.data);
     };
     getMemberInfo();
@@ -66,7 +66,7 @@ function App() {
   }, [islogin]);
 
   return (
-    <userState.Provider value={{ islogin, setislogin, member }}>
+    <userState.Provider value={{ islogin, setislogin, member,setMember }}>
       <BrowserRouter>
         <BackTop />
         <FeHeader />
@@ -86,7 +86,7 @@ function App() {
 
             {/* 酒譜 */}
             <Route path="/bartending" exact element={<Bartending />} />
-            <Route path="/bartending/1" exact element={<BartendingDetail />}>
+            <Route path="/bartending/:barId" exact element={<BartendingDetail />}>
               <Route path=":currentPage" element={<BartendingDetail />} />
             </Route>
 

@@ -3,9 +3,11 @@ import { userState } from '../../App';
 import { FE_IMAGE_URL } from '../../utils/config';
 
 const UserInfoTask = () => {
-  const userstate = useContext(userState)
+  const userstate = useContext(userState);
+  // let vip_level =userstate.member.vip_level || 1 ;
+  // console.log("task",vip_level);
   const UserInfoVipLevel = {
-    vipLevel: userstate.member.vip_level,
+    vipLevel: 1,
     vipcount: 1,
     vipmoney: 5000,
   };

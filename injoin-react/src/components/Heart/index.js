@@ -3,8 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { API_URL } from '../../utils/config';
 
-
 function Heart({ isLike, data }) {
+  // data{
+  //   id:1
+  // }
+
   isLike = isLike || false;
   data = data || {};
   const [fav, setFav] = useState(false);
@@ -14,7 +17,7 @@ function Heart({ isLike, data }) {
   }, []);
 
   // 設定userid
-  let userid = 1
+  let userid = 1;
 
   return (
     <>
@@ -28,7 +31,8 @@ function Heart({ isLike, data }) {
             // console.log(data.id)
             let response = await axios.get(`${API_URL}/userlike/del/${userid}/${data.id}`);
             // console.log(response.data);
-            window.alert(`userid${userid}, data.id${data.id}, ${response.data.message}`)
+            // window.alert(`userid${userid}, data.id${data.id}, ${response.data.message}`);
+            window.alert(`${response.data.message}`);
           }}
         />
       ) : (
@@ -39,7 +43,8 @@ function Heart({ isLike, data }) {
             // console.log(data.id)
             let response = await axios.get(`${API_URL}/userlike/add/${userid}/${data.id}`);
             // console.log(response.data);
-            window.alert(`userid${userid}, data.id${data.id}, ${response.data.message}`)
+            // window.alert(`userid${userid}, data.id${data.id}, ${response.data.message}`);
+            window.alert(`${response.data.message}`);
           }}
         />
       )}

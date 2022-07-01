@@ -44,18 +44,14 @@ function App() {
       let response = await axios.get(`${API_URL}/member/info`, {
         withCredentials: true,
       });
+      if(response.data !== null){
+        setislogin(true)
+      }
+      // console.log("app.js" ,response.data);
       setMember(response.data);
     };
     getMemberInfo();
 
-    // let getUserLike = async () => {
-    //   let response = await axios.get(`${API_URL}/userlike/1`);
-
-    //   // console.log("app",response.data);
-    //   localStorage.removeItem('userLike');
-    //   localStorage.setItem('userLike', JSON.stringify(response.data));
-    // };
-    // getUserLike();
   }, []);
 
   useEffect(() => {
@@ -64,13 +60,16 @@ function App() {
         withCredentials: true,
       });
       // console.log("app.js" ,response.data);
+      if(response.data !== null){
+        setislogin(true)
+      }
       setMember(response.data);
     };
     getMemberInfo();
   }, [islogin]);
 
   return (
-    <userState.Provider value={{ islogin, setislogin, member }}>
+    <userState.Provider value={{ islogin, setislogin, member,setMember }}>
       <BrowserRouter>
         <BackTop />
         <FeHeader />
@@ -84,13 +83,13 @@ function App() {
 
             {/* 商品 */}
             <Route path="/production" exact element={<Production />} />
-            <Route path="/production/1" exact element={<ProductionDetail />}>
+            <Route path="/production/:prdId" exact element={<ProductionDetail />}>
               <Route path=":currentPage" element={<ProductionDetail />} />
             </Route>
 
             {/* 酒譜 */}
             <Route path="/bartending" exact element={<Bartending />} />
-            <Route path="/bartending/1" exact element={<BartendingDetail />}>
+            <Route path="/bartending/:barId" exact element={<BartendingDetail />}>
               <Route path=":currentPage" element={<BartendingDetail />} />
             </Route>
 

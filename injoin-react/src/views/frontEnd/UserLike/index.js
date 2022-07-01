@@ -6,28 +6,42 @@ import { Link } from 'react-router-dom';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import FePagination from '../../../components/FePagination1';
+import FePagination from '../../../components/FePagination';
 import LikePrdCard from '../../../components/FeUserLike/UserLike';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
+import { Pagination } from 'antd';
+import BartendingCard from '../../../components/BartendingCard';
+
 
 const UserLike = () => {
   // userid
   let userid = 1;
   const [arr, setArr] = useState([]);
-  const [userlike, setUserlike] = useState([]);
+  const [prdpagination, setPrdpagination] = useState([])
+
+  const [prdLikePage ,setPrdLikePage] = useState(1)
+
+
 
   useEffect(() => {
     // console.log(JSON.parse(localStorage.getItem('userLike')));
     // setArr(JSON.parse(localStorage.getItem('userLike')));
     let getUserLike = async () => {
-      let response = await axios.get(`${API_URL}/userlike/${userid}`);
+      let response = await axios.get(`${API_URL}/userlike/${userid}`,{
+        params:{
+          page:prdLikePage
+        }
+      });
 
-      console.log("app",response.data);
+      // console.log("userLike app",response.data.pagination);
       setArr(response.data.data);
+      setPrdpagination(response.data.pagination)
     };
     getUserLike();
-  }, []);
+  }, [prdLikePage]);
+
+
   // console.log('arr:', arr);
 
   const page1HeaderInfo = {
@@ -87,7 +101,7 @@ const UserLike = () => {
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
-  console.log(arr);
+  // console.log(arr);
   const apparr = [];
   arr.forEach((e) => {
     // console.log(e);
@@ -155,7 +169,11 @@ const UserLike = () => {
         </div>
       </div>
 
-      <FePagination className="pc-view" />
+      <FePagination pagination={prdpagination} setPage={setPrdLikePage} className="pc-view" />
+
+
+
+      {/* <BartendingCard/> */}
     </>
   );
 };

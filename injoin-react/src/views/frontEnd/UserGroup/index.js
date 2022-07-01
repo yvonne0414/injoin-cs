@@ -352,7 +352,7 @@ const UserGroup = () => {
                             </Link>
                           </div>
 
-                          <FeAuditModal groupId={item.id} groupMaxNum={item.max_num} groupNowNum={item.now_num} groupMember={item.member} />
+                          <FeAuditModal groupId={item.id} groupMaxNum={item.max_num} groupNowNum={item.now_num} groupMember={item.member} userId={memberInfo.userId} />
 
                           <div className="list-content_btn" title="聊天室">
                             <Link to={`/chatroom/${item.id}`}>
@@ -468,7 +468,7 @@ const UserGroup = () => {
                           let endTime = item.end_time;
                           startTime = startTime.slice(0, startTime.length - 3);
                           endTime = endTime.slice(0, endTime.length - 3);
-                          console.log(item);
+                          // console.log(item);
                           return (
                             <div className="page-type1-list-content my-group-list-wraper" key={item.id}>
                               <div className="list-content_activity-name">{item.name}</div>

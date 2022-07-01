@@ -112,7 +112,7 @@ const Production = () => {
     // console.log('res', response.data);
     setPrded(response.data.data);
     setPagination(response.data.pagination);
-    console.log(response.data.pagination);
+    // console.log(response.data.pagination);
   };
 
   useEffect(() => {
@@ -120,7 +120,7 @@ const Production = () => {
     let getmajorPrdSel = async () => {
       let response = await axios.get('http://localhost:3001/api/prd/prdCate');
       setmajorPrdSel(response.data.majorPrdSel);
-      console.log(response.data.majorPrdSel);
+      // console.log(response.data.majorPrdSel);
     };
     getmajorPrdSel();
     // 小類別

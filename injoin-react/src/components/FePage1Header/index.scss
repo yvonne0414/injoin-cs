@@ -81,6 +81,13 @@
     }
   }
 }
+.ant-dropdown-menu-item.ant-dropdown-menu-item-only-child {
+  padding: 0;
+}
+.ant-dropdown-menu-title-content > a {
+  display: block;
+  padding: 5px 12px;
+}
 
 @media screen and (min-width: 768px) {
   /* ===== page header ===== */

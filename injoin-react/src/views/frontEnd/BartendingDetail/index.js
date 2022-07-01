@@ -1,5 +1,7 @@
 import './index.scss';
 import { Breadcrumb, Carousel, Rate } from 'antd';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { InputNumber, Button } from 'antd';
 import { Collapse } from 'antd';
 import { Comment, List, Tooltip } from 'antd';
@@ -21,96 +23,105 @@ import bardetailImg4 from '../../../assets/images/fe/bartendingdetail/bartending
 
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
+const BartendingDetail = () => {
+  const contentStyle = {
+    height: '300px',
+    color: '#000',
+    lineHeight: '300px',
+    textAlign: 'center',
+    // background: '#fff',
+    // background: 'transparent',
+    overflow: 'hidden',
+  };
 
-const contentStyle = {
-  height: '300px',
-  color: '#000',
-  lineHeight: '300px',
-  textAlign: 'center',
-  // background: '#fff',
-  // background: 'transparent',
-  overflow: 'hidden',
-};
-
-const illustrate = {
-  practice: {
-    content: ['將所有材料倒入雪克杯，加入冰塊搖盪均勻', '雙重過濾，濾掉冰塊將酒液倒入淺碟香檳杯', '灑上適量豆蔻粉作為裝飾'],
-  },
-};
-
-const settings = {
-  className: 'slider variable-width',
-  dots: false,
-  infinite: true,
-  centerMode: false,
-  slidesToShow: 6,
-  slidesToScroll: 1,
-  // variableWidth: true,
-  arrows: true,
-  initialSlide: 0,
-  responsive: [
-    {
-      breakpoint: 480,
-      settings: {
-        centerMode: true,
-        arrows: false,
-        slidesToShow: 1,
-      },
+  const illustrate = {
+    practice: {
+      content: ['將所有材料倒入雪克杯，加入冰塊搖盪均勻', '雙重過濾，濾掉冰塊將酒液倒入淺碟香檳杯', '灑上適量豆蔻粉作為裝飾'],
     },
-  ],
-};
-const cardArr = [
-  {
-    id: 1,
-    name: '金黑波本威士忌',
-    price: 'NT.550 ',
-    rating: ' 4.6',
-  },
-  {
-    id: 2,
-    name: '金黑波本威士忌',
-    price: 'NT.550 ',
-    rating: ' 4.6',
-  },
-  {
-    id: 3,
-    name: '金黑波本威士忌',
-    price: 'NT.550 ',
-    rating: ' 4.6',
-  },
-  {
-    id: 4,
-    name: '金黑波本威士忌',
-    price: 'NT.550 ',
-    rating: ' 4.6',
-  },
-  {
-    id: 5,
-    name: '金黑波本威士忌',
-    price: 'NT.550 ',
-    rating: ' 4.6',
-  },
-  {
-    id: 6,
-    name: '金黑波本威士忌',
-    price: 'NT.550 ',
-    rating: ' 4.6',
-  },
-  {
-    id: 7,
-    name: '金黑波本威士忌',
-    price: 'NT.550 ',
-    rating: ' 4.6',
-  },
-  {
-    id: 8,
-    name: '金黑波本威士忌',
-    price: 'NT.550 ',
-    rating: ' 4.6',
-  },
-];
+  };
 
-const ProductionDetail = () => {
+  const settings = {
+    className: 'slider variable-width',
+    dots: false,
+    infinite: true,
+    centerMode: false,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    // variableWidth: true,
+    arrows: true,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          centerMode: true,
+          arrows: false,
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+  const cardArr = [
+    {
+      id: 1,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 2,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 3,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 4,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 5,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 6,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 7,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+    {
+      id: 8,
+      name: '金黑波本威士忌',
+      price: 'NT.550 ',
+      rating: ' 4.6',
+    },
+  ];
+  const [barted, setBarted] = useState([]);
+  useEffect(() => {
+    //bartendingCard
+    let getbarted = async () => {
+      let response = await axios.get('http://localhost:3001/api/bar/detail');
+      setBarted(response.data);
+      // console.log('e', response.data);
+    };
+    getbarted();
+  }, []);
+
   return (
     <>
       {/* session1---------------------------------------------------------------------- */}
@@ -226,4 +237,4 @@ const ProductionDetail = () => {
     </>
   );
 };
-export default ProductionDetail;
+export default BartendingDetail;

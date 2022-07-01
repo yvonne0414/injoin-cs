@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 
 import faveritePrdImg1 from '../../assets/images/fe/bartending/bartending_1.png';
 import Heart from '../Heart';
+import { BE_IMAGE_URL } from '../../utils/config';
+
 
 function BartendingCard(props) {
   let { data } = props;
@@ -27,8 +29,7 @@ function BartendingCard(props) {
         <div className="Bartending-card card ">
           <div className="Bartending-card-image">
             <Link to="/">
-              {/* <img src={`http://localhost:3001/images${data.img}`} alt="" /> */}
-              <img src={faveritePrdImg1} alt="" />
+              <img src={`${BE_IMAGE_URL}${data.img}`} alt="" />
             </Link>
             {/* <Link to="/">
               <img src={bartendingimg} alt="" />

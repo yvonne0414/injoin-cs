@@ -97,6 +97,8 @@ const FeHeader = () => {
         title: '登出',
         content: '確定要登出嗎?',
         async onOk() {
+          let response = await axios.get(`${API_URL}/auth/logout`)
+          console.log(response);
           app.setislogin(false);
         },
 

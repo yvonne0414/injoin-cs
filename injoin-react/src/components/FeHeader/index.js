@@ -74,9 +74,11 @@ const FeHeader = () => {
   ];
 
   // 登出用
-  // console.log("header: ", app)
-  // console.log("islogin: ", app.islogin)
-  const [member, setMember] = useState(null);
+  console.log('header: ', app);
+  let { islogin, member, setislogin, setMember } = app;
+
+  // // console.log("islogin: ", app.islogin)
+  // const [member, setMember] = useState(null);
   useEffect(() => {
     let getMemberInfo = async () => {
       let response = await axios.get(`${API_URL}/member/info`, {
@@ -97,9 +99,15 @@ const FeHeader = () => {
         title: '登出',
         content: '確定要登出嗎?',
         async onOk() {
-          let response = await axios.get(`${API_URL}/auth/logout`)
-          console.log(response);
-          app.setislogin(false);
+          try {
+            let response = await axios.get(`${API_URL}/auth/logout`,{
+              withCredentials:true,
+            });
+            setislogin(false);
+            setMember(null);
+          } catch (e) {
+            console.log(e);
+          }
         },
 
         onCancel() {

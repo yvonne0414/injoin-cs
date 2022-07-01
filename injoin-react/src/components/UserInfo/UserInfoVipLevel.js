@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { userState } from '../../App';
 import { useContext } from 'react';
 
-
-
 const UserInfoVipLevel = () => {
-  const userstate = useContext(userState)
+  const userstate = useContext(userState);
   // console.log("suerVIp:" , userstate)
+  // let vip_level = 1 && userstate.member.vip_level;
   const UserInfoVipLevel = {
-    vipLevel: userstate.member.vip_level,
+    vipLevel: 1,
     vipMessage: '根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員',
   };
 

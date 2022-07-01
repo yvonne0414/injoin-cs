@@ -15,7 +15,7 @@ function BartendingCard(props) {
       <div className="col Bartending-card-col">
         <div className="Bartending-card card ">
           <div className="Bartending-card-image">
-            <Link to="/">
+            <Link to={`/bartending/${data.id}`}>
               <img src={`http://localhost:3001/images${data.img}`} alt="" />
             </Link>
             {/* <Link to="/">
@@ -24,7 +24,7 @@ function BartendingCard(props) {
           </div>
           <div className="Bartending-card-body card-body ">
             <div className="Bartending-card-title card-title">
-              <Link to="/">{data.name}</Link>
+              <Link to={`/bartending/${data.id}`}>{data.name}</Link>
             </div>
             <div className="Bartending-card-subtitle card-footer">{data.material} </div>
           </div>

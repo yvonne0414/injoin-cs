@@ -74,7 +74,7 @@ const FeHeader = () => {
   ];
 
   // 登出用
-  console.log('header: ', app);
+  // console.log('header: ', app);
   let { islogin, member, setislogin, setMember } = app;
 
   // // console.log("islogin: ", app.islogin)
@@ -106,7 +106,7 @@ const FeHeader = () => {
             setislogin(false);
             setMember(null);
           } catch (e) {
-            console.log(e);
+            // console.log(e);
           }
         },
 

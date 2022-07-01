@@ -3,6 +3,8 @@ import '../BartendingCard/index.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
+import faveritePrdImg1 from "../../assets/images/fe/bartending/bartending_1.png"
+
 function BartendingCard(props) {
   const { data } = props;
 
@@ -16,7 +18,9 @@ function BartendingCard(props) {
         <div className="Bartending-card card ">
           <div className="Bartending-card-image">
             <Link to="/">
-              <img src={`http://localhost:3001/images${data.img}`} alt="" />
+              {/* <img src={`http://localhost:3001/images${data.img}`} alt="" /> */}
+              <img src={faveritePrdImg1} alt="" />
+
             </Link>
             {/* <Link to="/">
               <img src={bartendingimg} alt="" />

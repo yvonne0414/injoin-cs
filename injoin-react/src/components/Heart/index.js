@@ -3,10 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { API_URL } from '../../utils/config';
 
-function Heart({ isLike, data }) {
+function Heart({ isLike, data, heartState }) {
   // data{
   //   id:1
   // }
+
+  //1是加到商品 2 是加到酒譜
+  heartState = heartState || 1;
 
   isLike = isLike || false;
   data = data || {};
@@ -29,10 +32,13 @@ function Heart({ isLike, data }) {
             setFav(false);
             // console.log(`${API_URL}/userlike/del/${userid}/${data.id}`);
             // console.log(data.id)
-            let response = await axios.get(`${API_URL}/userlike/del/${userid}/${data.id}`);
-            // console.log(response.data);
-            // window.alert(`userid${userid}, data.id${data.id}, ${response.data.message}`);
-            window.alert(`${response.data.message}`);
+            if(heartState === 1){
+
+              let response = await axios.get(`${API_URL}/userlike/del/${userid}/${data.id}`);
+              // console.log(response.data);
+              // window.alert(`userid${userid}, data.id${data.id}, ${response.data.message}`);
+              window.alert(`${response.data.message}`);
+            }
           }}
         />
       ) : (

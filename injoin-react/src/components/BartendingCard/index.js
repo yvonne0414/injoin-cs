@@ -3,14 +3,23 @@ import '../BartendingCard/index.scss';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-import faveritePrdImg1 from "../../assets/images/fe/bartending/bartending_1.png"
+import faveritePrdImg1 from '../../assets/images/fe/bartending/bartending_1.png';
+import Heart from '../Heart';
 
 function BartendingCard(props) {
-  const { data } = props;
-
-  // const bartendcard = {
-  //   name: '粉紅松鼠',
-  //   material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  let { data } = props;
+  console.log(data);
+  data = data || {
+    id: '1',
+    name: '粉紅松鼠',
+    material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+    img: '',
+  };
+  // const data = {
+  // id: '粉紅松鼠',
+  // name: '',
+  // material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
+  // img: '',
   // };
   return (
     <>
@@ -20,7 +29,6 @@ function BartendingCard(props) {
             <Link to="/">
               {/* <img src={`http://localhost:3001/images${data.img}`} alt="" /> */}
               <img src={faveritePrdImg1} alt="" />
-
             </Link>
             {/* <Link to="/">
               <img src={bartendingimg} alt="" />
@@ -31,6 +39,9 @@ function BartendingCard(props) {
               <Link to={`/bartending/${data.id}`}>{data.name}</Link>
             </div>
             <div className="Bartending-card-subtitle card-footer">{data.material} </div>
+          </div>
+          <div className="heart-position">
+            <Heart />
           </div>
         </div>
       </div>

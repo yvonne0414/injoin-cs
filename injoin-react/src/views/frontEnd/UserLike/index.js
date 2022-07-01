@@ -17,32 +17,46 @@ import BartendingCard from '../../../components/BartendingCard';
 const UserLike = () => {
   // userid
   let userid = 1;
+
+
+  // 我的最愛商品
   const [arr, setArr] = useState([]);
   const [prdpagination, setPrdpagination] = useState([])
-
   const [prdLikePage ,setPrdLikePage] = useState(1)
 
-
-
   useEffect(() => {
-    // console.log(JSON.parse(localStorage.getItem('userLike')));
-    // setArr(JSON.parse(localStorage.getItem('userLike')));
-    let getUserLike = async () => {
+      let getUserLike = async () => {
       let response = await axios.get(`${API_URL}/userlike/${userid}`,{
         params:{
           page:prdLikePage
         }
       });
-
-      // console.log("userLike app",response.data.pagination);
       setArr(response.data.data);
       setPrdpagination(response.data.pagination)
     };
     getUserLike();
   }, [prdLikePage]);
 
+// 我的最愛調酒
+  const [bartdarr, setbartdArr] = useState([]);
+  const [bartdpagination, setBartdpagination] = useState([])
+  const [bartdLikePage ,setBartdLikePage] = useState(1)
+  
+  useEffect(() => {
+    let getUserLike = async () => {
+    let response = await axios.get(`${API_URL}/userlike/bartd/${userid}`,{
+      params:{
+        page:bartdLikePage
+      }
+    });
+    setbartdArr(response.data.data);
+    setBartdpagination(response.data.pagination)
+  };
+  getUserLike();
+}, [bartdLikePage]);
 
-  // console.log('arr:', arr);
+
+  // console.log('arr:', bartdarr);
 
   const page1HeaderInfo = {
     titleEn: 'Faverite',
@@ -173,7 +187,25 @@ const UserLike = () => {
 
 
 
-      {/* <BartendingCard/> */}
+      <div className="page-type1-list-area faverite-list mode-official">
+        <div className="container">
+          <div className="page-type1-area-title" id="faveRite-bolck1">
+            酒譜收藏
+          </div>
+        </div>
+      </div>
+      <div className="user-add-faverite-content" id="faverite-bolck1">
+        <div className="container">
+          <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
+            {bartdarr.map((v, i) => {
+              return <BartendingCard key={v.id} data={v}/>
+            })}
+          </div>
+        </div>
+      </div>
+
+      <FePagination pagination={prdpagination} setPage={setPrdLikePage} className="pc-view" />
+      
     </>
   );
 };

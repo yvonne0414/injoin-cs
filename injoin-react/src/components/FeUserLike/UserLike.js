@@ -5,6 +5,8 @@ import { FaCartPlus } from 'react-icons/fa';
 import faveritePrdImg1 from '../../assets/images/fe/faverite/faverite-product-img-1.png';
 import Heart from '../Heart';
 import "./index.scss"
+import { BE_IMAGE_URL } from '../../utils/config';
+
 
 const LikePrdCard = (props) => {
   const { data } = props;
@@ -12,19 +14,20 @@ const LikePrdCard = (props) => {
   const isLike = true
  
   const usercoupon = {
-    likeImg: 'faverite-product-img-1.png',
+    likeImg: 'AB11.jpeg',
     likePrdName: '金黑波本威士忌',
     likePrdPrice: 'NT.550',
     likePrdStar: '4.6',
   };
+  // console.log("1",`${BE_IMAGE_URL}/production/AB11.jpeg`);
   return (
     <>
       <div className="col">
         <div className="prd-card">
           <div className="prd-card-image">
             <Link to="/">
-              {/* <img src={require(`../../assets/images/fe/faverite/${data.likeImg}`)} alt="" /> */}
-              <img src={faveritePrdImg1} alt="" />
+              {/* <img src={`${BE_IMAGE_URL}/production/AB11.jpeg`} alt="" /> */}
+              <img src={`${BE_IMAGE_URL}/production/${data.likeImg}`} alt="" />
             </Link>
           </div>
           <div className="prd-card-body card-body ">

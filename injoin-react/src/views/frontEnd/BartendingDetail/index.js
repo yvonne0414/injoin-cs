@@ -1,6 +1,7 @@
 import './index.scss';
 import { Breadcrumb, Carousel, Rate } from 'antd';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { InputNumber, Button } from 'antd';
 import { Collapse } from 'antd';
@@ -34,11 +35,11 @@ const BartendingDetail = () => {
     overflow: 'hidden',
   };
 
-  const illustrate = {
-    practice: {
-      content: ['將所有材料倒入雪克杯，加入冰塊搖盪均勻', '雙重過濾，濾掉冰塊將酒液倒入淺碟香檳杯', '灑上適量豆蔻粉作為裝飾'],
-    },
-  };
+  // const illustrate = {
+  //   practice: {
+  //     content: ['將所有材料倒入雪克杯，加入冰塊搖盪均勻', '雙重過濾，濾掉冰塊將酒液倒入淺碟香檳杯', '灑上適量豆蔻粉作為裝飾'],
+  //   },
+  // };
 
   const settings = {
     className: 'slider variable-width',
@@ -111,16 +112,30 @@ const BartendingDetail = () => {
       rating: ' 4.6',
     },
   ];
-  const [barted, setBarted] = useState([]);
+  const { barId } = useParams();
+  const [barPrdDetail, setBarPrdDetail] = useState([]);
+  const [recipe, setRecipe] = useState([]);
   useEffect(() => {
     //bartendingCard
-    let getbarted = async () => {
-      let response = await axios.get('http://localhost:3001/api/bar/detail');
-      setBarted(response.data);
-      // console.log('e', response.data);
+    let getbarPrdDetail = async () => {
+      let response = await axios.get(`http://localhost:3001/api/bar/detail/${barId}`, {
+        params: {
+          barId: barId,
+        },
+      });
+      setBarPrdDetail(response.data[0]);
+      // console.log('a', response.data);
+      // console.log('g', response.data[0]);
+      // console.log('d', response.data[0].name);
+
+      setRecipe(response.data[0].recipe.split('\n'));
     };
-    getbarted();
+    getbarPrdDetail();
   }, []);
+  // console.log('v', barPrdDetail);
+  // console.log('u', barPrdDetail[0]);
+  console.log('o', barPrdDetail.name);
+  console.log('dd', barPrdDetail.recipe);
 
   return (
     <>
@@ -137,7 +152,7 @@ const BartendingDetail = () => {
               <Breadcrumb.Separator /> */}
               <Breadcrumb.Item href="">調酒酒譜</Breadcrumb.Item>
               <Breadcrumb.Separator />
-              <Breadcrumb.Item>粉紅松鼠</Breadcrumb.Item>
+              <Breadcrumb.Item>{barPrdDetail.name}</Breadcrumb.Item>
             </Breadcrumb>
           </div>
         </div>
@@ -147,14 +162,14 @@ const BartendingDetail = () => {
           <div className=" mt-3 bar-detail-session1-content-block1">
             <div>
               <div style={contentStyle}>
-                <img src={bardetailImg1} alt="bartending-detail-img-1" className="bartending-detail-img-1 mx-auto h-100" />
+                <img src={`http://localhost:3001/images${barPrdDetail.img}`} alt="bartending-detail-img-1" className="bartending-detail-img-1 mx-auto h-100" />
               </div>
             </div>
           </div>
           {/* instructions-------------------------------- */}
           <div className="bar-detail-session1-content-block2">
             <div className="container">
-              <div className="bar-detail-title mt-4">粉紅松鼠</div>
+              <div className="bar-detail-title mt-4">{barPrdDetail.name}</div>
               <div className="bar-detail-tag mt-3">
                 <span>Vodka</span>
                 <span>Liqueur</span>
@@ -167,9 +182,7 @@ const BartendingDetail = () => {
                     <p>調酒介紹</p>
                   </div>
                   <div>
-                    <p className="bar-detail-text mt-3">
-                      粉紅松鼠是一種富含甜味的雞尾酒，它的名字來源於杏仁糖，也叫杏仁糖。這是一種略帶紅色的利口酒，不僅可以用杏仁製成，還可以用杏核製成。當杏核與乳白色成分混合時，會給飲料帶來粉紅色的味道。很多粉紅松鼠的食譜中都沒有這種甜酒，而是用石榴糖漿代替。喜歡這種雞尾酒的人肯定會說這是不真實的，因為這種飲料沒有杏仁味。
-                    </p>
+                    <p className="bar-detail-text mt-3">{barPrdDetail.disc}</p>
                   </div>
                 </div>
               </div>
@@ -189,31 +202,21 @@ const BartendingDetail = () => {
               <div className="bar-detail-title-type1 mt-3 ">
                 <p>材料比例</p>
               </div>
+              {}
               <div className="bar-detail-text-type1">
                 <span>杏仁香甜酒</span>
                 <span>20 ml</span>
               </div>
-              <div className="bar-detail-text-type1">
-                <span>調味伏特加</span>
-                <span>20 ml</span>
-              </div>
-              <div className="bar-detail-text-type1">
-                <span>鮮奶油</span>
-                <span>40 ml</span>
-              </div>
-              <div className="bar-detail-text-type1">
-                <span>紅石榴糖漿</span>
-                <span>2 tsp</span>
-              </div>
-              <div className="bar-detail-text-type1">
-                <span>作法：</span>
-              </div>
-              <ol className="bar-detail-text">
-                {illustrate.practice.content.map((item, i) => {
-                  return <li key={i}>{item}</li>;
+              <ul className="bar-detail-text list-unstyled">
+                {recipe.map((item) => {
+                  return <li>{item}</li>;
                 })}
-              </ol>
-              <span className="bar-detail-text-sp">裝飾物：豆蔻粉</span>
+                {/* {barPrdDetail.recipe.map((v, i) => {
+                  console.log('dd', barPrdDetail.recipe);
+                  return <li key={i.id}>{v}</li>;
+                })} */}
+              </ul>
+              {/* <span className="bar-detail-text-sp">裝飾物：豆蔻粉</span> */}
             </div>
           </div>
 

@@ -1,8 +1,15 @@
 // scss
 import './index.scss';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+//react
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link, useParams } from 'react-router-dom';
+import { API_URL } from '../../../utils/config';
+
+//antd
 import { Select } from 'antd';
+import 'antd/dist/antd.css';
 
 // -----Variable width
 import Slider from 'react-slick';
@@ -10,10 +17,11 @@ import Slider from 'react-slick';
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import PrdCard from '../../../components/PrdCard';
+import CartStep1 from '../../../components/FeUserCart/CartStep1';
 
+//icon
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
 import { BsTrashFill } from 'react-icons/bs';
-import CartStep1 from '../../../components/FeUserCart/CartStep1';
 
 const UserCart = () => {
   const page1HeaderInfo = {
@@ -57,9 +65,9 @@ const UserCart = () => {
   const { Option } = Select;
 
   const handleChange = (value) => {
-    console.log(value);
+    // console.log(value);
   };
-
+  // slider 設定
   const settings = {
     className: 'slider variable-width',
     dots: false,
@@ -81,18 +89,56 @@ const UserCart = () => {
       },
     ],
   };
+  
+  //購物車商品陣列
   const cartprdArr = [
     {
       id: 1,
       cartprdImg: 'faverite-product-img-1.png',
       cartprdNum: 'AB123',
       cartprdName: '金彬黑波本威士忌',
-      cartprdPrice: 'NT$680',
-      cartprdNumber: '2',
-      cartprdTotal: 'NT$680',
+      cartprdPrice: '680',
+      cartprdCount: '2',
+      cartprdTotal: '680',
+    },
+    {
+      id: 2,
+      cartprdImg: 'faverite-product-img-1.png',
+      cartprdNum: 'AB456',
+      cartprdName: '金彬黑波本威士忌',
+      cartprdPrice: '680',
+      cartprdCount: '3',
+      cartprdTotal: '680',
+    },
+    {
+      id: 3,
+      cartprdImg: 'faverite-product-img-1.png',
+      cartprdNum: 'AB789',
+      cartprdName: '金彬黑波本威士忌',
+      cartprdPrice: '680',
+      cartprdCount: '2',
+      cartprdTotal: '680',
+    },
+    {
+      id: 4,
+      cartprdImg: 'faverite-product-img-1.png',
+      cartprdNum: 'AB666',
+      cartprdName: '金彬黑波本威士忌',
+      cartprdPrice: '680',
+      cartprdCount: '1',
+      cartprdTotal: '680',
+    },
+    {
+      id: 5,
+      cartprdImg: 'faverite-product-img-1.png',
+      cartprdNum: 'AB777',
+      cartprdName: '金彬黑波本威士忌',
+      cartprdPrice: '680',
+      cartprdCount: '1',
+      cartprdTotal: '680',
     },
   ];
-
+  //相關商品陣列
   const cardArr = [
     {
       id: 1,
@@ -145,6 +191,7 @@ const UserCart = () => {
   ];
   return (
     <>
+    {/* header-section */}
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 
       <div className="cart-area">
@@ -194,7 +241,7 @@ const UserCart = () => {
                         return <CartStep1 key={item.id} data={item} />;
                       })}
 
-                      <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
+                      {/* <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
                         <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
                         <div className="cart-prd-content d-flex flex-column ms-2">
                           <div className="cart-prd-num">AA001234</div>
@@ -215,51 +262,7 @@ const UserCart = () => {
                           </div>
                         </div>
                       </div>
-                      <div className="border-bottom m-3"></div>
-                      <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                        <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
-                        <div className="cart-prd-content d-flex flex-column ms-2">
-                          <div className="cart-prd-num">AA001234</div>
-                          <div className="cart-prd-name">AA001234</div>
-                          <div className="cart-prd-price">NT$680</div>
-                        </div>
-                        <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
-                          <div className="cart-prd-icon text-center">
-                            <BsTrashFill />
-                          </div>
-                          <div
-                            className="cart-prd-number d-flex ms-2 border border-white justify-content-between
-                        "
-                          >
-                            <button className="prd-plus btn-none">+</button>
-                            <div className=" border-end border-start prd-number text-center">1</div>
-                            <button className="prd-minus btn-none">-</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="border-bottom m-3"></div>
-                      <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                        <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
-                        <div className="cart-prd-content d-flex flex-column ms-2">
-                          <div className="cart-prd-num">AA001234</div>
-                          <div className="cart-prd-name">AA001234</div>
-                          <div className="cart-prd-price">NT$680</div>
-                        </div>
-                        <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
-                          <div className="cart-prd-icon text-center">
-                            <BsTrashFill />
-                          </div>
-                          <div
-                            className="cart-prd-number d-flex ms-2 border border-white justify-content-between
-                        "
-                          >
-                            <button className="prd-plus btn-none">+</button>
-                            <div className=" border-end border-start prd-number text-center">1</div>
-                            <button className="prd-minus btn-none">-</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="border-bottom m-3"></div>
+                      <div className="border-bottom m-3"></div> */}
                     </div>
                   </div>
                 </div>

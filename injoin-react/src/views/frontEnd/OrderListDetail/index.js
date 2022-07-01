@@ -122,7 +122,9 @@ const OrderListDetail = () => {
     userId: 3,
   });
 
+  //取得 URL 上的 id 值
   const { orderId } = useParams();
+
   //商品訂單狀態設定
   const [ordersDetailData, setOrdersDetailData] = useState([]);
   const [ordersDetailStatus, setOrdersDetailStatus] = useState([]);

@@ -1,8 +1,9 @@
 // scss
 import './index.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Select } from 'antd';
+import { Button, Form, Input, Select } from 'antd';
+import 'antd/dist/antd.css';
 
 // -----Variable width
 import Slider from 'react-slick';
@@ -12,7 +13,29 @@ import FePage1Header from '../../../components/FePage1Header';
 import PrdCard from '../../../components/PrdCard';
 
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
-import { BsTrashFill } from 'react-icons/bs';
+
+const layout = {
+  // labelCol: {
+  //   span: 8,
+  // },
+  // wrapperCol: {
+  //   span: 16,
+  // },
+};
+/* eslint-disable no-template-curly-in-string */
+
+const validateMessages = {
+  required: '${label} is required!',
+  types: {
+    email: '${label} is not a valid email!',
+    number: '${label} is not a valid number!',
+  },
+  number: {
+    range: '${label} must be between ${min} and ${max}',
+  },
+};
+/* eslint-enable no-template-curly-in-string */
+const { Option } = Select;
 
 const UserCartStep2 = () => {
   const page1HeaderInfo = {
@@ -52,6 +75,10 @@ const UserCartStep2 = () => {
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+
+  const onFinish = (values) => {
+    console.log(values);
+  };
 
   return (
     <>
@@ -98,7 +125,27 @@ const UserCartStep2 = () => {
                     </h4>
                   </div>
                   <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                    <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
+                    <div className="img-content">
+                      <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
+                    </div>
+                    <div className="cart-detail-prd-content d-flex flex-column p-2">
+                      <div className="cart-prd-num">AA001234</div>
+                      <div className="cart-prd-name">AA001234</div>
+                      <div></div>
+                      <br />
+                      <div className="cart-prd-price">NT$680</div>
+                    </div>
+                    <div className="prd-number-content">
+                      <div className="prd-number">
+                        <span>數量:</span>1
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bottom-line"></div>
+                  <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
+                    <div className="img-content">
+                      <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
+                    </div>
                     <div className="cart-detail-prd-content d-flex flex-column">
                       <div className="cart-prd-num">AA001234</div>
                       <div className="cart-prd-name">AA001234</div>
@@ -114,23 +161,9 @@ const UserCartStep2 = () => {
                   </div>
                   <div className="bottom-line"></div>
                   <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                    <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
-                    <div className="cart-detail-prd-content d-flex flex-column">
-                      <div className="cart-prd-num">AA001234</div>
-                      <div className="cart-prd-name">AA001234</div>
-                      <div></div>
-                      <br />
-                      <div className="cart-prd-price">NT$680</div>
+                    <div className="img-content">
+                      <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
                     </div>
-                    <div className="prd-number-content">
-                      <div className="prd-number">
-                        <span>數量:</span>1
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bottom-line"></div>
-                  <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                    <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
                     <div className="cart-detail-prd-content d-flex flex-column">
                       <div className="cart-prd-num">AA001234</div>
                       <div className="cart-prd-name">AA001234</div>
@@ -148,6 +181,95 @@ const UserCartStep2 = () => {
                 </div>
               </div>
             </div>
+
+            <div className="cart-user-bg-area">
+              <div className="cart-user-content">
+                <div className="shopping-cart-info-title">
+                  <h4>
+                    訂單人資訊
+                    <br />
+                    Orderer Information
+                  </h4>
+                </div>
+                <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                  <Form.Item
+                    name={['user', 'name']}
+                    label="姓名"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    name={['user', 'phone']}
+                    label="連絡電話"
+                    rules={[
+                      {
+                        type: 'tel',
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    name={['user', 'email']}
+                    label="Email"
+                    rules={[
+                      {
+                        type: 'email',
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+
+                  <Form.Item label="地址">
+                    <Form.Item
+                      name={['address', 'province']}
+                      style={{
+                        width: '30%',
+                      }}
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Province is required',
+                        },
+                      ]}
+                    >
+                      <Select placeholder="請選擇縣市">
+                        <Option value="1">台北市</Option>
+                        <Option value="4">桃園市</Option>
+                      </Select>
+                    </Form.Item>
+                    <Form.Item
+                      name={['address', 'street']}
+                      noStyle
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Street is required',
+                        },
+                      ]}
+                    >
+                      <Input
+                        style={{
+                          width: '100%',
+                        }}
+                        placeholder="詳細收貨地址"
+                      />
+                    </Form.Item>
+                  </Form.Item>
+                  <Form.Item name={['user', 'introduction']} label="備註">
+                    <Input.TextArea placeholder="請輸入不超過30個字" maxlength={30} />
+                  </Form.Item>
+                  
+                </Form>
+              </div>
+            </div>
+
             <div className="position-relative text-center p-3">
               <button className="btn btn-none injoin-btn-outline text-gold">完成，下一步</button>
             </div>

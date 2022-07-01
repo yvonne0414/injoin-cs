@@ -15,7 +15,7 @@ function PrdCard(props) {
   //   price: 'NT.550 ',
   //   rating: ' 4.6',
   // };
-  console.log(data);
+  // console.log(data);
 
   return (
     <>

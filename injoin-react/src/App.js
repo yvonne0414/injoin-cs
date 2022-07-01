@@ -80,7 +80,7 @@ function App() {
 
             {/* 商品 */}
             <Route path="/production" exact element={<Production />} />
-            <Route path="/production/1" exact element={<ProductionDetail />}>
+            <Route path="/production/:prdId" exact element={<ProductionDetail />}>
               <Route path=":currentPage" element={<ProductionDetail />} />
             </Route>
 

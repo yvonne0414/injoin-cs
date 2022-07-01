@@ -10,25 +10,27 @@ function PrdCard(props) {
   const { data } = props;
 
   //   寫法1
-  //   const pcard = {
+  // const data = {
+  //   id: 1,
+  //   main_img: 'AG22.jpeg',
   //   name: '金黑波本威士忌',
   //   price: 'NT.550 ',
-  //   rating: ' 4.6',
+  //   rating: 4.6,
   // };
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
       <div className="col">
         <div className="prd-card">
           <div className="prd-card-image">
-            <Link to="/production/1">
+            <Link to={`/production/${data.id}`}>
               <img src={`${BE_IMAGE_URL}/production/${data.main_img}`} alt="" />
             </Link>
           </div>
           <div className="prd-card-body card-body ">
             <div className="prd-card-title card-title">
-              <Link to="/production/1">{data.name}</Link>
+              <Link to={`/production/${data.id}`}>{data.name}</Link>
             </div>
             <div className="prd-card-price">NT.{data.price}</div>
             <div className="prd-card-footer card-footer">

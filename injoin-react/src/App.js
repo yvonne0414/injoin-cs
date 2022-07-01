@@ -86,7 +86,7 @@ function App() {
 
             {/* 酒譜 */}
             <Route path="/bartending" exact element={<Bartending />} />
-            <Route path="/bartending/1" exact element={<BartendingDetail />}>
+            <Route path="/bartending/:barId" exact element={<BartendingDetail />}>
               <Route path=":currentPage" element={<BartendingDetail />} />
             </Route>
 

@@ -5,6 +5,7 @@ import FePage2Header from '../../../components/FePage2Header';
 import FePagination from '../../../components/FePagination1';
 import axios from 'axios';
 import { TbChevronDownLeft } from 'react-icons/tb';
+import { IoMdHeartEmpty } from 'react-icons/io';
 const Bartending = () => {
   const page2HeaderInfo = {
     isProduct: true,
@@ -67,6 +68,15 @@ const Bartending = () => {
   // ];
 
   //form 搜尋欄
+  const [searchWord, setSearchWord] = useState('');
+  console.log('a', searchWord);
+  const search = (searchvalue) => {
+    setSearchWord(searchvalue);
+    const filterWord = barted.filter((item) => {
+      return item.name.includes(searchWord);
+    });
+    console.log('d', filterWord);
+  };
 
   // bartendindcard 假資料
   // const bartendcard = [
@@ -96,13 +106,14 @@ const Bartending = () => {
   //   },
   // ];
   const [barted, setBarted] = useState([]);
+  const [bartdType, setBartdType] = useState([]);
 
   useEffect(() => {
     //bartendingCard
     let getbarted = async () => {
       let response = await axios.get('http://localhost:3001/api/bar');
-      // console.log('res', response.data);
       setBarted(response.data);
+      // console.log('e', response.data);
     };
     getbarted();
     //篩選
@@ -118,6 +129,14 @@ const Bartending = () => {
       setSubSel(response.data.data.subSel);
     };
     getSubSel();
+    //bartd type
+    // let getBartdType = async () => {
+    //   let response = await axios.get('http://localhost:3001/api/bar/bartdtype');
+    //   setBartdType(response.data);
+    // console.log('B', response.data.typem);
+    // console.log('c', response.data.types);
+    // };
+    // getBartdType();
   }, []);
   //老師
   // useEffect(() => {
@@ -199,8 +218,8 @@ const Bartending = () => {
             </div>
             {/* 搜尋欄 */}
             <form className="Bartending-search-form d-flex">
-              <input type="text" placeholder="Search" className="Bartending-search-label form-control form-control-sm me-1" />
-              <button className="btn Bartending-search-btn" type="submit">
+              <input type="text" placeholder="Search" onChange={(e) => search(e.target.value)} className="Bartending-search-label form-control form-control-sm me-1" />
+              <button onClick={search} className="btn Bartending-search-btn" type="submit">
                 搜尋
               </button>
             </form>
@@ -209,7 +228,7 @@ const Bartending = () => {
           {/* card */}
           <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
             {barted.map((v, i) => {
-              console.log(v);
+              // console.log(v);
               return <BartendingCard key={i.id} data={v} />;
             })}
           </div>

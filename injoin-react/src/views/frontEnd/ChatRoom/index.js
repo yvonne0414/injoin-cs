@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import webSocket from 'socket.io-client';
 import axios from 'axios';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
+
+import LogoutPage from '../LogoutPage/LogoutPage.js';
+import { userState } from '../../../App';
 
 // scss
 import './_index.scss';
@@ -49,6 +52,10 @@ const ChatRoom = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  // 檢查登入
+  const [isLogin, setisLogin] = useState('');
+  const loginInfo = useContext(userState);
+
   // input
   const { Search } = Input;
   const suffix = (
@@ -62,56 +69,10 @@ const ChatRoom = () => {
 
   // 假資料
   const [memberInfo, setMemberInfo] = useState({
-    userId: 2,
-    userImg: '/userimgs/user_defult_f.png',
-    username: '11',
+    userId: loginInfo.islogin ? loginInfo.member.id : -1,
+    // userImg: loginInfo.islogin ? loginInfo.member.id : '',
+    username: loginInfo.islogin ? loginInfo.member.name : '',
   });
-  // const data = {
-  //   name: '一起喝酒啦！',
-  //   members: [
-  //     {
-  //       userId: 1,
-  //       name: '王小明',
-  //       userImg: 'about-us-img-1.png',
-  //     },
-  //     {
-  //       userId: 2,
-  //       name: '林曉宏',
-  //       userImg: 'about-us-img-2.png',
-  //     },
-  //     {
-  //       userId: 3,
-  //       name: '周宇成',
-  //       userImg: 'about-us-img-3.png',
-  //     },
-  //   ],
-  //   dialogues: [
-  //     {
-  //       userId: 1,
-  //       name: '王小明',
-  //       userImg: 'about-us-img-1.png',
-  //       content: '你好',
-  //     },
-  //     {
-  //       userId: 1,
-  //       name: '王小明',
-  //       userImg: 'about-us-img-1.png',
-  //       content: '一起玩嗎？',
-  //     },
-  //     {
-  //       userId: 2,
-  //       name: '林曉宏',
-  //       userImg: 'about-us-img-2.png',
-  //       content: '什麼時候呀？',
-  //     },
-  //     {
-  //       userId: 3,
-  //       name: '周宇成',
-  //       userImg: 'about-us-img-3.png',
-  //       content: '走呀！',
-  //     },
-  //   ],
-  // };
 
   // seketio
   const { groupId } = useParams();
@@ -219,6 +180,7 @@ const ChatRoom = () => {
     // console.log(response.data.info[0]);
     // console.log(response.data.members);
   };
+
   useEffect(() => {
     scrollToBottom();
   }, [data]);
@@ -232,7 +194,7 @@ const ChatRoom = () => {
           <div className="page-type1-area-title" id="chatroom-bolck1">
             聊天室
           </div>
-          <h5 className="mb-3">{info.name}</h5>
+          <h5 className="mb-3">{info && info.name}</h5>
 
           <div className="chatroom-area">
             <Collapse bordered={false} defaultActiveKey={['1']} className="mb-4">

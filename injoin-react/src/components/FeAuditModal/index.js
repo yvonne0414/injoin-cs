@@ -5,6 +5,8 @@ import GroupPlayItem from './GroupPlayItem';
 import './index.scss';
 
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../utils/config';
 
 const FeAuditModal = (props) => {
   // modal
@@ -29,7 +31,7 @@ const FeAuditModal = (props) => {
   };
 
   // 取得參加者資訊
-  const { groupId, groupMaxNum, groupNowNum, groupMember } = props;
+  const { groupId, groupMaxNum, groupNowNum, groupMember, userId } = props;
   let [groupNum, setGroupNum] = useState(groupNowNum);
   let [isFull, setIsFull] = useState(false);
   useEffect(() => {
@@ -37,6 +39,19 @@ const FeAuditModal = (props) => {
       setIsFull(true);
     }
   });
+
+  // 開啟madol時，取得參加者資訊
+  let [memberData, setMemberData] = useState([]);
+  const getGroupMemberList = async () => {
+    let response = await axios.get(API_URL + '/group/memberlist/' + groupId);
+    setMemberData(response.data.data);
+    // console.log(memberData);
+  };
+
+  useEffect(() => {
+    getGroupMemberList();
+  }, [visible]);
+
   return (
     <>
       <div className="list-content_btn" title="審查" onClick={showModal}>
@@ -48,7 +63,7 @@ const FeAuditModal = (props) => {
           目前團員：{groupNum} / {groupMaxNum}
         </div>
         <div className="group-player-list">
-          {groupMember.map((item) => {
+          {memberData.map((item) => {
             return <GroupPlayItem key={item.id} data={item} groupId={groupId} setGroupNum={setGroupNum} groupNum={groupNum} isFull={isFull} />;
           })}
         </div>

@@ -41,18 +41,14 @@ function App() {
       let response = await axios.get(`${API_URL}/member/info`, {
         withCredentials: true,
       });
+      if(response.data !== null){
+        setislogin(true)
+      }
+      // console.log("app.js" ,response.data);
       setMember(response.data);
     };
     getMemberInfo();
 
-    let getUserLike = async () => {
-      let response = await axios.get(`${API_URL}/userlike/1`);
-
-      // console.log("app",response.data);
-      localStorage.removeItem('userLike');
-      localStorage.setItem('userLike', JSON.stringify(response.data));
-    };
-    getUserLike();
   }, []);
 
   useEffect(() => {
@@ -61,13 +57,16 @@ function App() {
         withCredentials: true,
       });
       // console.log("app.js" ,response.data);
+      if(response.data !== null){
+        setislogin(true)
+      }
       setMember(response.data);
     };
     getMemberInfo();
   }, [islogin]);
 
   return (
-    <userState.Provider value={{ islogin, setislogin, member }}>
+    <userState.Provider value={{ islogin, setislogin, member,setMember }}>
       <BrowserRouter>
         <BackTop />
         <FeHeader />

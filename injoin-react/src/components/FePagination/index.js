@@ -2,6 +2,10 @@ const FePagination = (props) => {
   const { pagination, setPage } = props;
   const { page, lastPage } = pagination;
 
+  // pagination{
+  //   page:1,
+  //   lastpage:1,
+  // }
   return (
     <div className="page-type1-pagination">
       <button

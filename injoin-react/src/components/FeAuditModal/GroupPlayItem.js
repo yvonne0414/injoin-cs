@@ -29,7 +29,7 @@ const GroupPlayItem = (props) => {
       return;
     }
     let res = await axios.post(`${API_URL}/group/checkmember/${groupId}`, { memberId: data.user_id });
-    console.log(res.data);
+    // console.log(res.data);
     if (res.data.code === 0) {
       setIsCheck(true);
       setGroupNum(groupNum + 1);

@@ -85,5 +85,10 @@
     .dialogue-area {
       flex-grow: 1;
     }
+    .dialogue {
+      .dialogue-content {
+        font-size: 1.2rem;
+      }
+    }
   }
 }

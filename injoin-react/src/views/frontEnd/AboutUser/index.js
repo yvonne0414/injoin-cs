@@ -6,7 +6,8 @@ import { API_URL,BE_IMAGE_URL } from '../../../utils/config';
 import './index.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+
 
 
 // http://localhost:3001/api/auth/about/2
@@ -106,6 +107,7 @@ const [isTrue,setIsTrue] = useState(true)
             </div>
             <div className="lower-half">
               <div className="lower-part">
+              
                 <div className="lower-title">暱稱</div>
                 <div className="lower-content">{user.name}</div>
               </div>

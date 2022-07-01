@@ -11,12 +11,15 @@ import { AiFillDollarCircle, AiOutlineFieldTime } from 'react-icons/ai';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import { useNavigate } from 'react-router-dom';
+import LogoutPage from '../LogoutPage/LogoutPage.js';
 
 // 圖片upload
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, Spin, message } from 'antd';
-import { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { userState } from '../../../App';
 
 // upload
 const getBase64 = (file) =>
@@ -72,6 +75,11 @@ const GroupAdd = () => {
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+
+  // 檢查登入
+  const [isLogin, setisLogin] = useState(false);
+  const loginInfo = useContext(userState);
+  console.log(loginInfo);
 
   // city
   const [cities, setCities] = useState([]);
@@ -165,7 +173,7 @@ const GroupAdd = () => {
       formData.append('groupDisc', groupData.groupDisc);
       formData.append('groupImg', groupData.groupImg);
       formData.append('groupIsOfficial', 2);
-      formData.append('userId', 2);
+      formData.append('userId', loginInfo.member.id);
       formData.append('vipLevel', 1);
       formData.append('auditStatus', 1);
       let response = await axios.post(`${API_URL}/group/post`, formData);
@@ -229,213 +237,219 @@ const GroupAdd = () => {
 
   return (
     <>
-      <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-      <div className="group-add-info-wraper">
-        <div className="container">
-          <div className="page-type1-area-title" id="groupAddB1">
-            活動內容
-          </div>
+      {loginInfo.islogin ? (
+        <>
+          <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+          <div className="group-add-info-wraper">
+            <div className="container">
+              <div className="page-type1-area-title" id="groupAddB1">
+                活動內容
+              </div>
 
-          <div className="position-relative">
-            <div className="group-add-info-bg-square"></div>
-            <div className="p-3 p-md-5">
-              <Spin spinning={loading} tip="Loading...">
-                <Form
-                  layout="vertical"
-                  form={form}
-                  initialValues={{
-                    layout: 'vertical',
-                  }}
-                  onFinish={onFinish}
-                >
-                  {/* 活動名稱 */}
-                  <Form.Item
-                    name="groupName"
-                    rules={[
-                      {
-                        required: true,
-                        message: '請輸入活動名稱',
-                      },
-                    ]}
-                  >
-                    <Input placeholder="活動名稱" />
-                  </Form.Item>
-                  <hr />
-                  <div className="d-flex flex-column flex-md-row justify-content-between">
-                    <div className="group-add-info">
-                      {/* 活動開始日期 */}
+              <div className="position-relative">
+                <div className="group-add-info-bg-square"></div>
+                <div className="p-3 p-md-5">
+                  <Spin spinning={loading} tip="Loading...">
+                    <Form
+                      layout="vertical"
+                      form={form}
+                      initialValues={{
+                        layout: 'vertical',
+                      }}
+                      onFinish={onFinish}
+                    >
+                      {/* 活動名稱 */}
                       <Form.Item
-                        label={dateStartLabel}
-                        name="groupStartDate"
+                        name="groupName"
                         rules={[
                           {
-                            type: 'object',
                             required: true,
-                            message: '請選擇活動日期',
+                            message: '請輸入活動名稱',
                           },
                         ]}
                       >
-                        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                        <Input placeholder="活動名稱" />
                       </Form.Item>
-                      {/* 活動結束日期 */}
-                      <Form.Item
-                        label={dateEndLabel}
-                        name="groupEndDate"
-                        rules={[
-                          {
-                            type: 'object',
-                            required: true,
-                            message: '請選擇活動日期',
-                          },
-                        ]}
-                      >
-                        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
-                      </Form.Item>
-                      {/* 活動地點 */}
-                      <Form.Item label={addressLabel}>
-                        <Input.Group compact>
+                      <hr />
+                      <div className="d-flex flex-column flex-md-row justify-content-between">
+                        <div className="group-add-info">
+                          {/* 活動開始日期 */}
                           <Form.Item
-                            name={['groupAddress', 'city']}
-                            noStyle
+                            label={dateStartLabel}
+                            name="groupStartDate"
                             rules={[
                               {
+                                type: 'object',
                                 required: true,
-                                message: '請選擇活動縣市',
+                                message: '請選擇活動日期',
                               },
                             ]}
                           >
-                            <Select placeholder="請選擇縣市">
-                              {cities.map((city) => {
-                                return (
-                                  <Option value={city.code} key={city.code}>
-                                    {city.name}
-                                  </Option>
-                                );
-                              })}
-                              {/* <Option value="1">台北市</Option>
-                            <Option value="2">新北市</Option> */}
-                            </Select>
+                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
                           </Form.Item>
+                          {/* 活動結束日期 */}
                           <Form.Item
-                            name={['groupAddress', 'street']}
-                            noStyle
+                            label={dateEndLabel}
+                            name="groupEndDate"
                             rules={[
                               {
+                                type: 'object',
                                 required: true,
-                                message: '請輸入活動地點',
+                                message: '請選擇活動日期',
                               },
                             ]}
                           >
-                            <Input
+                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                          </Form.Item>
+                          {/* 活動地點 */}
+                          <Form.Item label={addressLabel}>
+                            <Input.Group compact>
+                              <Form.Item
+                                name={['groupAddress', 'city']}
+                                noStyle
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: '請選擇活動縣市',
+                                  },
+                                ]}
+                              >
+                                <Select placeholder="請選擇縣市">
+                                  {cities.map((city) => {
+                                    return (
+                                      <Option value={city.code} key={city.code}>
+                                        {city.name}
+                                      </Option>
+                                    );
+                                  })}
+                                  {/* <Option value="1">台北市</Option>
+                                <Option value="2">新北市</Option> */}
+                                </Select>
+                              </Form.Item>
+                              <Form.Item
+                                name={['groupAddress', 'street']}
+                                noStyle
+                                rules={[
+                                  {
+                                    required: true,
+                                    message: '請輸入活動地點',
+                                  },
+                                ]}
+                              >
+                                <Input
+                                  style={{
+                                    width: '60%',
+                                  }}
+                                  placeholder="活動地址"
+                                />
+                              </Form.Item>
+                            </Input.Group>
+                          </Form.Item>
+                          {/* 預計費用 */}
+                          <Form.Item
+                            label={feeLabel}
+                            name="groupFee"
+                            rules={[
+                              {
+                                required: true,
+                                message: '請輸入預計費用',
+                              },
+                            ]}
+                          >
+                            <InputNumber placeholder="預計費用" />
+                          </Form.Item>
+                          {/* 人數上限 */}
+                          <Form.Item
+                            label={peopleNumLabel}
+                            name="groupPeopleNum"
+                            rules={[
+                              {
+                                required: true,
+                                message: '請輸入人數上限',
+                              },
+                            ]}
+                          >
+                            <InputNumber placeholder="人數上限" />
+                          </Form.Item>
+                          {/* 最終審核日 */}
+                          <Form.Item
+                            label={deadLineLabel}
+                            name="groupDeadLine"
+                            rules={[
+                              {
+                                type: 'object',
+                                required: true,
+                                message: '請輸入最終審核日',
+                              },
+                            ]}
+                          >
+                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                          </Form.Item>
+                          {/* 活動介紹 */}
+                          <Form.Item
+                            label={discLabel}
+                            name="groupDisc"
+                            rules={[
+                              {
+                                required: true,
+                                message: '請輸入活動介紹',
+                              },
+                            ]}
+                          >
+                            <TextArea showCount maxLength={100} placeholder="活動說明" />
+                          </Form.Item>
+                        </div>
+                        <div className="group-add-img">
+                          <Form.Item name="groupImg" valuePropName="fileList" getValueFromEvent={normFile} rules={[{ required: true, message: '請上傳揪團照片' }]}>
+                            <Upload
+                              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                              listType="picture-card"
+                              fileList={fileList}
+                              onPreview={handlePreview}
+                              onChange={handleChange}
+                            >
+                              {fileList.length >= 1 ? null : uploadButton}
+                            </Upload>
+                          </Form.Item>
+                          <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+                            <img
+                              alt="example"
                               style={{
-                                width: '60%',
+                                width: '100%',
                               }}
-                              placeholder="活動地址"
+                              src={previewImage}
                             />
-                          </Form.Item>
-                        </Input.Group>
+                          </Modal>
+                        </div>
+                      </div>
+                      <Form.Item className="w-100 text-center mt-4">
+                        <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
+                          新增揪團
+                        </Button>
                       </Form.Item>
-                      {/* 預計費用 */}
-                      <Form.Item
-                        label={feeLabel}
-                        name="groupFee"
-                        rules={[
-                          {
-                            required: true,
-                            message: '請輸入預計費用',
-                          },
-                        ]}
-                      >
-                        <InputNumber placeholder="預計費用" />
-                      </Form.Item>
-                      {/* 人數上限 */}
-                      <Form.Item
-                        label={peopleNumLabel}
-                        name="groupPeopleNum"
-                        rules={[
-                          {
-                            required: true,
-                            message: '請輸入人數上限',
-                          },
-                        ]}
-                      >
-                        <InputNumber placeholder="人數上限" />
-                      </Form.Item>
-                      {/* 最終審核日 */}
-                      <Form.Item
-                        label={deadLineLabel}
-                        name="groupDeadLine"
-                        rules={[
-                          {
-                            type: 'object',
-                            required: true,
-                            message: '請輸入最終審核日',
-                          },
-                        ]}
-                      >
-                        <DatePicker showTime format="YYYY-MM-DD HH:mm" />
-                      </Form.Item>
-                      {/* 活動介紹 */}
-                      <Form.Item
-                        label={discLabel}
-                        name="groupDisc"
-                        rules={[
-                          {
-                            required: true,
-                            message: '請輸入活動介紹',
-                          },
-                        ]}
-                      >
-                        <TextArea showCount maxLength={100} placeholder="活動說明" />
-                      </Form.Item>
-                    </div>
-                    <div className="group-add-img">
-                      <Form.Item name="groupImg" valuePropName="fileList" getValueFromEvent={normFile} rules={[{ required: true, message: '請上傳揪團照片' }]}>
-                        <Upload
-                          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                          listType="picture-card"
-                          fileList={fileList}
-                          onPreview={handlePreview}
-                          onChange={handleChange}
-                        >
-                          {fileList.length >= 1 ? null : uploadButton}
-                        </Upload>
-                      </Form.Item>
-                      <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
-                        <img
-                          alt="example"
-                          style={{
-                            width: '100%',
-                          }}
-                          src={previewImage}
-                        />
-                      </Modal>
-                    </div>
-                  </div>
-                  <Form.Item className="w-100 text-center mt-4">
-                    <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
-                      新增揪團
-                    </Button>
-                  </Form.Item>
-                </Form>
-              </Spin>
+                    </Form>
+                  </Spin>
+                </div>
+              </div>
+
+              <button onClick={() => navigate(-1)} className="back-page btn btn-none mt-3">
+                <div>
+                  <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
+                    />
+                  </svg>
+                </div>
+                <span className="ms-3 ff-cn-main">返回上一頁</span>
+              </button>
             </div>
           </div>
-
-          <button onClick={() => navigate(-1)} className="back-page btn btn-none mt-3">
-            <div>
-              <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
-                />
-              </svg>
-            </div>
-            <span className="ms-3 ff-cn-main">返回上一頁</span>
-          </button>
-        </div>
-      </div>
+        </>
+      ) : (
+        <LogoutPage setisLogin={setisLogin} />
+      )}
     </>
   );
 };

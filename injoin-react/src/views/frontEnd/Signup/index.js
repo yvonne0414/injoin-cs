@@ -324,6 +324,7 @@ const Sighup = ({ setlogoutState }) => {
                   behavior: 'smooth',
                 });
               }}
+              style={{ cursor: 'pointer' }}
             >
               登入會員
             </span>

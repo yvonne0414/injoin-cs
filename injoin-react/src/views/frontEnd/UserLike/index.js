@@ -12,8 +12,9 @@ import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 
 const UserLike = () => {
-  const [arr, setArr] = useState([]);
+  // userid
   let userid = 1;
+  const [arr, setArr] = useState([]);
   const [userlike, setUserlike] = useState([]);
 
   useEffect(() => {
@@ -22,8 +23,8 @@ const UserLike = () => {
     let getUserLike = async () => {
       let response = await axios.get(`${API_URL}/userlike/${userid}`);
 
-      // console.log("app",response.data);
-      setArr(response.data);
+      console.log("app",response.data);
+      setArr(response.data.data);
     };
     getUserLike();
   }, []);

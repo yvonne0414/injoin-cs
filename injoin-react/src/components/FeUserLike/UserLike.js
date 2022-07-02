@@ -9,9 +9,9 @@ import { BE_IMAGE_URL } from '../../utils/config';
 
 
 const LikePrdCard = (props) => {
-  const { data } = props;
+  const { data,isprdLike } = props;
   // console.log(data);
-  const isLike = true
+  const isLike = isprdLike || false
  
   const usercoupon = {
     likeImg: 'AB11.jpeg',

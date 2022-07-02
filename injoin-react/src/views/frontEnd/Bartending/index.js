@@ -146,6 +146,8 @@ const Bartending = () => {
   //     setSubSel(response.data.data.suSel);
   //   });
   // }, []);
+  console.log(barted);
+  
 
   return (
     <>

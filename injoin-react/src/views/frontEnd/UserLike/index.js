@@ -177,7 +177,7 @@ const UserLike = () => {
         <div className="container">
           <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
             {apparr.map((v, i) => {
-              return <LikePrdCard key={v.id} data={v} />;
+              return <LikePrdCard key={v.id} data={v} isprdLike={true}/>;
             })}
           </div>
         </div>
@@ -198,7 +198,7 @@ const UserLike = () => {
         <div className="container">
           <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
             {bartdarr.map((v, i) => {
-              return <BartendingCard key={v.id} data={v}/>
+              return <BartendingCard key={v.id} data={v} isbartdLike={true} />
             })}
           </div>
         </div>

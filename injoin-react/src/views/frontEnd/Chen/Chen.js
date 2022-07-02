@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import AboutUser from '../AboutUser';
+import Bartending from '../Bartending';
 import HomePage from '../HomePage';
 import Login from '../Login';
 import Sighup from '../Signup';
@@ -8,8 +9,9 @@ import UserLike from '../UserLike';
 import UserVip from '../UserVip';
 import ChenTest from './ChenTest';
 
+
 let arr = ['chen', 'paul', 'avery'];
-const state = 8;
+const state = 9;
 const Chen = () => {
   // useEffect(() => {
   //   // localStorage.setItem("userLike",JSON.stringify({}))
@@ -35,6 +37,7 @@ const Chen = () => {
       {state === 6 && <Sighup />}
       {state === 7 && <AboutUser />}
       {state === 8 && <UserLike />}
+      {state === 9 && <Bartending />}
     </>
   );
 };

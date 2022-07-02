@@ -7,6 +7,9 @@ import React, { useState } from 'react';
 import { Rate } from 'antd';
 import ReputationList from '../../../components/FeUserReputation/ReputationList';
 import ReputationOrder from '../../../components/FeUserReputation/ReputationOrder';
+
+//test
+import reputationimg from '../../../assets/images/fe/userReputation/reputation_1.png';
 const UserReputation = () => {
   const page1HeaderInfo = {
     titleEn: 'Reputation',
@@ -14,7 +17,7 @@ const UserReputation = () => {
     menuList: [
       {
         href: '#user-reputation-bolck1',
-        name: '我的評價',
+        name: '歷史評價',
       },
       {
         href: '#user-reputation-bolck2',
@@ -72,7 +75,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
-      star: [<Rate disabled defaultValue={2} />],
+      star: 4,
     },
     {
       id: 2,
@@ -80,7 +83,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
-      star: <Rate disabled defaultValue={2} />,
+      star: 2,
     },
     {
       id: 3,
@@ -88,7 +91,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
-      star: <Rate disabled defaultValue={2} />,
+      star: 3,
     },
     {
       id: 4,
@@ -96,7 +99,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
-      star: <Rate disabled defaultValue={2} />,
+      star: 5,
     },
     {
       id: 5,
@@ -104,7 +107,7 @@ const UserReputation = () => {
       time: '2022-03-20',
       name: '金黑波本威士忌',
       commit: '很快就收到商品了，品質很好，與照片相符，包裝也很完整。',
-      star: <Rate disabled defaultValue={2} />,
+      star: 4,
     },
   ];
   const orderarr = [
@@ -135,19 +138,19 @@ const UserReputation = () => {
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 
-      <div className="page-type1-list-area reputation-list mode-reputation">
+      <div className="page-type1-list-area reputation-list mode-reputation py-3 mb-4">
         <div className="container">
           <div className="page-type1-area-title" id="user-reputation-bolck1">
             我的評價
           </div>
           <div className="reputation-list-wraper ">
             <div className="reputation-list-title pc-view">
-              <div className="reputation-title-date">評價日期</div>
-              <div className="reputation-title-img">商品圖片</div>
-              <div className="reputation-title-name">商品名稱</div>
-              <div className="reputation-tittle-commit">評論</div>
-              <div></div>
+              <div className="reputation-list-date">評價日期</div>
+              <div className="reputation-list-name">商品名稱</div>
+              <div className="reputation-list-commit">評論</div>
+              <div className="reputation-list-img">商品圖片</div>
             </div>
+
             {listarr.map((v, i) => {
               return <ReputationList key={v.id} data={v} />;
             })}
@@ -156,7 +159,7 @@ const UserReputation = () => {
         <FePagination />
       </div>
 
-      <div className="page-type1-list-area reputation-orderlist mode-reputation-order">
+      <div className="page-type1-list-area reputation-orderlist mode-reputation-order py-3 mb-4">
         <div className="container">
           <div className="page-type1-area-title" id="user-reputation-bolck2">
             待評價訂單

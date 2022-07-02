@@ -18,9 +18,9 @@ import Slider from 'react-slick';
 import BartendingCard from '../../../components/BartendingCard';
 
 import prddetailImg1 from '../../../assets/images/fe/productionDetail/prd-detail-img-1.png';
-import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
-import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
-import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail-img-4.png';
+// import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
+// import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
+// import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail-img-4.png';
 import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail-img-5.png';
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
@@ -45,19 +45,19 @@ const onChange = (value) => {
   // console.log('changed', value);
 };
 
-const specification = {
-  origin: '美國',
-  capacity: 750,
-  brand: '金賓',
-};
+// const specification = {
+//   origin: '美國',
+//   capacity: 750,
+//   brand: '金賓',
+// };
 
-const text2 = [
-  `
-  美國 金賓波本威士忌 Jim beam bourbon whisky，完全倚重人工生產方式，限制量產的金賓波本威士忌，陳釀期長達四年，酒質順滑香醇無比，擁有與眾不同的特殊風味，是美國波本威士忌相當具有代表性的一支酒款，其特色為採用蛇麻草培養液進行發酵，原料中大麥比例較高，酒精濃度僅40%，微波本威士忌中口感叫清柔的一族。
+// const text2 = [
+//   `
+//   美國 金賓波本威士忌 Jim beam bourbon whisky，完全倚重人工生產方式，限制量產的金賓波本威士忌，陳釀期長達四年，酒質順滑香醇無比，擁有與眾不同的特殊風味，是美國波本威士忌相當具有代表性的一支酒款，其特色為採用蛇麻草培養液進行發酵，原料中大麥比例較高，酒精濃度僅40%，微波本威士忌中口感叫清柔的一族。
 
-  在美國及全世界銷售第一的金賓波本威士忌，是純正的美國肯塔基純正波本威士忌，始於1795年，立足於美國原產地，獨步全球，金賓波本一直以來是自信與權威人士的首選。
-`,
-];
+//   在美國及全世界銷售第一的金賓波本威士忌，是純正的美國肯塔基純正波本威士忌，始於1795年，立足於美國原產地，獨步全球，金賓波本一直以來是自信與權威人士的首選。
+// `,
+// ];
 
 const illustrate = {
   payment: {

@@ -39,8 +39,8 @@ function PrdCard(props) {
     console.log('click', data.id);
     // TODO: getItem
 
-    // localStorage.getItem('cart', JSON.stringify({ Production: [`${data.id}, count:1`] }));
-    localStorage.setItem('cart', JSON.stringify([`${data.id}`]));
+    localStorage.getItem('cart', JSON.stringify({ Production: [`${data.id}, count:1`] }));
+    // localStorage.setItem('cart', JSON.stringify([`${data.id}`]));
     JSON.parse(localStorage.getItem('cart'));
   };
 
@@ -64,7 +64,7 @@ function PrdCard(props) {
                 {data.rating}
               </div>
               <div className="prd-card-icon">
-                <Heart />
+                <Heart data={data} />
                 <FaCartPlus onClick={handleCart} className="prd-card-icon-cart" />
               </div>
             </div>

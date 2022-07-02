@@ -89,9 +89,10 @@ const UserCart = () => {
       },
     ],
   };
-  
+
   //購物車商品陣列
-  const cartprdArr = [
+
+  const cartprdArr1 = [
     {
       id: 1,
       cartprdImg: 'faverite-product-img-1.png',
@@ -138,6 +139,8 @@ const UserCart = () => {
       cartprdTotal: '680',
     },
   ];
+  const [cartprdArr, setCartprdArr] = useState(cartprdArr1);
+
   //相關商品陣列
   const cardArr = [
     {
@@ -189,9 +192,20 @@ const UserCart = () => {
       rating: ' 4.6',
     },
   ];
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/cart').then((res) => {
+      const newCartPrds = res.data.map((v) => {
+        return { ...v, count: 1 };
+      });
+
+      setCartprdArr(newCartPrds);
+    });
+  }, []);
+
   return (
     <>
-    {/* header-section */}
+      {/* header-section */}
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 
       <div className="cart-area">
@@ -212,7 +226,7 @@ const UserCart = () => {
                 Shipping & Billing info
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step3">
+            <div className="col cart-step d-flex flex-column flex-md-row">
               <div className="step-left">03</div>
               <div className="step-right">
                 購物完成! <br />
@@ -238,7 +252,40 @@ const UserCart = () => {
                       </div>
                       {/* 商品迴圈 */}
                       {cartprdArr.map((item, i) => {
-                        return <CartStep1 key={item.id} data={item} />;
+                        const { id, cartprdImg, cartprdNum, cartprdName, cartprdPrice, cartprdCount, cartprdTotal } = item;
+
+                        return (
+                          <CartStep1
+                            key={id}
+                            id={id}
+                            cartprdImg={cartprdImg}
+                            cartprdNum={cartprdNum}
+                            cartprdName={cartprdName}
+                            cartprdPrice={cartprdPrice}
+                            cartprdCount={cartprdCount}
+                            cartprdTotal={cartprdTotal}
+                            plusOne={() => {
+                              const newCartPrds = cartprdArr.map((v) => {
+                                return { ...v };
+                              });
+                              newCartPrds[i].cartprdCount = Number(newCartPrds[i].cartprdCount) + 1;
+                              console.log('+ ' + newCartPrds[i].cartprdCount);
+                              setCartprdArr(newCartPrds);
+                            }}
+                            minusOne={() => {
+                              const newCartPrds = cartprdArr.map((v) => {
+                                return { ...v };
+                              });
+                              if (newCartPrds[i].cartprdCount <= 1) {
+                                newCartPrds[i].cartprdCount = 1;
+                              } else {
+                                newCartPrds[i].cartprdCount = Number(newCartPrds[i].cartprdCount) - 1;
+                              }
+
+                              setCartprdArr(newCartPrds);
+                            }}
+                          />
+                        );
                       })}
 
                       {/* <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">

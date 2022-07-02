@@ -44,14 +44,13 @@ function App() {
       let response = await axios.get(`${API_URL}/member/info`, {
         withCredentials: true,
       });
-      if(response.data !== null){
-        setislogin(true)
+      if (response.data !== null) {
+        setislogin(true);
       }
       // console.log("app.js" ,response.data);
       setMember(response.data);
     };
     getMemberInfo();
-
   }, []);
 
   useEffect(() => {
@@ -60,8 +59,8 @@ function App() {
         withCredentials: true,
       });
       // console.log("app.js" ,response.data);
-      if(response.data !== null){
-        setislogin(true)
+      if (response.data !== null) {
+        setislogin(true);
       }
       setMember(response.data);
     };
@@ -69,7 +68,7 @@ function App() {
   }, [islogin]);
 
   return (
-    <userState.Provider value={{ islogin, setislogin, member,setMember }}>
+    <userState.Provider value={{ islogin, setislogin, member, setMember }}>
       <BrowserRouter>
         <BackTop />
         <FeHeader />
@@ -98,7 +97,7 @@ function App() {
             <Route path="/account/like" exact element={<UserLike />} />
             <Route path="/account/vip" exact element={<UserVip />} />
             <Route path="/account/coupon" exact element={<UserCoupon />} />
-            <Route path="/account/coupon/1" exact element={<CouponDetail />}>
+            <Route path="/account/coupon/:couponId" exact element={<CouponDetail />}>
               <Route path=":currentPage" element={<CouponDetail />} />
             </Route>
             <Route path="/account/reputation" exact element={<UserReputation />} />
@@ -121,7 +120,6 @@ function App() {
             </Route>
 
             <Route path="/chatroom/:groupId" exact element={<ChatRoom />}>
-
               <Route path=":currentPage" element={<ChatRoom />} />
             </Route>
 

@@ -61,46 +61,46 @@ const CouponDetail = () => {
                   <div>
                     <span className="coupon-detail-info-title">
                       <BsFillPinAngleFill />
-                      <span>活動名稱</span>
+                      <span className="mt-2">優惠券名稱</span>
                     </span>
-                    <span className="coupon-detail-info-content">6月感謝禮 ❤ Injoin註冊禮券 享$100優惠券</span>
+                    <span className="coupon-detail-info-content mt-2">Injoin註冊禮券 $100</span>
                   </div>
-                  <div>
+                  {/* <div>
                     <span className="coupon-detail-info-title">
                       <BsCalendarCheck />
                       <span>領取期間</span>
                     </span>
                     <span className="coupon-detail-info-content">2022/06/01 ~ 2022/06/30</span>
-                  </div>
+                  </div> */}
                   <div>
                     <span className="coupon-detail-info-title">
                       <BsCalendar2Date />
                       <span>使用期效</span>
                     </span>
-                    <span className="coupon-detail-info-content">2022/06/01 ~ 2023/05/31</span>
+                    <span className="coupon-detail-info-content mt-2">2022/06/01 ~ 2023/05/31</span>
                   </div>
                   <div>
                     <span className="coupon-detail-info-title">
                       <BsFilterLeft />
                       <span>使用門檻</span>
                     </span>
-                    <span className="coupon-detail-info-content">
+                    <span className="coupon-detail-info-content mt-2">
                       NT$1000 ~ NT$99999
-                      <p>可使用商品購買金額滿 NT$ 1,000 可使用 最高可抵可使用商品購買金額的 100% 不可使用此折價券的商品，則不列入門檻金額計算，也不可折抵金額。 App/官網使用</p>
+                      <p className="mt-2">購買商品金額滿 NT$ 1,000 及可使用，假如優惠券折抵金額超過購買商品總額，則不可使用。限App/官網使用。</p>
                     </span>
                   </div>
-                  <div>
+                  {/* <div>
                     <span className="coupon-detail-info-title">
                       <span>備註</span>
                     </span>
                     <span className="coupon-detail-info-content "> &nbsp; </span>
-                  </div>
+                  </div> */}
                   <div>
                     <span className="coupon-detail-info-title">
                       <AiOutlineFilePpt />
                       <span>使用規則</span>
                     </span>
-                    <span className="coupon-detail-info-content">
+                    <span className="coupon-detail-info-content mt-2">
                       <ol>
                         <li> 每次線上結帳，只能使用一張折價券，門市及櫃點使用則以另行公告為主。 </li>
                         <li>使用折價券折抵後，每項商品金額不可為零。 </li>
@@ -112,7 +112,7 @@ const CouponDetail = () => {
                       </ol>
                     </span>
                   </div>
-                  <div>
+                  {/* <div>
                     <span className="coupon-detail-info-title">
                       <BsFillFileEarmarkTextFill />
                       <span>注意事項</span>
@@ -124,29 +124,28 @@ const CouponDetail = () => {
                         <li> 每檔折價券活動的數量均為限時限量，領完為止。</li>
                       </ul>
                     </span>
-                  </div>
+                  </div> */}
                 </div>
-                <div className="coupon-detail-img mx-auto">
+                {/* <div className="coupon-detail-img mx-auto">
                   <img src={coupondetailImg} alt="" className="img-fluid object-cover" />
-                </div>
-              </div>
-              <div className="w-100 text-center mt-4">
-                <button className="btn btn-none injoin-btn-outline text-gold">已領取</button>
+                </div> */}
               </div>
             </div>
           </div>
 
-          <Link to="/account/coupon" className="back-page btn btn-none mt-3">
+          <Link to="/account/coupon" className="back-page btn btn-none mt-3 mx-auto">
             <div>
-              <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fillRule="evenodd"
                   clipRule="evenodd"
                   d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
                 />
-              </svg>
+              </svg> */}
             </div>
-            <span className="ms-3 ff-cn-main">返回我的優惠券</span>
+            <div className="w-100 text-center mt-4">
+              <button className="btn btn-none injoin-btn-outline text-gold">返回我的優惠券</button>
+            </div>
           </Link>
         </div>
       </div>

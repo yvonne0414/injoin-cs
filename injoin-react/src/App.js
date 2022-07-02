@@ -39,19 +39,20 @@ function App() {
   const [islogin, setislogin] = useState(false);
   const [member, setMember] = useState(null);
 
-  useEffect(() => {
-    let getMemberInfo = async () => {
-      let response = await axios.get(`${API_URL}/member/info`, {
-        withCredentials: true,
-      });
-      if (response.data !== null) {
-        setislogin(true);
-      }
-      // console.log("app.js" ,response.data);
-      setMember(response.data);
-    };
-    getMemberInfo();
-  }, []);
+  // useEffect(() => {
+  //   let getMemberInfo = async () => {
+  //     let response = await axios.get(`${API_URL}/member/info`, {
+  //       withCredentials: true,
+  //     });
+  //     if(response.data !== null){
+  //       setislogin(true)
+  //     }
+  //     // console.log("app.js" ,response.data);
+  //     setMember(response.data);
+  //   };
+  //   getMemberInfo();
+
+  // }, []);
 
   useEffect(() => {
     let getMemberInfo = async () => {
@@ -63,6 +64,7 @@ function App() {
         setislogin(true);
       }
       setMember(response.data);
+      console.log('app.js', response.data);
     };
     getMemberInfo();
   }, [islogin]);

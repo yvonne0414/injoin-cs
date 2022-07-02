@@ -52,6 +52,12 @@ a:hover {
 .ant-back-top-content {
   background-color: #6e686873;
 }
+.ant-rate-star.ant-rate-star-full,
+.ant-rate-star-half .ant-rate-star-first {
+  svg {
+    fill: $color-font-gold;
+  }
+}
 
 /* ===== select樣式 ===== */
 select {
@@ -68,7 +74,7 @@ select {
 
 /* ===== img-object ===== */
 .object-cover {
-  width: 100%;
+  width: fit-content;
   object-fit: cover;
 }
 

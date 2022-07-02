@@ -39,37 +39,38 @@ function App() {
   const [islogin, setislogin] = useState(false);
   const [member, setMember] = useState(null);
 
+  // useEffect(() => {
+  //   let getMemberInfo = async () => {
+  //     let response = await axios.get(`${API_URL}/member/info`, {
+  //       withCredentials: true,
+  //     });
+  //     if(response.data !== null){
+  //       setislogin(true)
+  //     }
+  //     // console.log("app.js" ,response.data);
+  //     setMember(response.data);
+  //   };
+  //   getMemberInfo();
+
+  // }, []);
+
   useEffect(() => {
     let getMemberInfo = async () => {
       let response = await axios.get(`${API_URL}/member/info`, {
         withCredentials: true,
       });
-      if(response.data !== null){
-        setislogin(true)
-      }
       // console.log("app.js" ,response.data);
-      setMember(response.data);
-    };
-    getMemberInfo();
-
-  }, []);
-
-  useEffect(() => {
-    let getMemberInfo = async () => {
-      let response = await axios.get(`${API_URL}/member/info`, {
-        withCredentials: true,
-      });
-      // console.log("app.js" ,response.data);
-      if(response.data !== null){
-        setislogin(true)
+      if (response.data !== null) {
+        setislogin(true);
       }
       setMember(response.data);
+      console.log('app.js', response.data);
     };
     getMemberInfo();
   }, [islogin]);
 
   return (
-    <userState.Provider value={{ islogin, setislogin, member,setMember }}>
+    <userState.Provider value={{ islogin, setislogin, member, setMember }}>
       <BrowserRouter>
         <BackTop />
         <FeHeader />
@@ -121,7 +122,6 @@ function App() {
             </Route>
 
             <Route path="/chatroom/:groupId" exact element={<ChatRoom />}>
-
               <Route path=":currentPage" element={<ChatRoom />} />
             </Route>
 

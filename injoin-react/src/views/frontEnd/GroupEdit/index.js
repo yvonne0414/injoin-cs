@@ -45,9 +45,18 @@ const normFile = (e) => {
 const GroupEdit = () => {
   const navigate = useNavigate();
   // 檢查登入
-  const [isLogin, setisLogin] = useState(false);
+  const [isLogin, setisLogin] = useState('');
   const loginInfo = useContext(userState);
-  // console.log(loginInfo);
+
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
+  useEffect(() => {
+    if (loginInfo.member) {
+      setMemberInfo({ userId: loginInfo.member.id });
+    }
+  }, [loginInfo]);
 
   // header 資料
   const page1HeaderInfo = {
@@ -91,10 +100,6 @@ const GroupEdit = () => {
     };
     getCities();
   }, []);
-
-  const [memberInfo, setMemberInfo] = useState({
-    userId: loginInfo.member.id,
-  });
 
   // 取得詳細資訊
   const { groupId } = useParams();

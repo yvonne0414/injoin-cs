@@ -76,12 +76,13 @@ const ChatRoom = () => {
 
   // seketio
   const { groupId } = useParams();
-  const [ws, setWs] = useState(null);
+  const [ws, setWs] = useState(webSocket('http://localhost:3001'));
 
-  const connectWebSocket = () => {
-    //開啟
-    setWs(webSocket('http://localhost:3001'));
-  };
+  // const connectWebSocket = () => {
+  //   //開啟
+  //   setWs(webSocket('http://localhost:3001'));
+  // };
+
   const disConnectWebSocket = () => {
     //向 Server 送出申請中斷的訊息，讓它通知其他 Client
     ws.emit('disConnection', memberInfo.userId, groupId);
@@ -89,8 +90,18 @@ const ChatRoom = () => {
   };
 
   useEffect(() => {
-    connectWebSocket();
+    //開啟ws
+    setWs(webSocket('http://localhost:3001'));
     getChatList();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      // console.log('ChatRoom - useEffect');
+      // 離開前關掉ws
+      console.log('disConnection');
+      ws.close();
+    };
   }, []);
 
   useEffect(() => {

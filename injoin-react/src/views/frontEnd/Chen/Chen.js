@@ -3,6 +3,7 @@ import AboutUser from '../AboutUser';
 import Bartending from '../Bartending';
 import HomePage from '../HomePage';
 import Login from '../Login';
+import Production from '../Production';
 import Sighup from '../Signup';
 import UserInfo from '../UserInfo';
 import UserLike from '../UserLike';
@@ -11,8 +12,9 @@ import ChenTest from './ChenTest';
 
 
 
+
 let arr = ['chen', 'paul', 'avery'];
-const state = 9;
+const state = 10;
 const Chen = () => {
   // useEffect(() => {
   //   // localStorage.setItem("userLike",JSON.stringify({}))
@@ -39,6 +41,9 @@ const Chen = () => {
       {state === 7 && <AboutUser />}
       {state === 8 && <UserLike />}
       {state === 9 && <Bartending />}
+      {state === 10 && <Production />}
+
+    
     </>
   );
 };

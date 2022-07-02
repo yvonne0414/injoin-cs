@@ -34,14 +34,36 @@ function PrdCard(props) {
       // console.log(response.data.pagination);
     };
   };
-
+  // JSON.stringify(jsonData);
+  // JSON.parse(getLocalData);
   let handleCart = () => {
-    console.log('click', data.id);
-    // TODO: getItem
+    // console.log(data.id);
+    let obj = {};
+    obj = { prdid: data.id, count: 1 };
+    // console.log("new", obj);
+    if (localStorage.getItem('cart') == null) {
+      let arr = [];
+      localStorage.setItem('cart', JSON.stringify(arr));
+    }
+    let oldCart = JSON.parse(localStorage.getItem('cart'));
+    // console.log("old",oldCart);
 
-    localStorage.getItem('cart', JSON.stringify({ Production: [`${data.id}, count:1`] }));
-    // localStorage.setItem('cart', JSON.stringify([`${data.id}`]));
-    JSON.parse(localStorage.getItem('cart'));
+    if (oldCart.length === 0) {
+      var newArr = [...oldCart, obj];
+    } else {
+      for (let i = 0; i < oldCart.length; i++) {
+        console.log('oldCart[i].prdid', oldCart[i].prdid);
+        console.log('obj.prdid', obj.prdid);
+        if (oldCart[i].prdid == obj.prdid) {
+          return
+        }else{
+          var newArr = [...oldCart, obj];
+        }
+      }
+    }
+    localStorage.setItem('cart', JSON.stringify(newArr));
+
+    // console.log();
   };
 
   return (

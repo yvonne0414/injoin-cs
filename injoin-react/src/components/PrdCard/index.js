@@ -38,9 +38,12 @@ function PrdCard(props) {
   // JSON.parse(getLocalData);
   let handleCart = () => {
     // console.log(data.id);
+    // ==========首先把要用的資料處理好
     let obj = {};
     obj = { prdid: data.id, count: 1 };
     // console.log("new", obj);
+    // ==============判斷有沒有車
+    // 因為沒有車會錯誤所以要先判斷===========
     if (localStorage.getItem('cart') == null) {
       let arr = [];
       localStorage.setItem('cart', JSON.stringify(arr));
@@ -48,6 +51,7 @@ function PrdCard(props) {
     let oldCart = JSON.parse(localStorage.getItem('cart'));
     // console.log("old",oldCart);
 
+    
     if (oldCart.length === 0) {
       var newArr = [...oldCart, obj];
     } else {

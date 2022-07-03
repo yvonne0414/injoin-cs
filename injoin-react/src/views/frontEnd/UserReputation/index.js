@@ -88,7 +88,7 @@ const UserReputation = () => {
     if (loginInfo.member) {
       setMemberInfo({ userId: loginInfo.member.id });
     }
-  }, [loginInfo]);
+  }, [loginInfo.islogin]);
 
   let [sendCommit, setCommit] = useState(0);
 
@@ -144,7 +144,7 @@ const UserReputation = () => {
 
   return (
     <>
-      {loginInfo.memberInfo ? (
+      {loginInfo.islogin ? (
         <>
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 

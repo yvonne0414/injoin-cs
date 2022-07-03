@@ -184,7 +184,7 @@ const GroupDetail = () => {
                       <img src={`${BE_IMAGE_URL}${item.img}`} alt="" className="img-fluid object-cover" />
                     </div>
                   </div>
-                  {loginInfo.memberInfo ? (
+                  {loginInfo.islogin ? (
                     <div className="w-100 text-center mt-4">
                       {isJoin ? (
                         <button className="btn btn-none injoin-btn-outline text-gold" onClick={info}>

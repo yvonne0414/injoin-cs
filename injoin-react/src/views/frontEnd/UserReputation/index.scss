@@ -370,20 +370,20 @@
       > div {
         padding: 0.5rem 1rem;
         margin-bottom: 0.5rem;
-        > div {
-          margin: 0;
-        }
         .reputation-orderlist-time {
           width: 25% !important;
           order: 0;
           text-align: start;
+          margin: 0;
         }
         .reputation-orderlist-ordernumber {
           width: 60% !important;
+          margin: 0;
           text-align: start;
         }
         .reputation-orderlist-button {
           width: 15% !important;
+          margin: 0;
           order: 0;
           button {
             padding: 0.25rem 1rem;

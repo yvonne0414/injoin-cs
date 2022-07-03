@@ -150,13 +150,13 @@ const UserReputation = () => {
 
           <div className="page-type1-list-area reputation-list mode-reputation py-3 mb-4">
             <div className="container">
+              <div className="page-type1-area-title" id="user-reputation-bolck1">
+                歷史評價
+              </div>
               {ratePagination.total === 0 ? (
                 <EmptyImage discText="無歷史評價" />
               ) : (
                 <>
-                  <div className="page-type1-area-title" id="user-reputation-bolck1">
-                    我的評價
-                  </div>
                   <div className="reputation-list-wraper ">
                     <div className="reputation-list-title pc-view">
                       <div className="reputation-list-date">評價日期</div>
@@ -180,26 +180,25 @@ const UserReputation = () => {
               <div className="page-type1-area-title" id="user-reputation-bolck2">
                 待評價訂單
               </div>
-              <div className="page-type1-list-wraper">
-                {ratePagination.total === 0 ? (
-                  <div className="mx-auto w-100 d-block">
-                    <EmptyImage discText="無待評價訂單" />
+
+              {wRatePagination.total === 0 ? (
+                <div className="mx-auto w-100 d-block">
+                  <EmptyImage discText="無待評價訂單" />
+                </div>
+              ) : (
+                <div className="page-type1-list-wraper">
+                  <div className="page-type1-list-title pc-view">
+                    <div className="reputation-orderlist-time">日期</div>
+                    <div className="reputation-orderlist-ordernumber">訂單編號</div>
+                    <div className="reputation-orderlist-button"></div>
                   </div>
-                ) : (
-                  <>
-                    <div className="page-type1-list-title pc-view">
-                      <div className="reputation-orderlist-time">日期</div>
-                      <div className="reputation-orderlist-ordernumber">訂單編號</div>
-                      <div className="reputation-orderlist-button"></div>
-                    </div>
-                    {wRatedList.map((v, i) => {
-                      return <ReputationOrder key={i} data={v} setCommit={setCommit} />;
-                    })}
-                  </>
-                )}
-              </div>
+                  {wRatedList.map((v, i) => {
+                    return <ReputationOrder key={i} data={v} setCommit={setCommit} />;
+                  })}
+                </div>
+              )}
             </div>
-            {ratePagination.total !== 0 && <FePagination pagination={wRatePagination} setPage={setWRatePage} />}
+            {wRatePagination.total !== 0 && <FePagination pagination={wRatePagination} setPage={setWRatePage} />}
           </div>
         </>
       ) : (

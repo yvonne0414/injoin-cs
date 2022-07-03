@@ -3,6 +3,7 @@ import { Breadcrumb, Carousel, Rate } from 'antd';
 import { InputNumber, Button } from 'antd';
 import { Collapse } from 'antd';
 import { Comment, List, Tooltip } from 'antd';
+import moment from 'moment';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -27,7 +28,7 @@ import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { BE_IMAGE_URL } from '../../../utils/config';
+import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 
 const { Panel } = Collapse;
 
@@ -89,31 +90,6 @@ const illustrate = {
     ],
   },
 };
-
-const data = [
-  {
-    actions: [<Rate allowHalf disabled defaultValue={2.5} />],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content: <p className="prd-detail-text">很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
-    // datetime: (
-    //   <Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-    //     <span>{moment().subtract(1, 'days').fromNow()}</span>
-    //   </Tooltip>
-    // ),
-  },
-  {
-    actions: [<Rate allowHalf disabled defaultValue={5} />],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content: <p className="prd-detail-text">很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
-    // datetime: (
-    //   <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-    //     <span>{moment().subtract(2, 'days').fromNow()}</span>
-    //   </Tooltip>
-    // ),
-  },
-];
 
 const settings = {
   className: 'slider variable-width',
@@ -237,9 +213,44 @@ const ProductionDetail = () => {
     getDetail();
   }, []);
 
-  console.log('detail', detail);
-  console.log('prdId', prdId);
-  console.log('imgList', imgList);
+  // console.log('detail', detail);
+  // console.log('prdId', prdId);
+  // console.log('imgList', imgList);
+
+  // 取得商品評價
+  let [ratedList, setRatedList] = useState([]);
+  let getPrdRate = async () => {
+    let res = await axios.get(`${API_URL}/reputation/${prdId}`);
+    console.log(res.data.data);
+    let rateData = res.data.data;
+    let toList = [];
+    for (let i = 0; i < rateData.length; i++) {
+      toList.push({
+        actions: [
+          <>
+            <Rate allowHalf disabled defaultValue={rateData[i].rating} />
+            <div className="d-flex comment-list-imgs justify-content-start">
+              {rateData[i].reviewImgList.map((img) => {
+                return (
+                  <div className="mx-1 comment-list-img">
+                    <img src={`${BE_IMAGE_URL}${img}`} className="img-fluid" alt="" />
+                  </div>
+                );
+              })}
+            </div>
+          </>,
+        ],
+        author: rateData[i].name,
+        avatar: `${BE_IMAGE_URL}${rateData[i].user_img}`,
+        content: <p className="prd-detail-text">{rateData[i].content}</p>,
+        imgList: rateData[i].reviewImgList,
+      });
+    }
+    setRatedList(toList);
+  };
+  useEffect(() => {
+    getPrdRate();
+  }, []);
 
   return (
     <>
@@ -297,7 +308,7 @@ const ProductionDetail = () => {
                 <span>NT.{detail.price}</span>
               </div>
               <div className="star-defaultValue mt-3">
-                <Rate disabled defaultValue={rate} />
+                <Rate value={rate} disabled />
               </div>
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>
@@ -373,36 +384,30 @@ const ProductionDetail = () => {
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>購買評價</p>
               </div>
-              <div className="prd-detail-box-1">
+              <div className="prd-detail-rate-box-1">
                 <div>
-                  <p className="prd-detail-box-text1 mt-3">
+                  <p className="prd-detail-rate-box-text1 mt-3">
                     <span>{detail.rate}</span>
                   </p>
                 </div>
-                <div className="prd-detail-box-text2-bg">
+                <div className="prd-detail-rate-box-text2-bg">
                   <span></span>
-                  <div className="prd-detail-box-text2">評價</div>
+                  <div className="prd-detail-rate-box-text2">評價</div>
                 </div>
               </div>
-              <List
-                header={`${data.length} replies`}
-                itemLayout="horizontal"
-                dataSource={data}
-                renderItem={(item) => (
-                  <li className="comment-list-li">
-                    <Comment actions={item.actions} author={item.author} avatar={item.avatar} content={item.content} datetime={item.datetime} />
-                    <div className="d-flex comment-list-imgs">
-                      <div className="flex-grow-1 mx-1 comment-list-img">
-                        <img src={prddetailImg1} className="img-fluid object-cover" alt="" />
-                      </div>
-                      <div className="flex-grow-1 mx-1 comment-list-img">
-                        <img src={prddetailImg1} className="img-fluid object-cover" alt="" />
-                      </div>
-                    </div>
-                    <hr />
-                  </li>
-                )}
-              />
+              <div className="prd-commit-area">
+                <List
+                  header={`${ratedList.length} 則回覆`}
+                  itemLayout="horizontal"
+                  dataSource={ratedList}
+                  renderItem={(item) => (
+                    <li className="comment-list-li">
+                      <Comment actions={item.actions} author={item.author} avatar={item.avatar} content={item.content} />
+                      <hr />
+                    </li>
+                  )}
+                />
+              </div>
             </div>
           </div>
 

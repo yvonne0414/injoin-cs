@@ -91,8 +91,10 @@ const ReputationModal = (props) => {
       formData.append('prdId', data.prd_id);
       formData.append('content', values.commit);
       formData.append('rating', values.rate);
-      for (let i = 0; i < values.reviewImg.length; i++) {
-        formData.append('reviewImg[]', values.reviewImg[i]['originFileObj']);
+      if (values.reviewImg) {
+        for (let i = 0; i < values.reviewImg.length; i++) {
+          formData.append('reviewImg[]', values.reviewImg[i]['originFileObj']);
+        }
       }
       formData.append('orderDetailId', data.orderDetailId);
       // console.log('formData', formData);

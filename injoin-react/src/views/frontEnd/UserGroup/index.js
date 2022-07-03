@@ -277,7 +277,7 @@ const UserGroup = () => {
 
   return (
     <>
-      {loginInfo.islogin ? (
+      {loginInfo.memberInfo ? (
         <>
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
           <div className="user-add-group-area">

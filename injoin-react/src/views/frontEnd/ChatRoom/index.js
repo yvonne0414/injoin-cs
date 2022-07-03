@@ -36,16 +36,40 @@ const ChatRoom = () => {
       pc: 'group-list-header.png',
     },
     pageSelector: {
-      isShow: false,
+      isShow: true,
       pageParent: {
-        href: '/',
-        name: '首頁',
+        href: '/account/user',
+        name: '會員中心',
       },
-      selected: 'groupList',
+      selected: '揪團管理',
       selectOptions: [
         {
-          name: '揪團專區',
-          value: 'groupList',
+          name: '會員資訊',
+          value: '/account/user',
+        },
+        {
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
+          name: '優惠券',
+          value: '/account/coupon',
+        },
+        {
+          name: '我的評價',
+          value: '/account/reputation',
+        },
+        {
+          name: '我的訂單',
+          value: '/account/order',
+        },
+        {
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },

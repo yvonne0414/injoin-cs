@@ -64,7 +64,6 @@ function App() {
         setislogin(true);
       }
       setMember(response.data);
-      console.log('app.js', response.data);
     };
     getMemberInfo();
   }, [islogin]);

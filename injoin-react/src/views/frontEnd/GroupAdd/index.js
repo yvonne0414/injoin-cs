@@ -144,6 +144,12 @@ const GroupAdd = () => {
     </div>
   );
 
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess('ok');
+    }, 0);
+  };
+
   // loading
   const [loading, setLoading] = useState(false);
   // 提示
@@ -410,13 +416,7 @@ const GroupAdd = () => {
                         </div>
                         <div className="group-add-img">
                           <Form.Item name="groupImg" valuePropName="fileList" getValueFromEvent={normFile} rules={[{ required: true, message: '請上傳揪團照片' }]}>
-                            <Upload
-                              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                              listType="picture-card"
-                              fileList={fileList}
-                              onPreview={handlePreview}
-                              onChange={handleChange}
-                            >
+                            <Upload customRequest={dummyRequest} listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
                               {fileList.length >= 1 ? null : uploadButton}
                             </Upload>
                           </Form.Item>

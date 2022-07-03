@@ -30,14 +30,38 @@ const CouponDetail = () => {
     pageSelector: {
       isShow: true,
       pageParent: {
-        href: '/',
-        name: '優惠券',
+        href: '/account/user',
+        name: '會員中心',
       },
-      selected: '優惠券詳細',
+      selected: '優惠券',
       selectOptions: [
         {
-          name: '優惠券詳細',
-          value: 'couponDetail',
+          name: '會員資訊',
+          value: '/account/user',
+        },
+        {
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
+          name: '優惠券',
+          value: '/account/coupon',
+        },
+        {
+          name: '我的評價',
+          value: '/account/reputation',
+        },
+        {
+          name: '我的訂單',
+          value: '/account/order',
+        },
+        {
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },

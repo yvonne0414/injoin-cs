@@ -35,6 +35,7 @@ const validateMessages = {
   },
 };
 /* eslint-enable no-template-curly-in-string */
+
 const { Option } = Select;
 
 const UserCartStep2 = () => {
@@ -80,6 +81,20 @@ const UserCartStep2 = () => {
     console.log(values);
   };
 
+  const [form] = Form.useForm();
+  const [formLayout, setFormLayout] = useState('vertical');
+  const formItemLayout =
+    formLayout === 'vertical'
+      ? {
+          labelCol: {
+            span: 4,
+          },
+          wrapperCol: {
+            span: 14,
+          },
+        }
+      : null;
+
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -88,21 +103,21 @@ const UserCartStep2 = () => {
         <div className="container">
           {/* status-section-1 */}
           <div className="cart-step-content d-flex flex-column flex-md-row">
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step1">
+            <div className="col cart-step d-flex flex-column flex-md-row">
               <div className="step-left">01</div>
               <div className="step-right">
                 確認訂單及付款方式 <br />
                 Cart & Check out
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row ">
+            <div className="col cart-step d-flex flex-column flex-md-row cart-step2">
               <div className="step-left">02</div>
               <div className="step-right">
                 填寫訂單資料 <br />
                 Shipping & Billing info
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step3">
+            <div className="col cart-step d-flex flex-column flex-md-row">
               <div className="step-left">03</div>
               <div className="step-right">
                 購物完成! <br />
@@ -265,8 +280,109 @@ const UserCartStep2 = () => {
                   <Form.Item name={['user', 'introduction']} label="備註">
                     <Input.TextArea placeholder="請輸入不超過30個字" maxlength={30} />
                   </Form.Item>
-                  
                 </Form>
+              </div>
+            </div>
+            <div className="cart-pay-bg-area">
+              <div className="cart-pay-content">
+                <div className="shopping-cart-info-title">
+                  <h4>
+                    信用卡資訊
+                    <br />
+                    Credit Card Information
+                  </h4>
+                </div>
+                <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                  <Form.Item
+                    name={['credit-card', 'check-num']}
+                    label="卡號:"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <div className="" style={{ width: '100%' }}></div>
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '22%',
+                      }}
+                    />
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '22%',
+                        margin: '0.5rem',
+                      }}
+                    />
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '22%',
+                      }}
+                    />
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '22%',
+                        margin: '0.5rem',
+                      }}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name={['credit-card', 'check-date']}
+                    label="效期:"
+                    rules={[
+                      {
+                        type: 'date',
+                      },
+                    ]}
+                  >
+                    <Input
+                      maxlength="2"
+                      style={{
+                        width: '22%',
+                        marginRight: '0.5rem',
+                      }}
+                    />
+                    /
+                    <Input
+                      maxlength="2"
+                      style={{
+                        width: '22%',
+                        marginLeft: '0.5rem',
+                      }}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name={['credit-card', 'check-box']}
+                    label="安全碼:"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '45%',
+                      }}
+                    />
+                  </Form.Item>
+                </Form>
+                <Form
+                  {...layout}
+                  name="nest-messages"
+                  onFinish={onFinish}
+                  {...formItemLayout}
+                  layout={formLayout}
+                  form={form}
+                  initialValues={{
+                    layout: formLayout,
+                  }}
+                ></Form>
               </div>
             </div>
 

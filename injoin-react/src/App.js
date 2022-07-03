@@ -71,6 +71,7 @@ function App() {
       } catch (e) {
         console.log(e);
       }
+      // setMember(response.data);
     };
     getMemberInfo();
   }, [islogin]);

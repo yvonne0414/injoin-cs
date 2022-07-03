@@ -39,25 +39,44 @@ const OrderListDetail = () => {
     pageSelector: {
       isShow: true,
       pageParent: {
-        href: '/',
+        href: '/account/user',
         name: '會員中心',
       },
-      selected: 'orderDetail',
+      selected: '我的訂單',
       selectOptions: [
         {
-          name: '訂單明細',
-          value: 'orderDetail',
+          name: '會員資訊',
+          value: '/account/user',
         },
         {
-          name: 'test',
-          value: 'orderDetail2',
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
+          name: '優惠券',
+          value: '/account/coupon',
+        },
+        {
+          name: '我的評價',
+          value: '/account/reputation',
+        },
+        {
+          name: '我的訂單',
+          value: '/account/order',
+        },
+        {
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
-  
   //假資料
   const detailone = {
     orderdetailNum: '513947',
@@ -261,7 +280,6 @@ const OrderListDetail = () => {
               <hr />
             </div>
             <div className="page-type1-list-section">
-              
               {/* 商品迴圈 */}
               {ordersPrd.map((v, i) => {
                 return <OrderDetail key={v.prdId} data={v} />;

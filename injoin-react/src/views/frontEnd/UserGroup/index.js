@@ -97,7 +97,7 @@ const UserGroup = () => {
           value: '/account/coupon',
         },
         {
-          name: '留言',
+          name: '我的評價',
           value: '/account/reputation',
         },
         {

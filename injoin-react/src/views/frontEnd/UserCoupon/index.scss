@@ -33,6 +33,11 @@
   }
 }
 
+.conpon-title-sp {
+  margin-top: 1rem;
+  text-align: center;
+}
+
 .list-content_decide_btn {
   margin: $space-2 $space-1;
   display: flex;
@@ -264,11 +269,13 @@
 .couponlist-footer {
   width: 100%;
   margin: 10px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
+  // display: flex;
+  // text-align: center;
+  // justify-content: center;
   color: $color-font-gold;
   p {
     color: $color-font;
   }
+  margin-top: 5rem;
+  margin-bottom: 8rem;
 }

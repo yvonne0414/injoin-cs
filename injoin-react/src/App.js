@@ -105,7 +105,7 @@ function App() {
             <Route path="/account/like" exact element={<UserLike />} />
             <Route path="/account/vip" exact element={<UserVip />} />
             <Route path="/account/coupon" exact element={<UserCoupon />} />
-            <Route path="/account/coupon/1" exact element={<CouponDetail />}>
+            <Route path="/account/coupon/:couponId" exact element={<CouponDetail />}>
               <Route path=":currentPage" element={<CouponDetail />} />
             </Route>
             <Route path="/account/reputation" exact element={<UserReputation />} />

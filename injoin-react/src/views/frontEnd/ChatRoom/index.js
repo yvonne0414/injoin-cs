@@ -76,12 +76,13 @@ const ChatRoom = () => {
 
   // seketio
   const { groupId } = useParams();
-  const [ws, setWs] = useState(null);
+  const [ws, setWs] = useState(webSocket('http://localhost:3001'));
 
-  const connectWebSocket = () => {
-    //開啟
-    setWs(webSocket('http://localhost:3001'));
-  };
+  // const connectWebSocket = () => {
+  //   //開啟
+  //   setWs(webSocket('http://localhost:3001'));
+  // };
+
   const disConnectWebSocket = () => {
     //向 Server 送出申請中斷的訊息，讓它通知其他 Client
     ws.emit('disConnection', memberInfo.userId, groupId);
@@ -89,7 +90,8 @@ const ChatRoom = () => {
   };
 
   useEffect(() => {
-    connectWebSocket();
+    //開啟ws
+    setWs(webSocket('http://localhost:3001'));
     getChatList();
   }, []);
 
@@ -97,7 +99,7 @@ const ChatRoom = () => {
     // TODO: 撈資料 取得歷史對話、chatId
     if (ws) {
       //連線成功在 console 中打印訊息
-      console.log('success connect!');
+      // console.log('success connect!');
       //設定監聽
       initWebSocket();
 
@@ -108,6 +110,15 @@ const ChatRoom = () => {
       }
     }
   }, [ws]);
+
+  useEffect(() => {
+    return () => {
+      // console.log('ChatRoom - useEffect');
+      // 離開前關掉ws
+      // console.log('disConnection');
+      ws.close();
+    };
+  }, []);
 
   const initWebSocket = () => {
     //對 getMessage 設定監聽，如果 server 有透過 getMessage 傳送訊息，將會在此被捕捉

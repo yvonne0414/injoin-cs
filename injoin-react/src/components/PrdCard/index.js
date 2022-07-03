@@ -6,6 +6,7 @@ import faveritePrdImg1 from '../../assets/images/fe/faverite/faverite-product-im
 import Heart from '../Heart';
 import { BE_IMAGE_URL } from '../../utils/config';
 import axios from 'axios';
+import './_index.scss';
 
 function PrdCard(props) {
   const { data } = props;
@@ -87,7 +88,7 @@ function PrdCard(props) {
             <div className="prd-card-footer card-footer">
               <div className="prd-card-reveiw">
                 <FaStar className="prd-card-icon-star" />
-                {data.rating}
+                {data.rate}
               </div>
               <div className="prd-card-icon">
                 <Heart data={data} />

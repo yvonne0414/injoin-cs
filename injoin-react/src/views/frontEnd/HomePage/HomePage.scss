@@ -5,10 +5,13 @@
 
 .button-style {
   background-color: transparent;
+  font-family: $font-family-en-main;
+  font-size: var(--fs-cn-btn-md);
+  font-weight: $font-weight-bold;
   border: 2px solid $color-font-gold;
   color: $color-font-gold;
   text-align: center;
-  padding: 0.5rem 1rem;
+  padding: 0.3rem 0.6rem;
 }
 .section-title-en {
   font-family: $font-family-en-main;
@@ -16,7 +19,7 @@
   color: rgba(255, 255, 255, 0.35);
   font-weight: 900;
   z-index: -1;
-  font-size: var(--fs-en-page-type1-title-lg);
+  font-size: var(--fs-en-page-type1-title-caption);
   top: 1rem;
 }
 
@@ -27,14 +30,22 @@
   top: 3rem;
   left: 0.8rem;
   .section-title-cn {
+    font-family: $font-family-cn-main;
+    font-weight: 600;
+    font-size: var(--fs-cn-home-title-lg);
     color: $color-font-gold;
     margin-bottom: $space-2;
   }
   .section-content-en {
+    font-family: $font-family-en-main;
+    font-weight: $font-weight-bold;
     font-size: var(--fs-en-home-title-md);
     margin-bottom: $space-3;
+    letter-spacing: $letter-space-1;
   }
   .section-content-cn {
+    font-family: $font-family-cn-content;
+    font-weight: $font-weight-lighter;
     letter-spacing: $letter-space-1;
   }
 }
@@ -44,10 +55,10 @@
 .homepages3-slder {
   width: 100%;
   position: absolute;
-  top: 45vh;
+  top: 45%;
   .homepages3-card {
     padding: $space-2;
-    width: 45vw;
+    width: 100%;
     .card-img {
       width: 100%;
       img {
@@ -67,9 +78,9 @@
 .homepages4-slider {
   // display: none;
   position: absolute;
-  top: 45vh;
-  height: 50vh;
-  width: 100vw;
+  top: 45%;
+  height: 50%;
+  width: 100%;
   .homepages4-card {
     padding: 0 $space-3;
     .card-img {
@@ -81,6 +92,8 @@
     }
     .card-content {
       font-family: $font-family-cn-main;
+      font-weight: $font-weight-lighter;
+      text-align: center;
     }
   }
 }
@@ -105,11 +118,11 @@
 // =====section1=======
 .section1 {
   background-color: $color-bg-dark;
-  .container {
+  .container-fluid {
     position: relative;
-    min-height: 100vh;
+    min-height: 30rem;
     background: $color-bg-dark no-repeat url(../../../assets/images/fe/homepage/homepage-head.png);
-    background-size: 90vw 95vh;
+    background-size: 90% 100%;
   }
 
   .mask {
@@ -117,16 +130,34 @@
     top: 0;
     left: 0;
     background: rgba(0, 0, 0, 0.6);
-    width: 100vw;
-    min-height: 100vh;
+    width: 90%;
+    min-height: 30rem;
   }
 
   .s1-position {
     position: absolute;
-    right: 7vw;
+    right: 1.7rem;
     text-align: end;
-    bottom: 30vh;
+    top: 8rem;
     color: white;
+    .font-cn-content {
+      font-family: $font-family-cn-main;
+      font-weight: $font-weight-lighter;
+      letter-spacing: $letter-space-2;
+      font-size: var(--fs-cn-home-content);
+    }
+    .font-en-title {
+      font-family: $font-family-cn-main;
+      font-size: var(--fs-en-home-title-lg);
+      font-weight: $font-weight-bold;
+      letter-spacing: $letter-space-2;
+    }
+    .font-cn-title {
+      font-family: $font-family-cn-main;
+      font-size: var(--fs-cn-home-title-md);
+      font-weight: $font-weight-lighter;
+      letter-spacing: $letter-space-1;
+    }
   }
   .s1-button {
     padding: 0.2rem 1rem;
@@ -140,38 +171,49 @@
     right: 0;
     top: 0;
   }
-  .ul-position {
-    position: absolute;
-    right: 7vw;
-    bottom: 10vh;
-    ul {
-      li {
-        a {
-          text-decoration: none;
-          color: white;
-          margin: 0;
-          &:hover,
-          &.active {
-            color: $color-font-gold;
-          }
-        }
-      }
-    }
-  }
+  // .ul-position {
+  //   position: absolute;
+  //   right: 7vw;
+  //   bottom: 40vh;
+  //   ul {
+  //     li {
+  //       a {
+  //         text-decoration: none;
+  //         color: white;
+  //         margin: 0;
+  //         &:hover,
+  //         &.active {
+  //           color: $color-font-gold;
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 // =====section2=======
 .section2 {
-  min-height: 100vh;
+  min-height: 51rem;
   background: #1b1b1b;
   // background: lightpink;
   position: relative;
+  right: 0.3rem;
   z-index: -2;
+  top: $space-5;
+  .homeBox-2 {
+    z-index: -2;
+    width: 50%;
+    height: 50%;
+    background-color: #131213;
+    position: absolute;
+    left: 0;
+    margin-top: $space-3;
+  }
   .s2-img1 {
     position: absolute;
     left: 0;
-    top: 45vh;
-    width: 80vw;
-    height: 30vh;
+    top: 45%;
+    width: 80%;
+    height: 30%;
     z-index: 2;
     img {
       object-fit: cover;
@@ -181,10 +223,10 @@
   }
   .s2-img2 {
     position: absolute;
-    bottom: 10vh;
+    bottom: 10%;
     right: 0;
-    width: 60vw;
-    height: 20vh;
+    width: 80%;
+    height: 20rem;
     img {
       object-fit: cover;
       width: 100%;
@@ -194,16 +236,34 @@
 }
 // =====section=======
 .section3 {
-  min-height: 100vh;
+  min-height: 51rem;
+  .homeBox-3 {
+    z-index: -2;
+    width: 75%;
+    height: 50%;
+    background-color: #131213;
+    position: absolute;
+    right: 0;
+    top: $space-base * 7.5;
+  }
   .section-content {
-    right: 5vw;
+    right: 1rem;
   }
 }
 
 // =====section=======
 .section4 {
-  min-height: 100vh;
+  min-height: 51rem;
   position: relative;
+  .homeBox-4 {
+    z-index: -2;
+    width: 50%;
+    height: 50%;
+    background-color: #131213;
+    position: absolute;
+    left: 0;
+    margin-top: $space-3;
+  }
   .bartd-slider {
     top: 45vh;
     width: 100vw;
@@ -219,15 +279,25 @@
 
 // =====section=======
 .section5 {
-  min-height: 100vh;
+  min-height: 33rem;
+  .homeBox-5 {
+    z-index: -2;
+    width: 85%;
+    height: 57%;
+    top: 4.5rem;
+    background-color: #131213;
+    position: absolute;
+    right: 0;
+    margin-top: $space-3;
+  }
   .section-content {
-    right: 5vw;
+    right: 1.2rem;
   }
   .s5-img {
     // display: none;
-    width: 100vw;
+    width: 90%;
     opacity: 0.8;
-    height: 80vh;
+    height: 75%;
     position: absolute;
     bottom: 0;
     z-index: -1;
@@ -267,15 +337,16 @@
   // =====hot-slider=======
   .homepages3-slder {
     position: absolute;
-    left: 0;
+    left: 5rem;
     top: 20vh;
     width: 40vw;
+
     // z-index: -1 ;
     .homepages3-card {
       width: 15vw;
       padding: 0 $space-2;
       .card-img {
-        width: 100%;
+        width: 90%;
         height: 40vh;
         img {
           width: 100%;
@@ -295,14 +366,14 @@
     // display: none;
     position: absolute;
     top: 35vh;
-    right: 0;
+    right: 3rem;
     // height: 50vh;
     height: 20vw;
     width: 50vw;
     .homepages4-card {
       padding: 0 $space-3;
       .card-img {
-        width: 20vw;
+        width: 15vw;
         height: 20vw;
         img {
           width: 100%;
@@ -310,6 +381,7 @@
           object-fit: cover;
         }
       }
+
       .card-content {
         font-family: $font-family-cn-main;
       }
@@ -351,7 +423,7 @@
   // =====section1=======
   .section1 {
     background: $color-bg-block;
-    .container {
+    .container-fluid {
       background: $color-bg-block;
       width: 100%;
       position: relative;
@@ -432,13 +504,15 @@
     }
   }
   // =====section2=======
+
   .section2 {
+    // left: 2rem;
     position: relative;
 
     .s2-img1 {
       position: absolute;
       left: auto;
-      right: 0;
+      right: 3rem;
       top: 5vh;
       width: 45vw;
       height: 50vh;

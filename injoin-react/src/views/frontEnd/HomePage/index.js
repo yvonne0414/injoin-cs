@@ -16,12 +16,22 @@ const HomePage = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 480,
+        settings: {
+          centerMode: true,
+          arrows: false,
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
     <>
       <section className="section1">
-        <div className="container">
+        <div className="container-fluid">
           <div className="mask"></div>
           <div className="pc-img d-none d-md-flex">
             <img src={`${FE_IMAGE_URL}/homepage/pc-img.svg`} alt="" />
@@ -35,14 +45,16 @@ const HomePage = () => {
             <p className="font-cn-title">放鬆交友，飲酒生活</p>
             <button className="s1-button button-style my-2">Details</button>
           </div>
-          <div className="ul-position">
+          {/* <div className="ul-position">
             <FePagination />
           </div>
-          <div className="box"></div>
+          <div className="box"></div> */}
         </div>
       </section>
-      <div className="container">
-        <section className="section2">
+
+      <div className="container-fluid">
+        <section className="section2 position-relative">
+          <div className="homeBox-2"></div>
           <h3 className="section-title-en">W</h3>
           <div className="section-content">
             <h3 className="section-title-cn">關於我們</h3>
@@ -59,13 +71,14 @@ const HomePage = () => {
           </div>
         </section>
         <section className="section3 position-relative">
+          <div className="homeBox-3"></div>
           <h3 className="section-title-en w-100 text-end">B</h3>
           <div className="section-content text-end">
             <h3 className="section-title-cn">熱門商品</h3>
             <p className="section-content-en">Best Seller</p>
             <p className="section-content-cn">我們可以很篤定的說，</p>
             <p className="section-content-cn">誰這需要花很多時間來嚴謹地論證。</p>
-            <button className="button-style section-button">Buy It !</button>
+            <button className="button-style section-button section-button3">Buy It !</button>
           </div>
           <Slider {...settings} className="homepages3-slder">
             {[1, 1, 1, 1, 1, 1, 11, 1, 1, 1].map((v, i) => {
@@ -74,6 +87,7 @@ const HomePage = () => {
           </Slider>
         </section>
         <section className="section4 position-relative">
+          <div className="homeBox-4"></div>
           <h3 className="section-title-en">C</h3>
           <div className="section-content">
             <h3 className="section-title-cn">調酒酒譜</h3>
@@ -89,11 +103,11 @@ const HomePage = () => {
           </Slider>
         </section>
         <section className="section5 position-relative">
+          <div className="homeBox-5"></div>
           <h3 className="section-title-en w-100 text-end">T</h3>
           <div className="section-content text-end text-md-start">
             <h3 className="section-title-cn">現正揪團</h3>
             <p className="section-content-en">travel with a tour group</p>
-            <br />
             <br />
             <button className="button-style section-button">Details</button>
           </div>

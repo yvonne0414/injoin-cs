@@ -1,0 +1,27 @@
+@import '../../assets/scss/_variable.scss';
+.add-bartd {
+  .form-item {
+    width: 100%;
+    padding-right: 3rem;
+    .ant-form-item-label {
+      width: 5rem;
+    }
+    .form-title {
+      display: block;
+      width: 5rem;
+      text-align: end;
+      // margin-bottom: -1.5rem;
+    }
+    .ant-space.ant-space-horizontal.ant-space-align-baseline {
+      // margin-left: 5rem;
+      width: 100%;
+    }
+  }
+}
+@media screen AND (min-width: 768px) {
+  .add-bartd {
+    .form-item {
+      width: 50%;
+    }
+  }
+}

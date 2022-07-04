@@ -20,21 +20,11 @@ function CartStep1(props) {
   };
 
   const minusOne = (id) => {
-    if(data.cartprdCount === 1){
-      return
+    if (data.cartprdCount === 1) {
+      return;
     }
     setCount(data.cartprdCount - 1);
   };
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:3000/cart').then((res) => {
-  //     const newCartPrds = res.data.map((v) => {
-  //       return { ...v, count: 1 };
-  //     });
-
-  //     setCartPrds(newCartPrds);
-  //   });
-  // }, []);
 
   //假資料
   // const cartstep1arr = [
@@ -60,7 +50,7 @@ function CartStep1(props) {
         </div>
         <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
           <div className="cart-prd-icon text-center">
-            <BsTrashFill onClick={removeItem}/>
+            <BsTrashFill onClick={removeItem} />
           </div>
           <div
             className="cart-prd-number d-flex ms-2 border border-white justify-content-between
@@ -69,7 +59,7 @@ function CartStep1(props) {
             <button
               className="prd-plus btn-none"
               onClick={() => {
-                plusOne(data.id);
+                plusOne();
               }}
             >
               +
@@ -78,7 +68,7 @@ function CartStep1(props) {
             <button
               className="prd-minus btn-none"
               onClick={() => {
-                minusOne(data.id);
+                minusOne();
               }}
             >
               -

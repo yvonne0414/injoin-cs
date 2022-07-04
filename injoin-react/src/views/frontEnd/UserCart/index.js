@@ -95,6 +95,7 @@ const UserCart = () => {
   // chennnn
 
   //購物車商品陣列
+
   const cartprdArr = [
     {
       id: 1,
@@ -137,6 +138,11 @@ const UserCart = () => {
       cartprdTotal: '680',
     },
   ];
+
+  // console.log('cartprdArr',cartprdArr)
+  // console.log('cartArr',cartArr)
+
+  // console.log("ARF",cartArr);
 
   // cartprdCount: '1',
   const initState = (cartprdArr) => {
@@ -183,6 +189,7 @@ const UserCart = () => {
     }
     return result;
   };
+
   // totalNumber();
   // 計算總價格
   const totalPrice = () => {
@@ -315,7 +322,7 @@ const UserCart = () => {
                 Shipping & Billing info
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step3">
+            <div className="col cart-step d-flex flex-column flex-md-row">
               <div className="step-left">03</div>
               <div className="step-right">
                 購物完成! <br />

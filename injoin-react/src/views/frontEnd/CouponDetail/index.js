@@ -6,11 +6,16 @@ import FePage1Header from '../../../components/FePage1Header';
 import { Link } from 'react-router-dom';
 
 // icon
-import { BsCalendar2Date, BsFillFileEarmarkTextFill, BsFillPinAngleFill, BsCalendarCheck, BsFilterLeft } from 'react-icons/bs';
-import { AiOutlineFilePpt } from 'react-icons/ai';
+import { BsTagsFill, BsFillAlarmFill, BsExclamationCircleFill, BsCheckCircleFill, BsCash } from 'react-icons/bs';
+// import { AiOutlineFilePpt } from 'react-icons/ai';
 
 // images
-import coupondetailImg from '../../../assets/images/fe/coupondetail/coupon-detail-img-1.png';
+// import coupondetailImg from '../../../assets/images/fe/coupondetail/coupon-detail-img-1.png';
+
+import axios from 'axios';
+
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 const CouponDetail = () => {
   // header 資料
@@ -67,6 +72,18 @@ const CouponDetail = () => {
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
+
+  const [detail, setDetail] = useState([]);
+  const { couponId } = useParams();
+
+  useEffect(() => {
+    let getDetail = async () => {
+      let response = await axios.get(`http://localhost:3001/api/coupon/couponDetail/${couponId}`);
+      setDetail(response.data.detailData[0]);
+    };
+    getDetail();
+  }, []);
+
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -78,16 +95,16 @@ const CouponDetail = () => {
           <div className="position-relative">
             <div className="coupon-detail-info-bg-square"></div>
             <div className="p-3 p-md-5">
-              <h3 className="ff-cn-main">Injoin註冊禮券 $100</h3>
+              <h3 className="ff-cn-main">{detail.name}</h3>
               <hr />
               <div className="d-flex flex-column flex-md-row justify-content-between align-items-start">
                 <div className="coupon-detail-info">
                   <div>
                     <span className="coupon-detail-info-title">
-                      <BsFillPinAngleFill />
+                      <BsTagsFill />
                       <span className="mt-2">優惠券名稱</span>
                     </span>
-                    <span className="coupon-detail-info-content mt-2">Injoin註冊禮券 $100</span>
+                    <span className="coupon-detail-info-content mt-2">{detail.name}</span>
                   </div>
                   {/* <div>
                     <span className="coupon-detail-info-title">
@@ -98,19 +115,28 @@ const CouponDetail = () => {
                   </div> */}
                   <div>
                     <span className="coupon-detail-info-title">
-                      <BsCalendar2Date />
-                      <span>使用期效</span>
+                      <BsCash />
+                      <span className="mt-2">折扣金額</span>
                     </span>
-                    <span className="coupon-detail-info-content mt-2">2022/06/01 ~ 2023/05/31</span>
+                    <span className="coupon-detail-info-content mt-2">${detail.discount}元</span>
                   </div>
                   <div>
                     <span className="coupon-detail-info-title">
-                      <BsFilterLeft />
+                      <BsFillAlarmFill />
+                      <span>使用期效</span>
+                    </span>
+                    <span className="coupon-detail-info-content mt-2">
+                      {detail.start_time} ~ {detail.end_time}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="coupon-detail-info-title">
+                      <BsCheckCircleFill />
                       <span>使用門檻</span>
                     </span>
                     <span className="coupon-detail-info-content mt-2">
-                      NT$1000 ~ NT$99999
-                      <p className="mt-2">購買商品金額滿 NT$ 1,000 及可使用，假如優惠券折抵金額超過購買商品總額，則不可使用。限App/官網使用。</p>
+                      NT${detail.rule_min} ~ NT${detail.rule_max}
+                      <p className="mt-2">購買商品金額滿 NT$ {detail.rule_min} 及可使用，假如優惠券折抵金額超過購買商品總額，則不可使用。限App/官網使用。</p>
                     </span>
                   </div>
                   {/* <div>
@@ -121,7 +147,7 @@ const CouponDetail = () => {
                   </div> */}
                   <div>
                     <span className="coupon-detail-info-title">
-                      <AiOutlineFilePpt />
+                      <BsExclamationCircleFill />
                       <span>使用規則</span>
                     </span>
                     <span className="coupon-detail-info-content mt-2">

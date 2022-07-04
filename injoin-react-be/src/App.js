@@ -6,6 +6,8 @@ import BeHeader from './components/BeHeader';
 import BeSider from './components/BeSider';
 import PrdList from './views/PrdList';
 import PrdAdd from './views/PrdAdd';
+import BarAdd from './views/BarAdd';
+
 const { Content } = Layout;
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
             <Routes>
               <Route path="/productionlist" exact element={<PrdList />} />
               <Route path="/production" exact element={<PrdAdd />} />
+              <Route path="/bartending" exact element={<BarAdd />} />
             </Routes>
           </Content>
         </Layout>

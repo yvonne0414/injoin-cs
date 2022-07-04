@@ -2,7 +2,7 @@
 import './index.scss';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Select, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 
 // -----Variable width
@@ -10,7 +10,6 @@ import Slider from 'react-slick';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import PrdCard from '../../../components/PrdCard';
 
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
 
@@ -25,16 +24,13 @@ const layout = {
 /* eslint-disable no-template-curly-in-string */
 
 const validateMessages = {
-  required: '${label} is required!',
+  required: '請輸入${label}!',
   types: {
-    email: '${label} is not a valid email!',
     number: '${label} is not a valid number!',
-  },
-  number: {
-    range: '${label} must be between ${min} and ${max}',
   },
 };
 /* eslint-enable no-template-curly-in-string */
+
 const { Option } = Select;
 
 const UserCartStep2 = () => {
@@ -80,6 +76,10 @@ const UserCartStep2 = () => {
     console.log(values);
   };
 
+  const onChange = (e) => {
+    console.log(`checked = ${e.target.checked}`);
+  };
+
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -88,21 +88,21 @@ const UserCartStep2 = () => {
         <div className="container">
           {/* status-section-1 */}
           <div className="cart-step-content d-flex flex-column flex-md-row">
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step1">
+            <div className="col cart-step d-flex flex-column flex-md-row">
               <div className="step-left">01</div>
               <div className="step-right">
                 確認訂單及付款方式 <br />
                 Cart & Check out
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row ">
+            <div className="col cart-step d-flex flex-column flex-md-row cart-step2">
               <div className="step-left">02</div>
               <div className="step-right">
                 填寫訂單資料 <br />
                 Shipping & Billing info
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step3">
+            <div className="col cart-step d-flex flex-column flex-md-row">
               <div className="step-left">03</div>
               <div className="step-right">
                 購物完成! <br />
@@ -220,6 +220,7 @@ const UserCartStep2 = () => {
                     rules={[
                       {
                         type: 'email',
+                        required: false,
                       },
                     ]}
                   >
@@ -265,9 +266,103 @@ const UserCartStep2 = () => {
                   <Form.Item name={['user', 'introduction']} label="備註">
                     <Input.TextArea placeholder="請輸入不超過30個字" maxlength={30} />
                   </Form.Item>
-                  
                 </Form>
               </div>
+            </div>
+            <div className="cart-pay-bg-area">
+              <div className="cart-pay-content">
+                <div className="shopping-cart-info-title">
+                  <h4>
+                    信用卡資訊
+                    <br />
+                    Credit Card Information
+                  </h4>
+                </div>
+                <Form {...layout} name="nest-messages" onFinish={onFinish}>
+                  <Form.Item
+                    name={['credit-card', 'check-num']}
+                    label="卡號:"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <div className="" style={{ width: '100%' }}></div>
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '22%',
+                      }}
+                    />
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '22%',
+                        margin: '0.5rem',
+                      }}
+                    />
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '22%',
+                      }}
+                    />
+                    <Input
+                      maxlength="4"
+                      style={{
+                        width: '22%',
+                        margin: '0.5rem',
+                      }}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name={['credit-card', 'check-date']}
+                    label="效期:"
+                    rules={[
+                      {
+                        type: 'date',
+                      },
+                    ]}
+                  >
+                    <Input
+                      maxlength="2"
+                      style={{
+                        width: '22%',
+                        marginRight: '0.5rem',
+                      }}
+                    />
+                    /
+                    <Input
+                      maxlength="2"
+                      style={{
+                        width: '22%',
+                        marginLeft: '0.5rem',
+                      }}
+                    />
+                  </Form.Item>
+                  <Form.Item
+                    name={['信用卡', '安全碼']}
+                    label="安全碼:"
+                    rules={[
+                      {
+                        required: true,
+                      },
+                    ]}
+                  >
+                    <Input
+                      maxlength="3"
+                      style={{
+                        width: '45%',
+                      }}
+                    />
+                  </Form.Item>
+                </Form>
+              </div>
+              <div className="check-box">
+                <Checkbox onChange={onChange}>我同意接受服務條款和隱私權政策</Checkbox>;
+              </div>
+              <div className="check-p">※下單前請再次確認您的購買明細及配送資訊，訂單成立後無法異動訂單內容</div>
             </div>
 
             <div className="position-relative text-center p-3">

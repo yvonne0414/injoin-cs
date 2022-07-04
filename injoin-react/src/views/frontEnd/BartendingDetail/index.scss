@@ -124,11 +124,11 @@
 .bartending-detail-img-3 {
   width: 50%;
   position: absolute;
-  opacity: .7;
+  opacity: 0.7;
 }
 .bartending-detail-img-4 {
   width: 50%;
-  opacity: .7;
+  opacity: 0.7;
   bottom: 0;
   right: 0;
   position: absolute;
@@ -138,27 +138,6 @@
   .ant-rate-star-half .ant-rate-star-first {
     svg {
       fill: $color-font-gold;
-    }
-  }
-}
-.comment-list-imgs {
-  margin-left: 44px;
-  .comment-list-img {
-    max-width: 5rem;
-  }
-}
-.comment-list-li .ant-comment-actions {
-  margin-top: 0;
-  .ant-rate {
-    font-size: unset;
-    svg {
-      width: 0.8rem;
-    }
-    .ant-rate-star.ant-rate-star-full,
-    .ant-rate-star-half .ant-rate-star-first {
-      svg {
-        fill: $color-font-gold;
-      }
     }
   }
 }

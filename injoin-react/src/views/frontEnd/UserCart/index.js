@@ -91,10 +91,9 @@ const UserCart = () => {
   };
 
   // chennnn
-
   //購物車商品陣列
 
-  const cartprdArr1 = [
+  const cartprdArr = [
     {
       id: 1,
       cartprdImg: 'faverite-product-img-1.png',
@@ -136,9 +135,6 @@ const UserCart = () => {
       cartprdTotal: '680',
     },
   ];
-
-  const [cartprdArr, setCartprdArr] = useState(cartprdArr1);
-
   var cartArr = [];
   const createCart = async () => {
     let cart = JSON.parse(localStorage.getItem('cart'));
@@ -153,12 +149,15 @@ const UserCart = () => {
       newObj = { ...res.data[0], cartprdCount: cart[i].count };
       // console.log('newObj', newObj);
       cartArr.push(newObj);
+      
     }
-    console.log('cartArr2', cartArr);
+    setProductsInOrder(cartArr)
+    console.log('cartArr2',cartArr)
+
   };
   createCart();
-  console.log('cartprdArr', cartprdArr);
-  console.log('cartArr', cartArr);
+  // console.log('cartprdArr',cartprdArr)
+  // console.log('cartArr',cartArr)
 
   // console.log("ARF",cartArr);
 
@@ -178,6 +177,7 @@ const UserCart = () => {
     }
     return result;
   };
+
   // totalNumber();
   // 計算總價格
   const totalPrice = () => {
@@ -241,15 +241,6 @@ const UserCart = () => {
     },
   ];
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/cart').then((res) => {
-      const newCartPrds = res.data.map((v) => {
-        return { ...v, count: 1 };
-      });
-
-      setCartprdArr(newCartPrds);
-    });
-  }, []);
 
   return (
     <>

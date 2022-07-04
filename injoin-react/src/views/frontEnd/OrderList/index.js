@@ -58,7 +58,7 @@ const OrderList = () => {
           value: '/account/coupon',
         },
         {
-          name: '評價',
+          name: '我的評價',
           value: '/account/reputation',
         },
         {
@@ -104,7 +104,6 @@ const OrderList = () => {
   //     orderBtn: '詳細內容',
   //   },
   // ];
-  
 
   // let orderId = useParams();
   //設定狀態--1.未出貨 2.

@@ -8,10 +8,7 @@ import faveriteImg from '../../../src/assets/images/fe/faverite/faverite-product
 import { BsTrashFill } from 'react-icons/bs';
 
 function CartStep1(props) {
-  const { id, cartprdImg, cartprdNum, cartprdName, cartprdPrice, cartprdCount, cartprdTotal, plusOne, minusOne, data, setCount, removeItem } = props;
-  // console.log('data',data);
-
-  // const { data, setCount,removeItem } = props;
+  const { data, setCount, removeItem } = props;
   // console.log('data',productsInOrder);
 
   // const plusOne = (id) => {
@@ -20,12 +17,12 @@ function CartStep1(props) {
   //   setCount(data.cartprdCount + 1);
   // };
 
-  // const minusOne = (id) => {
-  //   if(data.cartprdCount === 1){
-  //     return
-  //   }
-  //   setCount(data.cartprdCount - 1);
-  // };
+  const minusOne = (id) => {
+    if (data.cartprdCount === 1) {
+      return;
+    }
+    setCount(data.cartprdCount - 1);
+  };
 
   // useEffect(() => {
   //   axios.get('http://localhost:3000/cart').then((res) => {
@@ -55,10 +52,6 @@ function CartStep1(props) {
       <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
         <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1" />
         <div className="cart-prd-content d-flex flex-column ms-2">
-          <div className="cart-prd-num">{cartprdNum}</div>
-          <div className="cart-prd-name">{cartprdName}</div>
-          <div className="cart-prd-price">NT${cartprdTotal}</div>
-
           <div className="cart-prd-num">{data.cartprdNum}</div>
           <div className="cart-prd-name">{data.cartprdName}</div>
           <div className="cart-prd-price">NT${data.cartprdPrice}</div>
@@ -79,7 +72,7 @@ function CartStep1(props) {
             >
               +
             </button>
-            <div className=" border-end border-start prd-number text-center">{cartprdCount}</div>
+            <div className=" border-end border-start prd-number text-center">{data.cartprdCount}</div>
             <button
               className="prd-minus btn-none"
               onClick={() => {

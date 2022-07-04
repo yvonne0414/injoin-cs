@@ -97,7 +97,7 @@
   }
 }
 .ant-collapse-header-text {
-  font-family: "Noto Serif TC";
+  font-family: 'Noto Serif TC';
   font-size: var(--fs-cn-page-list-title-lg) !important;
 }
 .prd-detail-title-type1 {
@@ -105,22 +105,23 @@
   font-family: $font-family-cn-main;
   color: $color-font;
 }
-.prd-detail-box-1 {
-  width: 30%;
-  height: 13vh;
+.prd-detail-rate-box-1 {
+  width: 8rem;
+  height: 8rem;
   border: 3px solid $color-font-gold;
   border-radius: 10px;
+  margin: auto;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
 }
-.prd-detail-box-text1 {
+.prd-detail-rate-box-text1 {
   text-align: center;
   font-size: var(--fs-en-page-type1-title-sm);
   font-family: $font-family-en-content;
   color: $color-font-gold;
 }
-.prd-detail-box-text2-bg {
+.prd-detail-rate-box-text2-bg {
   background-color: $color-font-gold;
   height: 3rem;
   line-height: 3rem;
@@ -135,7 +136,7 @@
     transform: translate(-50%, -90%);
   }
 }
-.prd-detail-box-text2 {
+.prd-detail-rate-box-text2 {
   text-align: center;
   font-size: var(--fs-cn-page-type1-content-sp);
   font-family: $font-family-cn-content;
@@ -159,10 +160,22 @@
     }
   }
 }
+.prd-commit-area {
+  .ant-list-items {
+    max-height: 32rem;
+    overflow: auto;
+  }
+}
 .comment-list-imgs {
-  margin-left: 44px;
   .comment-list-img {
-    max-width: 5rem;
+    max-height: 8rem;
+    max-width: 10rem;
+    overflow: hidden;
+    width: fit-content;
+    img {
+      object-fit: contain;
+      max-height: 100%;
+    }
   }
 }
 .comment-list-li .ant-comment-actions {
@@ -269,10 +282,10 @@
       max-width: 25rem;
     }
   }
-  .prd-detail-box-1 {
-    width: 10%;
+  .prd-detail-rate-box-1 {
+    margin: unset;
   }
-  .prd-detail-box-text2-bg {
+  .prd-detail-rate-box-text2-bg {
     height: 3.5rem;
     line-height: 3.5rem;
   }

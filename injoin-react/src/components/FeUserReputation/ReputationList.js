@@ -1,5 +1,6 @@
 import reputationimg from '../../assets/images/fe/userReputation/reputation_1.png';
 import { Rate } from 'antd';
+import { BE_IMAGE_URL } from '../../utils/config';
 
 const ReputationList = (props) => {
   const { data } = props;
@@ -11,22 +12,29 @@ const ReputationList = (props) => {
   //   star: <Rate disabled defaultValue={2} />,
   // };
   return (
-    <div className="reputation-list-content" key={data.id}>
-      <div className="reputation-list-date">{data.time}</div>
+    <div className="reputation-list-content">
+      <div className="reputation-list-date">{data.rating_time}</div>
       <div className="reputation-list-name">{data.name}</div>
       <div className="reputation-list-commit">
         <div>
-          <Rate value={data.star} allowHalf />
-          <div>{data.commit}</div>
+          <Rate value={data.rating} allowHalf />
+          <div>{data.content}</div>
         </div>
       </div>
       <div className="reputation-list-img">
-        <div>
+        {data.imgList.map((img) => {
+          return (
+            <div key={img}>
+              <img src={`${BE_IMAGE_URL}${img}`} alt="" className="img-fluid object-cover" />
+            </div>
+          );
+        })}
+        {/* <div>
           <img src={reputationimg} alt="" className="img-fluid object-cover" />
         </div>
         <div>
           <img src={reputationimg} alt="" className="img-fluid object-cover" />
-        </div>
+        </div> */}
       </div>
     </div>
   );

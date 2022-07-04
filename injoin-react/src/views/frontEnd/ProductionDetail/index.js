@@ -26,7 +26,7 @@ import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import { useParams } from 'react-router-dom';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 
@@ -40,10 +40,6 @@ const contentStyle = {
   background: '#fff',
   // background: 'transparent',
   overflow: 'hidden',
-};
-
-const onChange = (value) => {
-  // console.log('changed', value);
 };
 
 // const specification = {
@@ -190,7 +186,65 @@ const ProductionDetail = () => {
   const [detail, setDetail] = useState([]);
   const [imgList, setImgList] = useState([]);
   const { prdId } = useParams();
+  const [num, setNum] = useState(1);
+
   let rate = 5;
+  // getuserid
+  let userid = 1 || 0;
+  // console.log(userid);
+
+  const handleAddCart = () => {
+    // console.log('prdId', prdId);
+    // console.log('userid', userid);
+    // console.log('num', num);
+
+    let obj = {};
+    obj = { prdid: Number(prdId), count: num };
+    // console.log('obj', obj);
+    // ==============判斷有沒有車
+    // 因為沒有車會錯誤所以要先判斷===========
+    if (localStorage.getItem('cart') == null) {
+      let arr = [];
+      localStorage.setItem('cart', JSON.stringify(arr));
+    }
+    let oldCart = JSON.parse(localStorage.getItem('cart'));
+    console.log('oldCart', oldCart);
+    if (oldCart.length === 0) {
+      var newArr = [...oldCart, obj];
+    } else {
+      for (let i = 0; i < oldCart.length; i++) {
+        console.log('oldCart[i].prdid', Number(oldCart[i].prdid));
+        console.log('obj.prdid', Number(obj.prdid));
+
+        if (Number(oldCart[i].prdid) == Number(obj.prdid)) {
+          oldCart[i].count = Number(num);
+          newArr = [...oldCart];
+          // console.log('newArr',newArr);
+          localStorage.setItem('cart', JSON.stringify(newArr));
+          alert(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`);
+          return;
+        } else {
+          var newArr = [...oldCart, obj];
+        }
+      }
+    }
+    // console.log('newArr',newArr);
+    localStorage.setItem('cart', JSON.stringify(newArr));
+    alert(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`);
+    // console.log('handleAddCart');
+  };
+  const handleAddHeart = () => {
+    // console.log('prdId' ,prdId);
+    // console.log('userid',userid);
+    axios.get(`${API_URL}/userlike/add/${userid}/${prdId}`);
+    // console.log('handleAddHeart');
+    alert(`使用者${userid} 已將 商品${prdId} 加最愛`);
+  };
+  const onChange = (e) => {
+    // console.log('changed', e);
+    setNum(e);
+  };
+
   useEffect(() => {
     // bartedcard
     // let getApple = async () => {
@@ -221,7 +275,7 @@ const ProductionDetail = () => {
   let [ratedList, setRatedList] = useState([]);
   let getPrdRate = async () => {
     let res = await axios.get(`${API_URL}/reputation/${prdId}`);
-    console.log(res.data.data);
+    // console.log(res.data.data);
     let rateData = res.data.data;
     let toList = [];
     for (let i = 0; i < rateData.length; i++) {
@@ -313,18 +367,18 @@ const ProductionDetail = () => {
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>
                 <div className="prd-detail-input-number mt-3">
-                  <InputNumber min={1} max={99} defaultValue={0} onChange={onChange} size="middle" bordered={false} />
+                  <InputNumber defaultValue={0} onChange={onChange} size="middle" bordered={false} value={num} />
                 </div>
               </div>
               <div className="prd-detail-button-position mt-3">
                 <div className="prd-detail-button-1">
-                  <Button className="text-black">
+                  <Button className="text-black" onClick={handleAddCart}>
                     加入購物車&nbsp;&nbsp;
                     <FontAwesomeIcon icon={faCartShopping} fixedWidth className="text-black" />
                   </Button>
                 </div>
                 <div className="prd-detail-button-2">
-                  <Button className="text-black">
+                  <Button className="text-black" onClick={handleAddHeart}>
                     收藏商品 &nbsp;&nbsp;
                     <FontAwesomeIcon icon={faHeart} fixedWidth />
                   </Button>

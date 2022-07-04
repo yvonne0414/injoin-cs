@@ -24,6 +24,8 @@ import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img
 import { BsTrashFill } from 'react-icons/bs';
 
 const UserCart = () => {
+  let userId = 1;
+
   const page1HeaderInfo = {
     titleEn: 'Cart',
     titleCn: '購物車',
@@ -91,6 +93,7 @@ const UserCart = () => {
   };
 
   // chennnn
+
   //購物車商品陣列
   const cartprdArr = [
     {
@@ -134,40 +137,43 @@ const UserCart = () => {
       cartprdTotal: '680',
     },
   ];
-  var cartArr = [];
-  const createCart = async () => {
-    let cart = JSON.parse(localStorage.getItem('cart'));
-    // console.log('cart', cart);
-    for (let i = 0; i < cart.length; i++) {
-      // console.log('carti', cart[i].prdid);
-      let res = await axios.get(`${API_URL}/cart/getPrdDetail?prdId=${cart[i].prdid}`);
-      // console.log(`${API_URL}/cart/getPrdDetail?prdId=${cart[i].prdid}`);
-      // console.log(res.data);
-      let newObj = {};
-
-      newObj = { ...res.data[0], cartprdCount: cart[i].count };
-      // console.log('newObj', newObj);
-      cartArr.push(newObj);
-      
-
-      
-    }
-    console.log('cartArr2',cartArr)
-
-  };
-  createCart();
-  console.log('cartprdArr',cartprdArr)
-  console.log('cartArr',cartArr)
-
-  // console.log("ARF",cartArr);
 
   // cartprdCount: '1',
   const initState = (cartprdArr) => {
     return cartprdArr.map((v) => ({ ...v, cartprdCount: 1 }));
   };
-  const [productsInOrder, setProductsInOrder] = useState(initState(cartprdArr));
+  const [productsInOrder, setProductsInOrder] = useState([]);
   const [total, setTotal] = useState(0);
   const [discount, setDiscount] = useState(100);
+  // const cartArr = [];
+  // const setCartArr = new Set([])
+  // console.log(productsInOrder);
+  const createCart = async () => {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+
+    // console.log('cart', cart);
+    let tempCartArray = [];
+    // cart.length
+    for (let idx = 0; idx < cart.length; idx++) {
+      // console.log(idx);
+      // console.log('carti', cart[i].prdid);
+      let res = await axios.get(`${API_URL}/cart/getPrdDetail?prdId=${cart[idx].prdid}`);
+      // console.log(`${API_URL}/cart/getPrdDetail?prdId=${cart[i].prdid}`);
+      let newObj = {};
+      newObj = { ...res.data[0], cartprdCount: cart[idx].count };
+      // console.log('newObj', newObj);
+      tempCartArray.push(newObj);
+      // setCartArr.add(newObj)
+    }
+    // console.log(tempCartArray);
+    setProductsInOrder(tempCartArray);
+    // console.log('cartArr2', cartArr);
+  };
+  useEffect(() => {
+    createCart();
+  }, []);
+  // chennnnn------
+  // console.log('productsInOrder', productsInOrder);
 
   // 計算總數量
   const totalNumber = () => {
@@ -186,6 +192,52 @@ const UserCart = () => {
       // console.log(result);
     }
     return result;
+  };
+
+  const handleSubmit = () => {
+    let arr = [
+      {
+        prdId: 1,
+        price: 550,
+        amount: 3,
+        subTotal: 1650,
+      },
+      {
+        prdId: 3,
+        price: 140,
+        amount: 5,
+        subTotal: 700,
+      },
+    ];
+    console.log('待處理', productsInOrder);
+    let newArr = [];
+    productsInOrder.forEach((v,i)=>{
+
+      let obj ={
+        prdId: v.id,
+        price: v.cartprdPrice,
+        amount: v.cartprdCount,
+        subTotal: (Number(v.cartprdPrice) * Number(v.cartprdCount)),
+      }
+      arr.push(obj)
+      // console.log(obj);
+    })
+    // console.log('arr', arr);
+
+    let ans = {
+      userId: userId,
+      coponId: 0,
+      total: Number(totalPrice() - discount),
+      logistics: 1,
+      cartList: arr,
+    };
+    try{
+      console.log("送出訂單", ans);
+    }catch(e){
+      console.error(e);
+    }
+    // console.log(ans);
+    // console.log('handleSubmit');
   };
 
   //相關商品陣列
@@ -239,6 +291,7 @@ const UserCart = () => {
       rating: ' 4.6',
     },
   ];
+
   return (
     <>
       {/* header-section */}
@@ -288,6 +341,7 @@ const UserCart = () => {
                       </div>
                       {/* 商品迴圈 */}
                       {productsInOrder.map((item, i) => {
+                        // console.log(productsInOrder);
                         return (
                           <CartStep1
                             key={item.id}
@@ -300,6 +354,11 @@ const UserCart = () => {
                               // console.log('newObj[i].cartprdCount', newObj[i].cartprdCount);
                               newObj[i].cartprdCount = newCount < 1 ? 1 : newCount;
 
+                              let newCart = newObj.map((v, i) => {
+                                return { prdid: v.id, count: v.cartprdCount };
+                              });
+
+                              localStorage.setItem('cart', JSON.stringify(newCart));
                               setProductsInOrder(newObj);
                               // console.log(productsInOrder);
                             }}
@@ -310,7 +369,14 @@ const UserCart = () => {
                               const newProductsInOrder = productsInOrder.filter((value, index) => {
                                 return value.id !== item.id;
                               });
+
+                              let newCart = newProductsInOrder.map((v, i) => {
+                                return { prdid: v.id, count: v.cartprdCount };
+                              });
+                              // console.log(newCart);
+
                               // 3. 設定回原本的狀態中
+                              localStorage.setItem('cart', JSON.stringify(newCart));
                               setProductsInOrder(newProductsInOrder);
                             }}
                           />
@@ -408,7 +474,7 @@ const UserCart = () => {
                             <hr />
                             <div className="shopping-cart-summary-total d-flex justify-content-start mb-5">
                               <div className="me-4">實付總金額</div>
-                              <div className="ms-5">NT${total - discount}</div>
+                              <div className="ms-5">NT${totalPrice() - discount}</div>
                             </div>
                           </div>
                         </div>
@@ -419,7 +485,7 @@ const UserCart = () => {
               </div>
             </div>
             <div className="position-relative text-center p-3">
-              <button className="btn btn-none injoin-btn-outline text-gold" htmlType="sumbit">
+              <button className="btn btn-none injoin-btn-outline text-gold" htmlType="sumbit" onClick={handleSubmit}>
                 完成，下一步
               </button>
             </div>
@@ -444,7 +510,7 @@ const UserCart = () => {
               </div>
               <div className="px-md-3">
                 <Slider className="prd-deatil-card" {...settings}>
-                  {[cardArr].map((v, i) => {
+                  {cardArr.map((v, i) => {
                     return <PrdCard key={v.id} data={v} />;
                   })}
                 </Slider>

@@ -1,18 +1,22 @@
 // scss
 import './index.scss';
 // import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination';
 import UserCouponList from '../../../components/FeCoupon/UserCoupon';
+import EmptyImage from '../../../components/EmptyImage';
 
 //images
 import couponListImg1 from '../../../assets/images/fe/couponList/coupon-list-img-1.png';
 import couponListImg2 from '../../../assets/images/fe/couponList/coupon-list-img-2.png';
 
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import LogoutPage from '../LogoutPage/LogoutPage.js';
+import { userState } from '../../../App';
 
 const UserCoupon = () => {
   // header 資料
@@ -83,49 +87,35 @@ const UserCoupon = () => {
 
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
-  // const usercouponArr = [
-  //   {
-  //     id: 1,
-  //     coupomNum: '1001',
-  //     couponName: '註冊禮券折$100',
-  //     couponStart: '2022/05/29',
-  //     couponEnd: '2022/06/29',
-  //     couponStatus: '未使用',
-  //     couponBtn: '詳細內容',
-  //   },
-  // {
-  //   id: 2,
-  //   coupomNum: '1002',
-  //   couponName: '註冊禮券折$100',
-  //   couponStart: '2022/05/29',
-  //   couponEnd: '2022/06/29',
-  //   couponStatus: '未使用',
-  //   couponBtn: '詳細內容',
-  // },
-  // {
-  //   id: 3,
-  //   coupomNum: '1003',
-  //   couponName: '註冊禮券折$100',
-  //   couponStart: '2022/05/29',
-  //   timeof: '~',
-  //   couponEnd: '2022/06/29',
-  //   couponStatus: '已使用',
-  //   couponBtn: '詳細內容',
-  // },
-  // ];
+  // 檢查登入
+  const [isLogin, setisLogin] = useState('');
+  const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
+  useEffect(() => {
+    if (loginInfo.member) {
+      // console.log('useEffect-loginInfo', loginInfo);
+      setMemberInfo({ userId: loginInfo.member.id });
+    }
+  }, [loginInfo]);
 
   let [data, setData] = useState([]);
   let [page, setPage] = useState(1);
   let [pagination, setPagination] = useState({
-    total: 1,
+    total: 0,
     page: 1,
     lastPage: 1,
   });
 
   let getCoupon = async () => {
-    let response = await axios.get('http://localhost:3001/api/coupon/couponList', {
+    let response = await axios.get(`http://localhost:3001/api/coupon/couponList`, {
       params: {
-        // category: category,
+        userId: memberInfo.userId,
         page: page,
       },
     });
@@ -235,31 +225,37 @@ const UserCoupon = () => {
           <div className="page-type1-area-title" id="couponlist-bolck3">
             我的優惠券
           </div>
-          <div className="page-type1-list-wraper">
-            <div className="page-type1-list-title pc-view">
-              <div>優惠券代號</div>
-              <div>優惠券名稱</div>
-              <div>開始時間</div>
-              <div>截止時間</div>
-              {/* <div>使用狀況</div> */}
-              <div></div>
-            </div>
-            {data.map((v, i) => {
-              return <UserCouponList key={v.id} data={v} index={i} pagination={pagination} />;
-            })}
-            {/* <div className="page-type1-list-content">
-              <div className="list-content_coupon_num">1001</div>
-              <div className="list-content_coupon_name">註冊禮券折$100</div>
-              <div className="list-content_coupon_start">2022/05/29</div>
-              <div className="list-content_coupon_end">2022/06/29</div>
-              <div className="list-content_coupon_status">未使用</div>
-              <div className="list-content_btn">
-                <Link to="/coupon/1">詳細內容</Link>
+          {pagination.total === 0 ? (
+            <EmptyImage discText="無優惠券" />
+          ) : (
+            <>
+              <div className="page-type1-list-wraper">
+                <div className="page-type1-list-title pc-view">
+                  <div>優惠券代號</div>
+                  <div>優惠券名稱</div>
+                  <div>開始時間</div>
+                  <div>截止時間</div>
+                  {/* <div>使用狀況</div> */}
+                  <div></div>
+                </div>
+                {data.map((v, i) => {
+                  return <UserCouponList key={v.id} data={v} index={i} pagination={pagination} />;
+                })}
+                {/* <div className="page-type1-list-content">
+                    <div className="list-content_coupon_num">1001</div>
+                    <div className="list-content_coupon_name">註冊禮券折$100</div>
+                    <div className="list-content_coupon_start">2022/05/29</div>
+                    <div className="list-content_coupon_end">2022/06/29</div>
+                    <div className="list-content_coupon_status">未使用</div>
+                    <div className="list-content_btn">
+                      <Link to="/coupon/1">詳細內容</Link>
+                    </div>
+                  </div> */}
               </div>
-            </div> */}
-          </div>
 
-          <FePagination pagination={pagination} setPage={setPage} />
+              <FePagination pagination={pagination} setPage={setPage} />
+            </>
+          )}
           <div className="couponlist-footer mx-auto">
             <div className="conpon-title-sp">單筆訂單限抵一張折價券。</div>
             <div className="conpon-title-sp">取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。</div>

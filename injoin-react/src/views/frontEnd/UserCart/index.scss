@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
-    // padding: $space-4;
+
     .cart-step {
       border: 1px solid transparent;
       background: $color-border-gray;
@@ -16,10 +16,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 10px;
-      padding: 20px;
+      margin: $space-2;
+      // padding: 0px;
       &.active {
         background: $color-font-gold;
+        color: $color-bg-block;
         font-family: $font-family-cn-main;
         font-weight: $font-weight-bold;
       }
@@ -32,7 +33,6 @@
       .step-right {
         font-family: $font-family-cn-main;
         font-weight: $font-weight-bold;
-        padding: 0;
         width: fit-content;
         font-size: var(--fs-en-page-type1-content);
       }
@@ -47,11 +47,11 @@
   }
 
   .shopping-cart-area {
-    width: 100%;
+    // width: 100%;
 
     .shopping-cart-bg {
       width: 100%;
-      // height: 500px;
+
       background-color: $color-bg-light;
       padding: $space-2;
 
@@ -130,7 +130,6 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
-    // padding: $space-4;
     .cart-step {
       border: 1px solid transparent;
       background: $color-border-gray;
@@ -138,10 +137,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 10px;
-      padding: 20px;
+      margin: $space-2;
+      padding: $space-2;
       &.active {
         background: $color-font-gold;
+        color: $color-bg-block;
         font-family: $font-family-cn-main;
         font-weight: $font-weight-bold;
       }
@@ -218,8 +218,8 @@
 
   .shopping-cart-check-bg {
     width: 100%;
-    background-color: light;
-    padding: 10px;
+    background-color: $color-bg-light;
+    padding: $space-3;
 
     .shopping-cart-info {
       font-size: var(--fs-cn-page-type1-menu);

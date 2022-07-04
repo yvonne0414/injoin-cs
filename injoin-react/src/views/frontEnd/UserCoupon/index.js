@@ -1,6 +1,6 @@
 // scss
 import './index.scss';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 // component
@@ -11,6 +11,7 @@ import UserCouponList from '../../../components/FeCoupon/UserCoupon';
 //images
 import couponListImg1 from '../../../assets/images/fe/couponList/coupon-list-img-1.png';
 import couponListImg2 from '../../../assets/images/fe/couponList/coupon-list-img-2.png';
+
 import axios from 'axios';
 
 const UserCoupon = () => {
@@ -236,8 +237,8 @@ const UserCoupon = () => {
           </div>
           <div className="page-type1-list-wraper">
             <div className="page-type1-list-title pc-view">
-              <div>優惠代號</div>
-              <div>優惠名稱</div>
+              <div>優惠券代號</div>
+              <div>優惠券名稱</div>
               <div>開始時間</div>
               <div>截止時間</div>
               {/* <div>使用狀況</div> */}

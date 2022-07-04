@@ -299,7 +299,7 @@ const ProductionDetail = () => {
 
   useEffect(() => {
     let getRelated = async () => {
-      let res = await axios.get(`${API_URL}/prd/related/${prdId}`, { params: { cateM: cateM } });
+      let res = await axios.get(`${API_URL}/prd/related/${prdId}`, { params: { cateM: [cateM] } });
       setRelatedList(res.data.data);
     };
     getRelated();

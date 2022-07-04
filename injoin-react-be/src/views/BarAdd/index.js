@@ -327,11 +327,11 @@ const PrdAdd = () => {
                           <Form.Item
                             {...field}
                             label="中分類"
-                            name={[field.name, 'bartdMaterCateS']}
+                            name={[field.name, 'materCateM']}
                             rules={[
                               {
                                 required: true,
-                                message: 'Missing bartdMaterCateS',
+                                message: 'Missing materCateM',
                               },
                             ]}
                           >

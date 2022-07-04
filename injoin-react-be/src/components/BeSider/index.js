@@ -25,9 +25,9 @@ const items = [
     </Link>
   ),
   getItem(
-    <Link to="/">優惠券管理</Link>,
+    <Link to="/coupon">優惠券管理</Link>,
     '2',
-    <Link to="/">
+    <Link to="/coupon">
       <RiCoupon2Line />
     </Link>
   ),

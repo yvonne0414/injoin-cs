@@ -7,6 +7,7 @@ import BeSider from './components/BeSider';
 import PrdList from './views/PrdList';
 import PrdAdd from './views/PrdAdd';
 import BarAdd from './views/BarAdd';
+import CouponAdd from './views/CouponAdd';
 
 const { Content } = Layout;
 
@@ -32,6 +33,7 @@ function App() {
               <Route path="/productionlist" exact element={<PrdList />} />
               <Route path="/production" exact element={<PrdAdd />} />
               <Route path="/bartending" exact element={<BarAdd />} />
+              <Route path="/coupon" exact element={<CouponAdd />} />
             </Routes>
           </Content>
         </Layout>

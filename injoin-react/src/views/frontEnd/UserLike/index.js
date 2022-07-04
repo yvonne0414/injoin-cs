@@ -13,48 +13,45 @@ import { API_URL } from '../../../utils/config';
 import { Pagination } from 'antd';
 import BartendingCard from '../../../components/BartendingCard';
 
-
 const UserLike = () => {
   // userid
   let userid = 1;
 
-
   // 我的最愛商品
   const [arr, setArr] = useState([]);
-  const [prdpagination, setPrdpagination] = useState([])
-  const [prdLikePage ,setPrdLikePage] = useState(1)
+  const [prdpagination, setPrdpagination] = useState([]);
+  const [prdLikePage, setPrdLikePage] = useState(1);
 
   useEffect(() => {
-      let getUserLike = async () => {
-      let response = await axios.get(`${API_URL}/userlike/${userid}`,{
-        params:{
-          page:prdLikePage
-        }
+    let getUserLike = async () => {
+      let response = await axios.get(`${API_URL}/userlike/${userid}`, {
+        params: {
+          page: prdLikePage,
+        },
       });
       setArr(response.data.data);
-      setPrdpagination(response.data.pagination)
+      setPrdpagination(response.data.pagination);
     };
     getUserLike();
   }, [prdLikePage]);
 
-// 我的最愛調酒
+  // 我的最愛調酒
   const [bartdarr, setbartdArr] = useState([]);
-  const [bartdpagination, setBartdpagination] = useState([])
-  const [bartdLikePage ,setBartdLikePage] = useState(1)
-  
+  const [bartdpagination, setBartdpagination] = useState([]);
+  const [bartdLikePage, setBartdLikePage] = useState(1);
+
   useEffect(() => {
     let getUserLike = async () => {
-    let response = await axios.get(`${API_URL}/userlike/bartd/${userid}`,{
-      params:{
-        page:bartdLikePage
-      }
-    });
-    setbartdArr(response.data.data);
-    setBartdpagination(response.data.pagination)
-  };
-  getUserLike();
-}, [bartdLikePage]);
-
+      let response = await axios.get(`${API_URL}/userlike/bartd/${userid}`, {
+        params: {
+          page: bartdLikePage,
+        },
+      });
+      setbartdArr(response.data.data);
+      setBartdpagination(response.data.pagination);
+    };
+    getUserLike();
+  }, [bartdLikePage]);
 
   // console.log('arr:', bartdarr);
 
@@ -100,7 +97,7 @@ const UserLike = () => {
           value: '/account/coupon',
         },
         {
-          name: '評價',
+          name: '我的評價',
           value: '/account/reputation',
         },
         {
@@ -177,15 +174,13 @@ const UserLike = () => {
         <div className="container">
           <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
             {apparr.map((v, i) => {
-              return <LikePrdCard key={v.id} data={v} />;
+              return <LikePrdCard key={v.id} data={v} isprdLike={true} />;
             })}
           </div>
         </div>
       </div>
 
       <FePagination pagination={prdpagination} setPage={setPrdLikePage} className="pc-view" />
-
-
 
       <div className="page-type1-list-area faverite-list mode-official">
         <div className="container">
@@ -198,14 +193,13 @@ const UserLike = () => {
         <div className="container">
           <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
             {bartdarr.map((v, i) => {
-              return <BartendingCard key={v.id} data={v}/>
+              return <BartendingCard key={v.id} data={v} isbartdLike={true} />;
             })}
           </div>
         </div>
       </div>
 
       <FePagination pagination={prdpagination} setPage={setPrdLikePage} className="pc-view" />
-      
     </>
   );
 };

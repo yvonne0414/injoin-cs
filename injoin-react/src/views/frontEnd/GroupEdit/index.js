@@ -45,9 +45,18 @@ const normFile = (e) => {
 const GroupEdit = () => {
   const navigate = useNavigate();
   // 檢查登入
-  const [isLogin, setisLogin] = useState(false);
+  const [isLogin, setisLogin] = useState('');
   const loginInfo = useContext(userState);
-  // console.log(loginInfo);
+
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
+  useEffect(() => {
+    if (loginInfo.member) {
+      setMemberInfo({ userId: loginInfo.member.id });
+    }
+  }, [loginInfo]);
 
   // header 資料
   const page1HeaderInfo = {
@@ -64,16 +73,40 @@ const GroupEdit = () => {
       pc: 'group-list-header.png',
     },
     pageSelector: {
-      isShow: false,
+      isShow: true,
       pageParent: {
-        href: '/',
-        name: '首頁',
+        href: '/account/user',
+        name: '會員中心',
       },
-      selected: 'groupList',
+      selected: '揪團管理',
       selectOptions: [
         {
-          name: '揪團專區',
-          value: 'groupList',
+          name: '會員資訊',
+          value: '/account/user',
+        },
+        {
+          name: '我的收藏',
+          value: '/account/like',
+        },
+        {
+          name: '會員等級',
+          value: '/account/vip',
+        },
+        {
+          name: '優惠券',
+          value: '/account/coupon',
+        },
+        {
+          name: '我的評價',
+          value: '/account/reputation',
+        },
+        {
+          name: '我的訂單',
+          value: '/account/order',
+        },
+        {
+          name: '揪團管理',
+          value: '/account/group',
         },
       ],
     },
@@ -91,10 +124,6 @@ const GroupEdit = () => {
     };
     getCities();
   }, []);
-
-  const [memberInfo, setMemberInfo] = useState({
-    userId: loginInfo.member.id,
-  });
 
   // 取得詳細資訊
   const { groupId } = useParams();
@@ -424,14 +453,7 @@ const GroupEdit = () => {
                           </div>
                           <div className="group-add-img">
                             <Form.Item name="groupImg" valuePropName="fileList" getValueFromEvent={normFile}>
-                              <Upload
-                                // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                                customRequest={dummyRequest}
-                                listType="picture-card"
-                                fileList={fileList}
-                                onPreview={handlePreview}
-                                onChange={handleChange}
-                              >
+                              <Upload customRequest={dummyRequest} listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
                                 {fileList.length >= 1 ? null : uploadButton}
                               </Upload>
                               <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>

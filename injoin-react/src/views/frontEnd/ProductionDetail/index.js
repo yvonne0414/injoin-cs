@@ -3,6 +3,7 @@ import { Breadcrumb, Carousel, Rate } from 'antd';
 import { InputNumber, Button } from 'antd';
 import { Collapse } from 'antd';
 import { Comment, List, Tooltip } from 'antd';
+import moment from 'moment';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -18,16 +19,16 @@ import Slider from 'react-slick';
 import BartendingCard from '../../../components/BartendingCard';
 
 import prddetailImg1 from '../../../assets/images/fe/productionDetail/prd-detail-img-1.png';
-import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
-import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
-import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail-img-4.png';
+// import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
+// import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
+// import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail-img-4.png';
 import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail-img-5.png';
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import { useParams } from 'react-router-dom';
-import { BE_IMAGE_URL } from '../../../utils/config';
+import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 
 const { Panel } = Collapse;
 
@@ -41,23 +42,19 @@ const contentStyle = {
   overflow: 'hidden',
 };
 
-const onChange = (value) => {
-  // console.log('changed', value);
-};
+// const specification = {
+//   origin: '美國',
+//   capacity: 750,
+//   brand: '金賓',
+// };
 
-const specification = {
-  origin: '美國',
-  capacity: 750,
-  brand: '金賓',
-};
+// const text2 = [
+//   `
+//   美國 金賓波本威士忌 Jim beam bourbon whisky，完全倚重人工生產方式，限制量產的金賓波本威士忌，陳釀期長達四年，酒質順滑香醇無比，擁有與眾不同的特殊風味，是美國波本威士忌相當具有代表性的一支酒款，其特色為採用蛇麻草培養液進行發酵，原料中大麥比例較高，酒精濃度僅40%，微波本威士忌中口感叫清柔的一族。
 
-const text2 = [
-  `
-  美國 金賓波本威士忌 Jim beam bourbon whisky，完全倚重人工生產方式，限制量產的金賓波本威士忌，陳釀期長達四年，酒質順滑香醇無比，擁有與眾不同的特殊風味，是美國波本威士忌相當具有代表性的一支酒款，其特色為採用蛇麻草培養液進行發酵，原料中大麥比例較高，酒精濃度僅40%，微波本威士忌中口感叫清柔的一族。
-
-  在美國及全世界銷售第一的金賓波本威士忌，是純正的美國肯塔基純正波本威士忌，始於1795年，立足於美國原產地，獨步全球，金賓波本一直以來是自信與權威人士的首選。
-`,
-];
+//   在美國及全世界銷售第一的金賓波本威士忌，是純正的美國肯塔基純正波本威士忌，始於1795年，立足於美國原產地，獨步全球，金賓波本一直以來是自信與權威人士的首選。
+// `,
+// ];
 
 const illustrate = {
   payment: {
@@ -90,37 +87,12 @@ const illustrate = {
   },
 };
 
-const data = [
-  {
-    actions: [<Rate allowHalf disabled defaultValue={2.5} />],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content: <p className="prd-detail-text">很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
-    // datetime: (
-    //   <Tooltip title={moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-    //     <span>{moment().subtract(1, 'days').fromNow()}</span>
-    //   </Tooltip>
-    // ),
-  },
-  {
-    actions: [<Rate allowHalf disabled defaultValue={5} />],
-    author: 'Han Solo',
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    content: <p className="prd-detail-text">很快就收到商品了，品質很好，與照片相符，包裝也很完整。既親切又有效率的優質賣家，值得推薦。</p>,
-    // datetime: (
-    //   <Tooltip title={moment().subtract(2, 'days').format('YYYY-MM-DD HH:mm:ss')}>
-    //     <span>{moment().subtract(2, 'days').fromNow()}</span>
-    //   </Tooltip>
-    // ),
-  },
-];
-
 const settings = {
   className: 'slider variable-width',
   dots: false,
   infinite: true,
   centerMode: false,
-  slidesToShow: 6,
+  slidesToShow: 5,
   slidesToScroll: 1,
   // variableWidth: true,
   arrows: true,
@@ -142,7 +114,7 @@ const settings2 = {
   dots: false,
   infinite: true,
   centerMode: false,
-  slidesToShow: 6,
+  slidesToShow: 5,
   slidesToScroll: 1,
   // variableWidth: true,
   arrows: true,
@@ -214,7 +186,65 @@ const ProductionDetail = () => {
   const [detail, setDetail] = useState([]);
   const [imgList, setImgList] = useState([]);
   const { prdId } = useParams();
+  const [num, setNum] = useState(1);
+
   let rate = 5;
+  // getuserid
+  let userid = 1 || 0;
+  // console.log(userid);
+
+  const handleAddCart = () => {
+    // console.log('prdId', prdId);
+    // console.log('userid', userid);
+    // console.log('num', num);
+
+    let obj = {};
+    obj = { prdid: Number(prdId), count: num };
+    // console.log('obj', obj);
+    // ==============判斷有沒有車
+    // 因為沒有車會錯誤所以要先判斷===========
+    if (localStorage.getItem('cart') == null) {
+      let arr = [];
+      localStorage.setItem('cart', JSON.stringify(arr));
+    }
+    let oldCart = JSON.parse(localStorage.getItem('cart'));
+    console.log('oldCart', oldCart);
+    if (oldCart.length === 0) {
+      var newArr = [...oldCart, obj];
+    } else {
+      for (let i = 0; i < oldCart.length; i++) {
+        console.log('oldCart[i].prdid', Number(oldCart[i].prdid));
+        console.log('obj.prdid', Number(obj.prdid));
+
+        if (Number(oldCart[i].prdid) == Number(obj.prdid)) {
+          oldCart[i].count = Number(num);
+          newArr = [...oldCart];
+          // console.log('newArr',newArr);
+          localStorage.setItem('cart', JSON.stringify(newArr));
+          alert(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`);
+          return;
+        } else {
+          var newArr = [...oldCart, obj];
+        }
+      }
+    }
+    // console.log('newArr',newArr);
+    localStorage.setItem('cart', JSON.stringify(newArr));
+    alert(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`);
+    // console.log('handleAddCart');
+  };
+  const handleAddHeart = () => {
+    // console.log('prdId' ,prdId);
+    // console.log('userid',userid);
+    axios.get(`${API_URL}/userlike/add/${userid}/${prdId}`);
+    // console.log('handleAddHeart');
+    alert(`使用者${userid} 已將 商品${prdId} 加最愛`);
+  };
+  const onChange = (e) => {
+    // console.log('changed', e);
+    setNum(e);
+  };
+
   useEffect(() => {
     // bartedcard
     // let getApple = async () => {
@@ -237,9 +267,44 @@ const ProductionDetail = () => {
     getDetail();
   }, []);
 
-  console.log('detail', detail);
-  console.log('prdId', prdId);
-  console.log('imgList', imgList);
+  // console.log('detail', detail);
+  // console.log('prdId', prdId);
+  // console.log('imgList', imgList);
+
+  // 取得商品評價
+  let [ratedList, setRatedList] = useState([]);
+  let getPrdRate = async () => {
+    let res = await axios.get(`${API_URL}/reputation/${prdId}`);
+    // console.log(res.data.data);
+    let rateData = res.data.data;
+    let toList = [];
+    for (let i = 0; i < rateData.length; i++) {
+      toList.push({
+        actions: [
+          <>
+            <Rate allowHalf disabled defaultValue={rateData[i].rating} />
+            <div className="d-flex comment-list-imgs justify-content-start">
+              {rateData[i].reviewImgList.map((img) => {
+                return (
+                  <div className="mx-1 comment-list-img">
+                    <img src={`${BE_IMAGE_URL}${img}`} className="img-fluid" alt="" />
+                  </div>
+                );
+              })}
+            </div>
+          </>,
+        ],
+        author: rateData[i].name,
+        avatar: `${BE_IMAGE_URL}${rateData[i].user_img}`,
+        content: <p className="prd-detail-text">{rateData[i].content}</p>,
+        imgList: rateData[i].reviewImgList,
+      });
+    }
+    setRatedList(toList);
+  };
+  useEffect(() => {
+    getPrdRate();
+  }, []);
 
   return (
     <>
@@ -297,23 +362,23 @@ const ProductionDetail = () => {
                 <span>NT.{detail.price}</span>
               </div>
               <div className="star-defaultValue mt-3">
-                <Rate disabled defaultValue={rate} />
+                <Rate value={rate} disabled />
               </div>
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>
                 <div className="prd-detail-input-number mt-3">
-                  <InputNumber min={1} max={99} defaultValue={0} onChange={onChange} size="middle" bordered={false} />
+                  <InputNumber defaultValue={0} onChange={onChange} size="middle" bordered={false} value={num} />
                 </div>
               </div>
               <div className="prd-detail-button-position mt-3">
                 <div className="prd-detail-button-1">
-                  <Button className="text-black">
+                  <Button className="text-black" onClick={handleAddCart}>
                     加入購物車&nbsp;&nbsp;
                     <FontAwesomeIcon icon={faCartShopping} fixedWidth className="text-black" />
                   </Button>
                 </div>
                 <div className="prd-detail-button-2">
-                  <Button className="text-black">
+                  <Button className="text-black" onClick={handleAddHeart}>
                     收藏商品 &nbsp;&nbsp;
                     <FontAwesomeIcon icon={faHeart} fixedWidth />
                   </Button>
@@ -373,36 +438,30 @@ const ProductionDetail = () => {
               <div className="prd-detail-title-type1 mt-3 ">
                 <p>購買評價</p>
               </div>
-              <div className="prd-detail-box-1">
+              <div className="prd-detail-rate-box-1">
                 <div>
-                  <p className="prd-detail-box-text1 mt-3">
+                  <p className="prd-detail-rate-box-text1 mt-3">
                     <span>{detail.rate}</span>
                   </p>
                 </div>
-                <div className="prd-detail-box-text2-bg">
+                <div className="prd-detail-rate-box-text2-bg">
                   <span></span>
-                  <div className="prd-detail-box-text2">評價</div>
+                  <div className="prd-detail-rate-box-text2">評價</div>
                 </div>
               </div>
-              <List
-                header={`${data.length} replies`}
-                itemLayout="horizontal"
-                dataSource={data}
-                renderItem={(item) => (
-                  <li className="comment-list-li">
-                    <Comment actions={item.actions} author={item.author} avatar={item.avatar} content={item.content} datetime={item.datetime} />
-                    <div className="d-flex comment-list-imgs">
-                      <div className="flex-grow-1 mx-1 comment-list-img">
-                        <img src={prddetailImg1} className="img-fluid object-cover" alt="" />
-                      </div>
-                      <div className="flex-grow-1 mx-1 comment-list-img">
-                        <img src={prddetailImg1} className="img-fluid object-cover" alt="" />
-                      </div>
-                    </div>
-                    <hr />
-                  </li>
-                )}
-              />
+              <div className="prd-commit-area">
+                <List
+                  header={`${ratedList.length} 則回覆`}
+                  itemLayout="horizontal"
+                  dataSource={ratedList}
+                  renderItem={(item) => (
+                    <li className="comment-list-li">
+                      <Comment actions={item.actions} author={item.author} avatar={item.avatar} content={item.content} />
+                      <hr />
+                    </li>
+                  )}
+                />
+              </div>
             </div>
           </div>
 

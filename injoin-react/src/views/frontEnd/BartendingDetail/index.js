@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { InputNumber, Button } from 'antd';
 import { Collapse } from 'antd';
-import { Comment, List, Tooltip } from 'antd';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';

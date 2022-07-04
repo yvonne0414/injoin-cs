@@ -91,9 +91,9 @@ const Production = () => {
   //   },
   // ];
 
-  // 換頁
   const [prded, setPrded] = useState([]);
   const [category, setCategory] = useState(1);
+  // 換頁
   let [page, setPage] = useState(1);
   let [pagination, setPagination] = useState({
     total: 1,

@@ -6,6 +6,7 @@ import './index.scss';
 
 import BePagination from '../../components/BePagination';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const PrdList = () => {
   const prdlist = {
@@ -87,7 +88,9 @@ const PrdList = () => {
     <div className="container">
       <h4 className="page-type1-area-title">商品列表</h4>
       <div className="d-flex justify-content-end">
-        <button className="btn injoin-btn-outline">新增商品</button>
+        <Link to="/production" className="btn injoin-btn-outline">
+          新增商品
+        </Link>
       </div>
 
       <div className="be-prdlist-area mt-3">

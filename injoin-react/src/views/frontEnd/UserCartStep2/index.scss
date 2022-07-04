@@ -5,30 +5,33 @@
 
   .cart-step-content {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     text-align: center;
     padding: $space-2;
-  }
 
-  .cart-step {
-    border: 1px solid transparent;
-    background: $color-border-gray;
-    border-radius: 5px;
-    margin: $space-1;
+    .cart-step {
+      border: 1px solid transparent;
+      background: $color-border-gray;
+      border-radius: 5px;
+      margin: $space-1;
 
-    .step-left {
-      padding: 0px;
-      width: 100%;
-      font-size: 20px;
+      .step-left {
+        padding: 0px;
+        width: 100%;
+        font-size: 20px;
+      }
+      .step-right {
+        padding: 0;
+        width: 100%;
+        font-weight: $font-weight-lighter;
+        font-family: $font-family-cn-content;
+        font-size: var(--fs-en-page-type1-content);
+        display: flex;
+        justify-content: center;
+      }
     }
-    .step-right {
-      padding: 0;
-      width: 100%;
-      font-weight: $font-weight-lighter;
-      font-family: $font-family-cn-content;
-      font-size: var(--fs-en-page-type1-content);
-      display: flex;
-      justify-content: center;
+    .cart-step2 {
+      background: $color-font-gold;
     }
   }
   .cart-prd-bg-area {
@@ -75,6 +78,14 @@
       padding: 20px;
     }
   }
+  .cart-pay-bg-area {
+    padding: 20px;
+    .cart-pay-content {
+      width: 100%;
+      background: $color-bg-light;
+      padding: 20px;
+    }
+  }
 }
 
 //電腦版
@@ -111,6 +122,9 @@
           display: flex;
           justify-content: start;
         }
+      }
+      .cart-step2 {
+        background: $color-font-gold;
       }
     }
 
@@ -165,6 +179,43 @@
           }
         }
       }
+    }
+    .cart-pay-bg-area {
+      padding: 0 50px;
+      margin-top: 50px;
+      .cart-pay-content {
+        width: 100%;
+        padding: 40px;
+        .ant-form {
+          width: 50%;
+          margin: 0 auto;
+          .ant-form-item {
+            width: 100%;
+            .ant-form-item-label {
+              width: 5rem;
+              justify-self: start;
+            }
+            .ant-form-item-control {
+              // width: 100%;
+              display: flex;
+              align-items: start;
+            }
+            .ant-select-arrow {
+              width: 1rem;
+              height: auto;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+    .check-box {
+      font-size: 20px;
+      padding: 10px;
+    }
+    .check-p {
+      font-size: 14px;
+      color: $color-font-gold;
     }
   }
 }

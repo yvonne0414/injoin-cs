@@ -32,16 +32,19 @@ const UserGroup = () => {
   // 檢查登入
   const [isLogin, setisLogin] = useState('');
   const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
 
   // let [userId, setUserId] = useState(8);
   const [memberInfo, setMemberInfo] = useState({
-    userId: loginInfo.islogin ? loginInfo.member.id : -1,
+    userId: loginInfo.member ? loginInfo.member.id : -1,
   });
 
-  // useEffect(() => {
-  //   console.log('about ', loginInfo);
-  //   setUserId(loginInfo.member.id);
-  // }, []);
+  useEffect(() => {
+    if (loginInfo.member) {
+      // console.log('useEffect-loginInfo', loginInfo);
+      setMemberInfo({ userId: loginInfo.member.id });
+    }
+  }, [loginInfo]);
 
   //header Info
   const page1HeaderInfo = {
@@ -94,7 +97,7 @@ const UserGroup = () => {
           value: '/account/coupon',
         },
         {
-          name: '留言',
+          name: '我的評價',
           value: '/account/reputation',
         },
         {

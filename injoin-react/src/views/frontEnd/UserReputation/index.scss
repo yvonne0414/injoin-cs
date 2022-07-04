@@ -1,76 +1,132 @@
 @import '../../../assets/scss/_variable.scss';
-      
 
 .reputation-list {
-  background-color:$color-bg-block;
-  width: 80%;
+  background-color: $color-bg-block;
   margin: 0 auto;
   .page-type1-area-title {
-    top:1rem;
+    margin-top: 1rem;
   }
-  
-  .reputation-list-title{
+  .reputation-list-wraper {
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      > div {
+        padding: 0.5rem 0;
+      }
+      .reputation-list-date {
+        width: 100%;
+        text-align: end;
+        font-weight: $font-weight-lighter;
+      }
+      .reputation-list-name {
+        width: 100%;
+        order: -1;
+        text-overflow: ellipsis;
+      }
+      .reputation-list-commit {
+        margin-top: -2.8rem;
+        width: 100%;
+        .ant-rate {
+          margin-bottom: 0.25rem;
+        }
+      }
+      .reputation-list-img {
+        overflow: hidden;
+        max-height: 8rem;
+        max-width: 100%;
+        display: flex;
+        > div {
+          margin-right: 0.5rem;
+          img {
+            max-height: 6rem;
+          }
+        }
+      }
+    }
+  }
+
+  .reputation-list-title {
     font-family: $font-family-cn-main;
     font-size: var(--fs-cn-page-type1-content);
-    padding: $space-2;
-    display: flex;
-    justify-content: end;
-    .reputation-title-date{
-      width: 17%;
+
+    // .reputation-list-date {
+    //   width: 17%;
+    // }
+    // .reputation-list-img {
+    //   width: 12%;
+    // }
+    // .reputation-list-name {
+    //   width: 25%;
+    // }
+    // .reputation-list-commit {
+    //   width: 38%;
+    // }
+  }
+  .reputation-list-content {
+    background-color: $color-bg-dark;
+    margin: 0 auto;
+    .reputation-list-name {
+      text-overflow: ellipsis;
     }
-    .reputation-title-img{
-      width: 12%;
+    .reputation-list-commit {
+      .ant-rate {
+        svg {
+          width: 1rem;
+        }
+      }
     }
-    .reputation-title-name{
-      width: 25%;
-      
-    }
-    .reputation-tittle-commit{
-      width: 38%;
+    .reputation-list-img {
+      flex-grow: 1;
+      img {
+        max-height: 6rem;
+      }
     }
   }
   .reputation-list-card {
-      // display: flex;
-      // flex-direction: column;
-      background-color: $color-bg-dark;
-      padding: 1rem;
+    // display: flex;
+    // flex-direction: column;
+    background-color: $color-bg-dark;
+    padding: 1rem;
+    width: 100%;
+    height: 10%;
+    margin-bottom: 0.5rem;
+    .reputation-list-content {
+      // margin: 0 auto;
       width: 100%;
-      height: 10%;
-      margin-bottom: 0.5rem;
-      .reputation-list-content {
-        // margin: 0 auto;
-        width: 100%;
+      display: flex;
+      flex-direction: column;
+      .reputation-list-time {
+        margin-bottom: 0.5rem;
+      }
+      .reputation-list-prd {
         display: flex;
-        flex-direction: column;
-        .reputation-list-time {
-          margin-bottom: 0.5rem;
-        }
-        .reputation-list-prd {
-          display: flex;
-          flex-wrap: nowrap;
+        flex-wrap: nowrap;
 
-          .reputation-list-img {
-            width: 30%;
-            margin-right: 0.5rem;
-            img {
-              object-fit: cover;
-              width: 100%;
-            }
-          }
-          .reputation-list-prdname {
+        .reputation-list-img {
+          width: 30%;
+          margin-right: 0.5rem;
+          img {
+            object-fit: cover;
             width: 100%;
-            padding-top: 0.5rem;
           }
         }
-        .reputation-list-footer {
-          margin-top: 0.5rem;
-        
-          .reputation-list-star {
-            order: 1;
-            width: 100%;
-            // color:$color-font-gold;
-          .ant-rate{
-            color:$color-font-gold;
+        .reputation-list-prdname {
+          width: 100%;
+          padding-top: 0.5rem;
+        }
+      }
+      .reputation-list-footer {
+        margin-top: 0.5rem;
+
+        .reputation-list-star {
+          order: 1;
+          width: 100%;
+          // color:$color-font-gold;
+          .ant-rate {
+            color: $color-font-gold;
             width: 140px;
           }
           .reputation-list-comment {
@@ -78,150 +134,212 @@
             width: 90%;
           }
         }
-      }  
-    } 
-  } 
+      }
+    }
+  }
 }
-  
-
 
 .reputation-orderlist {
-  background-color:$color-bg-block;
-  width: 80%;
+  background-color: $color-bg-block;
   margin: 0 auto;
   .page-type1-area-title {
-    top:1rem;
+    top: 1rem;
   }
-  .page-type1-list-wraper{
+  .page-type1-list-wraper {
     background-color: $color-bg-dark;
-    padding: .5rem;
-    .page-type1-list-content {
+    padding: 0.5rem;
+    > div {
       display: flex;
       align-items: center;
-      width: 100%;
-      justify-content: space-between;
-      flex-flow: nowrap;
+      flex-wrap: wrap;
       font-size: var(--fs-cn-page-list-content);
-  
-      .reputation-orderlist-button { 
-        button{
+      &:last-child {
+        margin-bottom: 0;
+      }
+      .reputation-orderlist-time,
+      .reputation-orderlist-button {
+        width: 50%;
+        order: 1;
+        margin-bottom: 0;
+      }
+      .reputation-orderlist-time {
+        font-weight: $font-weight-lighter;
+      }
+      .reputation-orderlist-button {
+        text-align: end;
+      }
+      .reputation-orderlist-ordernumber {
+        width: 100%;
+      }
+    }
+    .page-type1-list-content {
+      .reputation-orderlist-ordernumber {
+        color: $color-font-gold;
+      }
+      .reputation-orderlist-button {
+        button {
           background-color: black;
-          border:black;
-          padding: .25rem .5rem;
-          border-radius: .25rem;
-          &:hover{
+          border: black;
+          padding: 0.25rem 0.5rem;
+          border: 1px transparent solid;
+          &:hover {
             color: $color-font-gold;
-
+            border: 1px white solid;
           }
-        
         }
       }
     }
   }
 }
-
-
-.ant-modal-body{
-  overflow: overlay;
-  height: 40vh;
-}
-.ant-modal-title {
-  font-family: $font-family-cn-main;
+.reputation-orderlist-ratelist {
+  .ant-modal-body {
+    overflow: overlay;
+    max-height: 60vh;
+  }
+  .ant-modal-title {
+    font-family: $font-family-cn-main;
+  }
 }
 .reputation-pop {
-
   width: 100%;
-  border-bottom: solid .1rem #565656;
-  .reputation-pop-orderlist{
+  .reputation-pop-orderlist {
     margin-top: 1rem;
   }
-  .reputation-pop-content{
-   flex-wrap: wrap;
-   display: flex;
-   flex-direction: row;
-   margin-top: 1rem;
-    .reputation-pop-img{
-      
+  .reputation-pop-content {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    padding: 1.5rem 0;
+    border-bottom: solid 0.1rem #565656;
+
+    .reputation-pop-img {
       width: 30%;
       height: 20%;
-      margin-right:1rem ;
-      img{
+      margin-right: 1rem;
+      img {
         object-fit: cover;
-        width:100%;
+        width: 100%;
       }
     }
-    .reputation-pop-prd{
+    .reputation-pop-prd {
       font-family: $font-family-cn-main;
-      .reputation-pop-tittle{
+      .reputation-pop-tittle {
         color: $color-font;
-
-      }        font-size: var(--fs-cn-page-type1-content-sp);
-      .reputation-pop-star{
-        .ant-rate{
+      }
+      font-size: var(--fs-cn-page-type1-content-sp);
+      .reputation-pop-star {
+        .ant-rate {
           color: $color-font-gold;
           font-size: 18px;
-          margin-left: .5rem;
         }
       }
-
-      
     }
-    .reputation-pop-commit{
+    .reputation-pop-commit {
       font-family: $font-family-cn-main;
-      margin-top: .5rem;
-      margin-bottom: 1rem;
-      
-      .reputation-pop-commit-context{
+      margin-top: 0.5rem;
+      width: 100%;
+      span {
+        font-size: 1.25rem;
+      }
+
+      .reputation-pop-commit-context {
         width: 100%;
-        height:100%;
         background-color: $color-font-sp;
         color: $color-font;
-        padding: 1rem;
-        margin-top: .25rem;
-        resize: vertical; 
+        padding: 0.5rem;
+        resize: vertical;
+        min-height: 5rem;
       }
     }
-   }
+  }
 }
 
 @media screen and (min-width: 768px) {
   .reputation-list {
+    width: 80%;
+    .reputation-list-wraper {
+      > div {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
+        > div {
+          padding: 0 0.5rem;
+        }
+        .reputation-list-date {
+          width: 10%;
+          text-align: start;
+        }
+        .reputation-list-name {
+          order: 0;
+          width: 20%;
+          text-overflow: ellipsis;
+        }
+        .reputation-list-commit {
+          margin-top: unset;
+          width: 40%;
+        }
+        .reputation-list-img {
+          flex-grow: 1;
+        }
+      }
+    }
+    .reputation-list-content {
+      margin: 0 auto;
+      height: 6.5rem;
+
+      .reputation-list-name {
+        text-overflow: ellipsis;
+      }
+      .reputation-list-commit {
+        margin-top: unset;
+        .ant-rate {
+          svg {
+            width: 1rem;
+          }
+        }
+      }
+      .reputation-list-img {
+        flex-grow: 1;
+        img {
+          max-height: 6rem;
+        }
+      }
+    }
     .reputation-list-card {
       // display: flex;
       // flex-direction: row;
       // justify-content: space-between;
       // flex-wrap: wrap;
-     
-    
+
       .reputation-list-content {
         flex-direction: row;
         justify-content: space-evenly;
-       
+
         display: flex;
         align-items: center;
-     
 
         // justify-content: center;
-        .reputation-list-time{ 
+        .reputation-list-time {
           width: 10%;
         }
 
         .reputation-list-prd {
           width: 30%;
           align-items: center;
-        
+
           .reputation-list-img {
             width: 30%;
             margin-right: 5rem;
-          
+
             img {
               object-fit: cover;
               width: 100%;
             }
-          .reputation-list-prdname{
-           right: 5rem;
-     
-          }
+            .reputation-list-prdname {
+              right: 5rem;
+            }
           }
         }
 
@@ -245,20 +363,35 @@
     }
   }
   .reputation-orderlist {
-    .page-type1-list-wraper{
+    width: 80%;
+    .page-type1-list-wraper {
       background-color: $color-bg-dark;
       padding: 2rem;
-    .page-type1-list-content {
-      border: unset;
       > div {
-        margin-bottom: 0;
-      }
-      .reputation-orderlist-button { 
-        button{
-          padding: .25rem 1rem;
-          border-radius: .5rem;
-         }
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
+        .reputation-orderlist-time {
+          width: 25% !important;
+          order: 0;
+          text-align: start;
+          margin: 0;
         }
+        .reputation-orderlist-ordernumber {
+          width: 60% !important;
+          margin: 0;
+          text-align: start;
+        }
+        .reputation-orderlist-button {
+          width: 15% !important;
+          margin: 0;
+          order: 0;
+          button {
+            padding: 0.25rem 1rem;
+          }
+        }
+      }
+      .page-type1-list-content {
+        border: unset;
       }
     }
   }

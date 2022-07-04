@@ -138,6 +138,7 @@ const Bartending = () => {
   //   });
   // }, []);
   const [baartdL, setBatedL] = useState(0);
+  console.log(barted);
 
   //console.log('a', barted);
   return (

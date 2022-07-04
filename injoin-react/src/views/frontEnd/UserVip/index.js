@@ -51,7 +51,7 @@ const page1HeaderInfo = {
         value: '/account/coupon',
       },
       {
-        name: '評價',
+        name: '我的評價',
         value: '/account/reputation',
       },
       {

@@ -1,15 +1,18 @@
 // scss
 import './index.scss';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import FePagination from '../../../components/FePagination1';
+import FePagination from '../../../components/FePagination';
 import UserCouponList from '../../../components/FeCoupon/UserCoupon';
 
 //images
 import couponListImg1 from '../../../assets/images/fe/couponList/coupon-list-img-1.png';
 import couponListImg2 from '../../../assets/images/fe/couponList/coupon-list-img-2.png';
+
+import axios from 'axios';
 
 const UserCoupon = () => {
   // header 資料
@@ -63,7 +66,7 @@ const UserCoupon = () => {
           value: '/account/coupon',
         },
         {
-          name: '評價',
+          name: '我的評價',
           value: '/account/reputation',
         },
         {
@@ -80,36 +83,62 @@ const UserCoupon = () => {
 
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
-  const usercouponArr = [
-    {
-      id: 1,
-      coupomNum: '1001',
-      couponName: '註冊禮券折$100',
-      couponStart: '2022/05/29',
-      couponEnd: '2022/06/29',
-      couponStatus: '未使用',
-      couponBtn: '詳細內容',
-    },
-    {
-      id: 2,
-      coupomNum: '1002',
-      couponName: '註冊禮券折$100',
-      couponStart: '2022/05/29',
-      couponEnd: '2022/06/29',
-      couponStatus: '未使用',
-      couponBtn: '詳細內容',
-    },
-    {
-      id: 3,
-      coupomNum: '1003',
-      couponName: '註冊禮券折$100',
-      couponStart: '2022/05/29',
-      timeof: '~',
-      couponEnd: '2022/06/29',
-      couponStatus: '已使用',
-      couponBtn: '詳細內容',
-    },
-  ];
+  // const usercouponArr = [
+  //   {
+  //     id: 1,
+  //     coupomNum: '1001',
+  //     couponName: '註冊禮券折$100',
+  //     couponStart: '2022/05/29',
+  //     couponEnd: '2022/06/29',
+  //     couponStatus: '未使用',
+  //     couponBtn: '詳細內容',
+  //   },
+  // {
+  //   id: 2,
+  //   coupomNum: '1002',
+  //   couponName: '註冊禮券折$100',
+  //   couponStart: '2022/05/29',
+  //   couponEnd: '2022/06/29',
+  //   couponStatus: '未使用',
+  //   couponBtn: '詳細內容',
+  // },
+  // {
+  //   id: 3,
+  //   coupomNum: '1003',
+  //   couponName: '註冊禮券折$100',
+  //   couponStart: '2022/05/29',
+  //   timeof: '~',
+  //   couponEnd: '2022/06/29',
+  //   couponStatus: '已使用',
+  //   couponBtn: '詳細內容',
+  // },
+  // ];
+
+  let [data, setData] = useState([]);
+  let [page, setPage] = useState(1);
+  let [pagination, setPagination] = useState({
+    total: 1,
+    page: 1,
+    lastPage: 1,
+  });
+
+  let getCoupon = async () => {
+    let response = await axios.get('http://localhost:3001/api/coupon/couponList', {
+      params: {
+        // category: category,
+        page: page,
+      },
+    });
+    // console.log('res', response.data);
+    // setPrded(response.data.data);
+    setPagination(response.data.pagination);
+    setData(response.data.data);
+    // console.log(response.data.pagination);
+  };
+
+  useEffect(() => {
+    getCoupon();
+  }, [page]);
 
   return (
     <>
@@ -208,15 +237,15 @@ const UserCoupon = () => {
           </div>
           <div className="page-type1-list-wraper">
             <div className="page-type1-list-title pc-view">
-              <div>優惠代號</div>
-              <div>優惠名稱</div>
+              <div>優惠券代號</div>
+              <div>優惠券名稱</div>
               <div>開始時間</div>
               <div>截止時間</div>
-              <div>使用狀況</div>
+              {/* <div>使用狀況</div> */}
               <div></div>
             </div>
-            {usercouponArr.map((v, i) => {
-              return <UserCouponList key={v.id} data={v} />;
+            {data.map((v, i) => {
+              return <UserCouponList key={v.id} data={v} index={i} pagination={pagination} />;
             })}
             {/* <div className="page-type1-list-content">
               <div className="list-content_coupon_num">1001</div>
@@ -230,12 +259,10 @@ const UserCoupon = () => {
             </div> */}
           </div>
 
-          <FePagination />
-          <div className="couponlist-footer w-100">
-            <span>
-              單筆訂單限抵一張折價券。
-              <p>取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。</p>
-            </span>
+          <FePagination pagination={pagination} setPage={setPage} />
+          <div className="couponlist-footer mx-auto">
+            <div className="conpon-title-sp">單筆訂單限抵一張折價券。</div>
+            <div className="conpon-title-sp">取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。</div>
           </div>
         </div>
       </div>

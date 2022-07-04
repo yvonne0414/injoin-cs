@@ -9,8 +9,9 @@ import { BE_IMAGE_URL } from '../../utils/config';
 
 
 function BartendingCard(props) {
-  let { data } = props;
-  console.log(data);
+  let { data, isbartdLike } = props;
+  let isLike = isbartdLike || false;
+  // console.log(data);
   data = data || {
     id: '1',
     name: '粉紅松鼠',
@@ -42,7 +43,7 @@ function BartendingCard(props) {
             <div className="Bartending-card-subtitle card-footer">{data.material} </div>
           </div>
           <div className="heart-position">
-            <Heart />
+            <Heart data={data} heartState={2} isLike={isLike}/>
           </div>
         </div>
       </div>

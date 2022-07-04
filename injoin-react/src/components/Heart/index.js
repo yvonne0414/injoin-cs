@@ -30,14 +30,14 @@ function Heart({ isLike, data, heartState }) {
           fill="#ac2c32"
           onClick={async () => {
             setFav(false);
-            // console.log(`${API_URL}/userlike/del/${userid}/${data.id}`);
-            // console.log(data.id)
-            if(heartState === 1){
-
+            if (heartState === 1) {
               let response = await axios.get(`${API_URL}/userlike/del/${userid}/${data.id}`);
-              // console.log(response.data);
-              // window.alert(`userid${userid}, data.id${data.id}, ${response.data.message}`);
-              window.alert(`${response.data.message}`);
+              window.alert(`刪除商品: userid${userid}, data.id${data.id}, ${response.data.message}`);
+            }
+            if (heartState === 2) {
+              // console.log(`${API_URL}/userlike/bartd/${userid}/del?bartdid=${data.id}`);
+              let response = await axios.get(`${API_URL}/userlike/bartd/${userid}/del?bartdid=${data.id}`);
+              window.alert(`刪除調酒: userid${userid}, data.id${data.id}, ${response.data.message}`);
             }
           }}
         />
@@ -46,11 +46,15 @@ function Heart({ isLike, data, heartState }) {
           className="prd-card-icon-Heart"
           onClick={async () => {
             setFav(true);
-            // console.log(data.id)
-            let response = await axios.get(`${API_URL}/userlike/add/${userid}/${data.id}`);
-            // console.log(response.data);
-            // window.alert(`userid${userid}, data.id${data.id}, ${response.data.message}`);
-            window.alert(`${response.data.message}`);
+            if (heartState === 1) {
+              let response = await axios.get(`${API_URL}/userlike/add/${userid}/${data.id}`);
+              window.alert(`加入商品: userid${userid}, data.id${data.id}, ${response.data.message}`);
+            }
+            if (heartState === 2) {
+              // console.log(`${API_URL}/userlike/bartd/${userid}/add?bartdid=${data.id}`);
+              let response = await axios.get(`${API_URL}/userlike/bartd/${userid}/add?bartdid=${data.id}`);
+              window.alert(`加入調酒: userid${userid}, data.id${data.id}, ${response.data.message}`);
+            }
           }}
         />
       )}

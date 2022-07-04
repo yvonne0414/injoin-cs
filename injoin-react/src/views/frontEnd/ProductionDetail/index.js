@@ -29,6 +29,7 @@ import { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
 import { useParams } from 'react-router-dom';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
+import EmptyImage from '../../../components/EmptyImage';
 
 const { Panel } = Collapse;
 
@@ -41,20 +42,6 @@ const contentStyle = {
   // background: 'transparent',
   overflow: 'hidden',
 };
-
-// const specification = {
-//   origin: '美國',
-//   capacity: 750,
-//   brand: '金賓',
-// };
-
-// const text2 = [
-//   `
-//   美國 金賓波本威士忌 Jim beam bourbon whisky，完全倚重人工生產方式，限制量產的金賓波本威士忌，陳釀期長達四年，酒質順滑香醇無比，擁有與眾不同的特殊風味，是美國波本威士忌相當具有代表性的一支酒款，其特色為採用蛇麻草培養液進行發酵，原料中大麥比例較高，酒精濃度僅40%，微波本威士忌中口感叫清柔的一族。
-
-//   在美國及全世界銷售第一的金賓波本威士忌，是純正的美國肯塔基純正波本威士忌，始於1795年，立足於美國原產地，獨步全球，金賓波本一直以來是自信與權威人士的首選。
-// `,
-// ];
 
 const illustrate = {
   payment: {
@@ -90,9 +77,9 @@ const illustrate = {
 const settings = {
   className: 'slider variable-width',
   dots: false,
-  infinite: true,
+  infinite: false,
   centerMode: false,
-  slidesToShow: 5,
+  slidesToShow: 4,
   slidesToScroll: 1,
   // variableWidth: true,
   arrows: true,
@@ -112,7 +99,7 @@ const settings = {
 const settings2 = {
   className: 'slider variable-width',
   dots: false,
-  infinite: true,
+  infinite: false,
   centerMode: false,
   slidesToShow: 5,
   slidesToScroll: 1,
@@ -244,7 +231,7 @@ const ProductionDetail = () => {
     // console.log('changed', e);
     setNum(e);
   };
-
+  let [cateM, setCateM] = useState(0);
   useEffect(() => {
     // bartedcard
     // let getApple = async () => {
@@ -262,6 +249,7 @@ const ProductionDetail = () => {
       setDetail(response.data.detailData[0]);
       setImgList(response.data.detailImgList);
       rate = response.data.detailData[0].rate;
+      setCateM(response.data.detailData[0].cate_m);
       // console.log('Detail', response.data.detailData);
     };
     getDetail();
@@ -305,6 +293,17 @@ const ProductionDetail = () => {
   useEffect(() => {
     getPrdRate();
   }, []);
+
+  // 取得相關商品
+  let [relatedList, setRelatedList] = useState([]);
+
+  useEffect(() => {
+    let getRelated = async () => {
+      let res = await axios.get(`${API_URL}/prd/related/${prdId}`, { params: { cateM: cateM } });
+      setRelatedList(res.data.data);
+    };
+    getRelated();
+  }, [cateM]);
 
   return (
     <>
@@ -472,11 +471,15 @@ const ProductionDetail = () => {
                 <p>同系列商品</p>
               </div>
               <div className="px-md-3">
-                <Slider className="prd-deatil-card" {...settings}>
-                  {cardArr.map((v, i) => {
-                    return <PrdCard key={v.id} data={v} />;
-                  })}
-                </Slider>
+                {relatedList.length > 0 ? (
+                  <Slider className="prd-deatil-card" {...settings}>
+                    {relatedList.map((v, i) => {
+                      return <PrdCard key={v.id} data={v} />;
+                    })}
+                  </Slider>
+                ) : (
+                  <EmptyImage discText="無相關商品" />
+                )}
               </div>
             </div>
           </div>

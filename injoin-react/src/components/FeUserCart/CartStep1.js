@@ -11,11 +11,11 @@ function CartStep1(props) {
   const { data, setCount, removeItem } = props;
   // console.log('data',productsInOrder);
 
-  // const plusOne = (id) => {
-  //   // console.log(id);
-  //   // console.log(data.cartprdCount);
-  //   setCount(data.cartprdCount + 1);
-  // };
+  const plusOne = (id) => {
+    // console.log(id);
+    // console.log(data.cartprdCount);
+    setCount(data.cartprdCount + 1);
+  };
 
   const minusOne = (id) => {
     if (data.cartprdCount === 1) {
@@ -23,16 +23,6 @@ function CartStep1(props) {
     }
     setCount(data.cartprdCount - 1);
   };
-
-  // useEffect(() => {
-  //   axios.get('http://localhost:3000/cart').then((res) => {
-  //     const newCartPrds = res.data.map((v) => {
-  //       return { ...v, count: 1 };
-  //     });
-
-  //     setCartPrds(newCartPrds);
-  //   });
-  // }, []);
 
   //假資料
   // const cartstep1arr = [

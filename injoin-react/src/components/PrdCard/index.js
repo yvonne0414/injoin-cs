@@ -57,8 +57,8 @@ function PrdCard(props) {
       var newArr = [...oldCart, obj];
     } else {
       for (let i = 0; i < oldCart.length; i++) {
-        console.log('oldCart[i].prdid', oldCart[i].prdid);
-        console.log('obj.prdid', obj.prdid);
+        // console.log('oldCart[i].prdid', oldCart[i].prdid);
+        // console.log('obj.prdid', obj.prdid);
         if (oldCart[i].prdid == obj.prdid) {
           return
         }else{

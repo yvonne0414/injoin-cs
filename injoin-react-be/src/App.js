@@ -5,7 +5,7 @@ import { BackTop, Layout } from 'antd';
 import BeHeader from './components/BeHeader';
 import BeSider from './components/BeSider';
 import PrdList from './views/PrdList';
-
+import PrdAdd from './views/PrdAdd';
 const { Content } = Layout;
 
 function App() {
@@ -27,7 +27,8 @@ function App() {
             }}
           >
             <Routes>
-              <Route path="/production" element={<PrdList />} />
+              <Route path="/productionlist" exact element={<PrdList />} />
+              <Route path="/production" exact element={<PrdAdd />} />
             </Routes>
           </Content>
         </Layout>

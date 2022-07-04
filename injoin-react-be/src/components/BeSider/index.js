@@ -4,6 +4,7 @@ import { RiCoupon2Line } from 'react-icons/ri';
 import { FaGlassCheers } from 'react-icons/fa';
 import { Layout, Menu } from 'antd';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 const { Sider } = Layout;
 
 function getItem(label, key, icon, children) {
@@ -17,11 +18,11 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem(
-    <a href="/production">商品管理</a>,
+    <Link to="/productionlist">商品管理</Link>,
     '1',
-    <a href="/production">
+    <Link to="/productionlist">
       <ShopOutlined />
-    </a>
+    </Link>
   ),
   getItem(
     <a href="/">優惠券管理</a>,

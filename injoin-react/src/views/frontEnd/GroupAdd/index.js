@@ -1,6 +1,7 @@
 // scss
 import './_index.scss';
 
+import moment from 'moment';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 
@@ -41,6 +42,8 @@ const normFile = (e) => {
 
   return e?.fileList;
 };
+
+const { RangePicker } = DatePicker;
 
 const GroupAdd = () => {
   const navigate = useNavigate();
@@ -163,12 +166,28 @@ const GroupAdd = () => {
   const [form] = Form.useForm();
   const { Option } = Select;
   const { TextArea } = Input;
+
+  const range = (start, end) => {
+    const result = [];
+
+    for (let i = start; i < end; i++) {
+      result.push(i);
+    }
+
+    return result;
+  };
+
+  const disabledDate = (current) => {
+    // Can not select days before today and today
+    return current && current < moment();
+  };
+
   const onFinish = async (fieldsValue) => {
     setLoading(true);
     const groupData = {
       ...fieldsValue,
-      groupStartDate: fieldsValue['groupStartDate'].format('YYYY-MM-DD HH:mm'),
-      groupEndDate: fieldsValue['groupEndDate'].format('YYYY-MM-DD HH:mm'),
+      groupStartDate: fieldsValue['groupDate'][0].format('YYYY-MM-DD HH:mm'),
+      groupEndDate: fieldsValue['groupDate'][1].format('YYYY-MM-DD HH:mm'),
       groupDeadLine: fieldsValue['groupDeadLine'].format('YYYY-MM-DD HH:mm'),
       groupImg: fieldsValue['groupImg'][0]['originFileObj'],
     };
@@ -193,7 +212,7 @@ const GroupAdd = () => {
       formData.append('auditStatus', 1);
       let response = await axios.post(`${API_URL}/group/post`, formData);
       console.log(response.data);
-      if (response.data.result == 'OK') {
+      if (response.data.result === 'OK') {
         setLoading(false);
         success();
         navigate(-1);
@@ -210,7 +229,7 @@ const GroupAdd = () => {
   const dateStartLabel = (
     <div className="group-add-info-title">
       <BsCalendar2Date />
-      <span>活動開始時間</span>
+      <span>活動時間</span>
     </div>
   );
   const dateEndLabel = (
@@ -291,19 +310,27 @@ const GroupAdd = () => {
                           {/* 活動開始日期 */}
                           <Form.Item
                             label={dateStartLabel}
-                            name="groupStartDate"
+                            name="groupDate"
                             rules={[
                               {
-                                type: 'object',
+                                type: 'array',
                                 required: true,
                                 message: '請選擇活動日期',
                               },
                             ]}
                           >
-                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                            {/* <DatePicker showTime format="YYYY-MM-DD HH:mm" /> */}
+                            <RangePicker
+                              disabledDate={disabledDate}
+                              showTime={{
+                                hideDisabledOptions: true,
+                                defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('11:59:59', 'HH:mm:ss')],
+                              }}
+                              format="YYYY-MM-DD HH:mm"
+                            />
                           </Form.Item>
                           {/* 活動結束日期 */}
-                          <Form.Item
+                          {/* <Form.Item
                             label={dateEndLabel}
                             name="groupEndDate"
                             rules={[
@@ -315,7 +342,7 @@ const GroupAdd = () => {
                             ]}
                           >
                             <DatePicker showTime format="YYYY-MM-DD HH:mm" />
-                          </Form.Item>
+                          </Form.Item> */}
                           {/* 活動地點 */}
                           <Form.Item label={addressLabel}>
                             <Input.Group compact>
@@ -398,7 +425,7 @@ const GroupAdd = () => {
                               },
                             ]}
                           >
-                            <DatePicker showTime format="YYYY-MM-DD HH:mm" />
+                            <DatePicker disabledDate={disabledDate} showTime format="YYYY-MM-DD HH:mm" />
                           </Form.Item>
                           {/* 活動介紹 */}
                           <Form.Item

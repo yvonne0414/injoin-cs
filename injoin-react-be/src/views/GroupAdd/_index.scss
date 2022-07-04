@@ -1,0 +1,74 @@
+@import '../../assets/scss/_variable.scss';
+
+.group-add-info-bg-square {
+  width: 100%;
+  height: 100%;
+  background-color: $color-bg-block;
+  position: absolute;
+}
+.group-add-info {
+  font-size: var(--fs-cn-page-type1-content);
+  width: 100%;
+  .group-add-info-title {
+    font-family: $font-family-cn-main;
+    display: flex;
+    align-items: center;
+    span {
+      margin-left: $space-2;
+    }
+  }
+}
+.group-add-img {
+  flex-grow: 1;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .ant-upload-list-picture-card-container,
+  .ant-upload.ant-upload-select-picture-card {
+    width: 100%;
+    height: unset;
+    > * {
+      width: 100%;
+    }
+  }
+}
+.back-page {
+  display: flex !important;
+  align-items: center;
+  width: fit-content;
+  svg {
+    width: 2rem;
+  }
+  svg,
+  span {
+    fill: $color-font-mark-light;
+    color: $color-font-mark-light;
+    font-size: calc(var(--font-base) * 1.25);
+  }
+  &:hover {
+    svg,
+    span {
+      fill: $color-font-gold;
+      color: $color-font-gold;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .group-add-info {
+    width: 40%;
+    .group-add-info-content {
+      margin-left: calc(var(--font-base) * 2);
+      p {
+        width: 80%;
+      }
+    }
+  }
+  .group-add-img {
+    width: unset;
+    max-width: 30rem;
+  }
+}

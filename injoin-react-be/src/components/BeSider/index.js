@@ -46,9 +46,9 @@ const items = [
     </Link>
   ),
   getItem(
-    <Link to="/">揪團管理</Link>,
+    <Link to="/group">揪團管理</Link>,
     '5',
-    <Link to="/">
+    <Link to="/group">
       <FaGlassCheers />
     </Link>
   ),

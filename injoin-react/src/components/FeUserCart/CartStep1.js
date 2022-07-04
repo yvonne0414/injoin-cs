@@ -24,16 +24,6 @@ function CartStep1(props) {
     setCount(data.cartprdCount - 1);
   };
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:3000/cart').then((res) => {
-  //     const newCartPrds = res.data.map((v) => {
-  //       return { ...v, count: 1 };
-  //     });
-
-  //     setCartPrds(newCartPrds);
-  //   });
-  // }, []);
-
   //假資料
   // const cartstep1arr = [
   //   {

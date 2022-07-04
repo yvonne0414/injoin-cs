@@ -25,32 +25,32 @@ const items = [
     </Link>
   ),
   getItem(
-    <a href="/">優惠券管理</a>,
+    <Link to="/">優惠券管理</Link>,
     '2',
-    <a href="/">
+    <Link to="/">
       <RiCoupon2Line />
-    </a>
+    </Link>
   ),
   getItem(
-    <a href="/">訂單管理</a>,
+    <Link to="/">訂單管理</Link>,
     '3',
-    <a href="/">
+    <Link to="/">
       <ProfileOutlined />
-    </a>
+    </Link>
   ),
   getItem(
-    <a href="/">酒譜管理</a>,
+    <Link to="/bartending">酒譜管理</Link>,
     '4',
-    <a href="/">
+    <Link to="/bartending">
       <IoWineSharp />
-    </a>
+    </Link>
   ),
   getItem(
-    <a href="/">揪團管理</a>,
+    <Link to="/">揪團管理</Link>,
     '5',
-    <a href="/">
+    <Link to="/">
       <FaGlassCheers />
-    </a>
+    </Link>
   ),
 ];
 

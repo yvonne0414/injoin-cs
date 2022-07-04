@@ -290,7 +290,6 @@ const UserCart = () => {
                         </span>
                       </div>
                       {/* 商品迴圈 */}
-
                       {productsInOrder.map((item, i) => {
                         return (
                           <CartStep1
@@ -316,7 +315,6 @@ const UserCart = () => {
                               });
                               // 3. 設定回原本的狀態中
                               setProductsInOrder(newProductsInOrder);
-
                             }}
                           />
                         );

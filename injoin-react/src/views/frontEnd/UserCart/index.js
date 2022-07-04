@@ -90,6 +90,8 @@ const UserCart = () => {
     ],
   };
 
+  // chennnn
+
   //購物車商品陣列
 
   const cartprdArr1 = [
@@ -97,9 +99,8 @@ const UserCart = () => {
       id: 1,
       cartprdImg: 'faverite-product-img-1.png',
       cartprdNum: 'AB123',
-      cartprdName: '金彬黑波本威士忌',
-      cartprdPrice: '680',
-      cartprdCount: '2',
+      cartprdName: '金彬黑fdsf波本威士忌',
+      cartprdPrice: 111,
       cartprdTotal: '680',
     },
     {
@@ -107,8 +108,7 @@ const UserCart = () => {
       cartprdImg: 'faverite-product-img-1.png',
       cartprdNum: 'AB456',
       cartprdName: '金彬黑波本威士忌',
-      cartprdPrice: '680',
-      cartprdCount: '3',
+      cartprdPrice: 222,
       cartprdTotal: '680',
     },
     {
@@ -116,8 +116,7 @@ const UserCart = () => {
       cartprdImg: 'faverite-product-img-1.png',
       cartprdNum: 'AB789',
       cartprdName: '金彬黑波本威士忌',
-      cartprdPrice: '680',
-      cartprdCount: '2',
+      cartprdPrice: 333,
       cartprdTotal: '680',
     },
     {
@@ -125,8 +124,7 @@ const UserCart = () => {
       cartprdImg: 'faverite-product-img-1.png',
       cartprdNum: 'AB666',
       cartprdName: '金彬黑波本威士忌',
-      cartprdPrice: '680',
-      cartprdCount: '1',
+      cartprdPrice: 444,
       cartprdTotal: '680',
     },
     {
@@ -134,24 +132,74 @@ const UserCart = () => {
       cartprdImg: 'faverite-product-img-1.png',
       cartprdNum: 'AB777',
       cartprdName: '金彬黑波本威士忌',
-      cartprdPrice: '680',
-      cartprdCount: '1',
+      cartprdPrice: 555,
       cartprdTotal: '680',
     },
   ];
+
   const [cartprdArr, setCartprdArr] = useState(cartprdArr1);
+
+  var cartArr = [];
+  const createCart = async () => {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    // console.log('cart', cart);
+    for (let i = 0; i < cart.length; i++) {
+      // console.log('carti', cart[i].prdid);
+      let res = await axios.get(`${API_URL}/cart/getPrdDetail?prdId=${cart[i].prdid}`);
+      // console.log(`${API_URL}/cart/getPrdDetail?prdId=${cart[i].prdid}`);
+      // console.log(res.data);
+      let newObj = {};
+
+      newObj = { ...res.data[0], cartprdCount: cart[i].count };
+      // console.log('newObj', newObj);
+      cartArr.push(newObj);
+    }
+    console.log('cartArr2', cartArr);
+  };
+  createCart();
+  console.log('cartprdArr', cartprdArr);
+  console.log('cartArr', cartArr);
+
+  // console.log("ARF",cartArr);
+
+  // cartprdCount: '1',
+  const initState = (cartprdArr) => {
+    return cartprdArr.map((v) => ({ ...v, cartprdCount: 1 }));
+  };
+  const [productsInOrder, setProductsInOrder] = useState(initState(cartprdArr));
+  const [total, setTotal] = useState(0);
+  const [discount, setDiscount] = useState(100);
+
+  // 計算總數量
+  const totalNumber = () => {
+    let result = 0;
+    for (let i = 0; i < productsInOrder.length; i++) {
+      result += productsInOrder[i].cartprdCount;
+    }
+    return result;
+  };
+  // totalNumber();
+  // 計算總價格
+  const totalPrice = () => {
+    let result = 0;
+    for (let i = 0; i < productsInOrder.length; i++) {
+      result += productsInOrder[i].cartprdCount * productsInOrder[i].cartprdPrice;
+      // console.log(result);
+    }
+    return result;
+  };
 
   //相關商品陣列
   const cardArr = [
     {
       id: 1,
-      name: '金黑波本威士忌',
+      name: '金黑波本fasdf威士忌',
       price: 'NT.550 ',
       rating: ' 4.6',
     },
     {
       id: 2,
-      name: '金黑波本威士忌',
+      name: 'asdfa金黑波本威士忌',
       price: 'NT.550 ',
       rating: ' 4.6',
     },
@@ -169,25 +217,25 @@ const UserCart = () => {
     },
     {
       id: 5,
-      name: '金黑波本威士忌',
+      name: '金黑波本asdfa威士忌',
       price: 'NT.550 ',
       rating: ' 4.6',
     },
     {
       id: 6,
-      name: '金黑波本威士忌',
+      name: '金黑波本asdfas威士忌',
       price: 'NT.550 ',
       rating: ' 4.6',
     },
     {
       id: 7,
-      name: '金黑波本威士忌',
+      name: '金黑波asdf本威士忌',
       price: 'NT.550 ',
       rating: ' 4.6',
     },
     {
       id: 8,
-      name: '金黑波本威士忌',
+      name: 'asdfas金黑波本威士忌',
       price: 'NT.550 ',
       rating: ' 4.6',
     },
@@ -251,38 +299,31 @@ const UserCart = () => {
                         </span>
                       </div>
                       {/* 商品迴圈 */}
-                      {cartprdArr.map((item, i) => {
-                        const { id, cartprdImg, cartprdNum, cartprdName, cartprdPrice, cartprdCount, cartprdTotal } = item;
-
+                      {productsInOrder.map((item, i) => {
                         return (
                           <CartStep1
-                            key={id}
-                            id={id}
-                            cartprdImg={cartprdImg}
-                            cartprdNum={cartprdNum}
-                            cartprdName={cartprdName}
-                            cartprdPrice={cartprdPrice}
-                            cartprdCount={cartprdCount}
-                            cartprdTotal={cartprdTotal}
-                            plusOne={() => {
-                              const newCartPrds = cartprdArr.map((v) => {
+                            key={item.id}
+                            data={item}
+                            setCount={(newCount) => {
+                              // console.log(newCount);
+                              const newObj = productsInOrder.map((v, i) => {
                                 return { ...v };
                               });
-                              newCartPrds[i].cartprdCount = Number(newCartPrds[i].cartprdCount) + 1;
-                              console.log('+ ' + newCartPrds[i].cartprdCount);
-                              setCartprdArr(newCartPrds);
-                            }}
-                            minusOne={() => {
-                              const newCartPrds = cartprdArr.map((v) => {
-                                return { ...v };
-                              });
-                              if (newCartPrds[i].cartprdCount <= 1) {
-                                newCartPrds[i].cartprdCount = 1;
-                              } else {
-                                newCartPrds[i].cartprdCount = Number(newCartPrds[i].cartprdCount) - 1;
-                              }
+                              // console.log('newObj[i].cartprdCount', newObj[i].cartprdCount);
+                              newObj[i].cartprdCount = newCount < 1 ? 1 : newCount;
 
-                              setCartprdArr(newCartPrds);
+                              setProductsInOrder(newObj);
+                              // console.log(productsInOrder);
+                            }}
+                            removeItem={() => {
+                              // 1. 從目前的狀態"拷貝"出一個新的變數值(陣列/物件)
+                              // 2. 在拷貝出來的新變數(or常數)值(陣列/物件)上作處理
+                              // console.log(item.id);
+                              const newProductsInOrder = productsInOrder.filter((value, index) => {
+                                return value.id !== item.id;
+                              });
+                              // 3. 設定回原本的狀態中
+                              setProductsInOrder(newProductsInOrder);
                             }}
                           />
                         );
@@ -369,17 +410,17 @@ const UserCart = () => {
                                 折扣金額
                               </div>
                               <div className="m-3 ms-5">
-                                NT$680
+                                NT${totalPrice()}
                                 <br />
                                 優惠券
                                 <br />
-                                -NT$100
+                                -NT${discount}
                               </div>
                             </div>
                             <hr />
                             <div className="shopping-cart-summary-total d-flex justify-content-start mb-5">
                               <div className="me-4">實付總金額</div>
-                              <div className="ms-5">NT$580</div>
+                              <div className="ms-5">NT${total - discount}</div>
                             </div>
                           </div>
                         </div>
@@ -415,7 +456,7 @@ const UserCart = () => {
               </div>
               <div className="px-md-3">
                 <Slider className="prd-deatil-card" {...settings}>
-                  {cardArr.map((v, i) => {
+                  {[cardArr].map((v, i) => {
                     return <PrdCard key={v.id} data={v} />;
                   })}
                 </Slider>

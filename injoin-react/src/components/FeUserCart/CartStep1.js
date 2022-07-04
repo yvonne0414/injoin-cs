@@ -8,8 +8,34 @@ import faveriteImg from '../../../src/assets/images/fe/faverite/faverite-product
 import { BsTrashFill } from 'react-icons/bs';
 
 function CartStep1(props) {
-  const { id, cartprdImg, cartprdNum, cartprdName, cartprdPrice, cartprdCount, cartprdTotal, plusOne, minusOne } = props;
+  const { id, cartprdImg, cartprdNum, cartprdName, cartprdPrice, cartprdCount, cartprdTotal, plusOne, minusOne, data, setCount, removeItem } = props;
   // console.log('data',data);
+
+  // const { data, setCount,removeItem } = props;
+  // console.log('data',productsInOrder);
+
+  // const plusOne = (id) => {
+  //   // console.log(id);
+  //   // console.log(data.cartprdCount);
+  //   setCount(data.cartprdCount + 1);
+  // };
+
+  // const minusOne = (id) => {
+  //   if(data.cartprdCount === 1){
+  //     return
+  //   }
+  //   setCount(data.cartprdCount - 1);
+  // };
+
+  // useEffect(() => {
+  //   axios.get('http://localhost:3000/cart').then((res) => {
+  //     const newCartPrds = res.data.map((v) => {
+  //       return { ...v, count: 1 };
+  //     });
+
+  //     setCartPrds(newCartPrds);
+  //   });
+  // }, []);
 
   //假資料
   // const cartstep1arr = [
@@ -32,10 +58,14 @@ function CartStep1(props) {
           <div className="cart-prd-num">{cartprdNum}</div>
           <div className="cart-prd-name">{cartprdName}</div>
           <div className="cart-prd-price">NT${cartprdTotal}</div>
+
+          <div className="cart-prd-num">{data.cartprdNum}</div>
+          <div className="cart-prd-name">{data.cartprdName}</div>
+          <div className="cart-prd-price">NT${data.cartprdPrice}</div>
         </div>
         <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
           <div className="cart-prd-icon text-center">
-            <BsTrashFill />
+            <BsTrashFill onClick={removeItem} />
           </div>
           <div
             className="cart-prd-number d-flex ms-2 border border-white justify-content-between

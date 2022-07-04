@@ -8,9 +8,10 @@ import { FaWineBottle } from 'react-icons/fa';
 import { TbLemon } from 'react-icons/tb';
 import { IoIosWine } from 'react-icons/io';
 import { GiSpoon } from 'react-icons/gi';
-import React from 'react';
+import React, { useState } from 'react';
 
 const FePage2Header = (props) => {
+  const [barNav, setBarNav] = useState(-1);
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = props;
   return (
     <section>
@@ -48,13 +49,20 @@ const FePage2Header = (props) => {
         </div>
         <div className="prd-nav">
           <ul className="list-unstyled d-flex justify-content-center mb-0 nav-justified prd-nav-ul">
-            {navs.map((nav) => {
+            {navs.map((nav, i) => {
               return (
-                <li className="prd-nav-li">
-                  <Link className="nav-link prd-nav-a" to={nav.href}>
+                <li
+                  className="prd-nav-li"
+                  onClick={() => {
+                    //console.log('123');
+                    setBarNav(i);
+                    //console.log(barNav);
+                  }}
+                >
+                  <div className="nav-link prd-nav-a">
                     <FaWineBottle className=" prd-nav-icon" />
                     {nav.name}
-                  </Link>
+                  </div>
                 </li>
               );
             })}

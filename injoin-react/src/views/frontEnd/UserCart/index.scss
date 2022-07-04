@@ -4,34 +4,38 @@
   @include cn-list-content();
 
   .cart-step-content {
+    font-family: $font-family-cn-main;
     display: flex;
     justify-content: space-between;
     text-align: center;
-    padding: $space-2;
-
+    // padding: $space-4;
     .cart-step {
       border: 1px solid transparent;
       background: $color-border-gray;
       border-radius: 5px;
-      margin: $space-1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 10px;
+      padding: 20px;
+      &.active {
+        background: $color-font-gold;
+        font-family: $font-family-cn-main;
+        font-weight: $font-weight-bold;
+      }
 
       .step-left {
-        padding: 0px;
-        width: 100%;
-        font-size: 20px;
+        margin-right: $space-3;
+        width: fit-content;
+        font-size: var(--fs-cn-page-type1-menu);
       }
       .step-right {
+        font-family: $font-family-cn-main;
+        font-weight: $font-weight-bold;
         padding: 0;
-        width: 100%;
-        font-weight: $font-weight-lighter;
-        font-family: $font-family-cn-content;
+        width: fit-content;
         font-size: var(--fs-en-page-type1-content);
-        display: flex;
-        justify-content: center;
       }
-    }
-    .cart-step1 {
-      background: #ffdb96;
     }
   }
 
@@ -98,9 +102,12 @@
 
     .cart-prd-info-content {
       width: 100%;
-      .faverite-product-img-1 {
-        min-width: 25%;
-        min-height: 25%;
+      .cart-prd-img {
+        max-width: 20rem;
+        max-height: 20rem;
+      }
+      .cart-prd-name {
+        margin-bottom: 1rem;
       }
     }
     .bottom-line {
@@ -119,6 +126,7 @@
 //電腦版
 @media screen and (min-width: 768px) {
   .cart-step-content {
+    font-family: $font-family-cn-main;
     display: flex;
     justify-content: space-between;
     text-align: center;
@@ -128,31 +136,31 @@
       background: $color-border-gray;
       border-radius: 5px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
+      align-items: center;
       margin: 10px;
       padding: 20px;
+      &.active {
+        background: $color-font-gold;
+        font-family: $font-family-cn-main;
+        font-weight: $font-weight-bold;
+      }
 
       .step-left {
-        padding: $space-2;
-        width: 30%;
+        margin-right: $space-3;
+        width: fit-content;
         font-size: var(--fs-cn-page-type1-menu);
-        display: flex;
-        justify-content: start;
       }
       .step-right {
+        font-family: $font-family-cn-main;
+        font-weight: $font-weight-bold;
         padding: 0;
-        width: 100%;
-        font-weight: $font-weight-lighter;
-        font-family: $font-family-cn-content;
+        width: fit-content;
         font-size: var(--fs-en-page-type1-content);
-        display: flex;
-        justify-content: start;
       }
     }
-    .cart-step1 {
-      background: #ffdb96;
-    }
   }
+
   .shopping-cart-area {
     width: 100%;
     background: $color-bg-light;
@@ -165,11 +173,6 @@
 
   .cart-prd-info-content {
     width: 100%;
-    .faverite-product-img-1 {
-      min-width: 20%;
-      display: flex;
-      justify-content: center;
-    }
     .cart-prd-content {
       min-width: 40%;
       padding: $space-2;
@@ -212,14 +215,6 @@
       align-items: center;
     }
   }
-
-  // .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
-  //   height: 40px;
-  //   font-size: 18px;
-  // }
-  // .ant-select-arrow {
-  //   font-size: var(--fs-cn-page-type1-menu);
-  // }
 
   .shopping-cart-check-bg {
     width: 100%;

@@ -11,12 +11,8 @@ import UserLike from '../UserLike';
 import UserVip from '../UserVip';
 import ChenTest from './ChenTest';
 
-
-
-
-
 let arr = ['chen', 'paul', 'avery'];
-const state = 1;
+const state = 7;
 const Chen = () => {
   // useEffect(() => {
   //   // localStorage.setItem("userLike",JSON.stringify({}))
@@ -45,9 +41,6 @@ const Chen = () => {
       {state === 9 && <Bartending />}
       {state === 10 && <Production />}
       {state === 11 && <UserCart />}
-
-
-    
     </>
   );
 };

@@ -149,11 +149,9 @@ const UserCart = () => {
       newObj = { ...res.data[0], cartprdCount: cart[i].count };
       // console.log('newObj', newObj);
       cartArr.push(newObj);
-      
     }
-    setProductsInOrder(cartArr)
-    console.log('cartArr2',cartArr)
-
+    setProductsInOrder(cartArr);
+    console.log('cartArr2', cartArr);
   };
   createCart();
   // console.log('cartprdArr',cartprdArr)
@@ -241,7 +239,6 @@ const UserCart = () => {
     },
   ];
 
-
   return (
     <>
       {/* header-section */}
@@ -251,7 +248,7 @@ const UserCart = () => {
         <div className="container">
           {/* status-section-1 */}
           <div className="cart-step-content d-flex flex-column flex-md-row">
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step1">
+            <div className="col cart-step d-flex flex-column flex-md-row active">
               <div className="step-left">01</div>
               <div className="step-right">
                 確認訂單及付款方式 <br />
@@ -352,9 +349,9 @@ const UserCart = () => {
                       <div className="shopping-cart-info">
                         <div className="shopping-cart-info-title">
                           <span>
-                            付款方式
+                            配送方式
                             <br />
-                            Payment Method
+                            Delivery Method
                           </span>
                         </div>
                         <div className="cart-prd-info-content mt-5">

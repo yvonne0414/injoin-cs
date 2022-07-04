@@ -2,7 +2,7 @@
 import './index.scss';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, Select, Checkbox } from 'antd';
 import 'antd/dist/antd.css';
 
 // -----Variable width
@@ -10,7 +10,6 @@ import Slider from 'react-slick';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
-import PrdCard from '../../../components/PrdCard';
 
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
 
@@ -25,13 +24,9 @@ const layout = {
 /* eslint-disable no-template-curly-in-string */
 
 const validateMessages = {
-  required: '${label} is required!',
+  required: '請輸入${label}!',
   types: {
-    email: '${label} is not a valid email!',
     number: '${label} is not a valid number!',
-  },
-  number: {
-    range: '${label} must be between ${min} and ${max}',
   },
 };
 /* eslint-enable no-template-curly-in-string */
@@ -81,19 +76,9 @@ const UserCartStep2 = () => {
     console.log(values);
   };
 
-  const [form] = Form.useForm();
-  const [formLayout, setFormLayout] = useState('vertical');
-  const formItemLayout =
-    formLayout === 'vertical'
-      ? {
-          labelCol: {
-            span: 4,
-          },
-          wrapperCol: {
-            span: 14,
-          },
-        }
-      : null;
+  const onChange = (e) => {
+    console.log(`checked = ${e.target.checked}`);
+  };
 
   return (
     <>
@@ -235,6 +220,7 @@ const UserCartStep2 = () => {
                     rules={[
                       {
                         type: 'email',
+                        required: false,
                       },
                     ]}
                   >
@@ -292,7 +278,7 @@ const UserCartStep2 = () => {
                     Credit Card Information
                   </h4>
                 </div>
-                <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                <Form {...layout} name="nest-messages" onFinish={onFinish}>
                   <Form.Item
                     name={['credit-card', 'check-num']}
                     label="卡號:"
@@ -356,7 +342,7 @@ const UserCartStep2 = () => {
                     />
                   </Form.Item>
                   <Form.Item
-                    name={['credit-card', 'check-box']}
+                    name={['信用卡', '安全碼']}
                     label="安全碼:"
                     rules={[
                       {
@@ -365,25 +351,18 @@ const UserCartStep2 = () => {
                     ]}
                   >
                     <Input
-                      maxlength="4"
+                      maxlength="3"
                       style={{
                         width: '45%',
                       }}
                     />
                   </Form.Item>
                 </Form>
-                <Form
-                  {...layout}
-                  name="nest-messages"
-                  onFinish={onFinish}
-                  {...formItemLayout}
-                  layout={formLayout}
-                  form={form}
-                  initialValues={{
-                    layout: formLayout,
-                  }}
-                ></Form>
               </div>
+              <div className="check-box">
+                <Checkbox onChange={onChange}>我同意接受服務條款和隱私權政策</Checkbox>;
+              </div>
+              <div className="check-p">※下單前請再次確認您的購買明細及配送資訊，訂單成立後無法異動訂單內容</div>
             </div>
 
             <div className="position-relative text-center p-3">

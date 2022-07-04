@@ -5,7 +5,7 @@
 
   .cart-step-content {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     text-align: center;
     padding: $space-2;
 
@@ -208,6 +208,14 @@
           }
         }
       }
+    }
+    .check-box {
+      font-size: 20px;
+      padding: 10px;
+    }
+    .check-p {
+      font-size: 14px;
+      color: $color-font-gold;
     }
   }
 }

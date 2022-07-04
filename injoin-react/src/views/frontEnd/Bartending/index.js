@@ -67,17 +67,6 @@ const Bartending = () => {
   //   ['1', '2', '3'],
   // ];
 
-  //form 搜尋欄
-  const [searchWord, setSearchWord] = useState('');
-  console.log('a', searchWord);
-  const search = (searchvalue) => {
-    setSearchWord(searchvalue);
-    const filterWord = barted.filter((item) => {
-      return item.name.includes(searchWord);
-    });
-    console.log('d', filterWord);
-  };
-
   // bartendindcard 假資料
   // const bartendcard = [
   //   {
@@ -107,6 +96,8 @@ const Bartending = () => {
   // ];
   const [barted, setBarted] = useState([]);
   const [bartdType, setBartdType] = useState([]);
+  //form 搜尋欄
+  const [searchWord, setSearchWord] = useState('');
 
   useEffect(() => {
     //bartendingCard
@@ -129,16 +120,16 @@ const Bartending = () => {
       setSubSel(response.data.data.subSel);
     };
     getSubSel();
-    //bartd type
-    // let getBartdType = async () => {
-    //   let response = await axios.get('http://localhost:3001/api/bar/bartdtype');
-    //   setBartdType(response.data);
-    // console.log('B', response.data.typem);
-    // console.log('c', response.data.types);
-    // };
-    // getBartdType();
   }, []);
-  //老師
+
+  //搜尋
+  let getSearchWord = async () => {
+    let response = await axios.get(`http://localhost:3001/api/bar/search?keyword=` + searchWord);
+    setBarted(response.data);
+    //console.log('E', response.data);
+  };
+
+  //範例
   // useEffect(() => {
   //   axios.get('http://localhost:3001/api/bar/type').then((response) => {
   //     console.log(response);
@@ -146,7 +137,9 @@ const Bartending = () => {
   //     setSubSel(response.data.data.suSel);
   //   });
   // }, []);
+  const [baartdL, setBatedL] = useState(0);
 
+  //console.log('a', barted);
   return (
     <>
       <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} BartendingImg={BartendingImg} navs={navs} />
@@ -218,8 +211,21 @@ const Bartending = () => {
             </div>
             {/* 搜尋欄 */}
             <form className="Bartending-search-form d-flex">
-              <input type="text" placeholder="Search" onChange={(e) => search(e.target.value)} className="Bartending-search-label form-control form-control-sm me-1" />
-              <button onClick={search} className="btn Bartending-search-btn" type="submit">
+              <input
+                type="text"
+                placeholder="Search"
+                value={searchWord}
+                onChange={(e) => setSearchWord(e.target.value)}
+                className="Bartending-search-label form-control form-control-sm me-1"
+              />
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  getSearchWord();
+                }}
+                className="btn Bartending-search-btn"
+                type="submit"
+              >
                 搜尋
               </button>
             </form>
@@ -228,11 +234,12 @@ const Bartending = () => {
           {/* card */}
           <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
             {barted.map((v, i) => {
-              // console.log(v);
+              //console.log('id', v.mater_cate_m.sort()[0]);
+              // vodks 5 rum6 gin 7
               return <BartendingCard key={i.id} data={v} />;
             })}
           </div>
-          <FePagination className="pc-view" />
+          <FePagination />
         </div>
       </div>
     </>

@@ -25,6 +25,9 @@ import bardetailImg4 from '../../../assets/images/fe/bartendingdetail/bartending
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
 const BartendingDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const contentStyle = {
     height: '300px',
     color: '#000',
@@ -115,6 +118,8 @@ const BartendingDetail = () => {
   const { barId } = useParams();
   const [barPrdDetail, setBarPrdDetail] = useState([]);
   const [recipe, setRecipe] = useState([]);
+  const [material, setMaterial] = useState([]);
+  const [materAmount, setMaterAmount] = useState([]);
   useEffect(() => {
     //bartendingCard
     let getbarPrdDetail = async () => {
@@ -129,13 +134,16 @@ const BartendingDetail = () => {
       // console.log('d', response.data[0].name);
 
       setRecipe(response.data[0].recipe.split('\n'));
+      // console.log('ii', response.data[0].recipe.split('\n'));
+      setMaterial(response.data[0].material);
+      setMaterAmount(response.data[0].mater_amount);
     };
     getbarPrdDetail();
   }, []);
-  // console.log('v', barPrdDetail);
+  console.log('v', barPrdDetail);
   // console.log('u', barPrdDetail[0]);
-  console.log('o', barPrdDetail.name);
-  console.log('dd', barPrdDetail.recipe);
+  // console.log('o', barPrdDetail.name);
+  // console.log('dd', [material]);
 
   return (
     <>
@@ -150,7 +158,7 @@ const BartendingDetail = () => {
               <Breadcrumb.Separator />
               <Breadcrumb.Item href="">威士忌</Breadcrumb.Item>
               <Breadcrumb.Separator /> */}
-              <Breadcrumb.Item href="">調酒酒譜</Breadcrumb.Item>
+              <Breadcrumb.Item href="/bartending">調酒酒譜</Breadcrumb.Item>
               <Breadcrumb.Separator />
               <Breadcrumb.Item>{barPrdDetail.name}</Breadcrumb.Item>
             </Breadcrumb>
@@ -199,14 +207,22 @@ const BartendingDetail = () => {
             <img src={bardetailImg3} alt="bartending-detail-img-3" className="mx-auto  bartending-detail-img-3" />
             <img src={bardetailImg4} alt="bartending-detail-img-4" className="mx-auto  bartending-detail-img-4" />
             <div className="bar-detail-space mx-auto">
-              <div className="bar-detail-title-type1 mt-3 ">
+              <div className="bar-detail-text-type1">
                 <p>材料比例</p>
               </div>
-              {}
-              <div className="bar-detail-text-type1">
-                <span>杏仁香甜酒</span>
-                <span>20 ml</span>
+              <div className="bar-detail-text-type2">
+                <div className="bar-detail-text-type3">
+                  {material.map((v) => {
+                    return <span>{v}</span>;
+                  })}
+                </div>
+                <div className="bar-detail-text-type4">
+                  {materAmount.map((v) => {
+                    return <span>{v}</span>;
+                  })}
+                </div>
               </div>
+
               <ul className="bar-detail-text list-unstyled">
                 {recipe.map((item) => {
                   return <li>{item}</li>;

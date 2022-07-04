@@ -305,6 +305,18 @@ const ProductionDetail = () => {
     getRelated();
   }, [cateM]);
 
+  // 取得相關酒譜
+  let [relatedBarList, setRelatedBarList] = useState([]);
+
+  useEffect(() => {
+    let getRelatedBar = async () => {
+      let res = await axios.get(`${API_URL}/bar/related`, { params: { cateM: cateM } });
+      setRelatedBarList(res.data.data);
+      console.log(res.data.data);
+    };
+    getRelatedBar();
+  }, [cateM]);
+
   return (
     <>
       {/* session1---------------------------------------------------------------------- */}
@@ -490,12 +502,12 @@ const ProductionDetail = () => {
                 <p>相關酒譜</p>
               </div>
               <div className="bartending-card px-md-3">
-                {/* <Slider {...settings2}>
-                  {barted.map((v, i) => {
-                    console.log(v);
+                <Slider {...settings2}>
+                  {relatedBarList.map((v, i) => {
+                    // console.log(v);
                     return <BartendingCard key={i.id} data={v} />;
                   })}
-                </Slider> */}
+                </Slider>
               </div>
             </div>
           </div>

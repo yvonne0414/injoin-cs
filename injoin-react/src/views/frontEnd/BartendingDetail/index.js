@@ -134,9 +134,9 @@ const BartendingDetail = () => {
       setMaterial(response.data.material);
       let cateMList = response.data.cateMList;
       setRecipe(response.data[0].recipe.split('\n'));
-      console.log('cateMList:', cateMList);
+      // console.log('cateMList:', cateMList);
       let res = await axios.get(`${API_URL}/prd/related/0`, { params: { cateM: cateMList } });
-      console.log('related', res.data.data);
+      // console.log('related', res.data.data);
       setRelatedList(res.data.data);
     };
 

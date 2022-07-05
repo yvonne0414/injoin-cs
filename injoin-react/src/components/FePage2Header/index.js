@@ -11,7 +11,7 @@ import { GiSpoon } from 'react-icons/gi';
 import React from 'react';
 
 const FePage2Header = (props) => {
-  const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = props;
+  const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs, setCateL, category, setCateM, setCateS, setSearchWord } = props;
   return (
     <section>
       <div className="section-title">
@@ -51,8 +51,18 @@ const FePage2Header = (props) => {
             {navs.map((nav) => {
               return (
                 <li className="prd-nav-li">
-                  <Link className="nav-link prd-nav-a" to={nav.href}>
-                    <FaWineBottle className=" prd-nav-icon" />
+                  <Link
+                    className={`nav-link prd-nav-a ${category === nav.cateL && 'active'}`}
+                    to={nav.href}
+                    onClick={() => {
+                      setCateL(nav.cateL);
+                      setCateM(0);
+                      setCateS(0);
+                      setSearchWord('');
+                    }}
+                  >
+                    {/* <FaWineBottle className=" prd-nav-icon" /> */}
+                    {nav.icon}
                     {nav.name}
                   </Link>
                 </li>

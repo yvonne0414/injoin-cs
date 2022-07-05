@@ -1,44 +1,45 @@
 @import '../../../assets/scss/_variable.scss';
 
-
 .prd-content {
   .prd-content-top {
     display: flex;
     flex-wrap: wrap;
     font-family: $font-family-cn-content;
-    justify-content:space-between ;
+    justify-content: space-between;
+    margin-bottom: 2rem;
     .prd-total {
       order: 1;
       font-size: var(--fs-cn-page-list-title-sm);
       margin-top: $space-2;
       font-weight: $font-weight-lighter;
       span {
-        margin-left:$space-1;
+        margin-left: $space-1;
       }
     }
     .prd-sel-all {
       order: 2;
       font-size: var(--fs-cn-page-list-filter);
       margin-top: $space-2;
+      .ant-select-selector,
+      .ant-select-selector:focus {
+        border: 0;
+      }
 
-      .prd-sel-1{
-        .prd-sel-1-major, .prd-sel-1-minor{
+      .prd-sel-1 {
+        text-align: end;
+
+        .prd-sel-1-major {
+          width: fit-content;
+          max-width: 6rem;
+          overflow: hidden;
           color: $color-font-sp-light;
           border-bottom: solid 1px;
           background-color: $color-bg-dark;
         }
-        .prd-sel-1-major{
-          width: 20vw;
-          overflow: hidden;
-        }
-        .prd-sel-1-minor{
-            width: 36vw;
-            overflow: hidden;
-        }
       }
-      .prd-sel-2{
+      .prd-sel-2 {
         justify-content: end;
-        .prd-sel-seq{
+        .prd-sel-seq {
           color: $color-font-sp-light;
           border-bottom: solid 1px;
           background-color: $color-bg-dark;
@@ -47,7 +48,7 @@
     }
     .prd-search-form {
       order: 3;
-      margin-top:$space-4;
+      margin-top: $space-4;
       width: 100%;
       .prd-search-label {
         color: $color-font;
@@ -92,6 +93,12 @@
   //   }
   // }
 
+  .ant-btn.ant-btn-primary.ant-input-search-button {
+    border-color: $color-font-gold !important;
+    color: $color-font-gold;
+    font-family: $font-family-cn-main;
+  }
+
   .prd-card-all {
     .prd-card {
       width: 100%;
@@ -110,8 +117,8 @@
           // height: 100%;
         }
       }
-      .prd-card-title{
-        >a{
+      .prd-card-title {
+        > a {
           height: 2.7rem;
           width: 100%;
           display: -webkit-box;
@@ -169,36 +176,36 @@
     .prd-card-all {
       .prd-card {
         height: 35rem;
-        .prd-card-title{
-          >a{
+        .prd-card-title {
+          > a {
             height: 4.5rem;
           }
         }
       }
     }
   }
- 
+
   .prd-content {
     .prd-content-top {
       justify-content: space-between;
-      margin-bottom: $space-6;
+      margin-bottom: 4rem;
       .prd-sel-all {
         order: 2;
-        .prd-sel-1{
+        font-size: 1.25rem;
+        .prd-sel-1 {
           margin-bottom: 2rem;
-          .prd-sel-1-major{
-            width: 6vw;
+          .prd-sel-1-major {
+            font-size: 1.25rem;
+            max-width: unset;
+            width: 10rem;
             overflow: hidden;
           }
-          .prd-sel-1-minor{
-              width: 11vw;
-              overflow: hidden;
-          }
         }
-        .prd-sel-2{
+        .prd-sel-2 {
           justify-content: end;
-          // .prd-sel-seq{
-          // }
+          .prd-sel-seq {
+            font-size: 1.25rem;
+          }
         }
       }
       .prd-search-form {

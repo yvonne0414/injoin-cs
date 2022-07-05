@@ -1,9 +1,5 @@
 import './index.scss';
-import { Breadcrumb, Carousel, Rate } from 'antd';
-import { InputNumber, Button } from 'antd';
-import { Collapse } from 'antd';
-import { Comment, List, Tooltip } from 'antd';
-import moment from 'moment';
+import { Breadcrumb, Carousel, Rate, InputNumber, Button, Collapse, Comment, List } from 'antd';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -14,23 +10,18 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import PrdCard from '../../../components/PrdCard';
 
 // -----Variable width
-import React, { Component } from 'react';
 import Slider from 'react-slick';
 
 // bartendingcar
 import BartendingCard from '../../../components/BartendingCard';
 
 import prddetailImg1 from '../../../assets/images/fe/productionDetail/prd-detail-img-1.png';
-// import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
-// import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
-// import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail-img-4.png';
 import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail-img-5.png';
-// import '~slick-carousel/slick/slick.css';
-// import '~slick-carousel/slick/slick-theme.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios, { Axios } from 'axios';
 import { useParams, Link } from 'react-router-dom';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
+import { userState } from '../../../App';
 import EmptyImage from '../../../components/EmptyImage';
 
 const { Panel } = Collapse;
@@ -172,6 +163,15 @@ const cardArr = [
 ];
 
 const ProductionDetail = () => {
+  // 檢查登入
+  const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
   const [cateL, setCateL] = useState(1);
   const [detail, setDetail] = useState([]);
   const [imgList, setImgList] = useState([]);
@@ -310,7 +310,7 @@ const ProductionDetail = () => {
 
   useEffect(() => {
     let getRelated = async () => {
-      let res = await axios.get(`${API_URL}/prd/related/${prdId}`, { params: { cateM: [cateM] } });
+      let res = await axios.get(`${API_URL}/prd/related/${prdId}`, { params: { cateM: [cateM], userId: memberInfo.userId } });
       setRelatedList(res.data.data);
     };
     getRelated();
@@ -321,7 +321,7 @@ const ProductionDetail = () => {
 
   useEffect(() => {
     let getRelatedBar = async () => {
-      let res = await axios.get(`${API_URL}/bar/related`, { params: { cateM: cateM } });
+      let res = await axios.get(`${API_URL}/bar/related`, { params: { cateM: cateM, userId: memberInfo.userId } });
       setRelatedBarList(res.data.data);
       console.log(res.data.data);
     };
@@ -520,7 +520,7 @@ const ProductionDetail = () => {
                 {relatedList.length > 0 ? (
                   <Slider className="prd-deatil-card" {...settings}>
                     {relatedList.map((v, i) => {
-                      return <PrdCard key={v.id} data={v} />;
+                      return <PrdCard key={v.id} data={v} isLike={v.isPrdLike} />;
                     })}
                   </Slider>
                 ) : (
@@ -540,7 +540,7 @@ const ProductionDetail = () => {
                   <Slider {...settings2}>
                     {relatedBarList.map((v, i) => {
                       // console.log(v);
-                      return <BartendingCard key={i.id} data={v} />;
+                      return <BartendingCard key={v.id} data={v} isbartdLike={v.isLike} />;
                     })}
                   </Slider>
                 ) : (

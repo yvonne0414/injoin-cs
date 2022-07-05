@@ -1,9 +1,10 @@
 import './index.scss';
 import { Breadcrumb, Carousel, Rate } from 'antd';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
+import { userState } from '../../../App';
 import { InputNumber, Button } from 'antd';
 import { Collapse } from 'antd';
 import EmptyImage from '../../../components/EmptyImage';
@@ -29,6 +30,16 @@ const BartendingDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // 檢查登入
+  const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
   const contentStyle = {
     height: '300px',
     color: '#000',
@@ -120,6 +131,7 @@ const BartendingDetail = () => {
   const [barPrdDetail, setBarPrdDetail] = useState([]);
   const [material, setMaterial] = useState([]);
   const [recipe, setRecipe] = useState([]);
+
   // 相關商品
   let [relatedList, setRelatedList] = useState([]);
   useEffect(() => {
@@ -128,6 +140,7 @@ const BartendingDetail = () => {
       let response = await axios.get(`${API_URL}/bar/detail/${barId}`, {
         params: {
           barId: barId,
+          userId: memberInfo.userId,
         },
       });
       setBarPrdDetail(response.data[0]);
@@ -138,7 +151,7 @@ const BartendingDetail = () => {
       let cateMList = response.data.cateMList;
       setRecipe(response.data[0].recipe.split('\n'));
       // console.log('cateMList:', cateMList);
-      let res = await axios.get(`${API_URL}/prd/related/0`, { params: { cateM: cateMList } });
+      let res = await axios.get(`${API_URL}/prd/related/0`, { params: { cateM: cateMList, userId: memberInfo.userId } });
       // console.log('related', res.data.data);
       setRelatedList(res.data.data);
     };
@@ -242,7 +255,7 @@ const BartendingDetail = () => {
                 {relatedList.length > 0 ? (
                   <Slider className="prd-deatil-card" {...settings}>
                     {relatedList.map((v, i) => {
-                      return <PrdCard key={v.id} data={v} />;
+                      return <PrdCard key={v.id} data={v} isLike={v.isPrdLike} />;
                     })}
                   </Slider>
                 ) : (

@@ -260,7 +260,7 @@ const Bartending = () => {
             <div className="Bartending-sel-all">
               <div className="Bartending-sel">
                 {/* 大類別 */}
-                <Select defaultValue={0} onChange={handleCateSChange} className="Bartending-sel-1 me-3">
+                <Select value={barCateL} onChange={handleCateSChange} className="Bartending-sel-1 me-3">
                   <Option value={0} className="Bartending-sel-option">
                     請選擇
                   </Option>
@@ -274,7 +274,7 @@ const Bartending = () => {
                 </Select>
                 {/* 小類別 */}
                 <Select
-                  defaultValue={0}
+                  value={barCateS}
                   className="Bartending-sel-1"
                   onChange={(value) => {
                     setBarCateS(value);

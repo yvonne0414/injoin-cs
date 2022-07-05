@@ -45,7 +45,7 @@ const UserCart = () => {
       pc: 'cart-header.png',
     },
     pageSelector: {
-      isShow: true,
+      isShow: false,
       pageParent: {
         href: '/',
         name: '會員中心',
@@ -328,41 +328,44 @@ const UserCart = () => {
               <div className="step-left">03</div>
               <div className="step-right">
                 購物完成! <br />
-                Oder Completend
+                Order Completend
               </div>
             </div>
           </div>
 
           {/* prd-section-2 */}
           {stepNum === 1 ? <Step1 stepNum={stepNum} setStepNum={setStepNum} /> : stepNum === 2 ? <Step2 stepNum={stepNum} setStepNum={setStepNum} /> : <Step3 />}
-
-          <Link to="/cart" className="back-page btn btn-none mt-3">
-            <div>
-              <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
-                />
-              </svg>
-            </div>
-            <span className="ms-3 ff-cn-main">返回上一頁</span>
-          </Link>
-          {/* the same kind  product-------------------------------------*/}
-          <div className="prd-detail-evaluation-bg mt-5">
-            <div className="container mb-4">
-              <div className="prd-detail-title-type1 mt-3 ">
-                <p>同系列商品</p>
+          {stepNum === 1 && (
+            <>
+              <Link to="/production" className="back-page btn btn-none mt-3">
+                <div>
+                  <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
+                    />
+                  </svg>
+                </div>
+                <span className="ms-3 ff-cn-main">繼續選購</span>
+              </Link>
+              {/* the same kind  product-------------------------------------*/}
+              <div className="prd-detail-evaluation-bg mt-5">
+                <div className="container mb-4">
+                  <div className="prd-detail-title-type1 mt-3 ">
+                    <p>同系列商品</p>
+                  </div>
+                  <div className="px-md-3">
+                    <Slider className="prd-deatil-card" {...settings}>
+                      {cardArr.map((v, i) => {
+                        return <PrdCard key={v.id} data={v} />;
+                      })}
+                    </Slider>
+                  </div>
+                </div>
               </div>
-              <div className="px-md-3">
-                <Slider className="prd-deatil-card" {...settings}>
-                  {cardArr.map((v, i) => {
-                    return <PrdCard key={v.id} data={v} />;
-                  })}
-                </Slider>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </>

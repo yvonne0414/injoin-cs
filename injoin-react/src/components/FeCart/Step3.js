@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Step3 = () => {
   return (
-    <div className="position-relative cart-bg mt-4">
+    <div className="position-relative cart-bg mt-4 mb-5 py-5">
       <div className="cart-add-info-bg-square"></div>
       <div className="shopping-cart-section ">
         <div className="cart-checkbox-area">

@@ -16,7 +16,9 @@ import Slider from 'react-slick';
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import PrdCard from '../../../components/PrdCard';
-import CartStep1 from '../../../components/FeUserCart/CartStep1';
+import Step1 from '../../../components/FeCart/Step1';
+import Step2 from '../../../components/FeCart/Step2';
+import Step3 from '../../../components/FeCart/Step3';
 
 //icon
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
@@ -72,9 +74,9 @@ const UserCart = () => {
   const settings = {
     className: 'slider variable-width',
     dots: false,
-    infinite: true,
+    infinite: false,
     centerMode: false,
-    slidesToShow: 6,
+    slidesToShow: 5,
     slidesToScroll: 1,
     // variableWidth: true,
     arrows: true,
@@ -297,6 +299,8 @@ const UserCart = () => {
     },
   ];
 
+  const [stepNum, setStepNum] = useState(1);
+
   return (
     <>
       {/* header-section */}
@@ -306,21 +310,21 @@ const UserCart = () => {
         <div className="container">
           {/* status-section-1 */}
           <div className="cart-step-content d-flex flex-column flex-md-row">
-            <div className="col cart-step d-flex flex-column flex-md-row active">
+            <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 1 && 'active'}`}>
               <div className="step-left">01</div>
               <div className="step-right">
                 確認訂單及付款方式 <br />
                 Cart & Check out
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row ">
+            <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 2 && 'active'}`}>
               <div className="step-left">02</div>
               <div className="step-right">
                 填寫訂單資料 <br />
                 Shipping & Billing info
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row">
+            <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 3 && 'active'}`}>
               <div className="step-left">03</div>
               <div className="step-right">
                 購物完成! <br />
@@ -330,171 +334,8 @@ const UserCart = () => {
           </div>
 
           {/* prd-section-2 */}
-          <div className="position-relative">
-            <div className="cart-add-info-bg-square"></div>
-            <div className="p-3 p-md-5">
-              <div className="shopping-cart-area d-flex justify-content-between d-flex flex-column flex-md-row">
-                <div className="shopping-cart-prd-content">
-                  <div className="shopping-cart-bg  mb-3">
-                    <div className="shopping-cart-info">
-                      <div className="shopping-cart-info-title">
-                        <span>
-                          我的購物車
-                          <br />
-                          Your shopping bag
-                        </span>
-                      </div>
-                      {/* 商品迴圈 */}
-                      {productsInOrder.map((item, i) => {
-                        // console.log(productsInOrder);
-                        return (
-                          <CartStep1
-                            key={item.id}
-                            data={item}
-                            setCount={(newCount) => {
-                              // console.log(newCount);
-                              const newObj = productsInOrder.map((v, i) => {
-                                return { ...v };
-                              });
-                              // console.log('newObj[i].cartprdCount', newObj[i].cartprdCount);
-                              newObj[i].cartprdCount = newCount < 1 ? 1 : newCount;
+          {stepNum === 1 ? <Step1 stepNum={stepNum} setStepNum={setStepNum} /> : stepNum === 2 ? <Step2 stepNum={stepNum} setStepNum={setStepNum} /> : <Step3 />}
 
-                              let newCart = newObj.map((v, i) => {
-                                return { prdid: v.id, count: v.cartprdCount };
-                              });
-
-                              localStorage.setItem('cart', JSON.stringify(newCart));
-                              setProductsInOrder(newObj);
-                              // console.log(productsInOrder);
-                            }}
-                            removeItem={() => {
-                              // 1. 從目前的狀態"拷貝"出一個新的變數值(陣列/物件)
-                              // 2. 在拷貝出來的新變數(or常數)值(陣列/物件)上作處理
-                              // console.log(item.id);
-                              const newProductsInOrder = productsInOrder.filter((value, index) => {
-                                return value.id !== item.id;
-                              });
-
-                              let newCart = newProductsInOrder.map((v, i) => {
-                                return { prdid: v.id, count: v.cartprdCount };
-                              });
-                              // console.log(newCart);
-
-                              // 3. 設定回原本的狀態中
-                              localStorage.setItem('cart', JSON.stringify(newCart));
-                              setProductsInOrder(newProductsInOrder);
-                            }}
-                          />
-                        );
-                      })}
-
-                      {/* <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                        <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
-                        <div className="cart-prd-content d-flex flex-column ms-2">
-                          <div className="cart-prd-num">AA001234</div>
-                          <div className="cart-prd-name">AA001234</div>
-                          <div className="cart-prd-price">NT$680</div>
-                        </div>
-                        <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
-                          <div className="cart-prd-icon text-center">
-                            <BsTrashFill />
-                          </div>
-                          <div
-                            className="cart-prd-number d-flex ms-2 border border-white justify-content-between
-                        "
-                          >
-                            <button className="prd-plus btn-none">+</button>
-                            <div className=" border-end border-start prd-number text-center">1</div>
-                            <button className="prd-minus btn-none">-</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="border-bottom m-3"></div> */}
-                    </div>
-                  </div>
-                </div>
-                {/* check-section-3 */}
-                <div className="shopping-cart-check-content">
-                  <div className="position-relative ">
-                    <div className="shopping-cart-check-bg">
-                      <div className="shopping-cart-info">
-                        <div className="shopping-cart-info-title">
-                          <span>
-                            配送方式
-                            <br />
-                            Delivery Method
-                          </span>
-                        </div>
-                        <div className="cart-prd-info-content mt-5">
-                          <div className="delivery-section mb-3">
-                            <label>配送區域</label>
-                            <br />
-                            <Select labelInValue defaultValue={{ value: 1, label: '台灣本島' }} style={{ width: 250, size: 25 }} onChange={handleChange}>
-                              <Option value="1">台灣本島</Option>
-                              <Option value="2">偏遠地區及離島 </Option>
-                            </Select>
-                          </div>
-                        </div>
-                        {/* <div className="check-info-area mb-3">
-                          <label>付款方式</label>
-                          <div className="check-content border border-white mt-2 p-3">
-                            <div className="form-check">
-                              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                              <label>信用卡線上付款</label>
-                            </div>
-                            <div className="form-check">
-                              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                              <label>貨到付款</label>
-                            </div>
-                          </div>
-                        </div> */}
-
-                        <div className="delivery-section mb-5">
-                          <label>運送方式</label>
-                          <br />
-                          <Select labelInValue defaultValue={{ value: 1, label: '宅配' }} style={{ width: 250, size: 25 }} onChange={handleChange}>
-                            <Option value="1">宅配</Option>
-                            <Option value="2">郵局</Option>
-                          </Select>
-                        </div>
-                        <div className="shopping-cart-summary-area border-top border-white">
-                          <span>訂單摘要</span>
-                          <div className="shopping-cart-summary-content mt-3">
-                            <div className="shopping-cart-summary-total d-flex justify-content-start">
-                              <div className="m-3">
-                                商品總計
-                                <br />
-                                使用優惠券
-                                <br />
-                                折扣金額
-                              </div>
-                              <div className="m-3 ms-5">
-                                NT${totalPrice()}
-                                <br />
-                                優惠券
-                                <br />
-                                -NT${discount}
-                              </div>
-                            </div>
-                            <hr />
-                            <div className="shopping-cart-summary-total d-flex justify-content-start mb-5">
-                              <div className="me-4">實付總金額</div>
-                              <div className="ms-5">NT${totalPrice() - discount}</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="position-relative text-center p-3">
-              <button className="btn btn-none injoin-btn-outline text-gold" htmlType="sumbit" onClick={handleSubmit}>
-                完成，下一步
-              </button>
-            </div>
-          </div>
           <Link to="/cart" className="back-page btn btn-none mt-3">
             <div>
               <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">

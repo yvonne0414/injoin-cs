@@ -69,7 +69,7 @@ const HomePage = () => {
           </div>
           <Slider {...settings} className="homepages3-slder">
             {[1, 1, 1, 1, 1, 1, 11, 1, 1, 1].map((v, i) => {
-              return <HomeHotCard />;
+              return <HomeHotCard key={i} />;
             })}
           </Slider>
         </section>
@@ -84,7 +84,7 @@ const HomePage = () => {
           </div>
           <Slider {...settings} className="homepages4-slider">
             {[1, 1, 1, 11, 1, 1, 1, 1, 1, 2, 1, 11, 1, 1, 1, 1].map((v, i) => {
-              return <HomeBartdCard />;
+              return <HomeBartdCard key={i} />;
             })}
           </Slider>
         </section>

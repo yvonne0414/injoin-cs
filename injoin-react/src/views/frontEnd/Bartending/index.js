@@ -1,5 +1,6 @@
 import './index.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { userState } from '../../../App';
 import BartendingCard from '../../../components/BartendingCard/index';
 import FePage2Header from '../../../components/FePage2Header';
 import FePagination from '../../../components/FePagination';
@@ -80,6 +81,16 @@ const Bartending = () => {
   };
   const { isProduct, sectionBg, subTitle, majorTitle, BartendingImg, navs } = page2HeaderInfo;
 
+  // 檢查登入
+  const [isLogin, setisLogin] = useState('');
+  const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
   //篩選 ([])
   //const sampleObj = JSON.parse(sampleJson);
   //const [majorSelIndex, setmajorSelIndex] = useState([]);
@@ -153,7 +164,7 @@ const Bartending = () => {
   useEffect(() => {
     //bartendingCard
     let getbarted = async () => {
-      let response = await axios.get('http://localhost:3001/api/bar', { params: { category, page, cateS: barCateS, keyword: searchWord } });
+      let response = await axios.get('http://localhost:3001/api/bar', { params: { category, page, cateS: barCateS, keyword: searchWord, userId: memberInfo.userId } });
       setBarted(response.data.data);
       setPagination(response.data.pagination);
       // console.log('e', response.data);
@@ -192,6 +203,36 @@ const Bartending = () => {
   //   });
   // }, []);
   // console.log(barted);
+  let [nowCate, setNowCate] = useState('伏特加');
+  useEffect(() => {
+    // eslint-disable-next-line default-case
+    switch (category) {
+      case 5:
+        setNowCate('伏特加');
+        break;
+      case 6:
+        setNowCate('蘭姆酒');
+        break;
+      case 7:
+        setNowCate('白蘭地');
+        break;
+      case 8:
+        setNowCate('香甜酒');
+        break;
+      case 9:
+        setNowCate('琴酒');
+        break;
+      case 10:
+        setNowCate('龍舌蘭');
+        break;
+      case 11:
+        setNowCate('威士忌');
+        break;
+      case 12:
+        setNowCate('其他');
+        break;
+    }
+  }, [category]);
 
   return (
     <>
@@ -211,9 +252,9 @@ const Bartending = () => {
         <div className="container">
           <div className="Bartending-content-top">
             <div className="Bartending-total m-view">
-              <span>Rum</span>
+              <span>{nowCate}</span>
               <span>/</span>
-              <span>共16種酒譜</span>
+              <span>共{pagination.total}種酒譜</span>
             </div>
             {/* 類別篩選 */}
             <div className="Bartending-sel-all">
@@ -258,13 +299,15 @@ const Bartending = () => {
             </form>
           </div>
           {pagination.total === 0 ? (
-            <EmptyImage discText="無相關酒譜" />
+            <div className="mt-5 pt-5 ">
+              <EmptyImage discText="無相關酒譜" />
+            </div>
           ) : (
             <>
               <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
                 {barted.map((v, i) => {
                   // console.log(v);
-                  return <BartendingCard key={i.id} data={v} />;
+                  return <BartendingCard key={v.id} data={v} isbartdLike={v.isLike} />;
                 })}
               </div>
               <FePagination pagination={pagination} setPage={setPage} />

@@ -56,7 +56,11 @@ function Heart({ isLike, data, heartState }) {
               if (heartState === 2) {
                 // console.log(`${API_URL}/userlike/bartd/${userid}/del?bartdid=${data.id}`);
                 let response = await axios.get(`${API_URL}/userlike/bartd/${userid}/del?bartdid=${data.id}`);
-                window.alert(`刪除調酒: userid${userid}, data.id${data.id}, ${response.data.message}`);
+                // window.alert(`刪除調酒: userid${userid}, data.id${data.id}, ${response.data.message}`);
+                message.success({
+                  content: `刪除調酒: userid${userid}, data.id${data.id}, ${response.data.message}`,
+                  icon: <ImHeartBroken fill="#ac2c32" />,
+                });
               }
             } else {
               message.warning('請先登入');
@@ -80,7 +84,11 @@ function Heart({ isLike, data, heartState }) {
               if (heartState === 2) {
                 // console.log(`${API_URL}/userlike/bartd/${userid}/add?bartdid=${data.id}`);
                 let response = await axios.get(`${API_URL}/userlike/bartd/${userid}/add?bartdid=${data.id}`);
-                window.alert(`加入調酒: userid${userid}, data.id${data.id}, ${response.data.message}`);
+                // window.alert(`加入調酒: userid${userid}, data.id${data.id}, ${response.data.message}`);
+                message.success({
+                  content: `加入調酒: userid${userid}, data.id${data.id}, ${response.data.message}`,
+                  icon: <ImHeart fill="#ac2c32" />,
+                });
               }
             } else {
               message.warning('請先登入');

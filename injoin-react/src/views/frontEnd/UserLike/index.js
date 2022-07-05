@@ -1,6 +1,7 @@
 // scss
 import './index.scss';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { userState } from '../../../App';
 import { Link } from 'react-router-dom';
 // import faveritePrdImg1 from '../../../../src/assets/images/fe/faverite/';
 
@@ -15,7 +16,18 @@ import BartendingCard from '../../../components/BartendingCard';
 
 const UserLike = () => {
   // userid
-  let userid = 1;
+  // 檢查登入
+  const [isLogin, setisLogin] = useState('');
+  const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
+  // 設定userid
+  let userid = memberInfo.userId;
 
   // 我的最愛商品
   const [arr, setArr] = useState([]);

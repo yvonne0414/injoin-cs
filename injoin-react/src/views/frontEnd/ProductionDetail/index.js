@@ -391,7 +391,7 @@ const ProductionDetail = () => {
                 <span>NT.{detail.price}</span>
               </div>
               <div className="star-defaultValue mt-3">
-                <Rate value={detail.rate} disabled />
+                <Rate allowHalf disabled value={Number(detail.rate)} />
               </div>
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>

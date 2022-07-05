@@ -11,16 +11,18 @@ import { Select } from 'antd';
 import Step1Prd from './Step1Prd';
 
 const Step1 = (props) => {
+  // TODO:要改
+  let userId = 1;
   const { Option } = Select;
   const { stepNum, setStepNum } = props;
-  let userId = 1;
+  const [coupon, setCoupon] = useState([]);
 
   const initState = (cartprdArr) => {
     return cartprdArr.map((v) => ({ ...v, cartprdCount: 1 }));
   };
   const [productsInOrder, setProductsInOrder] = useState([]);
   const [total, setTotal] = useState(0);
-  const [discount, setDiscount] = useState(100);
+  const [discount, setDiscount] = useState(0);
   const createCart = async () => {
     let cart = JSON.parse(localStorage.getItem('cart'));
 
@@ -42,8 +44,15 @@ const Step1 = (props) => {
     setProductsInOrder(tempCartArray);
     // console.log('cartArr2', cartArr);
   };
+
   useEffect(() => {
     createCart();
+    let getUserCoupon = async () => {
+      let res = await axios.get(`${API_URL}/cart/getUserCoupon?userId=${userId}`);
+      // console.log('res', res.data);
+      setCoupon(res.data);
+    };
+    getUserCoupon();
   }, []);
   // chennnnn------
   // console.log('productsInOrder', productsInOrder);
@@ -69,20 +78,7 @@ const Step1 = (props) => {
   };
 
   const handleSubmit = () => {
-    let arr = [
-      {
-        prdId: 1,
-        price: 550,
-        amount: 3,
-        subTotal: 1650,
-      },
-      {
-        prdId: 3,
-        price: 140,
-        amount: 5,
-        subTotal: 700,
-      },
-    ];
+    let arr = [];
     console.log('待處理', productsInOrder);
     let newArr = [];
     productsInOrder.forEach((v, i) => {
@@ -116,6 +112,7 @@ const Step1 = (props) => {
     // console.log(value);
   };
 
+  // console.log("家臣測試專用:",coupon);
   return (
     <div className="position-relative mt-4">
       <div className="cart-add-info-bg-square"></div>
@@ -123,7 +120,7 @@ const Step1 = (props) => {
         <div className="shopping-cart-area d-flex justify-content-between d-flex flex-column flex-md-row">
           <div className="shopping-cart-prd-content">
             <div className="shopping-cart-bg  mb-3">
-              <div className="shopping-cart-info">
+              <div className="shopping-cart-info shopping-cart-width">
                 <div className="shopping-cart-info-title">
                   <span>
                     我的購物車
@@ -136,6 +133,8 @@ const Step1 = (props) => {
                   // console.log(productsInOrder);
                   return (
                     <Step1Prd
+                    className='step1Prd'
+                    
                       key={item.id}
                       data={item}
                       setCount={(newCount) => {
@@ -258,7 +257,22 @@ const Step1 = (props) => {
                         <div className="m-3 ms-5">
                           NT${totalPrice()}
                           <br />
-                          優惠券
+  
+                          <select
+                            name=""
+                            id=""
+                            className="w-100 overflow-hidden select-class"
+                            onChange={(e) => {
+                              // console.log('click');
+                              // console.log(e.target.value);
+                              setDiscount(e.target.value)
+                            }}
+                          >
+                            <option value={0}>請選擇優惠卷</option>;
+                            {coupon.map((v, i) => {
+                              return <option value={v.discount}>{v.name}</option>;
+                            })}
+                          </select>
                           <br />
                           -NT${discount}
                         </div>

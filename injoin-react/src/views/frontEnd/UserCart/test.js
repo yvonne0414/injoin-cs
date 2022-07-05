@@ -203,20 +203,7 @@ const UserCart = () => {
   };
 
   const handleSubmit = () => {
-    let arr = [
-      {
-        prdId: 1,
-        price: 550,
-        amount: 3,
-        subTotal: 1650,
-      },
-      {
-        prdId: 3,
-        price: 140,
-        amount: 5,
-        subTotal: 700,
-      },
-    ];
+    let arr = [];
     console.log('待處理', productsInOrder);
     let newArr = [];
     productsInOrder.forEach((v, i) => {
@@ -229,7 +216,7 @@ const UserCart = () => {
       arr.push(obj);
       // console.log(obj);
     });
-    // console.log('arr', arr);
+    console.log('arr', arr);
 
     let ans = {
       userId: userId,
@@ -239,7 +226,9 @@ const UserCart = () => {
       cartList: arr,
     };
     try {
+      alert('送出訂單')
       console.log('送出訂單', ans);
+      
     } catch (e) {
       console.error(e);
     }
@@ -334,7 +323,7 @@ const UserCart = () => {
           </div>
 
           {/* prd-section-2 */}
-          {stepNum === 1 ? <Step1 stepNum={stepNum} setStepNum={setStepNum} /> : stepNum === 2 ? <Step2 stepNum={stepNum} setStepNum={setStepNum} /> : <Step3 />}
+          {stepNum === 1 ? <Step1 stepNum={stepNum} setStepNum={setStepNum} /> : stepNum === 2 ? <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit}/> : <Step3 />}
           {stepNum === 1 && (
             <>
               <Link to="/production" className="back-page btn btn-none mt-3">

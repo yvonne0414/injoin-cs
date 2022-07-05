@@ -40,7 +40,8 @@ function Step1Prd(props) {
     <>
       <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
         <div className="cart-prd-img">
-          <img src={faveriteImg} alt="product-img-1" className="img-fluid object-cover" />
+          
+          <img src={`${BE_IMAGE_URL}/production/${data.cartprdImg}`} alt="product-img-1" className="img-fluid object-cover" />
         </div>
 
         <div className="cart-prd-content d-flex flex-column ms-2">

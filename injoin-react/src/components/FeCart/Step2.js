@@ -8,7 +8,7 @@ import faveriteImg from '../../assets/images/fe/faverite/faverite-product-img-1.
 
 const Step2 = (props) => {
   const { Option } = Select;
-  const { stepNum, setStepNum } = props;
+  const { stepNum, setStepNum,handleSubmit } = props;
   const onFinish = (values) => {
     console.log(values);
   };
@@ -284,6 +284,7 @@ const Step2 = (props) => {
         </button>
         <button
           onClick={() => {
+            handleSubmit()
             setStepNum(stepNum + 1);
           }}
           className="btn btn-none injoin-btn-outline text-gold"

@@ -6,9 +6,20 @@ import FePage2Header from '../../../components/FePage2Header';
 import FePagination from '../../../components/FePagination';
 import PrdCard from '../../../components/PrdCard';
 
+import { Select, Input } from 'antd';
 import axios from 'axios';
+import EmptyImage from '../../../components/EmptyImage';
+import { API_URL } from '../../../utils/config';
+
+import { FaWineBottle } from 'react-icons/fa';
+import { TbLemon } from 'react-icons/tb';
+import { IoIosWine } from 'react-icons/io';
+import { GiSpoon } from 'react-icons/gi';
 
 const Production = () => {
+  const { Option } = Select;
+  const { Search } = Input;
+
   const page2HeaderInfo = {
     isProduct: true,
     sectionBg: 'prolist_background.png',
@@ -24,89 +35,62 @@ const Production = () => {
     prdImg: 'Flagship_product.png',
     navs: [
       {
+        icon: <FaWineBottle className=" prd-nav-icon" />,
         name: '基酒',
         href: '',
+        cateL: 1,
       },
       {
+        icon: <TbLemon className=" prd-nav-icon" />,
         name: '副材料',
         href: '',
+        cateL: 2,
       },
       {
+        icon: <IoIosWine className=" prd-nav-icon" />,
         name: '工具',
         href: '',
+        cateL: 3,
       },
       {
+        icon: <GiSpoon className=" prd-nav-icon" />,
         name: '酒杯',
         href: '',
+        cateL: 4,
       },
     ],
   };
 
-  // const majorPrdSel = ['伏特加', '蘭姆酒', '白蘭地'];
-  // const subPrdSel = [
-  //   ['基礎伏特加', '頂級伏特加', '特殊伏特加'],
-  //   ['白蘭姆酒', '牙買加蘭姆酒', '高濃度蘭姆酒'],
-  //   ['干邑白蘭地', '其他水果白蘭地', '皮斯可'],
-  // ];
-  const prdSeq = ['價格低到高', '評價高到低', '評價低到高'];
-
-  // const [majorPrdSelI, setMajorPrdSelI] = useState('');
-  // const [subPrdSelI, setSubPrdSelI] = useState('');
-  const [prdSeqI, setPrdSeqI] = useState('');
-
-  //大類別
-  const [majorPrdSelIndex, setmajorPrdSelIndex] = useState(-1);
-  //小類別
-  const [subPrdSelIndex, setsubPrdSelIndex] = useState(-1);
-
-  const [majorPrdSel, setmajorPrdSel] = useState([]);
-  const [subPrdSel, setsubPrdSel] = useState([]);
+  const prdSeq = [
+    { value: 1, name: '價格低到高' },
+    { value: 2, name: '價格高到低' },
+    { value: 3, name: '評價低到高' },
+    { value: 4, name: '評價高到低' },
+  ];
 
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = page2HeaderInfo;
-
-  // const cardArr = [
-  //   {
-  //     id: 1,
-  //     name: '金黑波本威士忌',
-  //     price: 'NT.550 ',
-  //     rating: ' 4.6',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: '金黑波本威士忌',
-  //     price: 'NT.550 ',
-  //     rating: ' 4.6',
-  //   },
-  //   {
-  //     id: 3,
-  //     name: '金黑波本威士忌',
-  //     price: 'NT.550 ',
-  //     rating: ' 4.6',
-  //   },
-  //   {
-  //     id: 4,
-  //     name: '金黑波本威士忌',
-  //     price: 'NT.550 ',
-  //     rating: ' 4.6',
-  //   },
-  // ];
 
   const [prded, setPrded] = useState([]);
   const [category, setCategory] = useState(1);
   // 換頁
   let [page, setPage] = useState(1);
+  let [orderById, setOrderById] = useState(1);
   let [pagination, setPagination] = useState({
-    total: 1,
+    total: 0,
     page: 1,
     lastPage: 1,
   });
 
   // prdList
   let getprded = async () => {
-    let response = await axios.get('http://localhost:3001/api/prd/prdList', {
+    let response = await axios.get(`${API_URL}/prd/prdList`, {
       params: {
         category: category,
         page: page,
+        orderById: orderById,
+        cateM: cateM,
+        cateS: cateS,
+        keyword: searchWord,
       },
     });
     // console.log('res', response.data);
@@ -114,129 +98,147 @@ const Production = () => {
     setPagination(response.data.pagination);
     // console.log(response.data.pagination);
   };
+  // 中分類
+  const [cateMList, setCateMList] = useState([]);
+  const [cateM, setCateM] = useState(0);
+  const [cateSList, setCateSList] = useState([]);
+  const [cateS, setCateS] = useState(0);
+
+  let getCateMList = async () => {
+    let response = await axios.get(`${API_URL}/prd/cateM`, { params: { cateL: category } });
+    setCateMList(response.data.data);
+  };
+  const handleCateMChange = async (value) => {
+    console.log(value);
+    setCateM(value);
+    setCateS(0);
+    let response = await axios.get(`${API_URL}/prd/cateS`, { params: { cateM: value } });
+    setCateSList(response.data.data);
+  };
+
+  //form 搜尋欄
+  const [searchWord, setSearchWord] = useState('');
+  // console.log('a', searchWord);
+  const search = (searchvalue) => {
+    setSearchWord(searchvalue);
+  };
 
   useEffect(() => {
-    // 大類別
-    let getmajorPrdSel = async () => {
-      let response = await axios.get('http://localhost:3001/api/prd/prdCate');
-      setmajorPrdSel(response.data.majorPrdSel);
-      // console.log(response.data.majorPrdSel);
-    };
-    getmajorPrdSel();
-    // 小類別
-    let getsubPrdSel = async () => {
-      let response = await axios.get('http://localhost:3001/api/prd/prdCate');
-      setsubPrdSel(response.data.subPrdSel);
-    };
-    getsubPrdSel();
+    // 中類別
     getprded();
-  }, []);
+    getCateMList();
+  }, [category, orderById, cateM, cateS, searchWord, page]);
 
   return (
     <>
-      <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} prdImg={prdImg} navs={navs} />
-      <div className="prd-content">
+      <FePage2Header
+        isProduct={isProduct}
+        sectionBg={sectionBg}
+        subTitle={subTitle}
+        majorTitle={majorTitle}
+        prdImg={prdImg}
+        navs={navs}
+        setCateL={setCategory}
+        category={category}
+        setCateM={setCateM}
+        setCateS={setCateS}
+        setSearchWord={setSearchWord}
+      />
+      <div className="prd-content mb-5">
         <div className="container">
           <div className="prd-content-top">
             <div className="prd-total m-view">
-              <span>副材料</span>
+              <span>{category === 1 ? '基酒' : category === 2 ? '副材料' : category === 3 ? '工具' : '酒杯'}</span>
               <span>/</span>
-              <span>共16件商品</span>
+              <span>共{pagination.total}件商品</span>
             </div>
             {/* 類別篩選 */}
             <div className="prd-sel-all">
               <div className="prd-sel-1">
-                {/* 大類別 */}
-                <select
-                  value={majorPrdSelIndex}
-                  onChange={(e) => {
-                    setmajorPrdSelIndex(e.target.value);
-                    setsubPrdSelIndex('');
-                  }}
-                  className="mx-2 px-1 prd-sel-1-major"
+                {/* 中類別 */}
+                <Select
+                  showSearch
+                  placeholder="Select a person"
+                  optionFilterProp="children"
+                  className="mx-2 px-1 prd-sel-1-major text-start"
+                  filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                  onChange={handleCateMChange}
+                  value={cateM}
                 >
-                  <option value="" className="prd-sel-option">
-                    請選擇類別
-                  </option>
-                  {majorPrdSel.map((v, i) => {
+                  <Option value={0}>請選擇</Option>
+                  {cateMList.map((v, i) => {
                     return (
-                      <option key={i} value={v}>
-                        {v}
-                      </option>
+                      <Option key={v.id} value={v.id}>
+                        {v.name}
+                      </Option>
                     );
                   })}
-                </select>
-                {/* 中類別 */}
-                <select
-                  value={subPrdSelIndex}
-                  onChange={(e) => {
-                    setsubPrdSelIndex(e.target.value);
-                  }}
-                  className="px-2 prd-sel-1-minor"
-                >
-                  <option value="" className="prd-sel-option">
-                    請選擇
-                  </option>
-                  {majorPrdSelIndex !== '' &&
-                    majorPrdSel.indexOf(majorPrdSelIndex) > -1 &&
-                    subPrdSel[majorPrdSel.indexOf(majorPrdSelIndex)] &&
-                    subPrdSel[majorPrdSel.indexOf(majorPrdSelIndex)].map((v, i) => {
+                </Select>
+                {/* 小類別 */}
+                {category === 1 && (
+                  <Select
+                    showSearch
+                    placeholder="Select a person"
+                    optionFilterProp="children"
+                    className="mx-2 px-1 prd-sel-1-major  text-start"
+                    filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                    value={cateS}
+                    onChange={(value) => {
+                      setCateS(value);
+                    }}
+                  >
+                    <Option value={0}>請選擇</Option>
+                    {cateSList.map((v, i) => {
                       return (
-                        <option key={i} value={v}>
-                          {v}
-                        </option>
+                        <Option key={v.id} value={v.id}>
+                          {v.name}
+                        </Option>
                       );
                     })}
-                  {/* 第一種寫法(-1) */}
-                  {/* {majorSelIndex !== '' &&
-                    majorSel.index(majorSelIndex) > -1 &&
-                    subSel[majorSel.index(majorSelIndex)] &&
-                    subSel[majorSel.index(majorSelIndex)].map((v, i) => {
-                      return (
-                        <option key={i} value={v}>
-                          {v}
-                        </option>
-                      );
-                    })} */}
-                </select>
+                  </Select>
+                )}
               </div>
               <div className="prd-sel-2 d-flex align-items-end  mt-1">
                 <span>依</span>
-                <select
-                  value={prdSeqI}
-                  onChange={(e) => {
-                    setPrdSeqI(e.target.value);
+                <Select
+                  // value={prdSeqI}
+                  onChange={(value) => {
+                    setOrderById(value);
                   }}
                   className="mx-2 px-2 prd-sel-seq"
+                  defaultValue={1}
                 >
-                  <option value="" className="prd-sel-option">
-                    價格高到低
-                  </option>
-                  {prdSeq.map((v, i) => {
+                  {prdSeq.map((item) => {
                     return (
-                      <option key={i} value={v}>
-                        {v}
-                      </option>
+                      <Option key={item.value} value={item.value}>
+                        {item.name}
+                      </Option>
                     );
                   })}
-                </select>
+                </Select>
                 <span>排序</span>
               </div>
             </div>
             <form className="prd-search-form d-flex">
-              <input className="prd-search-label form-control form-control-sm me-1" type="search" placeholder="Search" />
-              <button className="btn prd-search-btn" type="submit">
+              {/* <input className="prd-search-label form-control form-control-sm me-1" type="search" placeholder="Search"  onChange={(e) => search(e.target.value)} />
+              <button className="btn prd-search-btn" type="submit" onClick={search}>
                 搜尋
-              </button>
+              </button> */}
+              <Search placeholder="input search text" allowClear enterButton="搜尋" onSearch={search} />
             </form>
           </div>
-
-          <div className=" prd-card-all row row-cols-2 row-cols-md-4">
-            {prded.map((v, i) => {
-              return <PrdCard key={v.id} data={v} />;
-            })}
-          </div>
-          <FePagination pagination={pagination} setPage={setPage} />
+          {pagination.total === 0 ? (
+            <EmptyImage discText="無相關商品" />
+          ) : (
+            <>
+              <div className=" prd-card-all row row-cols-2 row-cols-md-4">
+                {prded.map((v, i) => {
+                  return <PrdCard key={v.id} data={v} />;
+                })}
+              </div>
+              <FePagination pagination={pagination} setPage={setPage} />
+            </>
+          )}
         </div>
       </div>
     </>

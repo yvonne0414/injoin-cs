@@ -227,9 +227,12 @@ const ProductionDetail = () => {
     // console.log('handleAddHeart');
     alert(`使用者${userid} 已將 商品${prdId} 加最愛`);
   };
+  const handleOnChenage = (e) => {
+    setNum(e);
+  };
+
   const onChange = (e) => {
     // console.log('changed', e);
-    setNum(e);
   };
   let [cateM, setCateM] = useState(0);
   useEffect(() => {
@@ -378,7 +381,7 @@ const ProductionDetail = () => {
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>
                 <div className="prd-detail-input-number mt-3">
-                  <InputNumber defaultValue={0} onChange={onChange} size="middle" bordered={false} value={num} />
+                  <InputNumber defaultValue={0} onChange={handleOnChenage} size="middle" bordered={false} value={num} />
                 </div>
               </div>
               <div className="prd-detail-button-position mt-3">

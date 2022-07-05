@@ -12,6 +12,8 @@ import Slider from 'react-slick';
 import FePage1Header from '../../../components/FePage1Header';
 
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
+import axios from 'axios';
+import { API_URL } from '../../../utils/config';
 
 const layout = {
   // labelCol: {
@@ -34,6 +36,10 @@ const validateMessages = {
 const { Option } = Select;
 
 const UserCartStep2 = () => {
+  const [aboutUser, setAboutUser] = useState({});
+
+  const userId = 2;
+
   const page1HeaderInfo = {
     titleEn: 'Cart',
     titleCn: '購物車',
@@ -80,6 +86,35 @@ const UserCartStep2 = () => {
     console.log(`checked = ${e.target.checked}`);
   };
 
+  // chennnnn
+  const [productsInOrder, setProductsInOrder] = useState([]);
+  const createCart = async () => {
+    let cart = JSON.parse(localStorage.getItem('cart'));
+    let tempCartArray = [];
+    for (let idx = 0; idx < cart.length; idx++) {
+      let res = await axios.get(`${API_URL}/cart/getPrdDetail?prdId=${cart[idx].prdid}`);
+      let newObj = {};
+      newObj = { ...res.data[0], cartprdCount: cart[idx].count };
+      tempCartArray.push(newObj);
+    }
+    setProductsInOrder(tempCartArray);
+    // console.log('cartArr2', tempCartArray);
+  };
+  useEffect(() => {
+    createCart();
+
+    let getUser = async () => {
+      let res = await axios.get(`${API_URL}/auth/about`, {
+        params: {
+          userid: userId,
+        },
+      });
+      // console.log('res', res.data[0]);
+      setAboutUser(res.data[0]);
+    };
+    getUser();
+  }, []);
+  console.log(aboutUser);
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -124,60 +159,31 @@ const UserCartStep2 = () => {
                       Order Information
                     </h4>
                   </div>
-                  <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                    <div className="img-content">
-                      <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
-                    </div>
-                    <div className="cart-detail-prd-content d-flex flex-column p-2">
-                      <div className="cart-prd-num">AA001234</div>
-                      <div className="cart-prd-name">AA001234</div>
-                      <div></div>
-                      <br />
-                      <div className="cart-prd-price">NT$680</div>
-                    </div>
-                    <div className="prd-number-content">
-                      <div className="prd-number">
-                        <span>數量:</span>1
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bottom-line"></div>
-                  <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                    <div className="img-content">
-                      <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
-                    </div>
-                    <div className="cart-detail-prd-content d-flex flex-column">
-                      <div className="cart-prd-num">AA001234</div>
-                      <div className="cart-prd-name">AA001234</div>
-                      <div></div>
-                      <br />
-                      <div className="cart-prd-price">NT$680</div>
-                    </div>
-                    <div className="prd-number-content">
-                      <div className="prd-number">
-                        <span>數量:</span>1
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bottom-line"></div>
-                  <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                    <div className="img-content">
-                      <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
-                    </div>
-                    <div className="cart-detail-prd-content d-flex flex-column">
-                      <div className="cart-prd-num">AA001234</div>
-                      <div className="cart-prd-name">AA001234</div>
-                      <div></div>
-                      <br />
-                      <div className="cart-prd-price">NT$680</div>
-                    </div>
-                    <div className="prd-number-content">
-                      <div className="prd-number">
-                        <span>數量:</span>1
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bottom-line"></div>
+                  {productsInOrder.map((v, i) => {
+                    return (
+                      <>
+                        <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
+                          <div className="img-content">
+                            <img src={faveriteImg} alt="faverite-product-img-1" className="faverite-product-img-1" />
+                          </div>
+                          <div className="cart-detail-prd-content d-flex flex-column">
+                            <div className="cart-prd-num">{v.id}</div>
+                            <div className="cart-prd-name">{v.cartprdName}</div>
+                            <div></div>
+                            <br />
+                            <div className="cart-prd-price">NT${v.cartprdPrice}</div>
+                          </div>
+                          <div className="prd-number-content">
+                            <div className="prd-number">
+                              <span>數量:</span>
+                              {v.cartprdCount}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bottom-line"></div>
+                      </>
+                    );
+                  })}
                 </div>
               </div>
             </div>

@@ -216,7 +216,8 @@ const UserCart = () => {
         subTotal: 700,
       },
     ];
-    console.log('待處理', productsInOrder);
+    // console.log('待處理', productsInOrder);
+
     let newArr = [];
     productsInOrder.forEach((v,i)=>{
 
@@ -240,6 +241,7 @@ const UserCart = () => {
     };
     try{
       console.log("送出訂單", ans);
+      alert("送出訂單", ans)
     }catch(e){
       console.error(e);
     }
@@ -390,28 +392,7 @@ const UserCart = () => {
                         );
                       })}
 
-                      {/* <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                        <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
-                        <div className="cart-prd-content d-flex flex-column ms-2">
-                          <div className="cart-prd-num">AA001234</div>
-                          <div className="cart-prd-name">AA001234</div>
-                          <div className="cart-prd-price">NT$680</div>
-                        </div>
-                        <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
-                          <div className="cart-prd-icon text-center">
-                            <BsTrashFill />
-                          </div>
-                          <div
-                            className="cart-prd-number d-flex ms-2 border border-white justify-content-between
-                        "
-                          >
-                            <button className="prd-plus btn-none">+</button>
-                            <div className=" border-end border-start prd-number text-center">1</div>
-                            <button className="prd-minus btn-none">-</button>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="border-bottom m-3"></div> */}
+                    
                     </div>
                   </div>
                 </div>
@@ -437,19 +418,7 @@ const UserCart = () => {
                             </Select>
                           </div>
                         </div>
-                        {/* <div className="check-info-area mb-3">
-                          <label>付款方式</label>
-                          <div className="check-content border border-white mt-2 p-3">
-                            <div className="form-check">
-                              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                              <label>信用卡線上付款</label>
-                            </div>
-                            <div className="form-check">
-                              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                              <label>貨到付款</label>
-                            </div>
-                          </div>
-                        </div> */}
+                       
 
                         <div className="delivery-section mb-5">
                           <label>運送方式</label>

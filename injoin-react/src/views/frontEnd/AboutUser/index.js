@@ -32,7 +32,6 @@ const [isTrue,setIsTrue] = useState(true)
       // console.log(response.data.datas[0].email);
       console.log(response.data.datas.length);
       if(response.data.datas.length === 0){
-        console.log("00");
         setIsTrue (false)
       }
       let newuser = {

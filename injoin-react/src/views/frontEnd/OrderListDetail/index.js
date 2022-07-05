@@ -100,35 +100,35 @@ const OrderListDetail = () => {
     remark: '請小心包裝',
   };
 
-  const orderdetailprdArr = [
-    {
-      prdId: 1,
-      detailprdNum: 'AB123',
-      detailprdImg: 'order-detail-img-1.png',
-      detailprdName: '金彬黑波本威士忌',
-      detailprdPrice: 'NT$680',
-      detailprdNumber: '1',
-      detailprdTotal: 'NT$680',
-    },
-    {
-      prdId: 2,
-      detailprdNum: 'AB456',
-      detailprdImg: 'order-detail-img-1.png',
-      detailprdName: '金彬黑波本威士忌',
-      detailprdPrice: 'NT$680',
-      detailprdNumber: '1',
-      detailprdTotal: 'NT$680',
-    },
-    {
-      prdId: 3,
-      detailprdNum: 'AB789',
-      detailprdImg: 'order-detail-img-1.png',
-      detailprdName: '金彬黑波本威士忌',
-      detailprdPrice: 'NT$680',
-      detailprdNumber: '1',
-      detailprdTotal: 'NT$680',
-    },
-  ];
+  // const orderdetailprdArr = [
+  //   {
+  //     prdId: 1,
+  //     detailprdNum: 'AB123',
+  //     detailprdImg: 'order-detail-img-1.png',
+  //     detailprdName: '金彬黑波本威士忌',
+  //     detailprdPrice: 'NT$680',
+  //     detailprdNumber: '1',
+  //     detailprdTotal: 'NT$680',
+  //   },
+  //   {
+  //     prdId: 2,
+  //     detailprdNum: 'AB456',
+  //     detailprdImg: 'order-detail-img-1.png',
+  //     detailprdName: '金彬黑波本威士忌',
+  //     detailprdPrice: 'NT$680',
+  //     detailprdNumber: '1',
+  //     detailprdTotal: 'NT$680',
+  //   },
+  //   {
+  //     prdId: 3,
+  //     detailprdNum: 'AB789',
+  //     detailprdImg: 'order-detail-img-1.png',
+  //     detailprdName: '金彬黑波本威士忌',
+  //     detailprdPrice: 'NT$680',
+  //     detailprdNumber: '1',
+  //     detailprdTotal: 'NT$680',
+  //   },
+  // ];
 
   //Collapse 收合套件
   const { Panel } = Collapse;
@@ -209,12 +209,19 @@ const OrderListDetail = () => {
       {/* -----------status------------ */}
       <div className="container">
         <div className="step-status mb-5">
-          <Steps current={ordersDetailStatus} progressDot>
-            <Step title="訂單成立" />
-            <Step title="待出貨" />
-            <Step title="已出貨" />
-            <Step title="訂單完成" />
-          </Steps>
+          {ordersDetailStatus === 4 ? (
+            <Steps current={ordersDetailStatus} progressDot>
+              <Step title="訂單成立" />
+              <Step title="已取消" />
+            </Steps>
+          ) : (
+            <Steps current={ordersDetailStatus} progressDot>
+              <Step title="訂單成立" />
+              <Step title="待出貨" />
+              <Step title="已出貨" />
+              <Step title="訂單完成" />
+            </Steps>
+          )}
         </div>
       </div>
 

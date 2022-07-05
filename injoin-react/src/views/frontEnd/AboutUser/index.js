@@ -82,36 +82,39 @@ const AboutUser = () => {
 
   return (
     <>
-      {/* {!isTrue ? (
+      {!isTrue ? (
         <h1>查無此人</h1>
-      ) : ( */}
-      <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-      <div className="container">
-        <section className="aboutUser-s1">
-          <div className="aboutUser-card">
-            <div className="upper-half">
-              <div className="upper-background">
-                <img src={upperBackground} alt="" />
+      ) : (
+        <>
+          <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+          <div className="container">
+            <section className="aboutUser-s1">
+              <div className="aboutUser-card">
+                <div className="upper-half">
+                  <div className="upper-background">
+                    <img src={upperBackground} alt="" />
+                  </div>
+                  <div className="upper-usericon">
+                    {user.userimg === null ? <img src={upperUsericon} alt="" /> : <img src={`${BE_IMAGE_URL}${user.userimg}`} alt="" />}
+                    {/* <img src={`${BE_IMAGE_URL}${user.userimg}`} alt="" /> */}
+                  </div>
+                </div>
+                <div className="lower-half">
+                  <div className="lower-part">
+                    <div className="lower-title">暱稱</div>
+                    <div className="lower-content">{user.name}</div>
+                  </div>
+                  <div className="lower-part">
+                    <div className="lower-title">關於我</div>
+                    <div className="lower-content">{user.usermessage}</div>
+                  </div>
+                </div>
               </div>
-              <div className="upper-usericon">
-                {user.userimg === null ? <img src={upperUsericon} alt="" /> : <img src={`${BE_IMAGE_URL}${user.userimg}`} alt="" />}
-                {/* <img src={`${BE_IMAGE_URL}${user.userimg}`} alt="" /> */}
-              </div>
-            </div>
-            <div className="lower-half">
-              <div className="lower-part">
-                <div className="lower-title">暱稱</div>
-                <div className="lower-content">{user.name}</div>
-              </div>
-              <div className="lower-part">
-                <div className="lower-title">關於我</div>
-                <div className="lower-content">{user.usermessage}</div>
-              </div>
-            </div>
+            </section>
           </div>
-        </section>
-      </div>
-      {/* )}; */}
+        </>
+      )}
+      ;
     </>
   );
 };

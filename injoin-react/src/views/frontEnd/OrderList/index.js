@@ -4,11 +4,16 @@ import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
+import { DatePicker, Space } from 'antd';
+import moment from 'moment';
 
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination';
 import OrderListForm from '../../../components/FeOrderList/OrderList';
+import EmptyImage from '../../../components/EmptyImage';
+
+const { RangePicker } = DatePicker;
 
 const OrderList = () => {
   useEffect(() => {
@@ -94,7 +99,7 @@ const OrderList = () => {
   const [orderData, setOrderData] = useState([]);
   let [ordersPage, setOrdersPage] = useState(1);
   let [ordersPagination, setOrdersPagination] = useState({
-    total: 1,
+    total: 0,
     page: 1,
     lastPage: 1,
   });
@@ -119,6 +124,30 @@ const OrderList = () => {
 
   let ordersarr = orderData;
   // console.log(ordersarr);
+
+  //篩選日期
+  const [dates, setDates] = useState(null);
+  const [hackValue, setHackValue] = useState(null);
+  const [value, setValue] = useState(null);
+
+  const disabledDate = (current) => {
+    if (!dates) {
+      return false;
+    }
+
+    const tooLate = dates[0] && current.diff(dates[0], 'days') > 30;
+    const tooEarly = dates[1] && dates[1].diff(current, 'days') > 7;
+    return !!tooEarly || !!tooLate;
+  };
+
+  const onOpenChange = (open) => {
+    if (open) {
+      setHackValue([null, null]);
+      setDates([null, null]);
+    } else {
+      setHackValue(null);
+    }
+  };
 
   return (
     <>
@@ -179,33 +208,49 @@ const OrderList = () => {
               </li>
             </ul>
           </nav>
-
-          <div className="page-type1-area-title" id="grouplist-bolck1">
-            {orderStatus === 1 ? '待出貨' : orderStatus === 2 ? '已出貨' : orderStatus === 3 ? '已完成' : '已取消'}
-          </div>
-          <div className="page-type1-list-wraper">
-            <div className="page-type1-list-title pc-view">
-              <div>訂單編號</div>
-              <div>訂單時間</div>
-              <div>訂單狀態</div>
-              <div>配送方式</div>
-              <div>總金額</div>
-              <div></div>
+          <div className="nav-date d-flex justify-content-between">
+            <div className="page-type1-area-title" id="grouplist-bolck1">
+              {orderStatus === 1 ? '待出貨' : orderStatus === 2 ? '已出貨' : orderStatus === 3 ? '已完成' : '已取消'}
             </div>
+            <div>
+              <RangePicker
+                value={hackValue || value}
+                disabledDate={disabledDate}
+                onCalendarChange={(val) => setDates(val)}
+                onChange={(val) => setValue(val)}
+                onOpenChange={onOpenChange}
+              />
+            </div>
+          </div>
+          {ordersPagination.total === 0 ? (
+            <EmptyImage discText="無相關訂單" />
+          ) : (
+            <>
+              <div className="page-type1-list-wraper">
+                <div className="page-type1-list-title pc-view">
+                  <div>訂單編號</div>
+                  <div>訂單時間</div>
+                  <div>訂單狀態</div>
+                  <div>配送方式</div>
+                  <div>總金額</div>
+                  <div></div>
+                </div>
 
-            {/* 假資料測試 */}
-            {/* {orderlistArr.map((v, i) => {
+                {/* 假資料測試 */}
+                {/* {orderlistArr.map((v, i) => {
               return <OrderListForm key={i} data={v} />;
             })} */}
 
-            {ordersarr.map((v, i) => {
-              // console.log(v);
-              // if (v.logistics_state === orderStatus) {
-              return <OrderListForm key={i} data={v} />;
-              // }
-            })}
-          </div>
-          <FePagination pagination={ordersPagination} setPage={setOrdersPage} />
+                {ordersarr.map((v, i) => {
+                  // console.log(v);
+                  // if (v.logistics_state === orderStatus) {
+                  return <OrderListForm key={i} data={v} />;
+                  // }
+                })}
+              </div>
+              <FePagination pagination={ordersPagination} setPage={setOrdersPage} />
+            </>
+          )}
         </div>
       </div>
     </>

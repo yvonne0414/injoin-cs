@@ -8,6 +8,8 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+
 // -----Prdcar
 import PrdCard from '../../../components/PrdCard';
 
@@ -175,6 +177,10 @@ const ProductionDetail = () => {
   const [imgList, setImgList] = useState([]);
   const { prdId } = useParams();
   const [num, setNum] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   let rate = 5;
   // getuserid
@@ -377,15 +383,15 @@ const ProductionDetail = () => {
           <div className="prd-detail-session1-content-block2">
             <div className="container">
               <div className="prd-detail-title mt-4">
-                {/* TODO:取得商品名子 */}
+                {/* 取得商品名子 */}
                 <span>{detail.name}</span>
               </div>
               <div className="prd-detail-price mt-3">
-                {/* TODO:取得商品價格 */}
+                {/* 取得商品價格 */}
                 <span>NT.{detail.price}</span>
               </div>
               <div className="star-defaultValue mt-3">
-                <Rate value={rate} disabled />
+                <Rate value={detail.rate} disabled />
               </div>
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>
@@ -530,12 +536,16 @@ const ProductionDetail = () => {
                 <p>相關酒譜</p>
               </div>
               <div className="bartending-card px-md-3">
-                <Slider {...settings2}>
-                  {relatedBarList.map((v, i) => {
-                    // console.log(v);
-                    return <BartendingCard key={i.id} data={v} />;
-                  })}
-                </Slider>
+                {relatedBarList.length > 0 ? (
+                  <Slider {...settings2}>
+                    {relatedBarList.map((v, i) => {
+                      // console.log(v);
+                      return <BartendingCard key={i.id} data={v} />;
+                    })}
+                  </Slider>
+                ) : (
+                  <EmptyImage discText="無相關酒譜" />
+                )}
               </div>
             </div>
           </div>

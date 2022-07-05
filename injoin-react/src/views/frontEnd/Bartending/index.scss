@@ -11,7 +11,6 @@
       font-size: var(--fs-cn-page-list-title-sm);
       margin-top: $space-2;
       font-weight: $font-weight-lighter;
-      right: -$space-3;
       span {
         margin-left: $space-2;
       }
@@ -21,20 +20,25 @@
       width: 100%;
       font-size: var(--fs-cn-page-list-title-sm);
       margin-top: $space-2;
-      right: -$space-4;
+
+      .ant-select-selector,
+      .ant-select-selector:focus {
+        border: 0;
+      }
 
       .Bartending-sel {
-        .Bartending-sel-1,.Bartending-sel-2 {
+        .Bartending-sel-1,
+        .Bartending-sel-2 {
           color: $color-font-sp-light;
           border-bottom: solid 1px;
           background-color: $color-bg-dark;
         }
-        .Bartending-sel-1{
+        .Bartending-sel-1 {
           width: 23vw;
           overflow: hidden;
         }
-        .Bartending-sel-2{
-          width:35vw;
+        .Bartending-sel-2 {
+          width: 35vw;
           overflow: hidden;
         }
       }
@@ -44,7 +48,12 @@
       margin: 0 auto;
       margin-top: $space-3;
       width: 90%;
-      
+      .ant-btn.ant-btn-primary.ant-input-search-button {
+        border-color: $color-font-gold !important;
+        color: $color-font-gold;
+        font-family: $font-family-cn-main;
+      }
+
       .Bartending-search-label {
         color: $color-font;
         background-color: #56565650;
@@ -53,7 +62,7 @@
       }
       .Bartending-search-btn {
         width: 30%;
-        letter-spacing:$letter-space-1;
+        letter-spacing: $letter-space-1;
         padding: $space-1 $space-3;
         border: solid 1px $color-font-gold;
         border-radius: 0%;
@@ -76,14 +85,14 @@
       .Bartending-sel-all {
         order: 2;
         margin-top: 0;
-        font-size: var( --fs-cn-page-list-filter);
+        font-size: var(--fs-cn-page-list-filter);
         .Bartending-sel {
           display: flex;
           justify-content: end;
-          .Bartending-sel-1{
+          .Bartending-sel-1 {
             width: 8vw;
           }
-          .Bartending-sel-2{
+          .Bartending-sel-2 {
             width: 12vw;
           }
         }

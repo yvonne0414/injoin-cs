@@ -47,13 +47,13 @@ const Production = () => {
         cateL: 2,
       },
       {
-        icon: <IoIosWine className=" prd-nav-icon" />,
+        icon: <GiSpoon className=" prd-nav-icon" />,
         name: '工具',
         href: '',
         cateL: 3,
       },
       {
-        icon: <GiSpoon className=" prd-nav-icon" />,
+        icon: <IoIosWine className=" prd-nav-icon" />,
         name: '酒杯',
         href: '',
         cateL: 4,
@@ -142,7 +142,6 @@ const Production = () => {
         category={category}
         setCateM={setCateM}
         setCateS={setCateS}
-        setSearchWord={setSearchWord}
       />
       <div className="prd-content mb-5">
         <div className="container">

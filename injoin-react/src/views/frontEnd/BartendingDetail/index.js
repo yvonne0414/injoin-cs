@@ -26,6 +26,9 @@ import bardetailImg4 from '../../../assets/images/fe/bartendingdetail/bartending
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
 const BartendingDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const contentStyle = {
     height: '300px',
     color: '#000',
@@ -156,11 +159,7 @@ const BartendingDetail = () => {
         <div className="container">
           <div className="w-fit-content ms-auto">
             <Breadcrumb separator="" className="bar-detail-breadcrumb">
-              {/* <Breadcrumb.Item href="">商品</Breadcrumb.Item>
-              <Breadcrumb.Separator />
-              <Breadcrumb.Item href="">威士忌</Breadcrumb.Item>
-              <Breadcrumb.Separator /> */}
-              <Breadcrumb.Item href="">調酒酒譜</Breadcrumb.Item>
+              <Breadcrumb.Item href="/bartending">調酒酒譜</Breadcrumb.Item>
               <Breadcrumb.Separator />
               <Breadcrumb.Item>{barPrdDetail.name}</Breadcrumb.Item>
             </Breadcrumb>

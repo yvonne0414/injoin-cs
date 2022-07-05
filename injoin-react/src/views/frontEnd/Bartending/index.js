@@ -2,11 +2,18 @@ import './index.scss';
 import { useState, useEffect } from 'react';
 import BartendingCard from '../../../components/BartendingCard/index';
 import FePage2Header from '../../../components/FePage2Header';
-import FePagination from '../../../components/FePagination1';
+import FePagination from '../../../components/FePagination';
+import EmptyImage from '../../../components/EmptyImage';
 import axios from 'axios';
-import { TbChevronDownLeft } from 'react-icons/tb';
-import { IoMdHeartEmpty } from 'react-icons/io';
+
+import { FaGlassMartiniAlt, FaGlassWhiskey } from 'react-icons/fa';
+import { Select, Input } from 'antd';
+
+import { API_URL } from '../../../utils/config';
+
 const Bartending = () => {
+  const { Option } = Select;
+  const { Search } = Input;
   const page2HeaderInfo = {
     isProduct: true,
     sectionBg: 'Bartending_background.png',
@@ -22,20 +29,52 @@ const Bartending = () => {
 
     navs: [
       {
-        name: 'Vodks',
+        icon: <FaGlassMartiniAlt className=" prd-nav-icon" />,
+        name: '伏特加',
         href: '',
+        cateL: 5,
       },
       {
-        name: 'Rum',
+        icon: <FaGlassWhiskey className=" prd-nav-icon" />,
+        name: '蘭姆酒',
         href: '',
+        cateL: 6,
       },
       {
-        name: 'Gin',
+        icon: <FaGlassMartiniAlt className=" prd-nav-icon" />,
+        name: '白蘭地',
         href: '',
+        cateL: 7,
       },
       {
-        name: 'Mixed',
+        icon: <FaGlassWhiskey className=" prd-nav-icon" />,
+        name: '香甜酒',
         href: '',
+        cateL: 8,
+      },
+      {
+        icon: <FaGlassMartiniAlt className=" prd-nav-icon" />,
+        name: '琴酒',
+        href: '',
+        cateL: 9,
+      },
+      {
+        icon: <FaGlassWhiskey className=" prd-nav-icon" />,
+        name: '龍舌蘭',
+        href: '',
+        cateL: 10,
+      },
+      {
+        icon: <FaGlassMartiniAlt className=" prd-nav-icon" />,
+        name: '威士忌',
+        href: '',
+        cateL: 11,
+      },
+      {
+        icon: <FaGlassWhiskey className=" prd-nav-icon" />,
+        name: '其他',
+        href: '',
+        cateL: 12,
       },
     ],
   };
@@ -70,65 +109,69 @@ const Bartending = () => {
   //form 搜尋欄
   const [searchWord, setSearchWord] = useState('');
   // console.log('a', searchWord);
+  // const search = (searchvalue) => {
+  //   setSearchWord(searchvalue);
+  //   const filterWord = barted.filter((item) => {
+  //     return item.name.includes(searchWord);
+  //   });
+  //   console.log('d', filterWord);
+  // };
+
   const search = (searchvalue) => {
     setSearchWord(searchvalue);
-    const filterWord = barted.filter((item) => {
-      return item.name.includes(searchWord);
-    });
-    console.log('d', filterWord);
   };
 
-  // bartendindcard 假資料
-  // const bartendcard = [
-  //   {
-  //     id: 1,
-  //     img: 'bartending_1.png',
-  //     name: '粉紅松鼠',
-  //     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  //   },
-  //   {
-  //     id: 2,
-  //     img: 'bartending_1.png',
-  //     name: '粉紅松鼠',
-  //     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  //   },
-  //   {
-  //     id: 3,
-  //     img: 'bartending_1.png',
-  //     name: '粉紅松鼠',
-  //     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  //   },
-  //   {
-  //     id: 4,
-  //     img: 'bartending_1.png',
-  //     name: '粉紅松鼠',
-  //     material: '杏仁香甜酒 鮮奶油 調味伏特加 鮮奶油紅石榴糖漿',
-  //   },
-  // ];
+  const [barCateLList, setBrCateLList] = useState([]);
+  const [barCateL, setBarCateL] = useState(0);
+  const [barCateSList, setBarCateSList] = useState([]);
+  const [barCateS, setBarCateS] = useState(0);
+
+  let getCateMList = async () => {
+    let response = await axios.get(`${API_URL}/bar/cateL`);
+    setBrCateLList(response.data.data);
+  };
+  const handleCateSChange = async (value) => {
+    console.log(value);
+    setBarCateL(value);
+    setBarCateS(0);
+    let response = await axios.get(`${API_URL}/bar/cateM`, { params: { cateL: value } });
+    setBarCateSList(response.data.data);
+  };
+
   const [barted, setBarted] = useState([]);
   const [bartdType, setBartdType] = useState([]);
+
+  const [category, setCategory] = useState(5);
+  // 換頁
+  let [page, setPage] = useState(1);
+  let [pagination, setPagination] = useState({
+    total: 0,
+    page: 1,
+    lastPage: 1,
+  });
 
   useEffect(() => {
     //bartendingCard
     let getbarted = async () => {
-      let response = await axios.get('http://localhost:3001/api/bar');
-      setBarted(response.data);
+      let response = await axios.get('http://localhost:3001/api/bar', { params: { category, page, cateS: barCateS, keyword: searchWord } });
+      setBarted(response.data.data);
+      setPagination(response.data.pagination);
       // console.log('e', response.data);
     };
     getbarted();
     //篩選
-    //大類別
-    let getMajorSel = async () => {
-      let response = await axios.get('http://localhost:3001/api/bar/type');
-      setMajorSel(response.data.data.majorSel);
-    };
-    getMajorSel();
-    //小類別
-    let getSubSel = async () => {
-      let response = await axios.get('http://localhost:3001/api/bar/type');
-      setSubSel(response.data.data.subSel);
-    };
-    getSubSel();
+    // //大類別
+    // let getMajorSel = async () => {
+    //   let response = await axios.get('http://localhost:3001/api/bar/type');
+    //   setMajorSel(response.data.data.majorSel);
+    // };
+    // getMajorSel();
+    // //小類別
+    // let getSubSel = async () => {
+    //   let response = await axios.get('http://localhost:3001/api/bar/type');
+    //   setSubSel(response.data.data.subSel);
+    // };
+    // getSubSel();
     //bartd type
     // let getBartdType = async () => {
     //   let response = await axios.get('http://localhost:3001/api/bar/bartdtype');
@@ -137,7 +180,9 @@ const Bartending = () => {
     // console.log('c', response.data.types);
     // };
     // getBartdType();
-  }, []);
+
+    getCateMList();
+  }, [category, page, barCateS, searchWord]);
   //老師
   // useEffect(() => {
   //   axios.get('http://localhost:3001/api/bar/type').then((response) => {
@@ -150,8 +195,19 @@ const Bartending = () => {
 
   return (
     <>
-      <FePage2Header isProduct={isProduct} sectionBg={sectionBg} subTitle={subTitle} majorTitle={majorTitle} BartendingImg={BartendingImg} navs={navs} />
-      <div className="Bartending-content">
+      <FePage2Header
+        isProduct={isProduct}
+        sectionBg={sectionBg}
+        subTitle={subTitle}
+        majorTitle={majorTitle}
+        BartendingImg={BartendingImg}
+        navs={navs}
+        setCateL={setCategory}
+        category={category}
+        setCateM={setBarCateL}
+        setCateS={setBarCateS}
+      />
+      <div className="Bartending-content pb-5 mb-5">
         <div className="container">
           <div className="Bartending-content-top">
             <div className="Bartending-total m-view">
@@ -163,77 +219,57 @@ const Bartending = () => {
             <div className="Bartending-sel-all">
               <div className="Bartending-sel">
                 {/* 大類別 */}
-                <select
-                  value={majorSelIndex}
-                  onChange={(e) => {
-                    setmajorSelIndex(e.target.value);
-                    setsubSelIndex('');
-                  }}
-                  className="Bartending-sel-1"
-                >
-                  <option value="" className="Bartending-sel-option">
-                    請選擇類別
-                  </option>
-                  {majorSel.map((v, i) => {
+                <Select defaultValue={0} onChange={handleCateSChange} className="Bartending-sel-1 me-3">
+                  <Option value={0} className="Bartending-sel-option">
+                    請選擇
+                  </Option>
+                  {barCateLList.map((item, i) => {
                     return (
-                      <option key={i} value={v}>
-                        {v}
-                      </option>
+                      <Option key={item.id} value={item.id}>
+                        {item.name}
+                      </Option>
                     );
                   })}
-                </select>
+                </Select>
                 {/* 小類別 */}
-                <select
-                  value={subSelIndex}
-                  onChange={(e) => {
-                    setsubSelIndex(e.target.value);
+                <Select
+                  defaultValue={0}
+                  className="Bartending-sel-1"
+                  onChange={(value) => {
+                    setBarCateS(value);
                   }}
-                  className="ms-2 Bartending-sel-2"
                 >
-                  <option value="" className="Bartending-sel-option">
+                  <Option value={0} className="Bartending-sel-option">
                     請選擇
-                  </option>
-                  {majorSelIndex !== '' &&
-                    majorSel.indexOf(majorSelIndex) > -1 &&
-                    subSel[majorSel.indexOf(majorSelIndex)] &&
-                    subSel[majorSel.indexOf(majorSelIndex)].map((v, i) => {
-                      return (
-                        <option key={i} value={v}>
-                          {v}
-                        </option>
-                      );
-                    })}
-                  {/* 第一種寫法(-1) */}
-                  {/* {majorSelIndex !== '' &&
-                    majorSel.index(majorSelIndex) > -1 &&
-                    subSel[majorSel.index(majorSelIndex)] &&
-                    subSel[majorSel.index(majorSelIndex)].map((v, i) => {
-                      return (
-                        <option key={i} value={v}>
-                          {v}
-                        </option>
-                      );
-                    })} */}
-                </select>
+                  </Option>
+                  {barCateSList.map((item, i) => {
+                    return (
+                      <Option key={item.id} value={item.id}>
+                        {item.name}
+                      </Option>
+                    );
+                  })}
+                </Select>
               </div>
             </div>
             {/* 搜尋欄 */}
-            <form className="Bartending-search-form d-flex">
-              <input type="text" placeholder="Search" onChange={(e) => search(e.target.value)} className="Bartending-search-label form-control form-control-sm me-1" />
-              <button onClick={search} className="btn Bartending-search-btn" type="submit">
-                搜尋
-              </button>
+            <form className="Bartending-search-form d-flex mx-0">
+              <Search placeholder="input search text" allowClear enterButton="搜尋" onSearch={search} />
             </form>
           </div>
-
-          {/* card */}
-          <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
-            {barted.map((v, i) => {
-              // console.log(v);
-              return <BartendingCard key={i.id} data={v} />;
-            })}
-          </div>
-          <FePagination className="pc-view" />
+          {pagination.total === 0 ? (
+            <EmptyImage discText="無相關酒譜" />
+          ) : (
+            <>
+              <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
+                {barted.map((v, i) => {
+                  // console.log(v);
+                  return <BartendingCard key={i.id} data={v} />;
+                })}
+              </div>
+              <FePagination pagination={pagination} setPage={setPage} />
+            </>
+          )}
         </div>
       </div>
     </>

@@ -363,21 +363,15 @@ const ProductionDetail = () => {
                 <img src={`${IMAGE_URL}${imgList}`} alt="prd-detail-img-1" className="mx-auto h-100" />
               </div>
             </div> */}
-            <div>
-              <div style={contentStyle}>
-                <img src={`${BE_IMAGE_URL}/production/${imgList[0]}`} alt="prd-detail-img-2" className="mx-auto h-100" />
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <img src={`${BE_IMAGE_URL}/production/${imgList[1]}`} alt="prd-detail-img-3" className="mx-auto h-100" />
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <img src={`${BE_IMAGE_URL}/production/${imgList[2]}`} alt="prd-detail-img-4" className="mx-auto h-100" />
-              </div>
-            </div>
+            {imgList.map((img) => {
+              return (
+                <div>
+                  <div style={contentStyle}>
+                    <img src={`${BE_IMAGE_URL}/production/${img}`} alt="prd-detail-img-2" className="mx-auto h-100" />
+                  </div>
+                </div>
+              );
+            })}
           </Carousel>
           {/* instructions-------------------------------- */}
           <div className="prd-detail-session1-content-block2">

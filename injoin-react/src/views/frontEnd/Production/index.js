@@ -1,5 +1,7 @@
 import './index.scss';
-import { useState, useEffect } from 'react';
+import { userState } from '../../../App';
+
+import { useEffect, useState, useContext } from 'react';
 
 import FePage2Header from '../../../components/FePage2Header';
 
@@ -19,6 +21,15 @@ import { GiSpoon } from 'react-icons/gi';
 const Production = () => {
   const { Option } = Select;
   const { Search } = Input;
+  // 檢查登入
+  const [isLogin, setisLogin] = useState('');
+  const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
 
   const page2HeaderInfo = {
     isProduct: true,
@@ -91,6 +102,7 @@ const Production = () => {
         cateM: cateM,
         cateS: cateS,
         keyword: searchWord,
+        userId: memberInfo.userId,
       },
     });
     // console.log('res', response.data);
@@ -232,7 +244,7 @@ const Production = () => {
             <>
               <div className=" prd-card-all row row-cols-2 row-cols-md-4">
                 {prded.map((v, i) => {
-                  return <PrdCard key={v.id} data={v} />;
+                  return <PrdCard key={v.id} data={v} isLike={v.isPrdLike} />;
                 })}
               </div>
               <FePagination pagination={pagination} setPage={setPage} />

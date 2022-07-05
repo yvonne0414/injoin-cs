@@ -74,7 +74,7 @@ const UserCartStep3 = () => {
                 Shipping & Billing info
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step3">
+            <div className="col cart-step d-flex flex-column flex-md-row active">
               <div className="step-left">03</div>
               <div className="step-right">
                 購物完成! <br />
@@ -105,13 +105,6 @@ const UserCartStep3 = () => {
               </div>
             </div>
           </div>
-          <div className="check-box">
-            <Checkbox onChange={onChange}>
-              我同意接受服務條款和隱私權政策
-            </Checkbox>
-            ;
-          </div>
-          <div className="check-cart">※下單前請再次確認您的購買明細及配送資訊，訂單成立後無法異動訂單內容</div>
         </div>
       </div>
     </>

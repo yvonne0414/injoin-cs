@@ -16,6 +16,9 @@ import FePage1Header from '../../../components/FePage1Header';
 import OrderDetail from '../../../components/FeOrderlistDetail/OrderDetail';
 
 const OrderListDetail = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { Step } = Steps;
 
   // header 資料
@@ -245,7 +248,7 @@ const OrderListDetail = () => {
                   <apan>配送方式: </apan>
                   {ordersDetailData.logisticsCateName}
                   <br />
-                  完成日期: &nbsp;{ordersDetailData.order_time}
+                  訂購日期: &nbsp;{ordersDetailData.order_time}
                   <br />
                   訂單狀態: &nbsp;<span> {ordersDetailData.logisticsStatename}</span>
                 </Panel>

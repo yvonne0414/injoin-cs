@@ -329,11 +329,11 @@ const ProductionDetail = () => {
           {/* Breadcrumb----------------------------------- */}
           <div className="w-fit-content ms-auto">
             <Breadcrumb separator="" className="prd-detail-breadcrumb">
-              <Breadcrumb.Item href="">商品</Breadcrumb.Item>
+              <Breadcrumb.Item>商品</Breadcrumb.Item>
               <Breadcrumb.Separator />
-              <Breadcrumb.Item href="">{detail.cateMName}</Breadcrumb.Item>
+              <Breadcrumb.Item>{detail.cateMName}</Breadcrumb.Item>
               <Breadcrumb.Separator />
-              <Breadcrumb.Item href="">{detail.cateSName}</Breadcrumb.Item>
+              <Breadcrumb.Item>{detail.cateSName}</Breadcrumb.Item>
               <Breadcrumb.Separator />
               <Breadcrumb.Item>{detail.name}</Breadcrumb.Item>
             </Breadcrumb>

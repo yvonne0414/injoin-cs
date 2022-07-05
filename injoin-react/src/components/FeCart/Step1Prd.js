@@ -7,7 +7,7 @@ import { API_URL, BE_IMAGE_URL } from '../../utils/config';
 import faveriteImg from '../../../src/assets/images/fe/faverite/faverite-product-img-1.png';
 import { BsTrashFill } from 'react-icons/bs';
 
-function CartStep1(props) {
+function Step1Prd(props) {
   const { data, setCount, removeItem } = props;
   // console.log('data',data);
 
@@ -81,4 +81,4 @@ function CartStep1(props) {
   );
 }
 
-export default CartStep1;
+export default Step1Prd;

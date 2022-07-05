@@ -25,14 +25,6 @@ const layout = {
 };
 /* eslint-disable no-template-curly-in-string */
 
-const validateMessages = {
-  required: '請輸入${label}!',
-  types: {
-    number: '${label} is not a valid number!',
-  },
-};
-/* eslint-enable no-template-curly-in-string */
-
 const { Option } = Select;
 
 const UserCartStep2 = () => {
@@ -130,7 +122,7 @@ const UserCartStep2 = () => {
                 Cart & Check out
               </div>
             </div>
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step2">
+            <div className="col cart-step d-flex flex-column flex-md-row active">
               <div className="step-left">02</div>
               <div className="step-right">
                 填寫訂單資料 <br />
@@ -197,13 +189,14 @@ const UserCartStep2 = () => {
                     Orderer Information
                   </h4>
                 </div>
-                <Form {...layout} name="nest-messages" onFinish={onFinish} validateMessages={validateMessages}>
+                <Form {...layout} nameName="nest-messages" onFinish={onFinish}>
                   <Form.Item
                     name={['user', 'name']}
                     label="姓名"
                     rules={[
                       {
                         required: true,
+                        message: '請填寫收件人姓名',
                       },
                     ]}
                   >
@@ -227,6 +220,7 @@ const UserCartStep2 = () => {
                       {
                         type: 'email',
                         required: false,
+                        message: '請填寫Email',
                       },
                     ]}
                   >
@@ -353,6 +347,7 @@ const UserCartStep2 = () => {
                     rules={[
                       {
                         required: true,
+                        message: '必填',
                       },
                     ]}
                   >

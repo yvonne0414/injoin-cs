@@ -3,6 +3,8 @@
 .aboutUser-s1 {
   min-height: 50vh;
   background: $color-bg-light;
+  padding: 1rem;
+  z-index: -1;
   .aboutUser-card {
     width: 100%;
     position: relative;
@@ -16,7 +18,7 @@
       position: relative;
       .upper-background {
         width: 100%;
-        opacity: 0.5;
+        opacity: 0.7;
       }
       .upper-usericon {
         position: absolute;
@@ -27,8 +29,8 @@
         left: 0;
         img {
           border-radius: 50%;
-          width: 100%;
-          height: 100%;
+          width: 100px;
+          height: 100px;
           object-fit: cover;
         }
       }
@@ -37,7 +39,7 @@
     .lower-half {
       padding: $space-3 $space-3;
       width: 100%;
-      max-height: 40vh;
+      // max-height: 40vh;
       font-family: $font-family-cn-main;
       font-size: var(--fs-cn-home-content);
 
@@ -58,24 +60,27 @@
 
 @media screen and (min-width: 768px) {
   .aboutUser-s1 {
+    padding: 3rem;
     .aboutUser-card {
-      padding: $space-6 $space-3;
+      // padding: $space-6 $space-3;
       display: flex;
+      align-items: center;
+      margin: 10px auto;
 
       .upper-half {
         flex: 1 1 100px;
         position: relative;
         .upper-background {
           width: 100%;
-          opacity: 0.5;
+          opacity: 0.7;
         }
         .upper-usericon {
           position: absolute;
           border-radius: 50%;
           border: 1px solid white;
           // width: 30%;
-          width: 100px;
-          height: 100px;
+          width: 150px;
+          height: 150px;
           bottom: 0;
           left: 0;
           img {
@@ -93,9 +98,11 @@
         .lower-part {
           margin: 0;
           .lower-title {
+            margin: 5px;
           }
           .lower-content {
-            padding: 0 $space-3;
+            padding: $space-3;
+            height: 100%;
           }
         }
       }

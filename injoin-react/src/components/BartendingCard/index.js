@@ -7,7 +7,6 @@ import faveritePrdImg1 from '../../assets/images/fe/bartending/bartending_1.png'
 import Heart from '../Heart';
 import { BE_IMAGE_URL } from '../../utils/config';
 
-
 function BartendingCard(props) {
   let { data, isbartdLike } = props;
   let isLike = isbartdLike || false;
@@ -29,7 +28,7 @@ function BartendingCard(props) {
       <div className="col Bartending-card-col">
         <div className="Bartending-card card ">
           <div className="Bartending-card-image">
-            <Link to="/">
+            <Link to={`/bartending/${data.id}`}>
               <img src={`${BE_IMAGE_URL}${data.img}`} alt="" />
             </Link>
             {/* <Link to="/">
@@ -40,10 +39,14 @@ function BartendingCard(props) {
             <div className="Bartending-card-title card-title">
               <Link to={`/bartending/${data.id}`}>{data.name}</Link>
             </div>
-            <div className="Bartending-card-subtitle card-footer">{data.material} </div>
+            <div className="Bartending-card-subtitle card-footer">
+              {data.material.map((item) => {
+                return <span className="me-2">{item}</span>;
+              })}
+            </div>
           </div>
           <div className="heart-position">
-            <Heart data={data} heartState={2} isLike={isLike}/>
+            <Heart data={data} heartState={2} isLike={isLike} />
           </div>
         </div>
       </div>

@@ -1,27 +1,24 @@
 import FePage1Header from '../../../components/FePage1Header';
 import upperUsericon from '../../../assets/images/fe/membercenter/usericon.png';
 import upperBackground from '../../../assets/images/fe/membercenter/UserInfo-AboutCard.jpg';
-import { API_URL,BE_IMAGE_URL } from '../../../utils/config';
+import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 
 import './index.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 
-
-
 // http://localhost:3001/api/auth/about/2
 const AboutUser = () => {
-const [isTrue,setIsTrue] = useState(true)
+  const [isTrue, setIsTrue] = useState(true);
 
-  const {userid} = useParams()
+  const { userid } = useParams();
   const [user, setUser] = useState({
     name: '',
     nick: '',
     usermessage: '',
-    userimg:''
+    userimg: '',
   });
-
 
   // 設定user id
   // let userid = 1
@@ -31,32 +28,29 @@ const [isTrue,setIsTrue] = useState(true)
       // console.log(response.data.datas[0]);
       // console.log(response.data.datas[0].email);
       console.log(response.data.datas.length);
-      if(response.data.datas.length === 0){
-        console.log("00");
-        setIsTrue (false)
+      if (response.data.datas.length === 0) {
+        console.log('00');
+        setIsTrue(false);
       }
       let newuser = {
         ...user,
-        name : response.data.datas[0].name,
+        name: response.data.datas[0].name,
         nick: response.data.datas[0].name,
-        usermessage:response.data.datas[0].email,
-        userimg:response.data.datas[0].user_img
-      }
-      setUser(newuser)
-      
+        usermessage: response.data.datas[0].email,
+        userimg: response.data.datas[0].user_img,
+      };
+      setUser(newuser);
     };
     getuser();
-
   }, []);
 
-
   const page1HeaderInfo = {
-    titleEn: 'AboutMember',
+    titleEn: 'About Member',
     titleCn: `${user.nick}`,
     menuList: [
       {
         href: '#grouplist-bolck2',
-        name: `關於 : ${user.nick}`,
+        name: `關於我 : ${user.nick}`,
       },
     ],
     imgs: {
@@ -83,16 +77,16 @@ const [isTrue,setIsTrue] = useState(true)
     },
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
-  
+
   // console.log(isTrue);
 
   return (
     <>
-
-      {!isTrue ? <h1>查無此人</h1>:
-      
+      {/* {!isTrue ? (
+        <h1>查無此人</h1>
+      ) : ( */}
+      <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
       <div className="container">
-        <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
         <section className="aboutUser-s1">
           <div className="aboutUser-card">
             <div className="upper-half">
@@ -100,14 +94,12 @@ const [isTrue,setIsTrue] = useState(true)
                 <img src={upperBackground} alt="" />
               </div>
               <div className="upper-usericon">
-                
-                {user.userimg === null? <img src={upperUsericon} alt="" />:<img src={`${BE_IMAGE_URL}${user.userimg}`} alt="" />}
+                {user.userimg === null ? <img src={upperUsericon} alt="" /> : <img src={`${BE_IMAGE_URL}${user.userimg}`} alt="" />}
                 {/* <img src={`${BE_IMAGE_URL}${user.userimg}`} alt="" /> */}
               </div>
             </div>
             <div className="lower-half">
               <div className="lower-part">
-              
                 <div className="lower-title">暱稱</div>
                 <div className="lower-content">{user.name}</div>
               </div>
@@ -119,8 +111,7 @@ const [isTrue,setIsTrue] = useState(true)
           </div>
         </section>
       </div>
-      }
-      
+      {/* )}; */}
     </>
   );
 };

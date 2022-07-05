@@ -67,6 +67,17 @@ const Bartending = () => {
   //   ['1', '2', '3'],
   // ];
 
+  //form 搜尋欄
+  const [searchWord, setSearchWord] = useState('');
+  // console.log('a', searchWord);
+  const search = (searchvalue) => {
+    setSearchWord(searchvalue);
+    const filterWord = barted.filter((item) => {
+      return item.name.includes(searchWord);
+    });
+    console.log('d', filterWord);
+  };
+
   // bartendindcard 假資料
   // const bartendcard = [
   //   {
@@ -96,8 +107,6 @@ const Bartending = () => {
   // ];
   const [barted, setBarted] = useState([]);
   const [bartdType, setBartdType] = useState([]);
-  //form 搜尋欄
-  const [searchWord, setSearchWord] = useState('');
 
   useEffect(() => {
     //bartendingCard
@@ -137,8 +146,8 @@ const Bartending = () => {
   //     setSubSel(response.data.data.suSel);
   //   });
   // }, []);
-  const [baartdL, setBatedL] = useState(0);
-  console.log(barted);
+  // const [baartdL, setBatedL] = useState(0);
+  // console.log(barted);
 
   //console.log('a', barted);
   return (

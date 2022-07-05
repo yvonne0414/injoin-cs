@@ -218,17 +218,16 @@ const UserCart = () => {
     ];
     console.log('待處理', productsInOrder);
     let newArr = [];
-    productsInOrder.forEach((v,i)=>{
-
-      let obj ={
+    productsInOrder.forEach((v, i) => {
+      let obj = {
         prdId: v.id,
         price: v.cartprdPrice,
         amount: v.cartprdCount,
-        subTotal: (Number(v.cartprdPrice) * Number(v.cartprdCount)),
-      }
-      arr.push(obj)
+        subTotal: Number(v.cartprdPrice) * Number(v.cartprdCount),
+      };
+      arr.push(obj);
       // console.log(obj);
-    })
+    });
     // console.log('arr', arr);
 
     let ans = {
@@ -238,9 +237,9 @@ const UserCart = () => {
       logistics: 1,
       cartList: arr,
     };
-    try{
-      console.log("送出訂單", ans);
-    }catch(e){
+    try {
+      console.log('送出訂單', ans);
+    } catch (e) {
       console.error(e);
     }
     // console.log(ans);
@@ -308,7 +307,7 @@ const UserCart = () => {
         <div className="container">
           {/* status-section-1 */}
           <div className="cart-step-content d-flex flex-column flex-md-row">
-            <div className="col cart-step d-flex flex-column flex-md-row cart-step1">
+            <div className="col cart-step d-flex flex-column flex-md-row active">
               <div className="step-left">01</div>
               <div className="step-right">
                 確認訂單及付款方式 <br />
@@ -422,9 +421,9 @@ const UserCart = () => {
                       <div className="shopping-cart-info">
                         <div className="shopping-cart-info-title">
                           <span>
-                            付款方式
+                            配送方式
                             <br />
-                            Payment Method
+                            Delivery Method
                           </span>
                         </div>
                         <div className="cart-prd-info-content mt-5">

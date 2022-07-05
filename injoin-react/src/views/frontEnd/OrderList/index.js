@@ -26,7 +26,7 @@ const OrderList = () => {
       },
       {
         href: '#orderlist-bolck2',
-        name: '參加的團',
+        name: '',
       },
     ],
     imgs: {
@@ -85,28 +85,10 @@ const OrderList = () => {
   //     orderTotal: 'NT$5022',
   //     orderBtn: '詳細內容',
   //   },
-  //   {
-  //     id: 2,
-  //     orderNum: '12345',
-  //     orderTime: '2022/01/02',
-  //     orderStatus: '已完成',
-  //     orderPay: '已付款',
-  //     orderTotal: 'NT$5022',
-  //     orderBtn: '詳細內容',
-  //   },
-  //   {
-  //     id: 3,
-  //     orderNum: '45678',
-  //     orderTime: '2022/01/02',
-  //     orderStatus: '已完成',
-  //     orderPay: '已付款',
-  //     orderTotal: 'NT$5022',
-  //     orderBtn: '詳細內容',
-  //   },
   // ];
 
   // let orderId = useParams();
-  //設定狀態--1.未出貨 2.
+  //設定狀態--1.未出貨 2.已出貨 3.已完成 4.已取消
   const [orderStatus, setOrdersStatus] = useState(1);
 
   const [orderData, setOrderData] = useState([]);
@@ -199,7 +181,7 @@ const OrderList = () => {
           </nav>
 
           <div className="page-type1-area-title" id="grouplist-bolck1">
-            已完成
+            {orderStatus === 1 ? '待出貨' : orderStatus === 2 ? '已出貨' : orderStatus === 3 ? '已完成' : '已取消'}
           </div>
           <div className="page-type1-list-wraper">
             <div className="page-type1-list-title pc-view">

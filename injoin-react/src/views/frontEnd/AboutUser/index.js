@@ -105,9 +105,7 @@ const AboutUser = () => {
               </div>
               <div className="lower-part">
                 <div className="lower-title">關於我</div>
-                <div className="lower-content">
-                  {user.usermessage}
-                </div>
+                <div className="lower-content">{user.usermessage}</div>
               </div>
             </div>
           </div>

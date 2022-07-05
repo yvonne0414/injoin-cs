@@ -3,8 +3,10 @@ import { Breadcrumb, Carousel, Rate } from 'antd';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { API_URL } from '../../../utils/config';
 import { InputNumber, Button } from 'antd';
 import { Collapse } from 'antd';
+import EmptyImage from '../../../components/EmptyImage';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
@@ -43,9 +45,9 @@ const BartendingDetail = () => {
   const settings = {
     className: 'slider variable-width',
     dots: false,
-    infinite: true,
+    infinite: false,
     centerMode: false,
-    slidesToShow: 6,
+    slidesToShow: 4,
     slidesToScroll: 1,
     // variableWidth: true,
     arrows: true,
@@ -113,11 +115,14 @@ const BartendingDetail = () => {
   ];
   const { barId } = useParams();
   const [barPrdDetail, setBarPrdDetail] = useState([]);
+  const [material, setMaterial] = useState([]);
   const [recipe, setRecipe] = useState([]);
+  // 相關商品
+  let [relatedList, setRelatedList] = useState([]);
   useEffect(() => {
     //bartendingCard
     let getbarPrdDetail = async () => {
-      let response = await axios.get(`http://localhost:3001/api/bar/detail/${barId}`, {
+      let response = await axios.get(`${API_URL}/bar/detail/${barId}`, {
         params: {
           barId: barId,
         },
@@ -126,15 +131,21 @@ const BartendingDetail = () => {
       // console.log('a', response.data);
       // console.log('g', response.data[0]);
       // console.log('d', response.data[0].name);
-
+      setMaterial(response.data.material);
+      let cateMList = response.data.cateMList;
       setRecipe(response.data[0].recipe.split('\n'));
+      // console.log('cateMList:', cateMList);
+      let res = await axios.get(`${API_URL}/prd/related/0`, { params: { cateM: cateMList } });
+      // console.log('related', res.data.data);
+      setRelatedList(res.data.data);
     };
+
     getbarPrdDetail();
   }, []);
   // console.log('v', barPrdDetail);
   // console.log('u', barPrdDetail[0]);
-  console.log('o', barPrdDetail.name);
-  console.log('dd', barPrdDetail.recipe);
+  // console.log('o', barPrdDetail.name);
+  // console.log('dd', barPrdDetail.recipe);
 
   return (
     <>
@@ -201,12 +212,15 @@ const BartendingDetail = () => {
               <div className="bar-detail-title-type1 mt-3 ">
                 <p>材料比例</p>
               </div>
-              {}
-              <div className="bar-detail-text-type1">
-                <span>杏仁香甜酒</span>
-                <span>20 ml</span>
-              </div>
-              <ul className="bar-detail-text list-unstyled">
+              {material.map((item) => {
+                return (
+                  <div className="bar-detail-text-type1">
+                    <span>{item.name}</span>
+                    <span>{item.mater_amount}</span>
+                  </div>
+                );
+              })}
+              <ul className="bar-detail-text list-unstyled mt-5">
                 {recipe.map((item) => {
                   return <li>{item}</li>;
                 })}
@@ -226,11 +240,15 @@ const BartendingDetail = () => {
                 <p>相關商品</p>
               </div>
               <div className="prd-deatil-card px-md-3">
-                <Slider {...settings}>
-                  {cardArr.map((v, i) => {
-                    return <PrdCard key={v.id} data={v} />;
-                  })}
-                </Slider>
+                {relatedList.length > 0 ? (
+                  <Slider className="prd-deatil-card" {...settings}>
+                    {relatedList.map((v, i) => {
+                      return <PrdCard key={v.id} data={v} />;
+                    })}
+                  </Slider>
+                ) : (
+                  <EmptyImage discText="無相關商品" />
+                )}
               </div>
             </div>
           </div>

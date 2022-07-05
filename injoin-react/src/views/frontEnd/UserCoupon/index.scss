@@ -77,6 +77,17 @@
     width: 100%;
     text-align: center;
   }
+  .page-type1-list-wraper > div > div:not(:nth-child(1)) {
+    width: 25% !important;
+    text-align: center;
+    height: 2.5rem;
+    width: 100%;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
   .list-content_coupon_start {
     font-weight: $font-weight-lighter;
     order: 2;

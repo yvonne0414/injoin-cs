@@ -69,7 +69,7 @@ const Bartending = () => {
 
   //form 搜尋欄
   const [searchWord, setSearchWord] = useState('');
-  console.log('a', searchWord);
+  // console.log('a', searchWord);
   const search = (searchvalue) => {
     setSearchWord(searchvalue);
     const filterWord = barted.filter((item) => {
@@ -146,8 +146,7 @@ const Bartending = () => {
   //     setSubSel(response.data.data.suSel);
   //   });
   // }, []);
-  console.log(barted);
-  
+  // console.log(barted);
 
   return (
     <>

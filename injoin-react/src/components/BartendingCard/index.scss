@@ -39,10 +39,10 @@
       }
     }
   }
-  .heart-position{
+  .heart-position {
     position: absolute;
-    right: 0;
-    bottom: 0;
+    right: 1rem;
+    bottom: 1rem;
   }
 }
 @media screen and (min-width: 768px) {
@@ -63,7 +63,7 @@
   .Bartending-card-title {
     font-size: var(--fs-cn-home-prdtext);
   }
-  .heart-position{
+  .heart-position {
     position: absolute;
     right: 1rem;
     bottom: 1rem;

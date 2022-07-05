@@ -5,7 +5,7 @@ import { API_URL } from '../../utils/config';
 // 圖片upload
 import { PlusOutlined } from '@ant-design/icons';
 
-import { AutoComplete, Button, Cascader, Checkbox, Col, Form, Input, InputNumber, Row, Select, Upload, Modal } from 'antd';
+import { Button, Form, Input, InputNumber, Select, Upload, Modal } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 const { Option } = Select;

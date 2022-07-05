@@ -38,6 +38,8 @@ function PrdCard(props) {
   // JSON.stringify(jsonData);
   // JSON.parse(getLocalData);
   let handleCart = () => {
+
+    alert(`將${data.id} 加到購物車`)
     // console.log(data.id);
     // ==========首先把要用的資料處理好
     let obj = {};

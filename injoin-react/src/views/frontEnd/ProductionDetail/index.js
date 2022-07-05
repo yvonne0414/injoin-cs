@@ -26,9 +26,10 @@ import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail
 // import '~slick-carousel/slick/slick.css';
 // import '~slick-carousel/slick/slick-theme.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { Axios } from 'axios';
 import { useParams } from 'react-router-dom';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
+import EmptyImage from '../../../components/EmptyImage';
 
 const { Panel } = Collapse;
 
@@ -41,24 +42,6 @@ const contentStyle = {
   // background: 'transparent',
   overflow: 'hidden',
 };
-
-const onChange = (value) => {
-  // console.log('changed', value);
-};
-
-// const specification = {
-//   origin: '美國',
-//   capacity: 750,
-//   brand: '金賓',
-// };
-
-// const text2 = [
-//   `
-//   美國 金賓波本威士忌 Jim beam bourbon whisky，完全倚重人工生產方式，限制量產的金賓波本威士忌，陳釀期長達四年，酒質順滑香醇無比，擁有與眾不同的特殊風味，是美國波本威士忌相當具有代表性的一支酒款，其特色為採用蛇麻草培養液進行發酵，原料中大麥比例較高，酒精濃度僅40%，微波本威士忌中口感叫清柔的一族。
-
-//   在美國及全世界銷售第一的金賓波本威士忌，是純正的美國肯塔基純正波本威士忌，始於1795年，立足於美國原產地，獨步全球，金賓波本一直以來是自信與權威人士的首選。
-// `,
-// ];
 
 const illustrate = {
   payment: {
@@ -94,9 +77,9 @@ const illustrate = {
 const settings = {
   className: 'slider variable-width',
   dots: false,
-  infinite: true,
+  infinite: false,
   centerMode: false,
-  slidesToShow: 5,
+  slidesToShow: 4,
   slidesToScroll: 1,
   // variableWidth: true,
   arrows: true,
@@ -116,7 +99,7 @@ const settings = {
 const settings2 = {
   className: 'slider variable-width',
   dots: false,
-  infinite: true,
+  infinite: false,
   centerMode: false,
   slidesToShow: 5,
   slidesToScroll: 1,
@@ -190,7 +173,65 @@ const ProductionDetail = () => {
   const [detail, setDetail] = useState([]);
   const [imgList, setImgList] = useState([]);
   const { prdId } = useParams();
+  const [num, setNum] = useState(1);
+
   let rate = 5;
+  // getuserid
+  let userid = 1 || 0;
+  // console.log(userid);
+
+  const handleAddCart = () => {
+    // console.log('prdId', prdId);
+    // console.log('userid', userid);
+    // console.log('num', num);
+
+    let obj = {};
+    obj = { prdid: Number(prdId), count: num };
+    // console.log('obj', obj);
+    // ==============判斷有沒有車
+    // 因為沒有車會錯誤所以要先判斷===========
+    if (localStorage.getItem('cart') == null) {
+      let arr = [];
+      localStorage.setItem('cart', JSON.stringify(arr));
+    }
+    let oldCart = JSON.parse(localStorage.getItem('cart'));
+    console.log('oldCart', oldCart);
+    if (oldCart.length === 0) {
+      var newArr = [...oldCart, obj];
+    } else {
+      for (let i = 0; i < oldCart.length; i++) {
+        console.log('oldCart[i].prdid', Number(oldCart[i].prdid));
+        console.log('obj.prdid', Number(obj.prdid));
+
+        if (Number(oldCart[i].prdid) == Number(obj.prdid)) {
+          oldCart[i].count = Number(num);
+          newArr = [...oldCart];
+          // console.log('newArr',newArr);
+          localStorage.setItem('cart', JSON.stringify(newArr));
+          alert(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`);
+          return;
+        } else {
+          var newArr = [...oldCart, obj];
+        }
+      }
+    }
+    // console.log('newArr',newArr);
+    localStorage.setItem('cart', JSON.stringify(newArr));
+    alert(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`);
+    // console.log('handleAddCart');
+  };
+  const handleAddHeart = () => {
+    // console.log('prdId' ,prdId);
+    // console.log('userid',userid);
+    axios.get(`${API_URL}/userlike/add/${userid}/${prdId}`);
+    // console.log('handleAddHeart');
+    alert(`使用者${userid} 已將 商品${prdId} 加最愛`);
+  };
+  const onChange = (e) => {
+    // console.log('changed', e);
+    setNum(e);
+  };
+  let [cateM, setCateM] = useState(0);
   useEffect(() => {
     // bartedcard
     // let getApple = async () => {
@@ -208,6 +249,7 @@ const ProductionDetail = () => {
       setDetail(response.data.detailData[0]);
       setImgList(response.data.detailImgList);
       rate = response.data.detailData[0].rate;
+      setCateM(response.data.detailData[0].cate_m);
       // console.log('Detail', response.data.detailData);
     };
     getDetail();
@@ -221,7 +263,7 @@ const ProductionDetail = () => {
   let [ratedList, setRatedList] = useState([]);
   let getPrdRate = async () => {
     let res = await axios.get(`${API_URL}/reputation/${prdId}`);
-    console.log(res.data.data);
+    // console.log(res.data.data);
     let rateData = res.data.data;
     let toList = [];
     for (let i = 0; i < rateData.length; i++) {
@@ -251,6 +293,29 @@ const ProductionDetail = () => {
   useEffect(() => {
     getPrdRate();
   }, []);
+
+  // 取得相關商品
+  let [relatedList, setRelatedList] = useState([]);
+
+  useEffect(() => {
+    let getRelated = async () => {
+      let res = await axios.get(`${API_URL}/prd/related/${prdId}`, { params: { cateM: [cateM] } });
+      setRelatedList(res.data.data);
+    };
+    getRelated();
+  }, [cateM]);
+
+  // 取得相關酒譜
+  let [relatedBarList, setRelatedBarList] = useState([]);
+
+  useEffect(() => {
+    let getRelatedBar = async () => {
+      let res = await axios.get(`${API_URL}/bar/related`, { params: { cateM: cateM } });
+      setRelatedBarList(res.data.data);
+      console.log(res.data.data);
+    };
+    getRelatedBar();
+  }, [cateM]);
 
   return (
     <>
@@ -313,18 +378,18 @@ const ProductionDetail = () => {
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>
                 <div className="prd-detail-input-number mt-3">
-                  <InputNumber min={1} max={99} defaultValue={0} onChange={onChange} size="middle" bordered={false} />
+                  <InputNumber defaultValue={0} onChange={onChange} size="middle" bordered={false} value={num} />
                 </div>
               </div>
               <div className="prd-detail-button-position mt-3">
                 <div className="prd-detail-button-1">
-                  <Button className="text-black">
+                  <Button className="text-black" onClick={handleAddCart}>
                     加入購物車&nbsp;&nbsp;
                     <FontAwesomeIcon icon={faCartShopping} fixedWidth className="text-black" />
                   </Button>
                 </div>
                 <div className="prd-detail-button-2">
-                  <Button className="text-black">
+                  <Button className="text-black" onClick={handleAddHeart}>
                     收藏商品 &nbsp;&nbsp;
                     <FontAwesomeIcon icon={faHeart} fixedWidth />
                   </Button>
@@ -418,11 +483,15 @@ const ProductionDetail = () => {
                 <p>同系列商品</p>
               </div>
               <div className="px-md-3">
-                <Slider className="prd-deatil-card" {...settings}>
-                  {cardArr.map((v, i) => {
-                    return <PrdCard key={v.id} data={v} />;
-                  })}
-                </Slider>
+                {relatedList.length > 0 ? (
+                  <Slider className="prd-deatil-card" {...settings}>
+                    {relatedList.map((v, i) => {
+                      return <PrdCard key={v.id} data={v} />;
+                    })}
+                  </Slider>
+                ) : (
+                  <EmptyImage discText="無相關商品" />
+                )}
               </div>
             </div>
           </div>
@@ -433,12 +502,12 @@ const ProductionDetail = () => {
                 <p>相關酒譜</p>
               </div>
               <div className="bartending-card px-md-3">
-                {/* <Slider {...settings2}>
-                  {barted.map((v, i) => {
-                    console.log(v);
+                <Slider {...settings2}>
+                  {relatedBarList.map((v, i) => {
+                    // console.log(v);
                     return <BartendingCard key={i.id} data={v} />;
                   })}
-                </Slider> */}
+                </Slider>
               </div>
             </div>
           </div>

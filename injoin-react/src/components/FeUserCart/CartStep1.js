@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
-import { BE_IMAGE_URL } from '../../utils/config';
+import { API_URL, BE_IMAGE_URL } from '../../utils/config';
 import faveriteImg from '../../../src/assets/images/fe/faverite/faverite-product-img-1.png';
 import { BsTrashFill } from 'react-icons/bs';
 
 function CartStep1(props) {
   const { data, setCount, removeItem } = props;
-  // console.log('data',productsInOrder);
+  // console.log('data',data);
 
   const plusOne = (id) => {
     // console.log(id);
@@ -36,13 +36,13 @@ function CartStep1(props) {
   //     cartprdTotal: '680',
   //   },
   // ]
-
   return (
     <>
       <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
         <div className="cart-prd-img">
           <img src={faveriteImg} alt="product-img-1" className="img-fluid object-cover" />
         </div>
+
         <div className="cart-prd-content d-flex flex-column ms-2">
           <div className="cart-prd-num">{data.cartprdNum}</div>
           <div className="cart-prd-name">{data.cartprdName}</div>

@@ -1,6 +1,6 @@
 import './_index.scss';
 //react
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { API_URL } from '../../utils/config';
@@ -14,8 +14,9 @@ const Step1 = (props) => {
   // TODO:要改
   let userId = 1;
   const { Option } = Select;
-  const { stepNum, setStepNum } = props;
+  const { stepNum, setStepNum,setAns } = props;
   const [coupon, setCoupon] = useState([]);
+  const optsRef = useRef([]);
 
   const initState = (cartprdArr) => {
     return cartprdArr.map((v) => ({ ...v, cartprdCount: 1 }));
@@ -56,6 +57,7 @@ const Step1 = (props) => {
   }, []);
   // chennnnn------
   // console.log('productsInOrder', productsInOrder);
+  const [couponId, setCouponId] = useState(0);
 
   // 計算總數量
   const totalNumber = () => {
@@ -79,7 +81,7 @@ const Step1 = (props) => {
 
   const handleSubmit = () => {
     let arr = [];
-    console.log('待處理', productsInOrder);
+    // console.log('待處理', productsInOrder);
     let newArr = [];
     productsInOrder.forEach((v, i) => {
       let obj = {
@@ -92,27 +94,25 @@ const Step1 = (props) => {
       // console.log(obj);
     });
     // console.log('arr', arr);
-
+    // console.log(couponId);
     let ans = {
       userId: userId,
-      coponId: 0,
+      coponId: couponId,
       total: Number(totalPrice() - discount),
       logistics: 1,
       cartList: arr,
     };
     try {
+      setAns(ans)
       console.log('送出訂單', ans);
     } catch (e) {
       console.error(e);
     }
-    // console.log(ans);
-    // console.log('handleSubmit');
   };
   const handleChange = (value) => {
     // console.log(value);
   };
 
-  // console.log("家臣測試專用:",coupon);
   return (
     <div className="position-relative mt-4">
       <div className="cart-add-info-bg-square"></div>
@@ -133,8 +133,7 @@ const Step1 = (props) => {
                   // console.log(productsInOrder);
                   return (
                     <Step1Prd
-                    className='step1Prd'
-                    
+                      className="step1Prd"
                       key={item.id}
                       data={item}
                       setCount={(newCount) => {
@@ -257,20 +256,35 @@ const Step1 = (props) => {
                         <div className="m-3 ms-5">
                           NT${totalPrice()}
                           <br />
-  
                           <select
                             name=""
                             id=""
                             className="w-100 overflow-hidden select-class"
                             onChange={(e) => {
-                              // console.log('click');
-                              // console.log(e.target.value);
-                              setDiscount(e.target.value)
+                              // optsRef.current.forEach((opt) => {
+                              // console.log(opt);
+                              // console.log(opt.getAttribute('data-couponId'))});
+                              // setCouponId(optsRef.current[e.target.value].getAttribute('data-couponId'));
+                              // console.log(optsRef.current[e.target.value].getAttribute('data-couponId'));
+                              let couponid = optsRef.current[e.target.value].getAttribute('data-couponId')
+                              // console.log(coupon);
+                              setCouponId(couponid)
+
+                              // console.log(coupon[e.target.value].discount);
+                              
+                              setDiscount(Number(coupon[e.target.value].discount));
                             }}
                           >
-                            <option value={0}>請選擇優惠卷</option>;
+                            <option value={0} data-couponId={-1}>
+                              請選擇優惠卷
+                            </option>
+                            ;
                             {coupon.map((v, i) => {
-                              return <option value={v.discount}>{v.name}</option>;
+                              return (
+                                <option ref={(el) => (optsRef.current[i] = el)} value={i} data-couponId={v.coupon_id}>
+                                  {v.name}
+                                </option>
+                              );
                             })}
                           </select>
                           <br />
@@ -296,6 +310,7 @@ const Step1 = (props) => {
           htmlType="sumbit"
           // onClick={handleSubmit}
           onClick={() => {
+            handleSubmit()
             setStepNum(stepNum + 1);
           }}
         >

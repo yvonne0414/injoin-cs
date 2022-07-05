@@ -27,6 +27,7 @@ import { BsTrashFill } from 'react-icons/bs';
 const UserCart = () => {
   let userId = 1;
 
+  const [ans, setAns] = useState([]);
   const page1HeaderInfo = {
     titleEn: 'Cart',
     titleCn: '購物車',
@@ -139,18 +140,12 @@ const UserCart = () => {
       cartprdTotal: '680',
     },
   ];
-
-  // console.log('cartprdArr',cartprdArr)
-  // console.log('cartArr',cartArr)
-
-  // console.log("ARF",cartArr);
-
   // cartprdCount: '1',
   const initState = (cartprdArr) => {
     return cartprdArr.map((v) => ({ ...v, cartprdCount: 1 }));
   };
   const [productsInOrder, setProductsInOrder] = useState([]);
-  const [total, setTotal] = useState(0);
+
   const [discount, setDiscount] = useState(100);
   // const cartArr = [];
   // const setCartArr = new Set([])
@@ -202,33 +197,13 @@ const UserCart = () => {
     return result;
   };
 
-  const handleSubmit = () => {
-    let arr = [];
-    console.log('待處理', productsInOrder);
-    let newArr = [];
-    productsInOrder.forEach((v, i) => {
-      let obj = {
-        prdId: v.id,
-        price: v.cartprdPrice,
-        amount: v.cartprdCount,
-        subTotal: Number(v.cartprdPrice) * Number(v.cartprdCount),
-      };
-      arr.push(obj);
-      // console.log(obj);
-    });
-    console.log('arr', arr);
-
-    let ans = {
-      userId: userId,
-      coponId: 0,
-      total: Number(totalPrice() - discount),
-      logistics: 1,
-      cartList: arr,
-    };
+  const handleSubmit = async () => {
+    
     try {
-      alert('送出訂單')
+      alert('送出訂單');
       console.log('送出訂單', ans);
-      
+      // let res = await axios.post(`${API_URL}/cart`,ans)
+      // console.log(res);
     } catch (e) {
       console.error(e);
     }
@@ -323,7 +298,13 @@ const UserCart = () => {
           </div>
 
           {/* prd-section-2 */}
-          {stepNum === 1 ? <Step1 stepNum={stepNum} setStepNum={setStepNum} /> : stepNum === 2 ? <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit}/> : <Step3 />}
+          {stepNum === 1 ? (
+            <Step1 stepNum={stepNum} setStepNum={setStepNum} setAns={setAns}/>
+          ) : stepNum === 2 ? (
+            <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit} />
+          ) : (
+            <Step3 />
+          )}
           {stepNum === 1 && (
             <>
               <Link to="/production" className="back-page btn btn-none mt-3">

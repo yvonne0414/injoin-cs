@@ -285,7 +285,7 @@ const Step2 = (props) => {
         <button
           onClick={() => {
             handleSubmit()
-            setStepNum(stepNum + 1);
+            // setStepNum(stepNum + 1);
           }}
           className="btn btn-none injoin-btn-outline text-gold"
         >

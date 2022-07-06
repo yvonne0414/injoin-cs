@@ -68,16 +68,19 @@
   transform: translate(-50%, 0);
   left: 50%;
   bottom: 0;
-
+  overflow: auto;
   .prd-nav-li {
+    cursor: pointer;
     flex-grow: 1;
     text-align: center;
+    min-width: 25%;
     .nav-link:focus {
       color: $color-font-sp;
       background-color: $color-font-sp-light;
     }
   }
   .prd-nav-a {
+    cursor: pointer;
     color: $color-font;
     background-color: $color-font-mark;
     font-size: var(--fs-cn-page-list-menu);
@@ -113,7 +116,7 @@
       border-left: 1px solid $color-font;
 
       .prd-nav-icon {
-        padding-right: $space-2;
+        margin-right: $space-2;
       }
     }
     .prd-nav-li:first-child {

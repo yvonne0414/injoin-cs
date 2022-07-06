@@ -4,15 +4,14 @@ import { FaStar } from 'react-icons/fa';
 import { FaCartPlus } from 'react-icons/fa';
 import faveritePrdImg1 from '../../assets/images/fe/faverite/faverite-product-img-1.png';
 import Heart from '../Heart';
-import "./index.scss"
+import './index.scss';
 import { BE_IMAGE_URL } from '../../utils/config';
 
-
 const LikePrdCard = (props) => {
-  const { data,isprdLike } = props;
+  const { data, isprdLike } = props;
   // console.log(data);
-  const isLike = isprdLike || false
- 
+  const isLike = isprdLike || false;
+
   const usercoupon = {
     likeImg: 'AB11.jpeg',
     likePrdName: '金黑波本威士忌',
@@ -38,10 +37,10 @@ const LikePrdCard = (props) => {
             <div className="prd-card-footer card-footer">
               <div className="prd-card-reveiw">
                 <FaStar className="prd-card-icon-star" />
-                4.6
+                {data.rate}
               </div>
               <div className="prd-card-icon">
-                <Heart isLike={isLike} data={data}/>
+                <Heart isLike={isLike} data={data} />
                 <FaCartPlus className="prd-card-icon-cart" />
               </div>
             </div>

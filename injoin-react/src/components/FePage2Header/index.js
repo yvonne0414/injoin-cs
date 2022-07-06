@@ -47,24 +47,22 @@ const FePage2Header = (props) => {
           <img src={`${FE_IMAGE_URL}/page2header/${prdImg}`} alt="" />
         </div>
         <div className="prd-nav">
-          <ul className="list-unstyled d-flex justify-content-center mb-0 nav-justified prd-nav-ul">
+          <ul className="list-unstyled d-flex  justify-content-start mb-0 nav-justified prd-nav-ul">
             {navs.map((nav) => {
               return (
                 <li className="prd-nav-li">
-                  <Link
+                  <span
                     className={`nav-link prd-nav-a ${category === nav.cateL && 'active'}`}
-                    to={nav.href}
                     onClick={() => {
                       setCateL(nav.cateL);
                       setCateM(0);
                       setCateS(0);
-                      setSearchWord('');
                     }}
                   >
                     {/* <FaWineBottle className=" prd-nav-icon" /> */}
                     {nav.icon}
                     {nav.name}
-                  </Link>
+                  </span>
                 </li>
               );
             })}

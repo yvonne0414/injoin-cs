@@ -23,7 +23,7 @@ const UserInfoForm = () => {
               return (
                 <li
                   key={index}
-                  className="col-4 col-md-3"
+                  className={`col-4 col-md-3 ${userInfoTableMode === index && 'active'}`}
                   onClick={() => {
                     setUserInfoTableMode(index);
                   }}

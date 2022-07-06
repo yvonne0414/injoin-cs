@@ -52,7 +52,9 @@ const Sighup = ({ setlogoutState }) => {
         behavior: 'smooth',
       });
     } catch (e) {
+      // message.error('This is an error message');
       // console.log(e.response.data.error);
+      // alert(e.response.data.error);
       message.error(e.response.data.error);
     }
   }

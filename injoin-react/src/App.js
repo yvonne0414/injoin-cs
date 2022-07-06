@@ -45,13 +45,20 @@ function App() {
         let response = await axios.get(`${API_URL}/member/info`, {
           withCredentials: true,
         });
+
+        // console.log("0", response.data.code);
+
+        if(response.data.code == 2001 ){
+          return
+        }
+
         if (response.data !== null) {
           setislogin(true);
         }
         // console.log("app.js" ,response.data);
         setMember(response.data);
       } catch (e) {
-        console.log(e);
+        console.log("e",e);
       }
     };
     getMemberInfo();
@@ -63,13 +70,18 @@ function App() {
         let response = await axios.get(`${API_URL}/member/info`, {
           withCredentials: true,
         });
+        // console.log("is", response.data.code);
+        if(response.data.code == 2001 ){
+          return
+        }
+
         // console.log("app.js" ,response.data);
         if (response.data !== null) {
           setislogin(true);
         }
         setMember(response.data);
       } catch (e) {
-        console.log(e);
+        console.log("e",e);
       }
       // setMember(response.data);
     };

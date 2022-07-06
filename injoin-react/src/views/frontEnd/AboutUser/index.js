@@ -7,6 +7,7 @@ import './index.scss';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import { message } from 'antd';
 
 // http://localhost:3001/api/auth/about/2
 const AboutUser = () => {
@@ -25,17 +26,25 @@ const AboutUser = () => {
   useEffect(() => {
     let getuser = async () => {
       let response = await axios.get(`${API_URL}/auth/about/${userid}`);
-      // console.log(response.data.datas[0]);
+      // console.log('aa',response.data.datas[0]);
       // console.log(response.data.datas[0].email);
-      console.log(response.data.datas.length);
-      if(response.data.datas.length === 0){
-        setIsTrue (false)
+      // console.log(response.data.datas.length);
+      let message = '';
+      if (response.data.datas[0].about_user == null) {
+        // console.log('nope');
+        message = '尚未填寫，但是相信我他是個好夥伴';
+      } else {
+        message = response.data.datas[0].about_user;
+      }
+
+      if (response.data.datas.length === 0) {
+        setIsTrue(false);
       }
       let newuser = {
         ...user,
         name: response.data.datas[0].name,
         nick: response.data.datas[0].name,
-        usermessage: response.data.datas[0].email,
+        usermessage: message,
         userimg: response.data.datas[0].user_img,
       };
       setUser(newuser);
@@ -77,6 +86,7 @@ const AboutUser = () => {
   };
   const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 
+  // console.log(user);
   // console.log(isTrue);
 
   return (

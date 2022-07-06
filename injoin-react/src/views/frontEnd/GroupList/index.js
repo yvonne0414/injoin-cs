@@ -216,7 +216,7 @@ const GroupList = () => {
       {/* <!-- page-type1-intro --> */}
       <div className="page-group-intro-area container">
         <div className=" group-list-img-1">
-          <img src={groupListImg1} alt="group-list-img-1" className="img-fluid object-cover" />
+          <img src={groupListImg1} alt="group-list-img-1" className="img-fluid object-cover w-100" />
         </div>
         <div className="page-group-intro-content">
           <div className="page-group-intro-text">
@@ -271,7 +271,7 @@ const GroupList = () => {
           </div>
           <div className="user-add-group-area">
             <div className="group-list-img-3 mb-5 mb-md-0">
-              <img src={groupListImg3} className="img-fluid object-cover" alt="group-list-img-3" />
+              <img src={groupListImg3} className="img-fluid object-cover w-50" alt="group-list-img-3" />
             </div>
             <div className="user-add-group-contents ">
               <div className="user-add-group-content" id="grouplist-bolck3">

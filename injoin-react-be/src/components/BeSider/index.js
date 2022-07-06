@@ -25,9 +25,9 @@ const items = [
     </Link>
   ),
   getItem(
-    <Link to="/coupon">優惠券管理</Link>,
+    <Link to="/couponlist">優惠券管理</Link>,
     '2',
-    <Link to="/coupon">
+    <Link to="/couponlist">
       <RiCoupon2Line />
     </Link>
   ),
@@ -39,16 +39,16 @@ const items = [
     </Link>
   ),
   getItem(
-    <Link to="/bartending">酒譜管理</Link>,
+    <Link to="/bartendinglist">酒譜管理</Link>,
     '4',
-    <Link to="/bartending">
+    <Link to="/bartendinglist">
       <IoWineSharp />
     </Link>
   ),
   getItem(
-    <Link to="/group">揪團管理</Link>,
+    <Link to="/grouplist">揪團管理</Link>,
     '5',
-    <Link to="/group">
+    <Link to="/grouplist">
       <FaGlassCheers />
     </Link>
   ),

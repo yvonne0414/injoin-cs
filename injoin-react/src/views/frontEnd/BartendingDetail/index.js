@@ -131,6 +131,7 @@ const BartendingDetail = () => {
   const [barPrdDetail, setBarPrdDetail] = useState([]);
   const [material, setMaterial] = useState([]);
   const [recipe, setRecipe] = useState([]);
+  const [cateSList, setCateSList] = useState([]);
 
   // 相關商品
   let [relatedList, setRelatedList] = useState([]);
@@ -150,6 +151,7 @@ const BartendingDetail = () => {
       // console.log('d', response.data[0].name);
       setMaterial(response.data.material);
       let cateMList = response.data.cateMList;
+      setCateSList(response.data.cateSNameList);
       setRecipe(response.data[0].recipe.split('\n'));
       // console.log('ii', response.data[0].recipe.split('\n'));
       // setMaterial(response.data[0].material);
@@ -199,10 +201,9 @@ const BartendingDetail = () => {
             <div className="container">
               <div className="bar-detail-title mt-4">{barPrdDetail.name}</div>
               <div className="bar-detail-tag mt-3">
-                <span>Vodka</span>
-                <span>Liqueur</span>
-                <span>Shake</span>
-                <span>Straight</span>
+                {cateSList.map((item) => {
+                  return <span key={item}>{item}</span>;
+                })}
               </div>
               <div className="bar-detail-evaluation-bg mt-5">
                 <div className="container">

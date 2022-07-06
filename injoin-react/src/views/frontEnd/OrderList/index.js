@@ -95,6 +95,11 @@ const OrderList = () => {
   // let orderId = useParams();
   //設定狀態--1.未出貨 2.已出貨 3.已完成 4.已取消
   const [orderStatus, setOrdersStatus] = useState(1);
+  const [dates, setDates] = useState([null, null]);
+  const [hackValue, setHackValue] = useState(null);
+  const [value, setValue] = useState(null);
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
 
   const [orderData, setOrderData] = useState([]);
   let [ordersPage, setOrdersPage] = useState(1);
@@ -105,6 +110,7 @@ const OrderList = () => {
   });
 
   useEffect(() => {
+    console.log(dates[0]);
     let getOrders = async () => {
       //axios.get(URL, config)
       let response = await axios.get(API_URL + `/order`, {
@@ -112,23 +118,28 @@ const OrderList = () => {
           userId: userId,
           page: ordersPage,
           logisticsState: orderStatus,
+          orderdatestart: startTime || '2022-01-01',
+          orderdateend: endTime || '2322-01-01',
         },
       });
       setOrderData(response.data.data);
       setOrdersPagination(response.data.pagination);
-      console.log(response.data.pagination);
+      console.log(response.data);
     };
 
     getOrders();
-  }, [ordersPage, orderStatus]);
+  }, [ordersPage, orderStatus, startTime, endTime]);
 
   let ordersarr = orderData;
   // console.log(ordersarr);
 
   //篩選日期
-  const [dates, setDates] = useState(null);
-  const [hackValue, setHackValue] = useState(null);
-  const [value, setValue] = useState(null);
+
+  useEffect(() => {
+    // console.log(value ? value[0].format('YYYY-MM-DD') : 'none');
+    setStartTime(value && value[0].format('YYYY-MM-DD'));
+    setEndTime(value && value[1].format('YYYY-MM-DD'));
+  }, [value]);
 
   const disabledDate = (current) => {
     if (!dates) {
@@ -208,11 +219,11 @@ const OrderList = () => {
               </li>
             </ul>
           </nav>
-          <div className="nav-date d-flex justify-content-between">
+          <div className="nav-date d-flex justify-content-between ">
             <div className="page-type1-area-title" id="grouplist-bolck1">
               {orderStatus === 1 ? '待出貨' : orderStatus === 2 ? '已出貨' : orderStatus === 3 ? '已完成' : '已取消'}
             </div>
-            <div>
+            <div className="orderdate">
               <RangePicker
                 value={hackValue || value}
                 disabledDate={disabledDate}

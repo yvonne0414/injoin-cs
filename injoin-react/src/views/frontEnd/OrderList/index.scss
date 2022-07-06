@@ -18,6 +18,15 @@
     }
   }
 }
+.nav-date {
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  .orderdate {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+  }
+}
 .nav-select {
   color: $color-font;
   margin-right: 10px;
@@ -80,6 +89,8 @@
   }
   .nav-date {
     width: 70%;
+    display: flex;
+    justify-content: space-between;
   }
 
   // ------Order-List------

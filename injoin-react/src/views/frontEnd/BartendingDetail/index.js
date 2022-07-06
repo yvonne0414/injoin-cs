@@ -130,6 +130,7 @@ const BartendingDetail = () => {
           barId: barId,
         },
       });
+      console.log(response.data);
       setBarPrdDetail(response.data[0]);
       // console.log('a', response.data);
       // console.log('g', response.data[0]);
@@ -138,7 +139,7 @@ const BartendingDetail = () => {
       let cateMList = response.data.cateMList;
       setRecipe(response.data[0].recipe.split('\n'));
       // console.log('ii', response.data[0].recipe.split('\n'));
-      setMaterial(response.data[0].material);
+      // setMaterial(response.data[0].material);
       // console.log('cateMList:', cateMList);
       let res = await axios.get(`${API_URL}/prd/related/0`, { params: { cateM: cateMList } });
       // console.log('related', res.data.data);

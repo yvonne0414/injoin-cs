@@ -1,10 +1,11 @@
 import './index.scss';
-import { Breadcrumb, Carousel, Rate, InputNumber, Button, Collapse, Comment, List } from 'antd';
+import { Breadcrumb, Carousel, Rate, InputNumber, Button, Collapse, Comment, List, message } from 'antd';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { ImHeart, ImHeartBroken } from 'react-icons/im';
 
 // -----Prdcar
 import PrdCard from '../../../components/PrdCard';
@@ -172,6 +173,8 @@ const ProductionDetail = () => {
     userId: loginInfo.member ? loginInfo.member.id : -1,
   });
 
+  let rate = 5;
+
   const [cateL, setCateL] = useState(1);
   const [detail, setDetail] = useState([]);
   const [imgList, setImgList] = useState([]);
@@ -181,11 +184,6 @@ const ProductionDetail = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  let rate = 5;
-  // getuserid
-  let userid = 1 || 0;
-  // console.log(userid);
 
   const handleAddCart = () => {
     // console.log('prdId', prdId);
@@ -228,11 +226,27 @@ const ProductionDetail = () => {
     // console.log('handleAddCart');
   };
   const handleAddHeart = () => {
-    // console.log('prdId' ,prdId);
-    // console.log('userid',userid);
-    axios.get(`${API_URL}/userlike/add/${userid}/${prdId}`);
-    // console.log('handleAddHeart');
-    alert(`使用者${userid} 已將 商品${prdId} 加最愛`);
+    if (!loginInfo.islogin) {
+      message.warning({
+        content: `請先登入`,
+      });
+      return;
+    }
+    if (isLike) {
+      axios.get(`${API_URL}/userlike/del/${memberInfo.userId}/${prdId}`);
+      message.success({
+        content: `已移除收藏`,
+        icon: <ImHeartBroken fill="#ac2c32" />,
+      });
+      setIsLike(false);
+    } else {
+      axios.get(`${API_URL}/userlike/add/${memberInfo.userId}/${prdId}`);
+      message.success({
+        content: `已加入收藏`,
+        icon: <ImHeart fill="#ac2c32" />,
+      });
+      setIsLike(true);
+    }
   };
   const handleOnChenage = (e) => {
     setNum(e);
@@ -242,6 +256,7 @@ const ProductionDetail = () => {
     // console.log('changed', e);
   };
   let [cateM, setCateM] = useState(0);
+  let [isLike, setIsLike] = useState(false);
   useEffect(() => {
     // bartedcard
     // let getApple = async () => {
@@ -254,13 +269,14 @@ const ProductionDetail = () => {
     // prddetail
 
     let getDetail = async () => {
-      let response = await axios.get(`${API_URL}/prd/detail/${prdId}`);
+      let response = await axios.get(`${API_URL}/prd/detail/${prdId}`, { params: { userId: memberInfo.userId } });
       // console.log('(response.data.detailImgList', response.data);
       setDetail(response.data.detailData[0]);
       setImgList(response.data.detailImgList);
       rate = response.data.detailData[0].rate;
       setCateM(response.data.detailData[0].cate_m);
       setCateL(response.data.cateL);
+      setIsLike(response.data.detailData[0].isLike);
       // console.log('Detail', response.data.detailData);
     };
     getDetail();
@@ -403,7 +419,7 @@ const ProductionDetail = () => {
                 <div className="prd-detail-button-2">
                   <Button className="text-black" onClick={handleAddHeart}>
                     收藏商品 &nbsp;&nbsp;
-                    <FontAwesomeIcon icon={faHeart} fixedWidth />
+                    {isLike ? <FaHeart /> : <FaRegHeart />}
                   </Button>
                 </div>
               </div>

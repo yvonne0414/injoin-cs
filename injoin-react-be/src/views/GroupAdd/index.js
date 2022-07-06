@@ -15,7 +15,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, Spin, message } from 'antd';
 
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 
 // upload
 const getBase64 = (file) =>
@@ -205,7 +205,7 @@ const GroupAdd = () => {
 
   return (
     <>
-      <h2 className="mb-5">新增官方揪團</h2>
+      <h2 className="mb-5 container">新增官方揪團</h2>
       <div className="group-add-info-wraper">
         <div className="container">
           <div className="position-relative">

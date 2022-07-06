@@ -15,17 +15,17 @@ const UserInfoVipLevel = () => {
   return (
     <>
       <div className="members2-icon">
-        {UserInfoVipLevel.vipLevel === 0 && <img src={`${FE_IMAGE_URL}/membercenter/memberlevel.png`} alt="" />}
-        {UserInfoVipLevel.vipLevel === 1 && <img src={`${FE_IMAGE_URL}/membercenter/memberlevel2.png`} alt="" />}
-        {UserInfoVipLevel.vipLevel === 2 && <img src={`${FE_IMAGE_URL}/membercenter/memberlevel3.png`} alt="" />}
+        {UserInfoVipLevel.vipLevel === 1 && <img src={`${FE_IMAGE_URL}/membercenter/memberlevel.png`} alt="" />}
+        {UserInfoVipLevel.vipLevel === 2 && <img src={`${FE_IMAGE_URL}/membercenter/memberlevel2.png`} alt="" />}
+        {UserInfoVipLevel.vipLevel === 3 && <img src={`${FE_IMAGE_URL}/membercenter/memberlevel3.png`} alt="" />}
       </div>
       <div className="members2-content">
         <div className="page-type1-area-title" id="grouplist-bolck2">
           會員等級
         </div>
-        {UserInfoVipLevel.vipLevel === 0 && <div className="members2-userlevel">黃金會員</div>}
-        {UserInfoVipLevel.vipLevel === 1 && <div className="members2-userlevel">柏金會員</div>}
-        {UserInfoVipLevel.vipLevel === 2 && <div className="members2-userlevel">鑽石會員</div>}
+        {UserInfoVipLevel.vipLevel === 1 && <div className="members2-userlevel">黃金會員</div>}
+        {UserInfoVipLevel.vipLevel === 2 && <div className="members2-userlevel">柏金會員</div>}
+        {UserInfoVipLevel.vipLevel === 3 && <div className="members2-userlevel">鑽石會員</div>}
 
         <div className="members2-usersth">{UserInfoVipLevel.vipMessage}，年度結算日為 1/1，會員期限至 2024/1/1</div>
         <div className="members2-levelrules">

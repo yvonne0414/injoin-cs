@@ -18,7 +18,7 @@ const UserInfoTask = () => {
       </div>
       <div className="levelLight"></div>
 
-      {UserInfoVipLevel.vipLevel === 0 && (
+      {UserInfoVipLevel.vipLevel === 1 && (
         <div>
           <div className="userInfo-task active">
             <div className="levelicon">
@@ -60,7 +60,7 @@ const UserInfoTask = () => {
           </div>
         </div>
       )}
-      {UserInfoVipLevel.vipLevel === 1 && (
+      {UserInfoVipLevel.vipLevel === 2 && (
         <div>
           <div className="userInfo-task">
             <div className="levelicon">
@@ -98,7 +98,7 @@ const UserInfoTask = () => {
           </div>
         </div>
       )}
-      {UserInfoVipLevel.vipLevel === 2 && (
+      {UserInfoVipLevel.vipLevel === 3 && (
         <div>
           <div className="userInfo-task">
             <div className="levelicon">

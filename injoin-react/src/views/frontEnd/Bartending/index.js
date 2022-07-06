@@ -202,6 +202,7 @@ const Bartending = () => {
   //     setSubSel(response.data.data.suSel);
   //   });
   // }, []);
+  // const [baartdL, setBatedL] = useState(0);
   // console.log(barted);
   let [nowCate, setNowCate] = useState('伏特加');
   useEffect(() => {
@@ -234,6 +235,7 @@ const Bartending = () => {
     }
   }, [category]);
 
+  //console.log('a', barted);
   return (
     <>
       <FePage2Header

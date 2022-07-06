@@ -143,6 +143,7 @@ const BartendingDetail = () => {
           userId: memberInfo.userId,
         },
       });
+      console.log(response.data);
       setBarPrdDetail(response.data[0]);
       // console.log('a', response.data);
       // console.log('g', response.data[0]);
@@ -150,6 +151,8 @@ const BartendingDetail = () => {
       setMaterial(response.data.material);
       let cateMList = response.data.cateMList;
       setRecipe(response.data[0].recipe.split('\n'));
+      // console.log('ii', response.data[0].recipe.split('\n'));
+      // setMaterial(response.data[0].material);
       // console.log('cateMList:', cateMList);
       let res = await axios.get(`${API_URL}/prd/related/0`, { params: { cateM: cateMList, userId: memberInfo.userId } });
       // console.log('related', res.data.data);
@@ -158,11 +161,10 @@ const BartendingDetail = () => {
 
     getbarPrdDetail();
   }, []);
-  // console.log('v', barPrdDetail);
+  console.log('v', barPrdDetail);
   // console.log('u', barPrdDetail[0]);
   // console.log('o', barPrdDetail.name);
-  // console.log('dd', barPrdDetail.recipe);
-
+  // console.log('dd', [material]);
   return (
     <>
       {/* session1---------------------------------------------------------------------- */}
@@ -172,6 +174,10 @@ const BartendingDetail = () => {
         <div className="container">
           <div className="w-fit-content ms-auto">
             <Breadcrumb separator="" className="bar-detail-breadcrumb">
+              {/* <Breadcrumb.Item href="">商品</Breadcrumb.Item>
+              <Breadcrumb.Separator />
+              <Breadcrumb.Item href="">威士忌</Breadcrumb.Item>
+              <Breadcrumb.Separator /> */}
               <Breadcrumb.Item href="/bartending">調酒酒譜</Breadcrumb.Item>
               <Breadcrumb.Separator />
               <Breadcrumb.Item>{barPrdDetail.name}</Breadcrumb.Item>
@@ -221,7 +227,7 @@ const BartendingDetail = () => {
             <img src={bardetailImg3} alt="bartending-detail-img-3" className="mx-auto  bartending-detail-img-3" />
             <img src={bardetailImg4} alt="bartending-detail-img-4" className="mx-auto  bartending-detail-img-4" />
             <div className="bar-detail-space mx-auto">
-              <div className="bar-detail-title-type1 mt-3 ">
+              <div className="bar-detail-text-type1">
                 <p>材料比例</p>
               </div>
               {material.map((item) => {

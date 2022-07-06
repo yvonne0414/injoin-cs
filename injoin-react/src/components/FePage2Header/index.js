@@ -8,9 +8,10 @@ import { FaWineBottle } from 'react-icons/fa';
 import { TbLemon } from 'react-icons/tb';
 import { IoIosWine } from 'react-icons/io';
 import { GiSpoon } from 'react-icons/gi';
-import React from 'react';
+import React, { useState } from 'react';
 
 const FePage2Header = (props) => {
+  const [barNav, setBarNav] = useState(-1);
   const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs, setCateL, category, setCateM, setCateS, setSearchWord } = props;
   return (
     <section>

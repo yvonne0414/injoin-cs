@@ -30,8 +30,9 @@ const HomePage = () => {
 
   return (
     <>
-      <section className="section1">
-        <div className="container-fluid">
+      <div className="container-fluid">
+        <section className="section1">
+          <div className="homeBox-1"></div>
           <div className="mask"></div>
           <div className="pc-img d-none d-md-flex">
             <img src={`${FE_IMAGE_URL}/homepage/pc-img.svg`} alt="" />
@@ -45,12 +46,8 @@ const HomePage = () => {
             <p className="font-cn-title">放鬆交友，飲酒生活</p>
             <button className="s1-button button-style my-2">Details</button>
           </div>
-          {/* <div className="ul-position">
-            <FePagination />
-          </div>
-          <div className="box"></div> */}
-        </div>
-      </section>
+        </section>
+      </div>
 
       <div className="container-fluid">
         <section className="section2 position-relative">

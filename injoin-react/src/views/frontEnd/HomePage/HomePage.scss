@@ -116,12 +116,12 @@
 }
 
 // =====section1=======
-.section1 {
-  background-color: $color-bg-dark;
-  .container-fluid {
+
+.container-fluid {
+  .section1 {
     position: relative;
     min-height: 30rem;
-    background: $color-bg-dark no-repeat url(../../../assets/images/fe/homepage/homepage-head.png);
+    background: no-repeat url(../../../assets/images/fe/homepage/homepage-head.png);
     background-size: 90% 100%;
   }
 
@@ -132,6 +132,14 @@
     background: rgba(0, 0, 0, 0.6);
     width: 90%;
     min-height: 30rem;
+  }
+  .homeBox-1 {
+    z-index: -1;
+    width: 30%;
+    height: 110%;
+    background-color: #131213;
+    position: absolute;
+    right: -1rem;
   }
 
   .s1-position {
@@ -163,15 +171,7 @@
   .s1-button {
     padding: 0.2rem 1rem;
   }
-  .box {
-    z-index: -1;
-    background: #000;
-    width: 20vw;
-    height: 100vh;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+
   // .ul-position {
   //   position: absolute;
   //   right: 7vw;
@@ -194,11 +194,9 @@
 // =====section2=======
 .section2 {
   min-height: 51rem;
-  background: #1b1b1b;
   // background: lightpink;
   position: relative;
   right: 0.3rem;
-  z-index: -2;
   top: $space-5;
   .homeBox-2 {
     z-index: -2;
@@ -284,7 +282,7 @@
   .homeBox-5 {
     z-index: -2;
     width: 85%;
-    height: 57%;
+    height: 86%;
     top: 4.5rem;
     background-color: #131213;
     position: absolute;
@@ -312,8 +310,8 @@
 @media screen and (min-width: 768px) {
   // =====section-content=======
   .section-content {
-    top: 10vh;
-    left: 4vw;
+    top: 10rem;
+    left: 6rem;
     .section-title-cn {
       line-height: $line-heght-2;
       font-family: $font-family-cn-main;
@@ -322,14 +320,13 @@
       font-size: var(--fs-cn-home-title-lg);
     }
     .section-content-en {
-      font-family: $font-family-en-main;
+      font-size: var(-fs-cn-home-content);
       line-height: $line-heght-3;
     }
     .section-content-cn {
       line-height: $line-heght-0;
-      font-family: $font-family-cn-content;
       font-size: var(--fs-cn-home-content);
-      letter-spacing: $space-1;
+      // letter-spacing: $space-1;
     }
     .section-button {
       margin-top: $space-5;
@@ -339,16 +336,15 @@
   .homepages3-slder {
     position: absolute;
     left: 5rem;
-    top: 20vh;
-    width: 40vw;
-
+    top: 20%;
+    width: 45%;
     // z-index: -1 ;
     .homepages3-card {
-      width: 15vw;
+      width: 20rem;
       padding: 0 $space-2;
       .card-img {
-        width: 90%;
-        height: 40vh;
+        width: 100%;
+        height: 25rem;
         img {
           width: 100%;
           height: 100%;
@@ -364,18 +360,16 @@
   }
   // ======bartd-slider=====
   .homepages4-slider {
-    // display: none;
     position: absolute;
-    top: 35vh;
+    top: 12%;
     right: 3rem;
-    // height: 50vh;
-    height: 20vw;
-    width: 50vw;
+    height: 30%;
+    width: 50%;
     .homepages4-card {
       padding: 0 $space-3;
       .card-img {
-        width: 15vw;
-        height: 20vw;
+        width: 100%;
+        height: 20%;
         img {
           width: 100%;
           height: 100%;
@@ -389,52 +383,62 @@
     }
   }
   // ======bartd-card=====
-  .bartd-card {
-    width: 60vw;
-    .bartd-img {
-      width: 100%;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-    .bartd-text {
-      font-family: $font-family-cn-main;
-    }
-  }
+  // .bartd-card {
+  //   width: 60vw;
+  //   .bartd-img {
+  //     width: 100%;
+  //     img {
+  //       width: 100%;
+  //       height: 100%;
+  //       object-fit: cover;
+  //     }
+  //   }
+  //   .bartd-text {
+  //     font-family: $font-family-cn-main;
+  //   }
+  // }
 
   // =====section-content=======
 
-  .bartd-card {
-    margin: 0 $space-base;
-    .bartd-img {
-      width: 100%;
-      height: 40vh;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-    .bartd-text {
-      font-family: $font-family-cn-main;
-    }
-  }
+  // .bartd-card {
+  //   margin: 0 $space-base;
+  //   .bartd-img {
+  //     width: 100%;
+  //     height: 40vh;
+  //     img {
+  //       width: 100%;
+  //       height: 100%;
+  //       object-fit: cover;
+  //     }
+  //   }
+  //   .bartd-text {
+  //     font-family: $font-family-cn-main;
+  //   }
+  // }
   // =====section1=======
-  .section1 {
-    background: $color-bg-block;
-    .container-fluid {
-      background: $color-bg-block;
+  .container-fluid {
+    .section1 {
       width: 100%;
       position: relative;
-      min-height: 100vh;
-      background-size: 90vw 95vh;
+      min-height: 70rem;
+      background: none;
     }
+    .homeBox-1 {
+      z-index: -1;
+      width: 40%;
+      height: 70rem;
+      background-color: #131213;
+      position: absolute;
+      right: 0;
+    }
+
     .pc-img {
       position: absolute;
-      width: 55vw;
-      height: 90vh;
+      //width: ;
+      width: 90rem;
+      height: 50rem;
+      left: -4.5rem;
+      top: 5rem;
       opacity: 0.5;
       img {
         height: 100%;
@@ -443,28 +447,30 @@
       }
     }
     .mask {
-      display: none;
+      width: 65%;
+      height: 50rem;
+      top: 5rem;
+      left: -1.2rem;
     }
 
     .s1-position {
       position: relative;
-      right: 0;
-      top: 20vh;
+      right: 4rem;
+      top: 20rem;
       text-align: end;
       color: white;
-      font-size: 1rem;
+      // font-size: 1rem;
       .font-cn-content {
-        font-family: $font-family-cn-content;
-        font-size: var(--fs-cn-page-type1-menu);
+        font-size: var(--fs-cn-home-prdtext);
+        letter-spacing: $letter-space-base * 0.4;
       }
       .font-en-title {
-        font-family: $font-family-en-main;
         font-size: var(--fs-en-page-type1-title-md);
-        letter-spacing: 0.2rem;
+        letter-spacing: $letter-space-base * 0.3;
       }
       .font-cn-title {
-        font-family: $font-family-cn-main;
-        font-size: 2.25rem;
+        top: 2.5rem;
+        font-size: var(--fs-cn-home-title-md);
       }
     }
     .s1-button {
@@ -475,48 +481,38 @@
       padding: 0.5rem 4rem;
       font-size: var(--fs-cn-home-title-lg);
       font-family: $font-weight-bold;
-    }
-    .box {
-      z-index: -1;
-      background: #000;
-      width: 20vw;
-      height: 100vh;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .ul-position {
-      position: absolute;
-      right: 0;
-      bottom: 10vh;
-      font-size: var(--fs-cn-page-list-menu);
-      ul {
-        li {
-          a {
-            text-decoration: none;
-            color: $color-font;
-            &:hover,
-            &.active {
-              color: $color-font-gold;
-            }
-          }
-        }
-      }
+      top: 4rem;
     }
   }
   // =====section2=======
 
   .section2 {
     // left: 2rem;
+    top: 7rem;
     position: relative;
+    .homeBox-2 {
+      z-index: -2;
+      width: 10%;
+      height: 70%;
+      left: 19.5rem;
+      top: 10rem;
+    }
+    .section-title-en {
+      top: 15%;
+      left: 3rem;
+    }
+    .section-content {
+      top: 16.5rem;
+      left: 9rem;
+    }
 
     .s2-img1 {
       position: absolute;
       left: auto;
       right: 3rem;
-      top: 5vh;
-      width: 45vw;
-      height: 50vh;
+      top: 5rem;
+      width: 50%;
+      height: 70%;
       z-index: -1;
       img {
         object-fit: cover;
@@ -526,10 +522,11 @@
     }
     .s2-img2 {
       position: absolute;
-      bottom: 15vh;
-      right: 30vw;
-      width: 22vw;
-      height: 35vh;
+      bottom: -2rem;
+      right: 40%;
+      width: 22%;
+      height: 40%;
+      z-index: -2;
       img {
         object-fit: cover;
         width: 100%;
@@ -538,19 +535,34 @@
     }
   }
   .section3 {
+    top: 20rem;
+    .homeBox-3 {
+      width: 60%;
+      height: 65%;
+      right: 3rem;
+      top: 5rem;
+    }
     .section-title-en {
-      top: 15vh;
+      top: 8%;
+      right: 12rem;
     }
     .section-content {
-      right: 5vh;
-      top: 30vh;
+      right: 17rem;
+      top: 13rem;
+      .section-content-cn {
+        letter-spacing: $letter-space-2;
+      }
     }
   }
 
   // =====section=======
   .section4 {
-    min-height: 100vh;
+    top: 20rem;
+    min-height: 80rem;
     position: relative;
+    .section-title-en {
+      left: 3rem;
+    }
     .bartd-slider {
       position: absolute;
       top: 45vh;

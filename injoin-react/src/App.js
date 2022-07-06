@@ -18,7 +18,6 @@ import UserCoupon from './views/frontEnd/UserCoupon';
 import CouponDetail from './views/frontEnd/CouponDetail';
 import UserCart from './views/frontEnd/UserCart/test.js';
 import UserCartStep2 from './views/frontEnd/UserCartStep2';
-import UserCartStep3 from './views/frontEnd/UserCartStep3';
 import UserReputation from './views/frontEnd/UserReputation';
 import UserGroup from './views/frontEnd/UserGroup';
 import OrderList from './views/frontEnd/OrderList';
@@ -48,8 +47,8 @@ function App() {
 
         // console.log("0", response.data.code);
 
-        if(response.data.code == 2001 ){
-          return
+        if (response.data.code == 2001) {
+          return;
         }
 
         if (response.data !== null) {
@@ -58,7 +57,7 @@ function App() {
         // console.log("app.js" ,response.data);
         setMember(response.data);
       } catch (e) {
-        console.log("e",e);
+        console.log('e', e);
       }
     };
     getMemberInfo();
@@ -71,8 +70,8 @@ function App() {
           withCredentials: true,
         });
         // console.log("is", response.data);
-        if(response.data.code == 2001 ){
-          return
+        if (response.data.code == 2001) {
+          return;
         }
 
         // console.log("app.js" ,response.data);
@@ -81,7 +80,7 @@ function App() {
         }
         setMember(response.data);
       } catch (e) {
-        console.log("e",e);
+        console.log('e', e);
       }
       // setMember(response.data);
     };
@@ -146,8 +145,6 @@ function App() {
 
             {/* 購物車 */}
             <Route path="/cart" exact element={<UserCart />} auth={auth} setAuth={setAuth} />
-            <Route path="/cart/step2" element={<UserCartStep2 />} />
-            <Route path="/cart/step3" element={<UserCartStep3 />} />
 
             {/* 會員資料 */}
             <Route path="/aboutuser" component={<AboutUser />}>

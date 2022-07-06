@@ -100,11 +100,12 @@ const FeHeader = () => {
         content: '確定要登出嗎?',
         async onOk() {
           try {
-            let response = await axios.get(`${API_URL}/auth/logout`,{
-              withCredentials:true,
+            let response = await axios.get(`${API_URL}/auth/logout`, {
+              withCredentials: true,
             });
             setislogin(false);
             setMember(null);
+            onClose();
           } catch (e) {
             // console.log(e);
           }
@@ -143,18 +144,18 @@ const FeHeader = () => {
             </div>
           </div>
           <div className="shortcut-btns text-end">
-            <Link to="/account/like" title="我的收藏">
+            <Link to="/account/like" title="我的收藏" onClick={() => onClose()}>
               <FontAwesomeIcon icon={faHeart} fixedWidth />
             </Link>
-            <Link to="/account/user" title="會員中心">
+            <Link to="/account/user" title="會員中心" onClick={() => onClose()}>
               <FontAwesomeIcon icon={faUser} fixedWidth />
             </Link>
-            <Link to="/cart" title="購物車">
+            <Link to="/cart" title="購物車" onClick={() => onClose()}>
               <FontAwesomeIcon icon={faCartShopping} fixedWidth />
             </Link>
             {/* 登入 */}
             {!app.islogin && (
-              <Link to="/account/user" className="pc-view" title="登入">
+              <Link to="/account/user" className="pc-view" title="登入" onClick={() => onClose()}>
                 <FontAwesomeIcon icon={faArrowRightToBracket} fixedWidth className="pc-view" />
               </Link>
             )}

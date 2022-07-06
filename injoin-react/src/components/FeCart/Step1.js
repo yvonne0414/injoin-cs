@@ -11,10 +11,8 @@ import { Select } from 'antd';
 import Step1Prd from './Step1Prd';
 
 const Step1 = (props) => {
-  // TODO:要改
-  let userId = 1;
   const { Option } = Select;
-  const { stepNum, setStepNum,setAns } = props;
+  const { stepNum, setStepNum, setAns, userId } = props;
   const [coupon, setCoupon] = useState([]);
   const optsRef = useRef([]);
 
@@ -27,7 +25,7 @@ const Step1 = (props) => {
   const createCart = async () => {
     let cart = JSON.parse(localStorage.getItem('cart'));
 
-    // console.log('cart', cart);
+    console.log('cart', cart);
     let tempCartArray = [];
     // cart.length
     for (let idx = 0; idx < cart.length; idx++) {
@@ -49,8 +47,8 @@ const Step1 = (props) => {
   useEffect(() => {
     createCart();
     let getUserCoupon = async () => {
-      let res = await axios.get(`${API_URL}/cart/getUserCoupon?userId=${userId}`);
-      // console.log('res', res.data);
+      let res = await axios.get(`${API_URL}/cart/getUserCoupon`, { params: { userId } });
+      console.log('coupon', res.data);
       setCoupon(res.data);
     };
     getUserCoupon();
@@ -103,7 +101,7 @@ const Step1 = (props) => {
       cartList: arr,
     };
     try {
-      setAns(ans)
+      setAns(ans);
       console.log('送出訂單', ans);
     } catch (e) {
       console.error(e);
@@ -116,17 +114,14 @@ const Step1 = (props) => {
   return (
     <div className="position-relative mt-4">
       <div className="cart-add-info-bg-square"></div>
-      <div className="p-3 p-md-5">
-        <div className="shopping-cart-area d-flex justify-content-between d-flex flex-column flex-md-row">
+      <div className="p-4">
+        <div className="shopping-cart-area d-flex justify-content-between d-flex flex-column flex-md-row  p-md-5 gap-4">
           <div className="shopping-cart-prd-content">
-            <div className="shopping-cart-bg  mb-3">
+            <div className="shopping-cart-bg p-4 pb-md-5">
               <div className="shopping-cart-info shopping-cart-width">
                 <div className="shopping-cart-info-title">
-                  <span>
-                    我的購物車
-                    <br />
-                    Your shopping bag
-                  </span>
+                  <span>我的購物車</span>
+                  <span>Your shopping bag</span>
                 </div>
                 {/* 商品迴圈 */}
                 {productsInOrder.map((item, i) => {
@@ -174,27 +169,27 @@ const Step1 = (props) => {
                 })}
 
                 {/* <div className="cart-prd-info-content d-flex mt-3 flex-nowrap justify-content-between">
-                        <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
-                        <div className="cart-prd-content d-flex flex-column ms-2">
-                          <div className="cart-prd-num">AA001234</div>
-                          <div className="cart-prd-name">AA001234</div>
-                          <div className="cart-prd-price">NT$680</div>
-                        </div>
-                        <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
-                          <div className="cart-prd-icon text-center">
-                            <BsTrashFill />
+                          <img src={faveriteImg} alt="faverite-product-img-1" className="w-25 h-25 faverite-product-img-1 " />
+                          <div className="cart-prd-content d-flex flex-column ms-2">
+                            <div className="cart-prd-num">AA001234</div>
+                            <div className="cart-prd-name">AA001234</div>
+                            <div className="cart-prd-price">NT$680</div>
                           </div>
-                          <div
-                            className="cart-prd-number d-flex ms-2 border border-white justify-content-between
-                        "
-                          >
-                            <button className="prd-plus btn-none">+</button>
-                            <div className=" border-end border-start prd-number text-center">1</div>
-                            <button className="prd-minus btn-none">-</button>
+                          <div className="cart-prd-number-content d-flex flex-column flex-md-row justify-content-between">
+                            <div className="cart-prd-icon text-center">
+                              <BsTrashFill />
+                            </div>
+                            <div
+                              className="cart-prd-number d-flex ms-2 border border-white justify-content-between
+                          "
+                            >
+                              <button className="prd-plus btn-none">+</button>
+                              <div className=" border-end border-start prd-number text-center">1</div>
+                              <button className="prd-minus btn-none">-</button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="border-bottom m-3"></div> */}
+                        <div className="border-bottom m-3"></div> */}
               </div>
             </div>
           </div>
@@ -204,97 +199,80 @@ const Step1 = (props) => {
               <div className="shopping-cart-check-bg">
                 <div className="shopping-cart-info">
                   <div className="shopping-cart-info-title">
-                    <span>
-                      配送方式
-                      <br />
-                      Delivery Method
-                    </span>
+                    <span>配送方式</span>
+                    <span>Delivery Method</span>
                   </div>
-                  <div className="cart-prd-info-content mt-5">
-                    <div className="delivery-section mb-3">
-                      <label>配送區域</label>
-                      <br />
-                      <Select labelInValue defaultValue={{ value: 1, label: '台灣本島' }} style={{ width: 250, size: 25 }}>
-                        <Option value="1">台灣本島</Option>
-                        <Option value="2">偏遠地區及離島 </Option>
-                      </Select>
-                    </div>
-                  </div>
+                  {/* <div className="cart-prd-info-content mt-5">
+                      <div className="delivery-section mb-3">
+                        <label>配送區域</label>
+                        <br />
+                        <Select labelInValue defaultValue={{ value: 1, label: '台灣本島' }} style={{ width: 250, size: 25 }}>
+                          <Option value="1">台灣本島</Option>
+                          <Option value="2">偏遠地區及離島 </Option>
+                        </Select>
+                      </div>
+                    </div> */}
                   {/* <div className="check-info-area mb-3">
-                          <label>付款方式</label>
-                          <div className="check-content border border-white mt-2 p-3">
-                            <div className="form-check">
-                              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-                              <label>信用卡線上付款</label>
+                            <label>付款方式</label>
+                            <div className="check-content border border-white mt-2 p-3">
+                              <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                                <label>信用卡線上付款</label>
+                              </div>
+                              <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                                <label>貨到付款</label>
+                              </div>
                             </div>
-                            <div className="form-check">
-                              <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-                              <label>貨到付款</label>
-                            </div>
-                          </div>
-                        </div> */}
+                          </div> */}
 
-                  <div className="delivery-section mb-5">
-                    <label>運送方式</label>
-                    <br />
+                  <div className="delivery-section mb-5 ms-md-5">
+                    {/* <div className="shopping-cart-info-subtitle">運送方式</div> */}
                     <Select labelInValue defaultValue={{ value: 1, label: '宅配' }} style={{ width: 250, size: 25 }} onChange={handleChange}>
                       <Option value="1">宅配</Option>
                       <Option value="2">郵局</Option>
                     </Select>
                   </div>
-                  <div className="shopping-cart-summary-area border-top border-white">
-                    <span>訂單摘要</span>
+                  <div className="shopping-cart-summary-area">
+                    <div className="shopping-cart-info-subtitle">訂單摘要</div>
                     <div className="shopping-cart-summary-content mt-3">
-                      <div className="shopping-cart-summary-total d-flex justify-content-start">
-                        <div className="m-3">
-                          商品總計
-                          <br />
-                          使用優惠券
-                          <br />
-                          折扣金額
+                      <div className="shopping-cart-summary-total px-4 mx-auto">
+                        <div className="d-flex justify-content-between align-items-center">
+                          <div className="shopping-cart-summary-title">商品總計</div>
+                          <div className="shopping-cart-summary-text">NT${totalPrice()}</div>
                         </div>
-                        <div className="m-3 ms-5">
-                          NT${totalPrice()}
-                          <br />
+                        <div className="d-flex justify-content-between align-items-center">
+                          <div className="shopping-cart-summary-title">使用優惠券</div>
                           <select
-                            name=""
-                            id=""
-                            className="w-100 overflow-hidden select-class"
+                            className="shopping-cart-summary-text"
+                            name="couponSel"
                             onChange={(e) => {
-                              // optsRef.current.forEach((opt) => {
-                              // console.log(opt);
-                              // console.log(opt.getAttribute('data-couponId'))});
-                              // setCouponId(optsRef.current[e.target.value].getAttribute('data-couponId'));
-                              // console.log(optsRef.current[e.target.value].getAttribute('data-couponId'));
-                              let couponid = optsRef.current[e.target.value].getAttribute('data-couponId')
-                              // console.log(coupon);
-                              setCouponId(couponid)
-
-                              // console.log(coupon[e.target.value].discount);
-                              
+                              let couponid = optsRef.current[e.target.value].getAttribute('data-couponId');
+                              setCouponId(couponid);
                               setDiscount(Number(coupon[e.target.value].discount));
                             }}
                           >
                             <option value={0} data-couponId={-1}>
                               請選擇優惠卷
                             </option>
-                            ;
                             {coupon.map((v, i) => {
                               return (
-                                <option ref={(el) => (optsRef.current[i] = el)} value={i} data-couponId={v.coupon_id}>
+                                <option ref={(el) => (optsRef.current[i] = el)} value={i} data-couponId={v.coupon_id} key={v.coupon_id}>
                                   {v.name}
                                 </option>
                               );
                             })}
                           </select>
-                          <br />
-                          -NT${discount}
+                        </div>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <div className="shopping-cart-summary-title">折扣金額</div>
+                          <div className="shopping-cart-summary-text">-NT${discount}</div>
                         </div>
                       </div>
                       <hr />
-                      <div className="shopping-cart-summary-total d-flex justify-content-start mb-5">
-                        <div className="me-4">實付總金額</div>
-                        <div className="ms-5">NT${totalPrice() - discount}</div>
+                      <div className="d-flex justify-content-between align-items-center px-4 mx-auto">
+                        <div className="shopping-cart-summary-title total">實付總金額</div>
+                        <div className="shopping-cart-summary-text total">NT${totalPrice() - discount}</div>
                       </div>
                     </div>
                   </div>
@@ -303,19 +281,19 @@ const Step1 = (props) => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="position-relative text-center p-3">
-        <button
-          className="btn btn-none injoin-btn-outline text-gold"
-          htmlType="sumbit"
-          // onClick={handleSubmit}
-          onClick={() => {
-            handleSubmit()
-            setStepNum(stepNum + 1);
-          }}
-        >
-          下一步
-        </button>
+        <div className="position-relative text-center p-3">
+          <button
+            className="btn btn-none injoin-btn-outline text-gold"
+            htmlType="sumbit"
+            // onClick={handleSubmit}
+            onClick={() => {
+              handleSubmit();
+              setStepNum(stepNum + 1);
+            }}
+          >
+            下一步
+          </button>
+        </div>
       </div>
     </div>
   );

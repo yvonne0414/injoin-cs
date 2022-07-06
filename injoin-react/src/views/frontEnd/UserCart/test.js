@@ -2,7 +2,7 @@
 import './index.scss';
 
 //react
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { API_URL } from '../../../utils/config';
@@ -19,13 +19,33 @@ import PrdCard from '../../../components/PrdCard';
 import Step1 from '../../../components/FeCart/Step1';
 import Step2 from '../../../components/FeCart/Step2';
 import Step3 from '../../../components/FeCart/Step3';
+import LogoutPage from '../LogoutPage/LogoutPage.js';
+
+import { userState } from '../../../App';
 
 //icon
 import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img-1.png';
 import { BsTrashFill } from 'react-icons/bs';
 
 const UserCart = () => {
-  let userId = 1;
+  // 檢查登入
+  const [isLogin, setisLogin] = useState('');
+  const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
+  useEffect(() => {
+    if (loginInfo.member) {
+      // console.log('useEffect-loginInfo', loginInfo);
+      setMemberInfo({ userId: loginInfo.member.id });
+    }
+  }, [loginInfo]);
+
+  let userId = memberInfo.userId;
 
   const [ans, setAns] = useState([]);
   const page1HeaderInfo = {
@@ -197,13 +217,15 @@ const UserCart = () => {
     return result;
   };
 
+  let [orederId, setOrderId] = useState('');
   const handleSubmit = async () => {
-    
     try {
-      alert('送出訂單');
+      setStepNum(stepNum + 1);
+      // alert('送出訂單');
       console.log('送出訂單', ans);
-      // let res = await axios.post(`${API_URL}/cart`,ans)
-      // console.log(res);
+      let res = await axios.post(`${API_URL}/cart`, ans);
+      console.log(res);
+      setOrderId(res.data.orderId);
     } catch (e) {
       console.error(e);
     }
@@ -267,77 +289,83 @@ const UserCart = () => {
 
   return (
     <>
-      {/* header-section */}
-      <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
+      {loginInfo.islogin ? (
+        <>
+          {/* header-section */}
+          <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 
-      <div className="cart-area">
-        <div className="container">
-          {/* status-section-1 */}
-          <div className="cart-step-content d-flex flex-column flex-md-row">
-            <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 1 && 'active'}`}>
-              <div className="step-left">01</div>
-              <div className="step-right">
-                確認訂單及付款方式 <br />
-                Cart & Check out
+          <div className="cart-area">
+            <div className="container">
+              {/* status-section-1 */}
+              <div className="cart-step-content d-flex flex-column flex-md-row">
+                <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 1 && 'active'}`}>
+                  <div className="step-left">01</div>
+                  <div className="step-right">
+                    確認訂單及付款方式 <br />
+                    Cart & Check out
+                  </div>
+                </div>
+                <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 2 && 'active'}`}>
+                  <div className="step-left">02</div>
+                  <div className="step-right">
+                    填寫訂單資料 <br />
+                    Shipping & Billing info
+                  </div>
+                </div>
+                <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 3 && 'active'}`}>
+                  <div className="step-left">03</div>
+                  <div className="step-right">
+                    購物完成! <br />
+                    Order Completend
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 2 && 'active'}`}>
-              <div className="step-left">02</div>
-              <div className="step-right">
-                填寫訂單資料 <br />
-                Shipping & Billing info
-              </div>
-            </div>
-            <div className={`col cart-step d-flex flex-column flex-md-row ${stepNum === 3 && 'active'}`}>
-              <div className="step-left">03</div>
-              <div className="step-right">
-                購物完成! <br />
-                Order Completend
-              </div>
+
+              {/* prd-section-2 */}
+              {stepNum === 1 ? (
+                <Step1 stepNum={stepNum} setStepNum={setStepNum} setAns={setAns} userId={userId} />
+              ) : stepNum === 2 ? (
+                <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit} cartlist={ans.cartList} />
+              ) : (
+                <Step3 orederId={orederId} />
+              )}
+              {stepNum === 0 && (
+                <>
+                  <Link to="/production" className="back-page btn btn-none mt-3">
+                    <div>
+                      <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="ms-3 ff-cn-main">繼續選購</span>
+                  </Link>
+                  {/* the same kind  product-------------------------------------*/}
+                  <div className="prd-detail-evaluation-bg mt-5">
+                    <div className="container mb-4">
+                      <div className="prd-detail-title-type1 mt-3 ">
+                        <p>同系列商品</p>
+                      </div>
+                      <div className="px-md-3">
+                        <Slider className="prd-deatil-card" {...settings}>
+                          {cardArr.map((v, i) => {
+                            return <PrdCard key={v.id} data={v} />;
+                          })}
+                        </Slider>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
-
-          {/* prd-section-2 */}
-          {stepNum === 1 ? (
-            <Step1 stepNum={stepNum} setStepNum={setStepNum} setAns={setAns}/>
-          ) : stepNum === 2 ? (
-            <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit} />
-          ) : (
-            <Step3 />
-          )}
-          {stepNum === 1 && (
-            <>
-              <Link to="/production" className="back-page btn btn-none mt-3">
-                <div>
-                  <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
-                    />
-                  </svg>
-                </div>
-                <span className="ms-3 ff-cn-main">繼續選購</span>
-              </Link>
-              {/* the same kind  product-------------------------------------*/}
-              <div className="prd-detail-evaluation-bg mt-5">
-                <div className="container mb-4">
-                  <div className="prd-detail-title-type1 mt-3 ">
-                    <p>同系列商品</p>
-                  </div>
-                  <div className="px-md-3">
-                    <Slider className="prd-deatil-card" {...settings}>
-                      {cardArr.map((v, i) => {
-                        return <PrdCard key={v.id} data={v} />;
-                      })}
-                    </Slider>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
+        </>
+      ) : (
+        <LogoutPage setisLogin={setisLogin} />
+      )}
     </>
   );
 };

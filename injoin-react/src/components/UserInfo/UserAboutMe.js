@@ -1,6 +1,6 @@
 import upperUsericon from '../../assets/images/fe/membercenter/usericon.png';
 import upperBackground from '../../assets/images/fe/membercenter/UserInfo-AboutCard.jpg';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, message } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import { userState } from '../../App';
 import { useContext, useState } from 'react';
@@ -21,8 +21,11 @@ const UserAboutMe = () => {
   });
   // console.log('userAbout',userAbout);
 
+
+
   function handleChange(e) {
     setUserAbout({ ...userAbout, [e.target.name]: e.target.value });
+   
   }
   // console.log(usermember);
   const usernicknameLabel = (
@@ -72,6 +75,10 @@ const UserAboutMe = () => {
                   onClick={async (e) => {
                     e.preventDefault();
                     let res = await axios.post(`${API_URL}/auth/changeAbout?userId=${userAbout.userId}`,userAbout)
+                    message.success("更改成功")
+                    let response = await axios.get(`${API_URL}/auth/about?userid=${userAbout.userId}`)
+                    // console.log(response.data[0].about_user);
+                    setUserAbout({...userAbout,userAboutme: response.data[0].about_user})
                   }}
                 >
                   更改資料

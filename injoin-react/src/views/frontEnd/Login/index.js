@@ -36,6 +36,7 @@ const Login = ({ setlogoutState, setisLogin }) => {
     } catch (e) {
       // console.log(e);
       message.error('帳號或密碼錯誤');
+      return
 
       // if (e.response.data.code == 3003) {
       //   帳號沒註冊;

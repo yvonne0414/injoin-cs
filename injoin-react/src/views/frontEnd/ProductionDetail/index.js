@@ -27,7 +27,7 @@ import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail
 // import '~slick-carousel/slick/slick-theme.css';
 import { useState, useEffect } from 'react';
 import axios, { Axios } from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
 import EmptyImage from '../../../components/EmptyImage';
 
@@ -170,6 +170,7 @@ const cardArr = [
 ];
 
 const ProductionDetail = () => {
+  const [cateL, setCateL] = useState(1);
   const [detail, setDetail] = useState([]);
   const [imgList, setImgList] = useState([]);
   const { prdId } = useParams();
@@ -227,9 +228,12 @@ const ProductionDetail = () => {
     // console.log('handleAddHeart');
     alert(`使用者${userid} 已將 商品${prdId} 加最愛`);
   };
+  const handleOnChenage = (e) => {
+    setNum(e);
+  };
+
   const onChange = (e) => {
     // console.log('changed', e);
-    setNum(e);
   };
   let [cateM, setCateM] = useState(0);
   useEffect(() => {
@@ -244,12 +248,13 @@ const ProductionDetail = () => {
     // prddetail
 
     let getDetail = async () => {
-      let response = await axios.get(`http://localhost:3001/api/prd/detail/${prdId}`);
+      let response = await axios.get(`${API_URL}/prd/detail/${prdId}`);
       // console.log('(response.data.detailImgList', response.data);
       setDetail(response.data.detailData[0]);
       setImgList(response.data.detailImgList);
       rate = response.data.detailData[0].rate;
       setCateM(response.data.detailData[0].cate_m);
+      setCateL(response.data.cateL);
       // console.log('Detail', response.data.detailData);
     };
     getDetail();
@@ -326,12 +331,19 @@ const ProductionDetail = () => {
           {/* Breadcrumb----------------------------------- */}
           <div className="w-fit-content ms-auto">
             <Breadcrumb separator="" className="prd-detail-breadcrumb">
-              <Breadcrumb.Item href="">商品</Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to={'/production'}>商品</Link>
+              </Breadcrumb.Item>
               <Breadcrumb.Separator />
-              <Breadcrumb.Item href="">{detail.cateMName}</Breadcrumb.Item>
+              <Breadcrumb.Item>{detail.cateMName}</Breadcrumb.Item>
               <Breadcrumb.Separator />
-              <Breadcrumb.Item href="">{detail.cateSName}</Breadcrumb.Item>
-              <Breadcrumb.Separator />
+              {cateL === 1 && (
+                <>
+                  <Breadcrumb.Item>{detail.cateSName}</Breadcrumb.Item>
+                  <Breadcrumb.Separator />
+                </>
+              )}
+
               <Breadcrumb.Item>{detail.name}</Breadcrumb.Item>
             </Breadcrumb>
           </div>
@@ -378,7 +390,7 @@ const ProductionDetail = () => {
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>
                 <div className="prd-detail-input-number mt-3">
-                  <InputNumber defaultValue={0} onChange={onChange} size="middle" bordered={false} value={num} />
+                  <InputNumber defaultValue={0} onChange={handleOnChenage} size="middle" bordered={false} value={num} />
                 </div>
               </div>
               <div className="prd-detail-button-position mt-3">
@@ -411,8 +423,24 @@ const ProductionDetail = () => {
                   產地：{detail.originName}
                   <br />
                   容量：{detail.capacity}ml
-                  <br />
-                  品牌：{detail.brand}
+                  {(cateL === 1 || cateL === 2) && (
+                    <>
+                      <br />
+                      品牌：{detail.brand}
+                    </>
+                  )}
+                  {cateL === 1 && (
+                    <>
+                      <br />
+                      酒精濃度：{detail.abv} %
+                    </>
+                  )}
+                  {(cateL === 3 || cateL === 4) && (
+                    <>
+                      <br />
+                      材質：{detail.materName}
+                    </>
+                  )}
                 </p>
               </Panel>
               <Panel className="prd-detail-title-type1" header="產品介紹" key="2">

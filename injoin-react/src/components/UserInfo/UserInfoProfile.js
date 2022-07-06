@@ -1,14 +1,14 @@
 // 圖片upload
 import { PlusOutlined } from '@ant-design/icons';
-import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber } from 'antd';
-import { useState,useContext } from 'react';
+import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, message } from 'antd';
+import { useState, useContext } from 'react';
 import moment from 'moment';
 import { userState } from '../../App';
-
+import axios from 'axios';
+import { API_URL } from '../../utils/config';
 
 // upload
 const getBase64 = (file) =>
-
   new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -19,7 +19,7 @@ const getBase64 = (file) =>
   });
 
 const normFile = (e) => {
-  console.log('Upload event:', e);
+  // console.log('Upload event:', e);
 
   if (Array.isArray(e)) {
     return e;
@@ -55,8 +55,6 @@ const UserInfoProfile = () => {
     setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
 
-  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
-
   // 表單
   const [form] = Form.useForm();
   const { Option } = Select;
@@ -67,7 +65,7 @@ const UserInfoProfile = () => {
       groupDate: fieldsValue['groupDate'].format('YYYY-MM-DD HH:mm'),
       groupDeadLine: fieldsValue['groupDeadLine'].format('YYYY-MM-DD HH:mm'),
     };
-    console.log('Received values of form: ', values);
+    // console.log('Received values of form: ', values);
   };
   // label
   const uploadButton = (
@@ -119,20 +117,49 @@ const UserInfoProfile = () => {
       <span>地址</span>
     </div>
   );
+  // chennnn
+  const usermember = useContext(userState);
+  // console.log(usermember.member.address_detail);
 
+
+  const [userAddress, setUserAddress] = useState({
+    userCountry: '',
+    userAddressDetail: usermember.member.address_detail,
+    userPhone: usermember.member.phone,
+    userphoto: '',
+  });
+
+  let handleOnChange = (e) => {
+    setUserAddress({ ...userAddress, [e.target.name]: e.target.value });
+  };
+  // const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  const handleChange = ({ fileList: newFileList }, e) => {
+    setFileList(newFileList);
+    // console.log(newFileList[0]['originFileObj']);
+    setUserAddress({ ...userAddress, userphoto: newFileList[0]['originFileObj'] });
+  };
+
+
+  const user = usermember.member;
+  let memberGender = '1';
+  if (user.gender === 'M') {
+    memberGender = '2';
+  } else {
+    memberGender = '1';
+  }
   return (
     <>
       <Form
         layout="vertical"
         form={form}
         initialValues={{
-          fullname: 'Chen',
-          usergender: '1',
-          useremail: 'test@email.com',
-          userphone: '0911222333',
-          userbirthday: moment('2015-06-06', dateFormat),
+          fullname: user.name,
+          usergender: memberGender,
+          useremail: user.email,
+          userphone: user.phone,
+          userbirthday: moment(user.birth_day, dateFormat),
         }}
-        onFinish={onFinish}
+        // onFinish={onFinish}
       >
         <div className="UserInfoProfile">
           {/* 照片 */}
@@ -148,7 +175,8 @@ const UserInfoProfile = () => {
                 {fileList.length >= 1 ? null : uploadButton}
               </Upload>
             </Form.Item>
-            <Modal className='userinfoShowImg' visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+
+            <Modal className="userinfoShowImg" visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
               <img
                 alt="example"
                 style={{
@@ -158,21 +186,22 @@ const UserInfoProfile = () => {
               />
             </Modal>
           </div>
+
           <div className="userInfo-input">
             {/* 姓名 */}
             <Form.Item label={fullnameLabel} name="fullname">
               <Input disabled />
             </Form.Item>
-            {/* 暱稱 */}
+            {/* 暱稱
             <Form.Item label={usernicknameLabel} name="usernickname">
               <Input placeholder="請輸入暱稱" />
-            </Form.Item>
+            </Form.Item> */}
             {/* 電子信箱 */}
             <Form.Item label={useremailLabel} name="useremail">
               <Input disabled type="email" />
             </Form.Item>
             {/* 性別 */}
-            <Form.Item label={usergenderLabel} name="usergender" >
+            <Form.Item label={usergenderLabel} name="usergender">
               <Select placeholder="請選擇姓別" disabled>
                 <Option value="1" disabled>
                   男
@@ -182,16 +211,17 @@ const UserInfoProfile = () => {
                 </Option>
               </Select>
             </Form.Item>
+
             {/* 生日 */}
             <Form.Item label={userbirthdayLabel} name="userbirthday">
-              <DatePicker  disabled />
+              <DatePicker disabled />
             </Form.Item>
             {/* 手機號碼 */}
             <Form.Item label={userphoneLabel} name="userphone">
-              <Input disabled />
+              <Input name="userPhone" value={userAddress.userPhone} onChange={handleOnChange} />
             </Form.Item>
             {/* 地址 */}
-            <Form.Item label={useraddressLabel} name="useraddress">
+            <Form.Item label={useraddressLabel} className="w-100" name="useraddress">
               <Input.Group compact>
                 <Form.Item
                   name={['useraddress', 'city']}
@@ -203,7 +233,13 @@ const UserInfoProfile = () => {
                     },
                   ]}
                 >
-                  <Select placeholder="請選擇縣市">
+                  <Select
+                    placeholder="請選擇縣市"
+                    onChange={(e) => {
+                      // console.log(e);
+                      setUserAddress({ ...userAddress, userCountry: e });
+                    }}
+                  >
                     <Option value="1">台北市</Option>
                     <Option value="2">新北市</Option>
                   </Select>
@@ -218,17 +254,42 @@ const UserInfoProfile = () => {
                     },
                   ]}
                 >
+                  {/* chennn */}
                   <Input
                     style={{
                       width: '60%',
                     }}
                     placeholder="地址"
+                    name="userAddressDetail"
+                    value={userAddress.userAddressDetail}
+                    onChange={handleOnChange}
                   />
                 </Form.Item>
               </Input.Group>
             </Form.Item>
             <Form.Item className="w-100 text-center mt-4">
-              <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit">
+              <Button
+                className="btn btn-none injoin-btn-outline text-gold h-auto"
+                onClick={async () => {
+                  // console.log(user);
+                  // console.log(userAddress);
+                  // console.log(userAddress.userAddressDetail);
+                  // console.log();
+                  if (userAddress.userPhone == '' || userAddress.userAddressDetail == '' || userAddress.userCountry == '') {
+                    alert('填寫完整');
+                    return;
+                  }
+
+                  
+                  let formData = new FormData();
+                  formData.append('userAddressDetail', userAddress.userAddressDetail);
+                  formData.append('userCountry', userAddress.userCountry);
+                  formData.append('userPhone', userAddress.userPhone);
+                  formData.append('userphoto', userAddress.userphoto);
+                  let response = await axios.post(`${API_URL}/auth/changeaddress?userId=${user.id}`,formData)
+                  message.success("更改成功")
+                }}
+              >
                 送出資料
               </Button>
             </Form.Item>

@@ -85,7 +85,6 @@ const UserInfo = () => {
           <div className="container">
             {/* ===============section2=============== */}
             <section className="member-s1">
-              <div className="member-s1-bg"></div>
               <UserInfoForm />
             </section>
             {/* ===============section2=============== */}

@@ -6,6 +6,7 @@ import memberGroupImg3 from '../../assets/images/fe/groupList/group-list-img-3.p
 import { message } from 'antd';
 
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL, BE_IMAGE_URL } from '../../utils/config';
 
@@ -40,12 +41,14 @@ const GroupPlayItem = (props) => {
     <>
       <div className="group-player-item">
         <div className="group-player-item-info">
-          <div className="group-player-item-info-img">
-            <img src={`${BE_IMAGE_URL}${data.user_img}`} alt="" className="img-fluid object-cover" />
-          </div>
-          <div className="fs-6 group-player-item-info-name">
-            <span>{data.name}</span>
-          </div>
+          <Link to={`/aboutuser/${data.user_id}`} className="d-flex align-items-center">
+            <div className="group-player-item-info-img">
+              <img src={`${BE_IMAGE_URL}${data.user_img}`} alt="" className="img-fluid object-cover" />
+            </div>
+            <div className="fs-6 group-player-item-info-name ms-2">
+              <span>{data.name}</span>
+            </div>
+          </Link>
           <div className={`group-player-item-info-status ${isCheck && 'checked'}`}>{isCheck ? '參與中' : '審核中'}</div>
         </div>
         <div className="group-player-item-function">

@@ -58,7 +58,7 @@ const FeAuditModal = (props) => {
         <ImUserCheck />
         {/* 審查 */}
       </div>
-      <Modal title="團員審核" visible={visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} centered>
+      <Modal title="團員審核" visible={visible} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel} centered footer={false}>
         <div className="text-end">
           目前團員：{groupNum} / {groupMaxNum}
         </div>

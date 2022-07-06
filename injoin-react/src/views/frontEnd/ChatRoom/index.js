@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import webSocket from 'socket.io-client';
 import axios from 'axios';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
@@ -229,7 +229,7 @@ const ChatRoom = () => {
           <div className="page-type1-area-title" id="chatroom-bolck1">
             聊天室
           </div>
-          <h5 className="mb-3">{info && info.name}</h5>
+          <h4 className="mb-3">{info && info.name}</h4>
 
           <div className="chatroom-area">
             <Collapse bordered={false} defaultActiveKey={['1']} className="mb-4">
@@ -237,12 +237,12 @@ const ChatRoom = () => {
                 <div className="group-member-area">
                   {members.map((member) => {
                     return (
-                      <div className="group-member" key={member.userId}>
+                      <Link to={`/aboutuser/${member.userId}`} className="group-member" key={member.userId}>
                         <div className="user-img">
                           <img src={`${BE_IMAGE_URL}${member.userImg}`} alt="userImg" className="img-fluid object-cover" />
                         </div>
                         <span>{member.name}</span>
-                      </div>
+                      </Link>
                     );
                   })}
                 </div>
@@ -254,12 +254,12 @@ const ChatRoom = () => {
                 {data.map((dialogue, i) => {
                   return (
                     <div className={`dialogue ${dialogue.userId === memberInfo.userId && 'own'}`} key={i}>
-                      <div className="dialogue-user">
+                      <Link to={`/aboutuser/${dialogue.userId}`} className="dialogue-user">
                         <div className="user-img">
                           <img src={`${BE_IMAGE_URL}${dialogue.userImg}`} alt="userImg" className="img-fluid object-cover" />
                         </div>
                         <span>{dialogue.name}</span>
-                      </div>
+                      </Link>
                       <div className="dialogue-content">
                         <span className="dialogue-content-shape"></span>
                         <span>{dialogue.content}</span>

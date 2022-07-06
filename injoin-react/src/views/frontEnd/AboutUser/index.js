@@ -58,7 +58,7 @@ const AboutUser = () => {
     menuList: [
       {
         href: '#grouplist-bolck2',
-        name: `關於我 : ${user.nick}`,
+        name: `關於 : ${user.nick}`,
       },
     ],
     imgs: {

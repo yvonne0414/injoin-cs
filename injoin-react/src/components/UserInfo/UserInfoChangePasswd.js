@@ -74,8 +74,7 @@ const UserInfoChangePasswd = () => {
         onFinish={onFinish}
         className="d-flex flex-column flex-md-row"
       >
-        <div className="box-left"></div>
-        <div className="box-right">
+        <div className="box-right w-75 mx-auto">
           {/* 原始密碼 */}
           <Form.Item
             label={originallypasswordLabel}

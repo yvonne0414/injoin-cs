@@ -181,7 +181,7 @@ const GroupDetail = () => {
                       </div>
                     </div>
                     <div className="group-detail-img mx-auto">
-                      <img src={`${BE_IMAGE_URL}${item.img}`} alt="" className="img-fluid object-cover" />
+                      <img src={`${BE_IMAGE_URL}${item.img}`} alt="" className="img-fluid " />
                     </div>
                   </div>
                   {loginInfo.islogin ? (

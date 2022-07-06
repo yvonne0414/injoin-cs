@@ -10,13 +10,13 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const PrdList = () => {
+const GroupList = () => {
   const [page, setPage] = useState(1);
   const [pagination, setPagination] = useState([]);
   const [data, setData] = useState([]);
   useEffect(() => {
     let getPrdList = async () => {
-      let res = await axios.get(`${API_URL}/prd/be/prdlist`, { params: { page } });
+      let res = await axios.get(`${API_URL}/group/be/list`, { params: { page } });
       setData(res.data.data);
       setPagination(res.data.pagination);
     };
@@ -25,34 +25,34 @@ const PrdList = () => {
 
   return (
     <div className="container">
-      <h4 className="page-type1-area-title">商品列表</h4>
+      <h4 className="page-type1-area-title">揪團列表</h4>
       <div className="d-flex justify-content-end">
-        <Link to="/production" className="btn injoin-btn-outline">
-          新增商品
+        <Link to="/group" className="btn injoin-btn-outline">
+          新增官方揪團
         </Link>
       </div>
 
       <div className="be-prdlist-area mt-3">
         <div className="pc-view prdlist-title">
-          <div>商品編號</div>
-          <div>商品圖片</div>
-          <div>商品名稱</div>
-          <div>商品價格</div>
-          <div>商品狀態</div>
+          <div>序號</div>
+          <div>揪團圖片</div>
+          <div>揪團名稱</div>
+          <div>分類</div>
+          <div>揪團狀態</div>
           <div></div>
         </div>
-        {data.map((prd) => {
+        {data.map((group, i) => {
           return (
-            <div className="prdlist-content" key={prd.id}>
-              <div>{prd.prdnum}</div>
+            <div className="prdlist-content" key={group.id}>
+              <div>{i + (Number(page) - 1) * 8 + 1}</div>
               <div>
                 <div className="prd-img">
-                  <img src={`${BE_IMAGE_URL}/production/${prd.main_img}`} alt="" className="img-fluid object-cover" />
+                  <img src={`${BE_IMAGE_URL}${group.img}`} alt="" className="img-fluid object-cover" />
                 </div>
               </div>
-              <div>{prd.name}</div>
-              <div>NT. {prd.price}</div>
-              <div>{prd.statusName}</div>
+              <div>{group.name}</div>
+              <div>{group.is_official === 1 ? '官方' : '私人'}</div>
+              <div>{group.status_name}</div>
               <div>
                 <div>
                   <FaEye />
@@ -75,4 +75,4 @@ const PrdList = () => {
     </div>
   );
 };
-export default PrdList;
+export default GroupList;

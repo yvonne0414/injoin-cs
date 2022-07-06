@@ -70,7 +70,7 @@ function App() {
         let response = await axios.get(`${API_URL}/member/info`, {
           withCredentials: true,
         });
-        // console.log("is", response.data.code);
+        // console.log("is", response.data);
         if(response.data.code == 2001 ){
           return
         }

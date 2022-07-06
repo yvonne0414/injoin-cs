@@ -3,14 +3,21 @@ import upperBackground from '../../assets/images/fe/membercenter/UserInfo-AboutC
 import { Form, Input, Button, message } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import { userState } from '../../App';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { API_URL, BE_IMAGE_URL } from '../../utils/config';
 import axios from 'axios';
 
 const UserAboutMe = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // chennnn
   const usermember = useContext(userState);
   // console.log(usermember.member);
+
+  let userId = usermember.member ? usermember.member.id : '';
+  // console.log(userId);
 
   const [userAbout, setUserAbout] = useState({
     userId: usermember.member ? usermember.member.id : '',
@@ -19,13 +26,27 @@ const UserAboutMe = () => {
     userAboutme: usermember.member ? usermember.member.about_user : '',
     userImg: usermember.member ? usermember.member.user_img : '',
   });
+  
+  // console.log('userAbout2',usermember);
   // console.log('userAbout',userAbout);
+
+  useEffect(() => {
+    if (usermember.member) {
+      // console.log("use", usermember);
+      setUserAbout({
+        userId: usermember.member.id,
+
+        userName: usermember.member.name,
+        userAboutme: usermember.member.about_user,
+        userImg: usermember.member.user_img,
+      });
+    }
+  }, usermember.member);
 
 
 
   function handleChange(e) {
     setUserAbout({ ...userAbout, [e.target.name]: e.target.value });
-   
   }
   // console.log(usermember);
   const usernicknameLabel = (
@@ -74,11 +95,11 @@ const UserAboutMe = () => {
                   htmlType="submit"
                   onClick={async (e) => {
                     e.preventDefault();
-                    let res = await axios.post(`${API_URL}/auth/changeAbout?userId=${userAbout.userId}`,userAbout)
-                    message.success("更改成功")
-                    let response = await axios.get(`${API_URL}/auth/about?userid=${userAbout.userId}`)
+                    let res = await axios.post(`${API_URL}/auth/changeAbout?userId=${userAbout.userId}`, userAbout);
+                    message.success('更改成功');
+                    let response = await axios.get(`${API_URL}/auth/about?userid=${userAbout.userId}`);
                     // console.log(response.data[0].about_user);
-                    setUserAbout({...userAbout,userAboutme: response.data[0].about_user})
+                    setUserAbout({ ...userAbout, userAboutme: response.data[0].about_user });
                   }}
                 >
                   更改資料

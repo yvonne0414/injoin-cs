@@ -1,34 +1,27 @@
 import './index.scss';
-import { Breadcrumb, Carousel, Rate } from 'antd';
-import { InputNumber, Button } from 'antd';
-import { Collapse } from 'antd';
-import { Comment, List, Tooltip } from 'antd';
-import moment from 'moment';
+import { Breadcrumb, Carousel, Rate, InputNumber, Button, Collapse, Comment, List } from 'antd';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
+
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 // -----Prdcar
 import PrdCard from '../../../components/PrdCard';
 
 // -----Variable width
-import React, { Component } from 'react';
 import Slider from 'react-slick';
 
 // bartendingcar
 import BartendingCard from '../../../components/BartendingCard';
 
 import prddetailImg1 from '../../../assets/images/fe/productionDetail/prd-detail-img-1.png';
-// import prddetailImg2 from '../../../assets/images/fe/productionDetail/prd-detail-img-2.png';
-// import prddetailImg3 from '../../../assets/images/fe/productionDetail/prd-detail-img-3.png';
-// import prddetailImg4 from '../../../assets/images/fe/productionDetail/prd-detail-img-4.png';
 import prddetailImg5 from '../../../assets/images/fe/productionDetail/prd-detail-img-5.png';
-// import '~slick-carousel/slick/slick.css';
-// import '~slick-carousel/slick/slick-theme.css';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios, { Axios } from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { API_URL, BE_IMAGE_URL } from '../../../utils/config';
+import { userState } from '../../../App';
 import EmptyImage from '../../../components/EmptyImage';
 
 const { Panel } = Collapse;
@@ -170,10 +163,24 @@ const cardArr = [
 ];
 
 const ProductionDetail = () => {
+  // 檢查登入
+  const loginInfo = useContext(userState);
+  // console.log('UserGroup', loginInfo);
+
+  // let [userId, setUserId] = useState(8);
+  const [memberInfo, setMemberInfo] = useState({
+    userId: loginInfo.member ? loginInfo.member.id : -1,
+  });
+
+  const [cateL, setCateL] = useState(1);
   const [detail, setDetail] = useState([]);
   const [imgList, setImgList] = useState([]);
   const { prdId } = useParams();
   const [num, setNum] = useState(1);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   let rate = 5;
   // getuserid
@@ -227,9 +234,12 @@ const ProductionDetail = () => {
     // console.log('handleAddHeart');
     alert(`使用者${userid} 已將 商品${prdId} 加最愛`);
   };
+  const handleOnChenage = (e) => {
+    setNum(e);
+  };
+
   const onChange = (e) => {
     // console.log('changed', e);
-    setNum(e);
   };
   let [cateM, setCateM] = useState(0);
   useEffect(() => {
@@ -244,12 +254,13 @@ const ProductionDetail = () => {
     // prddetail
 
     let getDetail = async () => {
-      let response = await axios.get(`http://localhost:3001/api/prd/detail/${prdId}`);
+      let response = await axios.get(`${API_URL}/prd/detail/${prdId}`);
       // console.log('(response.data.detailImgList', response.data);
       setDetail(response.data.detailData[0]);
       setImgList(response.data.detailImgList);
       rate = response.data.detailData[0].rate;
       setCateM(response.data.detailData[0].cate_m);
+      setCateL(response.data.cateL);
       // console.log('Detail', response.data.detailData);
     };
     getDetail();
@@ -299,7 +310,7 @@ const ProductionDetail = () => {
 
   useEffect(() => {
     let getRelated = async () => {
-      let res = await axios.get(`${API_URL}/prd/related/${prdId}`, { params: { cateM: [cateM] } });
+      let res = await axios.get(`${API_URL}/prd/related/${prdId}`, { params: { cateM: [cateM], userId: memberInfo.userId } });
       setRelatedList(res.data.data);
     };
     getRelated();
@@ -310,7 +321,7 @@ const ProductionDetail = () => {
 
   useEffect(() => {
     let getRelatedBar = async () => {
-      let res = await axios.get(`${API_URL}/bar/related`, { params: { cateM: cateM } });
+      let res = await axios.get(`${API_URL}/bar/related`, { params: { cateM: cateM, userId: memberInfo.userId } });
       setRelatedBarList(res.data.data);
       console.log(res.data.data);
     };
@@ -326,12 +337,19 @@ const ProductionDetail = () => {
           {/* Breadcrumb----------------------------------- */}
           <div className="w-fit-content ms-auto">
             <Breadcrumb separator="" className="prd-detail-breadcrumb">
-              <Breadcrumb.Item href="">商品</Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to={'/production'}>商品</Link>
+              </Breadcrumb.Item>
               <Breadcrumb.Separator />
-              <Breadcrumb.Item href="">{detail.cateMName}</Breadcrumb.Item>
+              <Breadcrumb.Item>{detail.cateMName}</Breadcrumb.Item>
               <Breadcrumb.Separator />
-              <Breadcrumb.Item href="">{detail.cateSName}</Breadcrumb.Item>
-              <Breadcrumb.Separator />
+              {cateL === 1 && (
+                <>
+                  <Breadcrumb.Item>{detail.cateSName}</Breadcrumb.Item>
+                  <Breadcrumb.Separator />
+                </>
+              )}
+
               <Breadcrumb.Item>{detail.name}</Breadcrumb.Item>
             </Breadcrumb>
           </div>
@@ -345,40 +363,34 @@ const ProductionDetail = () => {
                 <img src={`${IMAGE_URL}${imgList}`} alt="prd-detail-img-1" className="mx-auto h-100" />
               </div>
             </div> */}
-            <div>
-              <div style={contentStyle}>
-                <img src={`${BE_IMAGE_URL}/production/${imgList[0]}`} alt="prd-detail-img-2" className="mx-auto h-100" />
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <img src={`${BE_IMAGE_URL}/production/${imgList[1]}`} alt="prd-detail-img-3" className="mx-auto h-100" />
-              </div>
-            </div>
-            <div>
-              <div style={contentStyle}>
-                <img src={`${BE_IMAGE_URL}/production/${imgList[2]}`} alt="prd-detail-img-4" className="mx-auto h-100" />
-              </div>
-            </div>
+            {imgList.map((img) => {
+              return (
+                <div>
+                  <div style={contentStyle}>
+                    <img src={`${BE_IMAGE_URL}/production/${img}`} alt="prd-detail-img-2" className="mx-auto h-100" />
+                  </div>
+                </div>
+              );
+            })}
           </Carousel>
           {/* instructions-------------------------------- */}
           <div className="prd-detail-session1-content-block2">
             <div className="container">
               <div className="prd-detail-title mt-4">
-                {/* TODO:取得商品名子 */}
+                {/* 取得商品名子 */}
                 <span>{detail.name}</span>
               </div>
               <div className="prd-detail-price mt-3">
-                {/* TODO:取得商品價格 */}
+                {/* 取得商品價格 */}
                 <span>NT.{detail.price}</span>
               </div>
               <div className="star-defaultValue mt-3">
-                <Rate value={rate} disabled />
+                <Rate allowHalf disabled value={Number(detail.rate)} />
               </div>
               <div className="prd-detail-number-space">
                 <div className="prd-detail-number mt-3">數量</div>
                 <div className="prd-detail-input-number mt-3">
-                  <InputNumber defaultValue={0} onChange={onChange} size="middle" bordered={false} value={num} />
+                  <InputNumber defaultValue={0} onChange={handleOnChenage} size="middle" bordered={false} value={num} />
                 </div>
               </div>
               <div className="prd-detail-button-position mt-3">
@@ -411,8 +423,24 @@ const ProductionDetail = () => {
                   產地：{detail.originName}
                   <br />
                   容量：{detail.capacity}ml
-                  <br />
-                  品牌：{detail.brand}
+                  {(cateL === 1 || cateL === 2) && (
+                    <>
+                      <br />
+                      品牌：{detail.brand}
+                    </>
+                  )}
+                  {cateL === 1 && (
+                    <>
+                      <br />
+                      酒精濃度：{detail.abv} %
+                    </>
+                  )}
+                  {(cateL === 3 || cateL === 4) && (
+                    <>
+                      <br />
+                      材質：{detail.materName}
+                    </>
+                  )}
                 </p>
               </Panel>
               <Panel className="prd-detail-title-type1" header="產品介紹" key="2">
@@ -486,7 +514,7 @@ const ProductionDetail = () => {
                 {relatedList.length > 0 ? (
                   <Slider className="prd-deatil-card" {...settings}>
                     {relatedList.map((v, i) => {
-                      return <PrdCard key={v.id} data={v} />;
+                      return <PrdCard key={v.id} data={v} isLike={v.isPrdLike} />;
                     })}
                   </Slider>
                 ) : (
@@ -502,12 +530,16 @@ const ProductionDetail = () => {
                 <p>相關酒譜</p>
               </div>
               <div className="bartending-card px-md-3">
-                <Slider {...settings2}>
-                  {relatedBarList.map((v, i) => {
-                    // console.log(v);
-                    return <BartendingCard key={i.id} data={v} />;
-                  })}
-                </Slider>
+                {relatedBarList.length > 0 ? (
+                  <Slider {...settings2}>
+                    {relatedBarList.map((v, i) => {
+                      // console.log(v);
+                      return <BartendingCard key={v.id} data={v} isbartdLike={v.isLike} />;
+                    })}
+                  </Slider>
+                ) : (
+                  <EmptyImage discText="無相關酒譜" />
+                )}
               </div>
             </div>
           </div>

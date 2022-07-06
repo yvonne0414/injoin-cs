@@ -9,7 +9,7 @@ import axios from 'axios';
 import './_index.scss';
 
 function PrdCard(props) {
-  const { data } = props;
+  const { data, isLike } = props;
   const [prded, setPrded] = useState([]);
   const [category, setCategory] = useState(1);
 
@@ -38,8 +38,7 @@ function PrdCard(props) {
   // JSON.stringify(jsonData);
   // JSON.parse(getLocalData);
   let handleCart = () => {
-
-    alert(`將${data.id} 加到購物車`)
+    alert(`將${data.id} 加到購物車`);
     // console.log(data.id);
     // ==========首先把要用的資料處理好
     let obj = {};
@@ -54,7 +53,6 @@ function PrdCard(props) {
     let oldCart = JSON.parse(localStorage.getItem('cart'));
     // console.log("old",oldCart);
 
-    
     if (oldCart.length === 0) {
       var newArr = [...oldCart, obj];
     } else {
@@ -62,8 +60,8 @@ function PrdCard(props) {
         // console.log('oldCart[i].prdid', oldCart[i].prdid);
         // console.log('obj.prdid', obj.prdid);
         if (oldCart[i].prdid == obj.prdid) {
-          return
-        }else{
+          return;
+        } else {
           var newArr = [...oldCart, obj];
         }
       }
@@ -93,7 +91,7 @@ function PrdCard(props) {
                 {data.rate}
               </div>
               <div className="prd-card-icon">
-                <Heart data={data} />
+                <Heart isLike={isLike} data={data} />
                 <FaCartPlus onClick={handleCart} className="prd-card-icon-cart" />
               </div>
             </div>

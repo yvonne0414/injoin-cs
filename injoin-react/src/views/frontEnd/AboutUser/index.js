@@ -28,9 +28,8 @@ const AboutUser = () => {
       // console.log(response.data.datas[0]);
       // console.log(response.data.datas[0].email);
       console.log(response.data.datas.length);
-      if (response.data.datas.length === 0) {
-        console.log('00');
-        setIsTrue(false);
+      if(response.data.datas.length === 0){
+        setIsTrue (false)
       }
       let newuser = {
         ...user,

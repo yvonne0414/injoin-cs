@@ -16,7 +16,7 @@ import UserLike from './views/frontEnd/UserLike';
 import UserVip from './views/frontEnd/UserVip';
 import UserCoupon from './views/frontEnd/UserCoupon';
 import CouponDetail from './views/frontEnd/CouponDetail';
-import UserCart from './views/frontEnd/UserCart';
+import UserCart from './views/frontEnd/UserCart/test.js';
 import UserCartStep2 from './views/frontEnd/UserCartStep2';
 import UserCartStep3 from './views/frontEnd/UserCartStep3';
 import UserReputation from './views/frontEnd/UserReputation';
@@ -134,7 +134,6 @@ function App() {
 
             {/* 購物車 */}
             <Route path="/cart" exact element={<UserCart />} auth={auth} setAuth={setAuth} />
-            <Route path="/cart/step1" component={<GroupDetail />} />
             <Route path="/cart/step2" element={<UserCartStep2 />} />
             <Route path="/cart/step3" element={<UserCartStep3 />} />
 

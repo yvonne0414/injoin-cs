@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 
 const FePage2Header = (props) => {
   const [barNav, setBarNav] = useState(-1);
-  const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs } = props;
+  const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs, setCateL, category, setCateM, setCateS, setSearchWord } = props;
   return (
     <section>
       <div className="section-title">
@@ -48,21 +48,22 @@ const FePage2Header = (props) => {
           <img src={`${FE_IMAGE_URL}/page2header/${prdImg}`} alt="" />
         </div>
         <div className="prd-nav">
-          <ul className="list-unstyled d-flex justify-content-center mb-0 nav-justified prd-nav-ul">
-            {navs.map((nav, i) => {
+          <ul className="list-unstyled d-flex  justify-content-start mb-0 nav-justified prd-nav-ul">
+            {navs.map((nav) => {
               return (
-                <li
-                  className="prd-nav-li"
-                  onClick={() => {
-                    //console.log('123');
-                    setBarNav(i);
-                    //console.log(barNav);
-                  }}
-                >
-                  <div className="nav-link prd-nav-a">
-                    <FaWineBottle className=" prd-nav-icon" />
+                <li className="prd-nav-li">
+                  <span
+                    className={`nav-link prd-nav-a ${category === nav.cateL && 'active'}`}
+                    onClick={() => {
+                      setCateL(nav.cateL);
+                      setCateM(0);
+                      setCateS(0);
+                    }}
+                  >
+                    {/* <FaWineBottle className=" prd-nav-icon" /> */}
+                    {nav.icon}
                     {nav.name}
-                  </div>
+                  </span>
                 </li>
               );
             })}

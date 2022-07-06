@@ -6,6 +6,10 @@ import Carousel from 'react-bootstrap/Carousel';
 import HomeHotCard from '../../../components/HomePage/HomeHotCard';
 import Slider from 'react-slick';
 import HomeBartdCard from '../../../components/HomePage/HomeBartdCard';
+import { useState, useEffect } from 'react';
+import { API_URL } from '../../../utils/config';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   const settings = {
@@ -27,6 +31,25 @@ const HomePage = () => {
       },
     ],
   };
+  const [hotprd, setHotprd] = useState([]);
+  const [hotbar, setHotbar] = useState([]);
+
+  useEffect(() => {
+    let gethotprd = async () => {
+      let response = await axios.get(`${API_URL}/prd/hot`);
+      setHotprd(response.data.data);
+      console.log('res', response.data.data);
+      // console.log('o', response.data.data[0].name);
+    };
+    gethotprd();
+    let gethotbar = async () => {
+      let response = await axios.get(`${API_URL}/bar/hot`);
+      setHotbar(response.data.data);
+      console.log('resb', response.data.data);
+      console.log('o', response.data.data[0].name);
+    };
+    gethotbar();
+  }, []);
 
   return (
     <>
@@ -44,7 +67,9 @@ const HomePage = () => {
             <h3 className="font-en-title">Drunkenness today,</h3>
             <h3 className="font-en-title">Sorrow tomorrow。</h3>
             <p className="font-cn-title">放鬆交友，飲酒生活</p>
-            <button className="s1-button button-style my-2">Details</button>
+            <Link to="/account/user" className="s1-button button-style my-2">
+              加入我們
+            </Link>
           </div>
         </section>
       </div>
@@ -58,7 +83,9 @@ const HomePage = () => {
             <p className="section-content-en">Welcome to INJOIN</p>
             <p className="section-content-cn">莫扎特講過一句值得人反覆尋思的話，</p>
             <p className="section-content-cn">誰和我一樣用功，誰就會和我一樣成功。</p>
-            <button className="button-style section-button">Read More</button>
+            <Link to="/aboutus" className="button-style section-button">
+              Read More
+            </Link>
           </div>
           <div className="s2-img1">
             <img src={`${FE_IMAGE_URL}/homepage/s2-img1.jpg`} alt="" />
@@ -75,11 +102,13 @@ const HomePage = () => {
             <p className="section-content-en">Best Seller</p>
             <p className="section-content-cn">我們可以很篤定的說，</p>
             <p className="section-content-cn">誰這需要花很多時間來嚴謹地論證。</p>
-            <button className="button-style section-button section-button3">Buy It !</button>
+            <Link to="/production" className="button-style section-button section-button3">
+              Buy It !
+            </Link>
           </div>
           <Slider {...settings} className="homepages3-slder">
-            {[1, 1, 1, 1, 1, 1, 11, 1, 1, 1].map((v, i) => {
-              return <HomeHotCard key={i} />;
+            {hotprd.map((v, i) => {
+              return <HomeHotCard key={v.id} data={v} />;
             })}
           </Slider>
         </section>
@@ -91,11 +120,13 @@ const HomePage = () => {
             <p className="section-content-en">classic cocktail</p>
             <p className="section-content-cn">總而言之，如果別人做得到，那我也可以做到。</p>
             <p className="section-content-cn">在人生的歷程中，酒的出現是必然的。</p>
-            <button className="button-style section-button">Read More</button>
+            <Link to="/bartending" className="button-style section-button">
+              Read More
+            </Link>
           </div>
           <Slider {...settings} className="homepages4-slider">
-            {[1, 1, 1, 11, 1, 1, 1, 1, 1, 2, 1, 11, 1, 1, 1, 1].map((v, i) => {
-              return <HomeBartdCard key={i} />;
+            {hotbar.map((v, i) => {
+              return <HomeBartdCard key={v.id} data={v} />;
             })}
           </Slider>
         </section>
@@ -106,7 +137,9 @@ const HomePage = () => {
             <h3 className="section-title-cn">現正揪團</h3>
             <p className="section-content-en">travel with a tour group</p>
             <br />
-            <button className="button-style section-button">Details</button>
+            <Link to="/newgroup" className="button-style section-button">
+              Details
+            </Link>
           </div>
           <div className="s5-img">
             <img src={`${FE_IMAGE_URL}/homepage/s5-img.png`} alt="" />

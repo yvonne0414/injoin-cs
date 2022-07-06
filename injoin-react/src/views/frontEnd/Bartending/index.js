@@ -170,15 +170,7 @@ const Bartending = () => {
       // console.log('e', response.data);
     };
     getbarted();
-
-    //搜尋
-    // let getSearchWord = async () => {
-    //   let response = await axios.get(`http://localhost:3001/api/bar/search?keyword=` + searchWord);
-    //   setBarted(response.data);
-    //   //console.log('E', response.data);
-    // };
-
-    //範例
+    //篩選
     // //大類別
     // let getMajorSel = async () => {
     //   let response = await axios.get('http://localhost:3001/api/bar/type');

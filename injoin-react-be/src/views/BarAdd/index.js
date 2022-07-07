@@ -135,6 +135,7 @@ const BarAdd = () => {
 
       let formData = new FormData();
       formData.append('name', values.name);
+      formData.append('disc', values.disc);
       formData.append('recipe', values.recipe);
       formData.append('materialList', materialListStr);
       formData.append('bartdCateList', bartdCateListStr);
@@ -144,10 +145,10 @@ const BarAdd = () => {
       let res = await axios.post(`${API_URL}/bar/`, formData);
       console.log(res);
       if (res.data.code === 0) {
-        message.success({ content: '商品新增成功' });
+        message.success({ content: '酒譜新增成功' });
         navigate(-1);
       } else {
-        message.warning({ content: '商品新增失敗' });
+        message.warning({ content: '酒譜新增失敗' });
       }
     } catch (e) {
       console.error(e);
@@ -169,8 +170,13 @@ const BarAdd = () => {
                   <Input />
                 </Form.Item>
               </div>
+              <div className="form-item w-100">
+                <Form.Item name="disc" label="介紹">
+                  <Input.TextArea rows={4} />
+                </Form.Item>
+              </div>
               {/* 酒譜類型 */}
-              <div className="form-item w-75">
+              <div className="form-item  w-100">
                 <Form.List name="bartdCateList">
                   {(fields, { add, remove }) => (
                     <>
@@ -237,7 +243,7 @@ const BarAdd = () => {
                         </Space>
                       ))}
 
-                      <Form.Item>
+                      <Form.Item style={{ marginLeft: '5rem' }}>
                         <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                           新增類型
                         </Button>
@@ -268,7 +274,7 @@ const BarAdd = () => {
                 </Modal>
               </div>
               {/* 食材 */}
-              <div className="form-item w-75">
+              <div className="form-item w-100">
                 <Form.List name="materialList">
                   {(fields, { add, remove }) => (
                     <>
@@ -365,7 +371,7 @@ const BarAdd = () => {
                         </Space>
                       ))}
 
-                      <Form.Item>
+                      <Form.Item style={{ marginLeft: '5rem' }}>
                         <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
                           新增食材
                         </Button>

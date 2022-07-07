@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 import { API_URL } from '../../utils/config';
 
 //antd
-import { Select } from 'antd';
+import { message, Select } from 'antd';
 
 import Step1Prd from './Step1Prd';
 
@@ -76,9 +76,10 @@ const Step1 = (props) => {
     }
     return result;
   };
+  let arr = []
 
   const handleSubmit = () => {
-    let arr = [];
+    // let arr = [];
     // console.log('待處理', productsInOrder);
     let newArr = [];
     productsInOrder.forEach((v, i) => {
@@ -91,11 +92,17 @@ const Step1 = (props) => {
       arr.push(obj);
       // console.log(obj);
     });
+    if (arr.length == 0) {
+      message.warning('歡迎選購商品');
+      return;
+    }
+
+    setStepNum(stepNum + 1);
     // console.log('arr', arr);
     // console.log(couponId);
     let ans = {
       userId: userId,
-      coponId: couponId,
+      couponId: couponId,
       total: Number(totalPrice() - discount),
       logistics: 1,
       cartList: arr,
@@ -123,7 +130,11 @@ const Step1 = (props) => {
                   <span>我的購物車</span>
                   <span>Your shopping bag</span>
                 </div>
+
+                {arr.length == 0 ? <div >歡迎選購商品</div> : <></>}
+
                 {/* 商品迴圈 */}
+
                 {productsInOrder.map((item, i) => {
                   // console.log(productsInOrder);
                   return (
@@ -288,7 +299,6 @@ const Step1 = (props) => {
             // onClick={handleSubmit}
             onClick={() => {
               handleSubmit();
-              setStepNum(stepNum + 1);
             }}
           >
             下一步

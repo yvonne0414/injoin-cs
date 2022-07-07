@@ -10,12 +10,14 @@ import faveriteImg from '../../assets/images/fe/faverite/faverite-product-img-1.
 
 const Step2 = (props) => {
   const { Option } = Select;
-  const { stepNum, setStepNum, handleSubmit, cartlist } = props;
+  const { stepNum, setStepNum, handleSubmit, cartlist,setIsChecked } = props;
   const onFinish = (values) => {
-    console.log(values);
+    // console.log(values);
   };
   const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
+    // console.log(`checked = ${e.target.checked}`);
+    setIsChecked(e.target.checked)
+    
   };
   // city
   const [cities, setCities] = useState([]);

@@ -8,7 +8,7 @@ import { Link, useParams } from 'react-router-dom';
 import { API_URL } from '../../../utils/config';
 
 //antd
-import { Select } from 'antd';
+import { message, Select } from 'antd';
 
 // -----Variable width
 import Slider from 'react-slick';
@@ -28,6 +28,10 @@ import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img
 import { BsTrashFill } from 'react-icons/bs';
 
 const UserCart = () => {
+  // 檢查有沒有打勾
+
+  const [isChecked, setIsChecked] = useState(false);
+
   // 檢查登入
   const [isLogin, setisLogin] = useState('');
   const loginInfo = useContext(userState);
@@ -219,13 +223,23 @@ const UserCart = () => {
 
   let [orederId, setOrderId] = useState('');
   const handleSubmit = async () => {
+
+    // console.log('送出訂單', ans);
     try {
+      if (isChecked == false) {
+        message.error('請詳閱同意接受服務條款和隱私權政策');
+        return;
+      }
+
       setStepNum(stepNum + 1);
       // alert('送出訂單');
-      console.log('送出訂單', ans);
+
+      // console.log('送出訂單', ans);
       let res = await axios.post(`${API_URL}/cart`, ans);
-      console.log(res);
+      // console.log(res);
+      message.success('完成訂單');
       setOrderId(res.data.orderId);
+      localStorage.removeItem('cart');
     } catch (e) {
       console.error(e);
     }
@@ -325,7 +339,7 @@ const UserCart = () => {
               {stepNum === 1 ? (
                 <Step1 stepNum={stepNum} setStepNum={setStepNum} setAns={setAns} userId={userId} />
               ) : stepNum === 2 ? (
-                <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit} cartlist={ans.cartList} />
+                <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit} cartlist={ans.cartList} setIsChecked={setIsChecked} />
               ) : (
                 <Step3 orederId={orederId} />
               )}

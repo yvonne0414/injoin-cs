@@ -35,6 +35,7 @@ const HomePage = () => {
   const [hotbar, setHotbar] = useState([]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     let gethotprd = async () => {
       let response = await axios.get(`${API_URL}/prd/hot`);
       setHotprd(response.data.data);

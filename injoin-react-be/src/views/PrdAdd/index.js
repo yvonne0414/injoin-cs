@@ -298,7 +298,7 @@ const PrdAdd = () => {
               {prdCate === 1 && (
                 <div className="form-item">
                   <Form.Item label="酒精濃度" name="prdAbv">
-                    <InputNumber min={1} max={10} />
+                    <InputNumber min={1} max={100} />
                   </Form.Item>
                 </div>
               )}

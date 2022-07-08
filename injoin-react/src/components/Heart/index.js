@@ -4,8 +4,13 @@ import { message } from 'antd';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { ImHeart, ImHeartBroken } from 'react-icons/im';
 import { API_URL } from '../../utils/config';
+import Swal from 'sweetalert2';
+
 
 import { userState } from '../../App';
+import Chen from '../../views/frontEnd/Chen/Chen';
+import './heart.scss';
+// import Swal from 'sweetalert2/dist/sweetalert2.js'
 
 function Heart({ isLike, data, heartState }) {
   // data{
@@ -47,20 +52,42 @@ function Heart({ isLike, data, heartState }) {
               setFav(false);
               if (heartState === 1) {
                 let response = await axios.get(`${API_URL}/userlike/del/${userid}/${data.id}`);
+                // console.log(data);
                 // window.alert(`刪除商品: userid${userid}, data.id${data.id}, ${response.data.message}`);
-                message.success({
-                  content: `刪除商品: userid${userid}, data.id${data.id}, ${response.data.message}`,
-                  icon: <ImHeartBroken fill="#ac2c32" />,
+               
+             
+                
+                Swal.fire({
+                  title: ` ${response.data.message}`,
+                  position: `center`,
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 800,
+                  timerProgressBar: true,
                 });
+                // message.success({
+                //   content: `刪除商品: ${data.name}, ${response.data.message}`,
+                //   icon: <ImHeartBroken fill="#ac2c32" />,
+                // });
               }
               if (heartState === 2) {
                 // console.log(`${API_URL}/userlike/bartd/${userid}/del?bartdid=${data.id}`);
                 let response = await axios.get(`${API_URL}/userlike/bartd/${userid}/del?bartdid=${data.id}`);
                 // window.alert(`刪除調酒: userid${userid}, data.id${data.id}, ${response.data.message}`);
-                message.success({
-                  content: `刪除調酒: userid${userid}, data.id${data.id}, ${response.data.message}`,
-                  icon: <ImHeartBroken fill="#ac2c32" />,
+
+                Swal.fire({
+                  title: ` ${response.data.message}`,
+                  position: `center`,
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 800,
+                  timerProgressBar: true,
                 });
+
+                // message.success({
+                //   content: `刪除調酒: ${data.name}, ${response.data.message}`,
+                //   icon: <ImHeartBroken fill="#ac2c32" />,
+                // });
               }
             } else {
               message.warning('請先登入');
@@ -76,19 +103,39 @@ function Heart({ isLike, data, heartState }) {
               if (heartState === 1) {
                 let response = await axios.get(`${API_URL}/userlike/add/${userid}/${data.id}`);
                 // window.alert(`加入商品: userid${userid}, data.id${data.id}, ${response.data.message}`);
-                message.success({
-                  content: `加入商品: userid${userid}, data.id${data.id}, ${response.data.message}`,
-                  icon: <ImHeart fill="#ac2c32" />,
+
+                Swal.fire({
+                  title: ` ${response.data.message}`,
+                  position: `center`,
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 800,
+                  timerProgressBar: true,
                 });
+
+                // message.success({
+                //   content: `加入商品: ${data.likePrdName}, ${response.data.message}`,
+                //   icon: <ImHeart fill="#ac2c32" />,
+                // });
               }
               if (heartState === 2) {
                 // console.log(`${API_URL}/userlike/bartd/${userid}/add?bartdid=${data.id}`);
                 let response = await axios.get(`${API_URL}/userlike/bartd/${userid}/add?bartdid=${data.id}`);
                 // window.alert(`加入調酒: userid${userid}, data.id${data.id}, ${response.data.message}`);
-                message.success({
-                  content: `加入調酒: userid${userid}, data.id${data.id}, ${response.data.message}`,
-                  icon: <ImHeart fill="#ac2c32" />,
+
+                Swal.fire({
+                  title: ` ${response.data.message}`,
+                  position: `center`,
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 800,
+                  timerProgressBar: true,
                 });
+
+                // message.success({
+                //   content: `加入調酒: ${data.name}, ${response.data.message}`,
+                //   icon: <ImHeart fill="#ac2c32" />,
+                // });
               }
             } else {
               message.warning('請先登入');

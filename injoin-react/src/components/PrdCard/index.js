@@ -8,6 +8,8 @@ import { BE_IMAGE_URL } from '../../utils/config';
 import axios from 'axios';
 import './_index.scss';
 import { message } from 'antd';
+import Chen from '../../views/frontEnd/Chen/Chen';
+import Swal from 'sweetalert2'
 
 function PrdCard(props) {
   const { data, isLike } = props;

@@ -211,7 +211,7 @@ const UserLike = () => {
         </div>
       </div>
 
-      <FePagination pagination={prdpagination} setPage={setPrdLikePage} className="pc-view" />
+      <FePagination pagination={bartdpagination} setPage={setBartdpagination} className="pc-view" />
     </>
   );
 };

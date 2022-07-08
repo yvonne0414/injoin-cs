@@ -13,6 +13,7 @@ const UserAboutMe = () => {
   const usermember = useContext(userState);
   // console.log(usermember.member);
 
+
   let userId = usermember.member ? usermember.member.id : '';
   // console.log(userId);
 
@@ -30,7 +31,6 @@ const UserAboutMe = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     let getUser = async () => {
-      // console.log(usermember.member.id);
       let res = await axios.get(`${API_URL}/auth/about?userid=${usermember.member.id}`);
       // console.log('res.data[0].about_user',res.data[0].about_user);
       setUserAbout({
@@ -64,7 +64,7 @@ const UserAboutMe = () => {
   }
 
 
-  // console.log('userAbout',userAbout);
+  console.log('userAbout',userAbout);
   const usernicknameLabel = (
     <div className="userinfo-about-title">
       <span>顯示暱稱</span>
@@ -93,17 +93,20 @@ const UserAboutMe = () => {
           <div className="lower-half">
             <Form
               initialValues={{
-                usernickname: userAbout.userName,
-                useraboutme: userAbout.userAboutme,
+                usernickname: `${userAbout.userName}`,
+                useraboutme: `${userAbout.userAboutme}`,
               }}
             >
               {/* 顯示暱稱 */}
               <Form.Item label={usernicknameLabel} name="usernickname">
-                <Input disabled value={userAbout.userName} />
+                <Input disabled value={`${userAbout.userName}`} />
+                <p className='d-none'>{userAbout.userName}</p>
               </Form.Item>
               {/* 關於我 */}
               <Form.Item label={useraboutmeLabel} name="useraboutme">
-                <TextArea name="userAboutme" value={userAbout.userAboutme} onChange={handleChange} />
+                <TextArea name="userAboutme" value={`${userAbout.userAboutme}`} onChange={handleChange} />
+                <p className='d-none'>{userAbout.userAboutme}</p>
+
               </Form.Item>
               {/* 送出按鈕 */}
               <Form.Item className="w-100 text-center mt-4">

@@ -122,10 +122,11 @@
       border-bottom: 1px solid #fff;
 
       .cart-prd-img {
+        width: 100%;
         height: 10rem;
         img {
-          max-width: 20rem;
-          max-height: 10rem;
+          width: 100%;
+          height: 10rem;
           object-fit: contain;
         }
       }
@@ -233,6 +234,14 @@
     }
   }
 }
+.shopping-cart-prd-content {
+  flex-grow: 1;
+}
+.cart-step1-noprd-text {
+  color: #777;
+  text-align: center;
+  padding: 2rem 0;
+}
 
 //電腦版
 @media screen and (min-width: 768px) {
@@ -284,7 +293,15 @@
 
   .cart-prd-info-content {
     // width: 100%;
-    width: 20vw;
+    .cart-prd-img {
+      width: 20rem !important;
+      height: 10rem;
+      img {
+        width: 20rem;
+        height: 10rem;
+        object-fit: contain;
+      }
+    }
     .cart-prd-content {
       width: 20vw;
       padding: $space-2;

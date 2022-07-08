@@ -76,7 +76,7 @@ const Step1 = (props) => {
     }
     return result;
   };
-  let arr = []
+  let arr = [];
 
   const handleSubmit = () => {
     // let arr = [];
@@ -131,7 +131,7 @@ const Step1 = (props) => {
                   <span>Your shopping bag</span>
                 </div>
 
-                {arr.length == 0 ? <div >歡迎選購商品</div> : <></>}
+                {arr.length == 0 ? <div className="cart-step1-noprd-text">歡迎選購商品</div> : <></>}
 
                 {/* 商品迴圈 */}
 
@@ -247,7 +247,7 @@ const Step1 = (props) => {
                   <div className="shopping-cart-summary-area">
                     <div className="shopping-cart-info-subtitle">訂單摘要</div>
                     <div className="shopping-cart-summary-content mt-3">
-                      <div className="shopping-cart-summary-total px-4 mx-auto">
+                      <div className="shopping-cart-summary-total px-3 px-md-4 mx-auto">
                         <div className="d-flex justify-content-between align-items-center">
                           <div className="shopping-cart-summary-title">商品總計</div>
                           <div className="shopping-cart-summary-text">NT${totalPrice()}</div>
@@ -281,7 +281,7 @@ const Step1 = (props) => {
                         </div>
                       </div>
                       <hr />
-                      <div className="d-flex justify-content-between align-items-center px-4 mx-auto">
+                      <div className="d-flex justify-content-between align-items-center px-3 px-md-4 mx-auto">
                         <div className="shopping-cart-summary-title total">實付總金額</div>
                         <div className="shopping-cart-summary-text total">NT${totalPrice() - discount}</div>
                       </div>

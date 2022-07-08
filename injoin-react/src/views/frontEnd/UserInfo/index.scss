@@ -235,6 +235,7 @@
   .member-directions {
     font-family: $font-family-cn-content;
     .direction-title {
+      margin: 1.5rem 0 1rem;
       font-size: var(--fs-en-home-content);
       font-size: 1.5rem;
     }
@@ -246,6 +247,7 @@
       list-style: decimal;
       font-size: var(--fs-cn-page-list-filter);
       li {
+        margin-bottom: 0.25rem;
         font-size: var(--fs-cn-page-list-filter);
       }
     }
@@ -439,6 +441,7 @@
     }
     .userInfo-task {
       display: flex;
+      margin: 3rem 0;
       &.active {
         .levelicon {
           border: 5px solid $color-font-gold;

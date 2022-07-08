@@ -20,7 +20,7 @@ const OrderListForm = (props) => {
         <div className="list-content_order_time">{data.order_time}</div>
         <div className="list-content_order_status">{data.logiStaCateName}</div>
         <div className="list-content_order_pay">{data.logiCateName}</div>
-        <div className="list-content_order_total">{data.user_id}</div>
+        <div className="list-content_order_total">NT$ {data.total}</div>
         <div className="list-content_btn">
           <Link to={`/account/order/${data.id}`}>詳細內容</Link>
         </div>

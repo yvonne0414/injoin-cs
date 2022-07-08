@@ -645,28 +645,6 @@ const UserGroup = () => {
                             </div>
                           );
                         })}
-                        <div className="page-type1-list-content my-group-list-wraper">
-                          <div className="list-content_activity-name">一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~一起來飲酒囉~</div>
-                          <div className="list-content_time">2022/01/02</div>
-                          <div className="list-content_place">
-                            <FaMapMarkerAlt />
-                            台北
-                          </div>
-                          <div className="list-content_status">團員</div>
-                          <div className="list-content_btn" title="查看">
-                            <Link to="/group/1">
-                              <FaEye />
-                              {/* 詳細內容 */}
-                            </Link>
-                          </div>
-
-                          <div className="list-content_btn" title="聊天室">
-                            <Link to="/">
-                              <RiWechatLine />
-                              {/* 聊天室 */}
-                            </Link>
-                          </div>
-                        </div>
                       </div>
                       <FePagination pagination={hpPagination} setPage={setHpPage} />
                     </>

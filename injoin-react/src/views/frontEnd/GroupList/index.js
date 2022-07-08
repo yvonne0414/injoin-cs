@@ -7,6 +7,7 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 // component
 import FePage1Header from '../../../components/FePage1Header';
 import FePagination from '../../../components/FePagination';
+import EmptyImage from '../../../components/EmptyImage';
 
 // img
 import groupListImg1 from '../../../assets/images/fe/groupList/group-list-img-1.png';
@@ -28,7 +29,7 @@ const GroupList = () => {
   // 官方
   let [officialList, setOfficialList] = useState({
     pagination: {
-      total: 1,
+      total: 0,
       page: 1,
       lastPage: 1,
     },
@@ -179,38 +180,44 @@ const GroupList = () => {
           <div className="page-type1-area-title" id="grouplist-bolck1">
             INJON主辦活動
           </div>
-          <div className="page-type1-list-wraper">
-            <div className="page-type1-list-title pc-view">
-              <div>活動名稱</div>
-              <div>活動時間</div>
-              <div>活動地點</div>
-              <div>活動狀態</div>
-              <div></div>
-            </div>
-            {officialList.data.map((item) => {
-              let startTime = item.start_time;
-              let endTime = item.end_time;
-              startTime = startTime.slice(0, startTime.length - 3);
-              endTime = endTime.slice(0, endTime.length - 3);
-              return (
-                <div className="page-type1-list-content" key={item.id}>
-                  <div className="list-content_activity-name">{item.name}</div>
-                  <div className="list-content_time">
-                    {startTime} ~ {endTime}
-                  </div>
-                  <div className="list-content_place">
-                    <FaMapMarkerAlt />
-                    {item.cityName}
-                  </div>
-                  <div className="list-content_state">{item.status_name}</div>
-                  <div className="list-content_btn">
-                    <Link to={`/group/${item.id}`}>詳細內容</Link>
-                  </div>
+          {officialList.pagination.total === 0 ? (
+            <EmptyImage discText="無官方活動" />
+          ) : (
+            <>
+              <div className="page-type1-list-wraper">
+                <div className="page-type1-list-title pc-view">
+                  <div>活動名稱</div>
+                  <div>活動時間</div>
+                  <div>活動地點</div>
+                  <div>活動狀態</div>
+                  <div></div>
                 </div>
-              );
-            })}
-          </div>
-          <FePagination pagination={officialList.pagination} setPage={setOfficialPage} />
+                {officialList.data.map((item) => {
+                  let startTime = item.start_time;
+                  let endTime = item.end_time;
+                  startTime = startTime.slice(0, startTime.length - 3);
+                  endTime = endTime.slice(0, endTime.length - 3);
+                  return (
+                    <div className="page-type1-list-content" key={item.id}>
+                      <div className="list-content_activity-name">{item.name}</div>
+                      <div className="list-content_time">
+                        {startTime} ~ {endTime}
+                      </div>
+                      <div className="list-content_place">
+                        <FaMapMarkerAlt />
+                        {item.cityName}
+                      </div>
+                      <div className="list-content_state">{item.status_name}</div>
+                      <div className="list-content_btn">
+                        <Link to={`/group/${item.id}`}>詳細內容</Link>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <FePagination pagination={officialList.pagination} setPage={setOfficialPage} />
+            </>
+          )}
         </div>
       </div>
       {/* <!-- page-type1-intro --> */}
@@ -235,39 +242,45 @@ const GroupList = () => {
             <div className="page-type1-area-title" id="grouplist-bolck2">
               私人開團活動
             </div>
-            <div className="page-type1-list-wraper">
-              <div className="page-type1-list-title pc-view">
-                <div>活動名稱</div>
-                <div>活動時間</div>
-                <div>活動地點</div>
-                <div>主揪人</div>
-                <div></div>
-              </div>
-              {privateList.data.map((item) => {
-                let startTime = item.start_time;
-                let endTime = item.end_time;
-                startTime = startTime.slice(0, startTime.length - 3);
-                endTime = endTime.slice(0, endTime.length - 3);
-
-                return (
-                  <div className="page-type1-list-content" key={item.id}>
-                    <div className="list-content_activity-name">{item.name}</div>
-                    <div className="list-content_time">
-                      {startTime} ~ {endTime}
-                    </div>
-                    <div className="list-content_place">
-                      <FaMapMarkerAlt />
-                      {item.cityName}
-                    </div>
-                    <div className="list-content_user">{item.username}</div>
-                    <div className="list-content_btn">
-                      <Link to={`/group/${item.id}`}>詳細內容</Link>
-                    </div>
+            {privateList.pagination.total === 0 ? (
+              <EmptyImage discText="無私人活動" />
+            ) : (
+              <>
+                <div className="page-type1-list-wraper">
+                  <div className="page-type1-list-title pc-view">
+                    <div>活動名稱</div>
+                    <div>活動時間</div>
+                    <div>活動地點</div>
+                    <div>主揪人</div>
+                    <div></div>
                   </div>
-                );
-              })}
-            </div>
-            <FePagination pagination={privateList.pagination} setPage={setPrivatePage} />
+                  {privateList.data.map((item) => {
+                    let startTime = item.start_time;
+                    let endTime = item.end_time;
+                    startTime = startTime.slice(0, startTime.length - 3);
+                    endTime = endTime.slice(0, endTime.length - 3);
+
+                    return (
+                      <div className="page-type1-list-content" key={item.id}>
+                        <div className="list-content_activity-name">{item.name}</div>
+                        <div className="list-content_time">
+                          {startTime} ~ {endTime}
+                        </div>
+                        <div className="list-content_place">
+                          <FaMapMarkerAlt />
+                          {item.cityName}
+                        </div>
+                        <div className="list-content_user">{item.username}</div>
+                        <div className="list-content_btn">
+                          <Link to={`/group/${item.id}`}>詳細內容</Link>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <FePagination pagination={privateList.pagination} setPage={setPrivatePage} />
+              </>
+            )}
           </div>
           <div className="user-add-group-area">
             <div className="group-list-img-3 mb-5 mb-md-0">

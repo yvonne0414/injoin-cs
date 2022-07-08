@@ -28,7 +28,7 @@ const normFile = (e) => {
   return e?.fileList;
 };
 
-const UserInfoProfile = () => {
+const UserInfoProfile = ({ cities }) => {
   // 圖片upload
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
@@ -121,7 +121,6 @@ const UserInfoProfile = () => {
   const usermember = useContext(userState);
   // console.log(usermember.member.address_detail);
 
-
   const [userAddress, setUserAddress] = useState({
     userCountry: '',
     userAddressDetail: usermember.member.address_detail,
@@ -138,7 +137,6 @@ const UserInfoProfile = () => {
     // console.log(newFileList[0]['originFileObj']);
     setUserAddress({ ...userAddress, userphoto: newFileList[0]['originFileObj'] });
   };
-
 
   const user = usermember.member;
   let memberGender = '1';
@@ -240,7 +238,10 @@ const UserInfoProfile = () => {
                       setUserAddress({ ...userAddress, userCountry: e });
                     }}
                   >
-                    <Option value="1">台北市</Option>
+                    {cities.map((city) => {
+                      return <Option value={city.id}>{city.name}</Option>;
+                    })}
+
                     <Option value="2">新北市</Option>
                   </Select>
                 </Form.Item>
@@ -257,7 +258,7 @@ const UserInfoProfile = () => {
                   {/* chennn */}
                   <Input
                     style={{
-                      width: '60%',
+                      width: '70%',
                     }}
                     placeholder="地址"
                     name="userAddressDetail"
@@ -280,14 +281,13 @@ const UserInfoProfile = () => {
                     return;
                   }
 
-                  
                   let formData = new FormData();
                   formData.append('userAddressDetail', userAddress.userAddressDetail);
                   formData.append('userCountry', userAddress.userCountry);
                   formData.append('userPhone', userAddress.userPhone);
                   formData.append('userphoto', userAddress.userphoto);
-                  let response = await axios.post(`${API_URL}/auth/changeaddress?userId=${user.id}`,formData)
-                  message.success("更改成功")
+                  let response = await axios.post(`${API_URL}/auth/changeaddress?userId=${user.id}`, formData);
+                  message.success('更改成功');
                 }}
               >
                 送出資料

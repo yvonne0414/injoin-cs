@@ -8,11 +8,9 @@ import { API_URL, BE_IMAGE_URL } from '../../utils/config';
 import axios from 'axios';
 
 const UserAboutMe = () => {
-
   // chennnn
   const usermember = useContext(userState);
   // console.log(usermember.member);
-
 
   let userId = usermember.member ? usermember.member.id : '';
   // console.log(userId);
@@ -63,8 +61,7 @@ const UserAboutMe = () => {
     setUserAbout({ ...userAbout, [e.target.name]: e.target.value });
   }
 
-
-  console.log('userAbout',userAbout);
+  console.log('userAbout', userAbout);
   const usernicknameLabel = (
     <div className="userinfo-about-title">
       <span>顯示暱稱</span>
@@ -76,7 +73,7 @@ const UserAboutMe = () => {
     </div>
   );
 
-  console.log('userAbout',userAbout);
+  console.log('userAbout', userAbout);
 
   return (
     <>
@@ -100,13 +97,12 @@ const UserAboutMe = () => {
               {/* 顯示暱稱 */}
               <Form.Item label={usernicknameLabel} name="usernickname">
                 <Input disabled value={`${userAbout.userName}`} />
-                <p className='d-none'>{userAbout.userName}</p>
+                <p className="d-none">{userAbout.userName}</p>
               </Form.Item>
               {/* 關於我 */}
               <Form.Item label={useraboutmeLabel} name="useraboutme">
-                <TextArea name="userAboutme" value={`${userAbout.userAboutme}`} onChange={handleChange} />
-                <p className='d-none'>{userAbout.userAboutme}</p>
-
+                <TextArea name="userAboutme" value={`${userAbout.userAboutme ? userAbout.userAboutme : ''}`} placeholder="介紹介紹自己吧～" onChange={handleChange} />
+                <p className="d-none">{userAbout.userAboutme}</p>
               </Form.Item>
               {/* 送出按鈕 */}
               <Form.Item className="w-100 text-center mt-4">

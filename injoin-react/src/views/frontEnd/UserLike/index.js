@@ -12,6 +12,7 @@ import LikePrdCard from '../../../components/FeUserLike/UserLike';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { Pagination } from 'antd';
+import EmptyImage from '../../../components/EmptyImage';
 import BartendingCard from '../../../components/BartendingCard';
 
 const UserLike = () => {
@@ -184,17 +185,24 @@ const UserLike = () => {
       </div>
       <div className="user-add-faverite-content" id="faverite-bolck1">
         <div className="container">
-          <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
-            {apparr.map((v, i) => {
-              return <LikePrdCard key={v.id} data={v} isprdLike={true} />;
-            })}
-          </div>
+          {prdpagination.total === 0 ? (
+            <div className="py-5">
+              <EmptyImage discText="尚無最愛商品" />
+            </div>
+          ) : (
+            <>
+              <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
+                {apparr.map((v, i) => {
+                  return <LikePrdCard key={v.id} data={v} isprdLike={true} />;
+                })}
+              </div>
+              <FePagination pagination={prdpagination} setPage={setPrdLikePage} className="pc-view" />
+            </>
+          )}
         </div>
       </div>
 
-      <FePagination pagination={prdpagination} setPage={setPrdLikePage} className="pc-view" />
-
-      <div className="page-type1-list-area faverite-list mode-official">
+      <div className="page-type1-list-area faverite-list mode-official mt-5">
         <div className="container">
           <div className="page-type1-area-title" id="faveRite-bolck1">
             酒譜收藏
@@ -203,15 +211,22 @@ const UserLike = () => {
       </div>
       <div className="user-add-faverite-content" id="faverite-bolck1">
         <div className="container">
-          <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
-            {bartdarr.map((v, i) => {
-              return <BartendingCard key={v.id} data={v} isbartdLike={true} />;
-            })}
-          </div>
+          {bartdpagination.total === 0 ? (
+            <div className="py-5">
+              <EmptyImage discText="尚無最愛酒譜" />
+            </div>
+          ) : (
+            <>
+              <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
+                {bartdarr.map((v, i) => {
+                  return <BartendingCard key={v.id} data={v} isbartdLike={true} />;
+                })}
+              </div>
+              <FePagination pagination={bartdpagination} setPage={setBartdpagination} className="pc-view" />
+            </>
+          )}
         </div>
       </div>
-
-      <FePagination pagination={bartdpagination} setPage={setBartdpagination} className="pc-view" />
     </>
   );
 };

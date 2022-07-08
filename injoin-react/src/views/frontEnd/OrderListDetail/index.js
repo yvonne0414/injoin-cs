@@ -150,6 +150,7 @@ const OrderListDetail = () => {
   //商品訂單狀態設定
   const [ordersDetailData, setOrdersDetailData] = useState([]);
   const [ordersDetailStatus, setOrdersDetailStatus] = useState([]);
+  const [ordersCoupon, setOrdersCoupon] = useState([]);
   //訂購人訂單狀態設定
   const [ordersUserInfo, setOrdersUserInfo] = useState([]);
   //訂購人訂單商品設定
@@ -176,6 +177,7 @@ const OrderListDetail = () => {
       setOrdersUserInfo(response.data.orderuser[0]);
       setOrdersPrd(response.data.orderprd);
       setOrdersDetailStatus(Number(response.data.data[0].logistics_state));
+      setOrdersCoupon(response.data.couponData);
       // console.log('..', response.data);
       // console.log('ordersUserInfo', response.data.orderuser);
       // console.log('ordersDetailData', response.data.data);
@@ -265,7 +267,7 @@ const OrderListDetail = () => {
                   <br />
                   付款狀態:{detailthree.paystatus}
                   <br />
-                  訂單總金額: NT${prdTotal()}
+                  訂單總金額: NT${prdTotal() - Number(ordersCoupon.discount)}
                   <br />
                   備註: {detailthree.remark}
                 </Panel>
@@ -307,9 +309,9 @@ const OrderListDetail = () => {
                 <div className="summary-item d-flex ms-5">
                   NT${prdTotal()}
                   <br />
-                  -NT$200
+                  -NT${ordersCoupon.discount}
                   <br />
-                  NT${prdTotal() - 200}
+                  NT${prdTotal() - Number(ordersCoupon.discount)}
                 </div>
               </div>
             </div>

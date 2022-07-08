@@ -1,16 +1,32 @@
-import { useContext } from 'react';
+import axios from 'axios';
+import { useContext, useEffect, useState } from 'react';
 import { userState } from '../../App';
-import { FE_IMAGE_URL } from '../../utils/config';
+import { API_URL, FE_IMAGE_URL } from '../../utils/config';
 
 const UserInfoTask = () => {
   const userstate = useContext(userState);
   // let vip_level =userstate.member.vip_level || 1 ;
   // console.log("task",vip_level);
-  const UserInfoVipLevel = {
+  const [UserInfoVipLevel,setUserInfoVipLevel ]= useState({
     vipLevel: 1,
     vipcount: 1,
     vipmoney: 5000,
-  };
+  })
+
+
+// console.log('userstate',userstate);
+  
+  useEffect(()=>{
+    let getUser= async()=>{
+      // console.log(userstate.member.id);
+      let res =await axios.get(`${API_URL}/auth/about?userid=${userstate.member.id}`)
+      // console.log(res.data[0].vip_level);
+      setUserInfoVipLevel({...UserInfoVipLevel,vipLevel:res.data[0].vip_level})
+    }
+    getUser()
+  
+  },[userstate.member])
+ 
   return (
     <>
       <div className="page-type1-area-title" id="#">

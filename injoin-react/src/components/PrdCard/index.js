@@ -7,6 +7,7 @@ import Heart from '../Heart';
 import { BE_IMAGE_URL } from '../../utils/config';
 import axios from 'axios';
 import './_index.scss';
+import { message } from 'antd';
 
 function PrdCard(props) {
   const { data, isLike } = props;
@@ -38,7 +39,7 @@ function PrdCard(props) {
   // JSON.stringify(jsonData);
   // JSON.parse(getLocalData);
   let handleCart = () => {
-    alert(`將${data.id} 加到購物車`);
+    message.success(`將 ${data.name} 加到購物車`);
     // console.log(data.id);
     // ==========首先把要用的資料處理好
     let obj = {};

@@ -1,16 +1,30 @@
-import { FE_IMAGE_URL } from '../../utils/config';
+import { API_URL, FE_IMAGE_URL } from '../../utils/config';
 import { Link } from 'react-router-dom';
 import { userState } from '../../App';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
 
 const UserInfoVipLevel = () => {
   const userstate = useContext(userState);
   // console.log("suerVIp:" , userstate)
   // let vip_level = 1 && userstate.member.vip_level;
-  const UserInfoVipLevel = {
-    vipLevel: 1,
-    vipMessage: '根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員',
-  };
+const [UserInfoVipLevel,setUserInfoVipLevel]=useState({
+  vipLevel: 1,
+  vipMessage: '根據今年度的累積達到此等級，繼續累積即可升級為鉑金會員',
+})
+// console.log('userstate',userstate);
+useEffect(()=>{
+  let getUser= async()=>{
+    // console.log(userstate.member.id);
+    let res =await axios.get(`${API_URL}/auth/about?userid=${userstate.member.id}`)
+    // console.log(res.data[0].vip_level);
+    setUserInfoVipLevel({...UserInfoVipLevel,vipLevel:res.data[0].vip_level})
+  }
+  getUser()
+
+},[userstate.member])
+
+
 
   return (
     <>

@@ -19,7 +19,7 @@ const UserInfoChangePasswd = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    if (changepwd.passwd !== changepwd.renewpasswd) {
+    if (changepwd.newpasswd !== changepwd.renewpasswd) {
       message.error('請輸入相同密碼');
       return;
     } else {

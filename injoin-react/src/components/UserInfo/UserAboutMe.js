@@ -8,9 +8,6 @@ import { API_URL, BE_IMAGE_URL } from '../../utils/config';
 import axios from 'axios';
 
 const UserAboutMe = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   // chennnn
   const usermember = useContext(userState);
@@ -26,29 +23,48 @@ const UserAboutMe = () => {
     userAboutme: usermember.member ? usermember.member.about_user : '',
     userImg: usermember.member ? usermember.member.user_img : '',
   });
-  
-  // console.log('userAbout2',usermember);
+
+  // console.log('userAbout2', usermember);
   // console.log('userAbout',userAbout);
 
   useEffect(() => {
-    if (usermember.member) {
-      // console.log("use", usermember);
+    window.scrollTo(0, 0);
+    let getUser = async () => {
+      // console.log(usermember.member.id);
+      let res = await axios.get(`${API_URL}/auth/about?userid=${usermember.member.id}`);
+      // console.log('res.data[0].about_user',res.data[0].about_user);
       setUserAbout({
-        userId: usermember.member.id,
-
-        userName: usermember.member.name,
-        userAboutme: usermember.member.about_user,
-        userImg: usermember.member.user_img,
+        userId: res.data[0].id,
+        userName: res.data[0].name,
+        userAboutme: res.data[0].about_user,
+        userImg: res.data[0].user_img,
       });
-    }
-  }, usermember.member);
+    };
+    getUser();
+  }, []);
 
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    let getUser = async () => {
+      // console.log(usermember.member.id);
+      let res = await axios.get(`${API_URL}/auth/about?userid=${usermember.member.id}`);
+      // console.log(res.data[0]);
+      setUserAbout({
+        userId: res.data[0].id,
+        userName: res.data[0].name,
+        userAboutme: res.data[0].about_user,
+        userImg: res.data[0].user_img,
+      });
+    };
+    getUser();
+  }, [usermember.member]);
 
   function handleChange(e) {
     setUserAbout({ ...userAbout, [e.target.name]: e.target.value });
   }
-  // console.log(usermember);
+
+
+  // console.log('userAbout',userAbout);
   const usernicknameLabel = (
     <div className="userinfo-about-title">
       <span>顯示暱稱</span>
@@ -59,7 +75,8 @@ const UserAboutMe = () => {
       <span>關於我</span>
     </div>
   );
-  // console.log(BE_IMAGE_URL);
+
+  console.log('userAbout',userAbout);
 
   return (
     <>
@@ -94,6 +111,7 @@ const UserAboutMe = () => {
                   className="btn btn-none injoin-btn-outline text-gold h-auto"
                   htmlType="submit"
                   onClick={async (e) => {
+                    // console.log(userAbout);
                     e.preventDefault();
                     let res = await axios.post(`${API_URL}/auth/changeAbout?userId=${userAbout.userId}`, userAbout);
                     message.success('更改成功');

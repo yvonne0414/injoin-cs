@@ -1,23 +1,24 @@
 // scss
 import './_index.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, Input, Select, Checkbox } from 'antd';
 import axios from 'axios';
 import { API_URL, BE_IMAGE_URL } from '../../utils/config';
 
+import { userState } from '../../App';
+
 import faveriteImg from '../../assets/images/fe/faverite/faverite-product-img-1.png';
 
 const Step2 = (props) => {
   const { Option } = Select;
-  const { stepNum, setStepNum, handleSubmit, cartlist,setIsChecked } = props;
+  const { stepNum, setStepNum, handleSubmit, cartlist, setIsChecked } = props;
   const onFinish = (values) => {
     // console.log(values);
   };
   const onChange = (e) => {
     // console.log(`checked = ${e.target.checked}`);
-    setIsChecked(e.target.checked)
-    
+    setIsChecked(e.target.checked);
   };
   // city
   const [cities, setCities] = useState([]);
@@ -45,6 +46,9 @@ const Step2 = (props) => {
     };
     getPrdData();
   }, []);
+
+  const userstate = useContext(userState);
+  console.log(userstate.member);
 
   return (
     <div className="position-relative  mt-4">
@@ -103,7 +107,7 @@ const Step2 = (props) => {
                 },
               ]}
             >
-              <Input />
+              <Input defaultValue={userstate.member.name} />
             </Form.Item>
             <Form.Item
               name={['user', 'phone']}
@@ -114,7 +118,7 @@ const Step2 = (props) => {
                 },
               ]}
             >
-              <Input />
+              <Input defaultValue={userstate.member.phone} />
             </Form.Item>
             <Form.Item
               name={['user', 'email']}
@@ -127,7 +131,7 @@ const Step2 = (props) => {
                 },
               ]}
             >
-              <Input />
+              <Input defaultValue={userstate.member.email} />
             </Form.Item>
 
             <Form.Item label="地址">
@@ -147,6 +151,7 @@ const Step2 = (props) => {
                       width: '22%',
                     }}
                     placeholder="請選擇縣市"
+                    defaultValue={userstate.member.address_country}
                   >
                     {cities.map((city) => {
                       return (
@@ -163,6 +168,7 @@ const Step2 = (props) => {
                       width: '78%',
                     }}
                     placeholder="詳細地址"
+                    defaultValue={userstate.member.address_detail}
                   />
                 </Form.Item>
               </Input.Group>

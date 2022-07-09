@@ -235,7 +235,7 @@ const Production = () => {
               <button className="btn prd-search-btn" type="submit" onClick={search}>
                 搜尋
               </button> */}
-              <Search placeholder="input search text" allowClear enterButton="搜尋" onSearch={search} />
+              <Search placeholder="請輸入關鍵字" size="large" allowClear enterButton="搜尋" onSearch={search} />
             </form>
           </div>
           {pagination.total === 0 ? (

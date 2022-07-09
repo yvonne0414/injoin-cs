@@ -297,7 +297,7 @@ const Bartending = () => {
             </div>
             {/* 搜尋欄 */}
             <form className="Bartending-search-form d-flex mx-0">
-              <Search placeholder="input search text" allowClear enterButton="搜尋" onSearch={search} />
+              <Search placeholder="請輸入關鍵字" size="large" allowClear enterButton="搜尋" onSearch={search} />
             </form>
           </div>
           {pagination.total === 0 ? (

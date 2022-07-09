@@ -492,7 +492,7 @@ const UserGroup = () => {
                                   {/* 詳細內容 */}
                                 </Link>
                               </div>
-                              {item.audit_status ? (
+                              {item.audit_status === 1 ? (
                                 <div className="list-content_btn" title="聊天室">
                                   <Link to={`/chatroom/${item.id}`}>
                                     <RiWechatLine />

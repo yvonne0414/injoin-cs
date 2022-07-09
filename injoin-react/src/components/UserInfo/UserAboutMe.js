@@ -12,7 +12,7 @@ const UserAboutMe = () => {
   const usermember = useContext(userState);
   // console.log(usermember.member);
 
-  let userId = usermember.member ? usermember.member.id : '';
+  let userId = usermember.member ? usermember.member.id : -1;
   // console.log(userId);
 
   const [userAbout, setUserAbout] = useState({
@@ -64,7 +64,7 @@ const UserAboutMe = () => {
   console.log('userAbout', userAbout);
   const usernicknameLabel = (
     <div className="userinfo-about-title">
-      <span>顯示暱稱</span>
+      <span>用戶名稱</span>
     </div>
   );
   const useraboutmeLabel = (
@@ -101,7 +101,7 @@ const UserAboutMe = () => {
               </Form.Item>
               {/* 關於我 */}
               <Form.Item label={useraboutmeLabel} name="useraboutme">
-                <TextArea name="userAboutme" value={`${userAbout.userAboutme ? userAbout.userAboutme : ''}`} placeholder="介紹介紹自己吧～" onChange={handleChange} />
+                <TextArea value={`${userAbout.userAboutme ? userAbout.userAboutme : ''}`} placeholder="介紹介紹自己吧～" onChange={handleChange} />
                 <p className="d-none">{userAbout.userAboutme}</p>
               </Form.Item>
               {/* 送出按鈕 */}

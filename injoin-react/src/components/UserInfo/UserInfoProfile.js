@@ -6,6 +6,7 @@ import moment from 'moment';
 import { userState } from '../../App';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
+import { useEffect } from 'react';
 
 // upload
 const getBase64 = (file) =>
@@ -81,6 +82,12 @@ const UserInfoProfile = ({ cities }) => {
     </div>
   );
 
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess('ok');
+    }, 0);
+  };
+
   const fullnameLabel = (
     <div className="userinfo-profile-title">
       <span>姓名</span>
@@ -122,7 +129,7 @@ const UserInfoProfile = ({ cities }) => {
   // console.log(usermember.member.address_detail);
 
   const [userAddress, setUserAddress] = useState({
-    userCountry: '',
+    userCountry: 1,
     userAddressDetail: usermember.member.address_detail,
     userPhone: usermember.member.phone,
     userphoto: '',
@@ -145,6 +152,18 @@ const UserInfoProfile = ({ cities }) => {
   } else {
     memberGender = '1';
   }
+
+  useEffect(() => {
+    setFileList([
+      {
+        uid: '-1',
+        name: 'image.png',
+        status: 'done',
+        url: `http://localhost:3001/images${user.user_img}`,
+      },
+    ]);
+  }, [user]);
+
   return (
     <>
       <Form
@@ -163,13 +182,7 @@ const UserInfoProfile = ({ cities }) => {
           {/* 照片 */}
           <div className="user-info-img">
             <Form.Item name="userinfoImg" getValueFromEvent={normFile} rules={[{ required: true, message: '請上傳使用者照片' }]}>
-              <Upload
-                // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture-card"
-                fileList={fileList}
-                onPreview={handlePreview}
-                onChange={handleChange}
-              >
+              <Upload customRequest={dummyRequest} listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
                 {fileList.length >= 1 ? null : uploadButton}
               </Upload>
             </Form.Item>
@@ -216,7 +229,7 @@ const UserInfoProfile = ({ cities }) => {
             </Form.Item>
             {/* 手機號碼 */}
             <Form.Item label={userphoneLabel} name="userphone">
-              <Input name="userPhone" value={userAddress.userPhone} onChange={handleOnChange} />
+              <Input name="userPhone" value={userAddress?.userPhone} onChange={handleOnChange} />
             </Form.Item>
             {/* 地址 */}
             <Form.Item label={useraddressLabel} className="w-100" name="useraddress">
@@ -232,6 +245,7 @@ const UserInfoProfile = ({ cities }) => {
                   ]}
                 >
                   <Select
+                    defaultValue={user.address_country}
                     placeholder="請選擇縣市"
                     onChange={(e) => {
                       // console.log(e);
@@ -239,10 +253,13 @@ const UserInfoProfile = ({ cities }) => {
                     }}
                   >
                     {cities.map((city) => {
-                      return <Option value={city.id}>{city.name}</Option>;
+                      // console.log(city);
+                      return (
+                        <Option key={city.code} value={city.code}>
+                          {city.name}
+                        </Option>
+                      );
                     })}
-
-                    <Option value="2">新北市</Option>
                   </Select>
                 </Form.Item>
                 <Form.Item
@@ -257,6 +274,7 @@ const UserInfoProfile = ({ cities }) => {
                 >
                   {/* chennn */}
                   <Input
+                    defaultValue={user.address_detail}
                     style={{
                       width: '70%',
                     }}
@@ -290,7 +308,7 @@ const UserInfoProfile = ({ cities }) => {
                   message.success('更改成功');
                 }}
               >
-                送出資料
+                更新資料
               </Button>
             </Form.Item>
           </div>

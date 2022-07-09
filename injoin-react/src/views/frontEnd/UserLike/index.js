@@ -192,7 +192,7 @@ const UserLike = () => {
           ) : (
             <>
               <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
-                {apparr.map((v, i) => {
+                {arr.map((v, i) => {
                   return <LikePrdCard key={v.id} data={v} isprdLike={true} />;
                 })}
               </div>

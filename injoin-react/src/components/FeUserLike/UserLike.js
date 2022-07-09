@@ -59,21 +59,21 @@ const LikePrdCard = (props) => {
     <>
       <div className="col">
         <div className="prd-card">
-          <div className="prd-card-image">
-            <Link to="/">
+          <Link to={`/production/${data.id}`}>
+            <div className="prd-card-image">
               {/* <img src={`${BE_IMAGE_URL}/production/AB11.jpeg`} alt="" /> */}
-              <img src={`${BE_IMAGE_URL}/production/${data.likeImg}`} alt="" />
-            </Link>
-          </div>
+              <img src={`${BE_IMAGE_URL}/production/${data.main_img}`} alt="" />
+            </div>
+          </Link>
           <div className="prd-card-body card-body ">
             <div className="prd-card-title card-title">
-              <Link to="/">{data.likePrdName}</Link>
+              <Link to={`/production/${data.id}`}>{data.name}</Link>
             </div>
-            <div className="prd-card-price">{data.likePrdPrice}</div>
+            <div className="prd-card-price">NT$ {data.price}</div>
             <div className="prd-card-footer card-footer">
               <div className="prd-card-reveiw">
                 <FaStar className="prd-card-icon-star" />
-                {data.rate}
+                {Number(data.rate).toFixed(1)}
               </div>
               <div className="prd-card-icon">
                 <Heart isLike={isLike} data={data} />

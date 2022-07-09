@@ -15,6 +15,9 @@ import LogoutPage from './LogoutPage';
 import { userState } from '../../../App';
 
 const UserInfo = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const apple = useContext(userState);
   // console.log("usetInfo:" , apple);
   // 檢查登入
@@ -84,19 +87,19 @@ const UserInfo = () => {
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
           <div className="container">
             {/* ===============section2=============== */}
-            <section className="member-s1">
+            <section className="member-s1" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
               <UserInfoForm />
             </section>
             {/* ===============section2=============== */}
-            <div className="member-s2 ">
+            <div className="member-s2 " data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
               <UserInfoVipLevel />
             </div>
             {/* ===============section3=============== */}
-            <section className="member-s3 ">
+            <section className="member-s3 " data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
               <UserInfoTask />
             </section>
             {/* ===============section4=============== */}
-            <section className="member-s4 ">
+            <section className="member-s4 " data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
               <div className="page-type1-area-title" id="">
                 詳細說明
               </div>

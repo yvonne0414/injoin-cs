@@ -235,6 +235,9 @@ const Bartending = () => {
     }
   }, [category]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   //console.log('a', barted);
   return (
     <>
@@ -309,7 +312,11 @@ const Bartending = () => {
               <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
                 {barted.map((v, i) => {
                   // console.log(v);
-                  return <BartendingCard key={v.id} data={v} isbartdLike={v.isLike} />;
+                  return (
+                    <div key={v.id} data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000" className="px-1 px-md-2">
+                      <BartendingCard key={v.id} data={v} isbartdLike={v.isLike} />
+                    </div>
+                  );
                 })}
               </div>
               <FePagination pagination={pagination} setPage={setPage} />

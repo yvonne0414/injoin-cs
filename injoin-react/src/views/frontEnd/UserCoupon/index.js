@@ -19,6 +19,9 @@ import LogoutPage from '../LogoutPage/LogoutPage.js';
 import { userState } from '../../../App';
 
 const UserCoupon = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // header 資料
   const page1HeaderInfo = {
     titleEn: 'Coupon',
@@ -139,38 +142,40 @@ const UserCoupon = () => {
       {/* <!-- page-type1-list official --> */}
       <div className="page-type1-list-area coupon-list mode-official">
         <div className="container">
-          <div className="page-type1-area-title" id="couponlist-bolck1">
-            優惠券使用規則
-          </div>
-          <div className="d-flex mb-5">
-            <div className="coupon-direction container">
-              <ol>
-                <li className="coupon-item">請留意您的折扣碼使用期限。</li>
-                <li className="coupon-item">每次結帳，只能使用一張折價券。</li>
-                <li className="coupon-item">折價券不可折抵運費。</li>
-                <li className="coupon-item">折價券可與商店折扣活動併用，訂單會以折價券優先折抵，再計算折扣活動。</li>
-                <li className="coupon-item">折價券有使用期限，到期時會自動於「我的折價券」中刪除。</li>
-                <li className="coupon-item">
-                  折價券<span>最多只能折抵該次購買總金額的30%</span>。(依每個折價劵使用規則而訂)
-                </li>
-                <li className="coupon-item">
-                  折價券僅能使用一次且<span>不找零</span>，一經使用無法恢復。
-                </li>
-                <li className="coupon-item">
-                  使用折價券的訂單<span>如取消或退貨，折價券將自動失效不會歸還</span>。
-                </li>
-              </ol>
+          <div data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
+            <div className="page-type1-area-title" id="couponlist-bolck1">
+              優惠券使用規則
             </div>
+            <div className="d-flex mb-5">
+              <div className="coupon-direction container">
+                <ol>
+                  <li className="coupon-item">請留意您的折扣碼使用期限。</li>
+                  <li className="coupon-item">每次結帳，只能使用一張折價券。</li>
+                  <li className="coupon-item">折價券不可折抵運費。</li>
+                  <li className="coupon-item">折價券可與商店折扣活動併用，訂單會以折價券優先折抵，再計算折扣活動。</li>
+                  <li className="coupon-item">折價券有使用期限，到期時會自動於「我的折價券」中刪除。</li>
+                  <li className="coupon-item">
+                    折價券<span>最多只能折抵該次購買總金額的30%</span>。(依每個折價劵使用規則而訂)
+                  </li>
+                  <li className="coupon-item">
+                    折價券僅能使用一次且<span>不找零</span>，一經使用無法恢復。
+                  </li>
+                  <li className="coupon-item">
+                    使用折價券的訂單<span>如取消或退貨，折價券將自動失效不會歸還</span>。
+                  </li>
+                </ol>
+              </div>
 
-            <div className="coupon-item-intro-area pc-view">
-              <div className="coupon-list-img-1 ">
-                <img src={couponListImg1} alt="coupon-list-img-1" className="img-fluid object-cover" />
+              <div className="coupon-item-intro-area pc-view">
+                <div className="coupon-list-img-1 ">
+                  <img src={couponListImg1} alt="coupon-list-img-1" className="img-fluid object-cover" />
+                </div>
               </div>
             </div>
           </div>
 
           {/* <!-- page-type1-intro --> */}
-          <div className="page-coupon-intro-area container mb-5">
+          <div className="page-coupon-intro-area container mb-5" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="page-coupon-intro-content ">
               <div className="coupon-list-img-2">
                 <img src={couponListImg2} alt="coupon-list-img-2" className="img-fluid object-cover " />
@@ -223,26 +228,27 @@ const UserCoupon = () => {
           </section> */}
 
           {/* <!-- page-type1-list --> */}
-          <div className="page-type1-area-title" id="couponlist-bolck3">
-            我的優惠券
-          </div>
-          {pagination.total === 0 ? (
-            <EmptyImage discText="無優惠券" />
-          ) : (
-            <>
-              <div className="page-type1-list-wraper">
-                <div className="page-type1-list-title pc-view">
-                  <div>優惠券代號</div>
-                  <div>優惠券名稱</div>
-                  <div>開始時間</div>
-                  <div>截止時間</div>
-                  {/* <div>使用狀況</div> */}
-                  <div></div>
-                </div>
-                {data.map((v, i) => {
-                  return <UserCouponList key={v.id} data={v} index={i} pagination={pagination} />;
-                })}
-                {/* <div className="page-type1-list-content">
+          <div data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
+            <div className="page-type1-area-title" id="couponlist-bolck3">
+              我的優惠券
+            </div>
+            {pagination.total === 0 ? (
+              <EmptyImage discText="無優惠券" />
+            ) : (
+              <>
+                <div className="page-type1-list-wraper">
+                  <div className="page-type1-list-title pc-view">
+                    <div>優惠券代號</div>
+                    <div>優惠券名稱</div>
+                    <div>開始時間</div>
+                    <div>截止時間</div>
+                    {/* <div>使用狀況</div> */}
+                    <div></div>
+                  </div>
+                  {data.map((v, i) => {
+                    return <UserCouponList key={v.id} data={v} index={i} pagination={pagination} />;
+                  })}
+                  {/* <div className="page-type1-list-content">
                     <div className="list-content_coupon_num">1001</div>
                     <div className="list-content_coupon_name">註冊禮券折$100</div>
                     <div className="list-content_coupon_start">2022/05/29</div>
@@ -252,14 +258,15 @@ const UserCoupon = () => {
                       <Link to="/coupon/1">詳細內容</Link>
                     </div>
                   </div> */}
-              </div>
+                </div>
 
-              <FePagination pagination={pagination} setPage={setPage} />
-            </>
-          )}
-          <div className="couponlist-footer mx-auto">
-            <div className="conpon-title-sp">單筆訂單限抵一張折價券。</div>
-            <div className="conpon-title-sp">取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。</div>
+                <FePagination pagination={pagination} setPage={setPage} />
+              </>
+            )}
+            <div className="couponlist-footer mx-auto">
+              <div className="conpon-title-sp">單筆訂單限抵一張折價券。</div>
+              <div className="conpon-title-sp">取消訂單、辦理整筆退貨或退貨後之保留商品未符合折價券使用條件時，若折價券能仍在使用期限內，將歸還至帳戶中。</div>
+            </div>
           </div>
         </div>
       </div>

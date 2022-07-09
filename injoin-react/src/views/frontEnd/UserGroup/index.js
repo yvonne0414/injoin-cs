@@ -280,7 +280,7 @@ const UserGroup = () => {
       {loginInfo.islogin ? (
         <>
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-          <div className="user-add-group-area">
+          <div className="user-add-group-area" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="container">
               <div className="page-type1-area-title" id="new-group-block1">
                 來揪團吧
@@ -307,7 +307,7 @@ const UserGroup = () => {
               </div>
             </div>
           </div>
-          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
+          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="container">
               <div className="page-type1-area-title" id="grouplist-bolck2">
                 我揪的團
@@ -384,7 +384,7 @@ const UserGroup = () => {
               )}
             </div>
           </div>
-          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
+          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="bg-square-2"></div>
             <div className="container">
               <div className="page-type1-area-title" id="grouplist-bolck3">
@@ -531,7 +531,7 @@ const UserGroup = () => {
               </Tabs>
             </div>
           </div>
-          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5">
+          <div className="page-type1-list-area member-group-list-area mt-5 pt-md-5" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="bg-square-3"></div>
             <div className="container">
               <div className="page-type1-area-title" id="grouplist-bolck4">

@@ -44,6 +44,9 @@ const normFile = (e) => {
 
 const GroupEdit = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // 檢查登入
   const [isLogin, setisLogin] = useState('');
   const loginInfo = useContext(userState);
@@ -302,7 +305,7 @@ const GroupEdit = () => {
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-      <div className="group-add-info-wraper">
+      <div className="group-add-info-wraper" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
         <div className="container">
           <div className="page-type1-area-title" id="groupAddB1">
             活動內容

@@ -340,7 +340,7 @@ const SignUp = ({ setlogoutState }) => {
         </section>
         <section className="notice">
           注意事項 :<span>※未滿18歲請勿註冊。</span>
-          <span>※本頁面只提供會員註冊，如要修改會員資料請至會員中心 > 會員資料，進行更新。</span>
+          <span>※本頁面只提供會員註冊，如要修改會員資料請至會員中心 {'>'} 會員資料，進行更新。</span>
         </section>
       </div>
     </>

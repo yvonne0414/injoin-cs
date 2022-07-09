@@ -20,7 +20,7 @@ const FePage2Header = (props) => {
           <img src={`${FE_IMAGE_URL}/page2header/${sectionBg}`} alt="" />
         </div>
         {subTitle.isShow && (
-          <div className="title-sub d-flex flex-row">
+          <div className="title-sub d-flex flex-row align-items-center">
             <span>{subTitle.subName}</span>
             <div className="title-line">
               <div></div>

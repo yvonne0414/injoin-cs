@@ -41,7 +41,11 @@ function BartendingCard(props) {
             </div>
             <div className="Bartending-card-subtitle card-footer">
               {data.material.map((item) => {
-                return <span className="me-2">{item}</span>;
+                return (
+                  <span className="me-2" key={item}>
+                    {item}
+                  </span>
+                );
               })}
             </div>
           </div>

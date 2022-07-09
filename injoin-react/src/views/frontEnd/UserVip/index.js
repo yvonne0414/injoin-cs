@@ -5,6 +5,8 @@ import vips3img from '../../../assets/images/fe/uservip/vips3pic.png';
 import vips5img from '../../../assets/images/fe/uservip/vips5pic.png';
 import UserVipCard from '../../../components/UserInfo/UserVipCard';
 
+import { useEffect } from 'react';
+
 const page1HeaderInfo = {
   titleEn: 'VIP',
   titleCn: '會員等級說明',
@@ -68,11 +70,14 @@ const page1HeaderInfo = {
 
 const { titleEn, titleCn, menuList, imgs, pageSelector } = page1HeaderInfo;
 const UserVip = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
       <div className="container">
-        <section className="uservip-s1">
+        <section className="uservip-s1" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
           <div className="page-type1-area-title">如何成為VIP會員</div>
           <div className="uservips1-title">需先至官網註冊會員才能累計消費</div>
           <ul className="uservips1-ul">
@@ -83,27 +88,29 @@ const UserVip = () => {
           <div className="uservips1-notice">*消費累積,一律依照會員註冊Email累計, 忘記登入或不同人購買, 皆無法合併計算累積*</div>
         </section>
         <section className="uservip-s2">
-          <div className="uservips2-title">會員分級標準</div>
-          <div className="uservips2-content">
-            <div className="vip-part">
-              Injon 會員分為三個級別，以每年年初(1月1日)作為年度結算日基準，並以結算日前一年內，會員在 Injon
-              累積的實際消費總金額與有效交易次數作為分級標準。實際消費金額不含運費與取消訂單金額，若訂單套用優惠折抵，實際消費金額以折抵後金額計算。
+          <div data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
+            <div className="uservips2-title">會員分級標準</div>
+            <div className="uservips2-content">
+              <div className="vip-part">
+                Injon 會員分為三個級別，以每年年初(1月1日)作為年度結算日基準，並以結算日前一年內，會員在 Injon
+                累積的實際消費總金額與有效交易次數作為分級標準。實際消費金額不含運費與取消訂單金額，若訂單套用優惠折抵，實際消費金額以折抵後金額計算。
+              </div>
+              <div className="vip-part">在成為 Injon 會員後，一年內累積以下實際消費金額與有效交易次數，可獲得相應的會員身份一年：</div>
+              <div className="vip-part">黃金會員：累積消費總金額未達 NT$ 5,000。</div>
+              <div className="vip-part">鉑金會員：累積消費總金額達 NT$ 5,000，且交易次數達 2 次以上。</div>
+              <div className="vip-part">鑽石會員：累積消費總金額達 NT$ 7,000，且交易次數達 4 次以上。</div>
+              <div className="vip-part">會員的身份等級、可享優惠、累積消費總金額都可以在網站的會員中心會員中心進行查詢。</div>
             </div>
-            <div className="vip-part">在成為 Injon 會員後，一年內累積以下實際消費金額與有效交易次數，可獲得相應的會員身份一年：</div>
-            <div className="vip-part">黃金會員：累積消費總金額未達 NT$ 5,000。</div>
-            <div className="vip-part">鉑金會員：累積消費總金額達 NT$ 5,000，且交易次數達 2 次以上。</div>
-            <div className="vip-part">鑽石會員：累積消費總金額達 NT$ 7,000，且交易次數達 4 次以上。</div>
-            <div className="vip-part">會員的身份等級、可享優惠、累積消費總金額都可以在網站的會員中心會員中心進行查詢。</div>
           </div>
-          <div className="uservips2-img">
+          <div className="uservips2-img" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000">
             <img src={vipimg} alt="" />
           </div>
         </section>
-        <seciton className="uservip-s3">
-          <div className="uservips3-img">
+        <seciton className="uservip-s3" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
+          <div className="uservips3-img" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
             <img src={vips3img} alt="" />
           </div>
-          <div className="uservips3-content">
+          <div className="uservips3-content" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="page-type1-area-title">會員等級權益</div>
             <div className="uservips3-title">購物金使用規則</div>
             <ul className="uservip3-ul">
@@ -115,10 +122,10 @@ const UserVip = () => {
             </ul>
           </div>
         </seciton>
-        <section className="uservip-s4">
+        <section className="uservip-s4" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
           <UserVipCard />
         </section>
-        <section className="uservip-s5">
+        <section className="uservip-s5" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
           <div className="uservips5-contnet">
             <div className="page-type1-area-title">注意事項</div>
             <ul className="uservips5-ul">

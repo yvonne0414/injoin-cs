@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 // 引用css
 import './index.scss';
+import 'animate.css';
 
 // 引用fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -134,9 +135,11 @@ const FeHeader = () => {
               <span></span>
             </div>
           </div>
-          <div className="logo-wraper">
-            <img src={ismobile ? logoImgA : logoImg} alt="injoinlog" className="img-fluid object-cover" />
-          </div>
+          <Link to="/">
+            <div className="logo-wraper">
+              <img src={ismobile ? logoImgA : logoImg} alt="injoinlog" className="img-fluid object-cover" />
+            </div>
+          </Link>
           <div className="pc-view injoin-side-slogan">
             <span className="header-text">INJOIN YOURLIFE</span>
             <div className="v-line">
@@ -192,7 +195,7 @@ const FeHeader = () => {
               <ul className="list-unstyled">
                 {menu_arr.map((item, i) => {
                   return (
-                    <li key={i}>
+                    <li key={i} className={`header-menu-li animate__animated ${visible ? ` animate__fadeInLeft animate__delay-${i}s` : ''}`}>
                       <Link to={item.href} className="header-menu" onClick={() => onClose()}>
                         <span className="header-menu-num">0{i}</span>
                         <span className="header-menu-content">{item.name}</span>

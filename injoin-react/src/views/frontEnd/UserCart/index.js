@@ -142,6 +142,9 @@ const UserCart = () => {
   // console.log('cartArr',cartArr)
 
   // console.log("ARF",cartArr);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // cartprdCount: '1',
   const initState = (cartprdArr) => {
@@ -237,10 +240,10 @@ const UserCart = () => {
       logistics: 1,
       cartList: arr,
     };
-    try{
-      console.log("送出訂單", ans);
-      alert("送出訂單", ans)
-    }catch(e){
+    try {
+      console.log('送出訂單', ans);
+      alert('送出訂單', ans);
+    } catch (e) {
       console.error(e);
     }
     // console.log(ans);
@@ -389,8 +392,6 @@ const UserCart = () => {
                           />
                         );
                       })}
-
-                    
                     </div>
                   </div>
                 </div>
@@ -416,7 +417,6 @@ const UserCart = () => {
                             </Select>
                           </div>
                         </div>
-                       
 
                         <div className="delivery-section mb-5">
                           <label>運送方式</label>

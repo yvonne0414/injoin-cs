@@ -209,7 +209,7 @@ const OrderListDetail = () => {
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 
       {/* -----------status------------ */}
-      <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
         <div className="step-status mb-5">
           {ordersDetailStatus === 4 ? (
             <Steps current={ordersDetailStatus} progressDot>
@@ -229,7 +229,7 @@ const OrderListDetail = () => {
 
       {/* ---------訂購資料 section Collapse ---------- */}
 
-      <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
         <div className="position-relative">
           <div className="order-detail-info-wraper "></div>
           <div className="p-3 ">

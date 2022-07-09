@@ -6,6 +6,7 @@ import { useState, useContext } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { userState } from '../../../App';
+import Swal from 'sweetalert2';
 
 const Login = ({ setlogoutState, setisLogin }) => {
   const apple = useContext(userState);
@@ -88,6 +89,31 @@ const Login = ({ setlogoutState, setisLogin }) => {
     </div>
   );
 
+
+  let forgetpwd= async()=>{
+    const { value: email } = await Swal.fire({
+      title: '忘記密碼',
+      input: 'email',
+      inputLabel: '請輸入註冊時填寫的電子信箱',
+      inputPlaceholder: 'name@example.com'
+    })
+    
+    if (email) {
+      try{
+        let response = await axios.get(`${API_URL}/reset?mail=${email}`)
+        alert('請至信箱收信並更改密碼')
+        // console.log(response.data.message);
+        
+
+      }catch(e){
+        alert(e.response.data.error)
+        // console.log(e.response.data.error);
+      }
+      // console.log(`${API_URL}/reset?mail=${email}`);
+      // console.log(email);
+      // Swal.fire(`Entered email: ${email}`)
+    }
+  }
   return (
     <>
       <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -132,6 +158,12 @@ const Login = ({ setlogoutState, setisLogin }) => {
                   <Button className="btn btn-none injoin-btn-outline text-gold h-auto" htmlType="submit" onClick={handleSubmit}>
                     會員登入
                   </Button>
+                  <Button className="btn btn-none injoin-btn-outline text-gold h-auto mx-3" onClick={(e)=>{
+                    e.preventDefault();
+                    forgetpwd()
+                  }}>
+                    忘記密碼
+                  </Button>
                 </Form.Item>
               </Form>
             </div>
@@ -152,6 +184,7 @@ const Login = ({ setlogoutState, setisLogin }) => {
               </span>
             </div>
           </div>
+          
         </section>
       </div>
     </>

@@ -10,6 +10,8 @@ import { useState, useEffect } from 'react';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HomePage = () => {
   const settings = {
@@ -50,6 +52,9 @@ const HomePage = () => {
       console.log('o', response.data.data[0].name);
     };
     gethotbar();
+    // AOS
+    AOS.init();
+    AOS.refresh();
   }, []);
 
   return (
@@ -78,8 +83,10 @@ const HomePage = () => {
       <div className="container-fluid">
         <section className="section2 position-relative">
           <div className="homeBox-2"></div>
-          <h3 className="section-title-en">W</h3>
-          <div className="section-content">
+          <h3 className="section-title-en" data-aos="flip-left">
+            W
+          </h3>
+          <div className="section-content" data-aos="fade-right">
             <h3 className="section-title-cn">關於我們</h3>
             <p className="section-content-en">Welcome to INJOIN</p>
             <p className="section-content-cn">莫扎特講過一句值得人反覆尋思的話，</p>
@@ -88,17 +95,19 @@ const HomePage = () => {
               Read More
             </Link>
           </div>
-          <div className="s2-img1">
+          <div className="s2-img1" data-aos="fade-down-left">
             <img src={`${FE_IMAGE_URL}/homepage/s2-img1.jpg`} alt="" />
           </div>
-          <div className="s2-img2">
+          <div className="s2-img2" data-aos="fade-down-left">
             <img src={`${FE_IMAGE_URL}/homepage/s2-img2.png`} alt="" />
           </div>
         </section>
         <section className="section3 position-relative">
           <div className="homeBox-3"></div>
-          <h3 className="section-title-en w-100 text-end">B</h3>
-          <div className="section-content text-end">
+          <h3 className="section-title-en w-100 text-end" data-aos="flip-right">
+            B
+          </h3>
+          <div className="section-content text-end" data-aos="fade-down-left">
             <h3 className="section-title-cn">熱門商品</h3>
             <p className="section-content-en">Best Seller</p>
             <p className="section-content-cn">我們可以很篤定的說，</p>
@@ -115,8 +124,10 @@ const HomePage = () => {
         </section>
         <section className="section4 position-relative">
           <div className="homeBox-4"></div>
-          <h3 className="section-title-en">C</h3>
-          <div className="section-content">
+          <h3 className="section-title-en" data-aos="flip-left">
+            C
+          </h3>
+          <div className="section-content" data-aos="zoom-in-down">
             <h3 className="section-title-cn">調酒酒譜</h3>
             <p className="section-content-en">classic cocktail</p>
             <p className="section-content-cn">總而言之，如果別人做得到，那我也可以做到。</p>
@@ -133,8 +144,10 @@ const HomePage = () => {
         </section>
         <section className="section5 position-relative">
           <div className="homeBox-5"></div>
-          <h3 className="section-title-en w-100 text-end">T</h3>
-          <div className="section-content text-end text-md-start">
+          <h3 className="section-title-en w-100 text-end" data-aos="flip-right">
+            T
+          </h3>
+          <div className="section-content text-end text-md-start" data-aos="fade-up">
             <h3 className="section-title-cn">現正揪團</h3>
             <p className="section-content-en">travel with a tour group</p>
             <br />
@@ -142,7 +155,7 @@ const HomePage = () => {
               Details
             </Link>
           </div>
-          <div className="s5-img">
+          <div className="s5-img" data-aos="fade-up">
             <img src={`${FE_IMAGE_URL}/homepage/s5-img.png`} alt="" />
           </div>
         </section>

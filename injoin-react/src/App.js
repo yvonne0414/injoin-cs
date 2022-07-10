@@ -30,6 +30,7 @@ import ChatRoom from './views/frontEnd/ChatRoom';
 import axios from 'axios';
 import { API_URL } from './utils/config';
 import AboutUser from './views/frontEnd/AboutUser';
+import ForgetPage from './views/frontEnd/Forgetpage';
 
 export const userState = createContext();
 
@@ -122,6 +123,10 @@ function App() {
             </Route>
             <Route path="/account/reputation" exact element={<UserReputation />} />
             <Route path="/account/group" exact element={<UserGroup />} />
+            <Route path="/resetPassword/:mail" exact element={<ForgetPage />} />
+
+            
+
 
             {/* 訂單 */}
             <Route path="/account/order" exact element={<OrderList />} />

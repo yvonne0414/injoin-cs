@@ -109,7 +109,7 @@ const Step1 = (props) => {
     };
     try {
       setAns(ans);
-      console.log('送出訂單', ans);
+      // console.log('送出訂單', ans);
     } catch (e) {
       console.error(e);
     }

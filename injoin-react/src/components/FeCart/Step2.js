@@ -12,7 +12,7 @@ import faveriteImg from '../../assets/images/fe/faverite/faverite-product-img-1.
 
 const Step2 = (props) => {
   const { Option } = Select;
-  const { stepNum, setStepNum, handleSubmit, cartlist, setIsChecked } = props;
+  const { stepNum, setStepNum, handleSubmit, cartlist, setIsChecked, setAns, ans } = props;
   const onFinish = (values) => {
     // console.log(values);
   };
@@ -24,7 +24,7 @@ const Step2 = (props) => {
   const [cities, setCities] = useState([]);
 
   useEffect(() => {
-    console.log(cartlist);
+    // console.log(cartlist);
     let getCities = async () => {
       let response = await axios.get(API_URL + '/cityoptions');
       setCities(response.data);
@@ -48,7 +48,11 @@ const Step2 = (props) => {
   }, []);
 
   const userstate = useContext(userState);
-  console.log(userstate.member);
+  // console.log(userstate.member);
+
+  // 訂購人資訊
+  const [form] = Form.useForm();
+  const ordererValue = Form.useWatch('user', form);
 
   return (
     <div className="position-relative  mt-4">
@@ -96,7 +100,7 @@ const Step2 = (props) => {
               <span>Orderer Information</span>
             </h4>
           </div>
-          <Form nameName="nest-messages" onFinish={onFinish}>
+          <Form nameName="nest-messages" form={form}>
             <Form.Item
               name={['user', 'name']}
               label="姓名"
@@ -137,7 +141,7 @@ const Step2 = (props) => {
             <Form.Item label="地址">
               <Input.Group compact>
                 <Form.Item
-                  name={['groupAddress', 'city']}
+                  name={['user', 'city']}
                   noStyle
                   rules={[
                     {
@@ -162,7 +166,7 @@ const Step2 = (props) => {
                     })}
                   </Select>
                 </Form.Item>
-                <Form.Item name={['groupAddress', 'street']} noStyle>
+                <Form.Item name={['user', 'street']} noStyle>
                   <Input
                     style={{
                       width: '78%',
@@ -285,7 +289,16 @@ const Step2 = (props) => {
           上一步
         </button>
         <button
-          onClick={() => {
+          onClick={async () => {
+            console.log(ordererValue);
+            await setAns({
+              ...ans,
+              orderer_name: ordererValue.name ? ordererValue.name : userstate.member.name,
+              address_country: ordererValue.city ? ordererValue.city : userstate.member.address_country,
+              address_detail: ordererValue.street ? ordererValue.street : userstate.member.address_detail,
+              orderer_phone: ordererValue.phone ? ordererValue.phone : userstate.member.phone,
+              orderer_email: ordererValue.email ? ordererValue.email : userstate.member.email,
+            });
             handleSubmit();
           }}
           className="btn btn-none injoin-btn-outline text-gold"

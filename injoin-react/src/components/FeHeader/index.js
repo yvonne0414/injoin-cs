@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 // 引用css
 import './index.scss';
-import 'animate.css';
+// import 'animate.css';
 
 // 引用fontawesome
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

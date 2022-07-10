@@ -47,6 +47,9 @@ const { RangePicker } = DatePicker;
 
 const GroupAdd = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // header 資料
   const page1HeaderInfo = {
@@ -274,7 +277,7 @@ const GroupAdd = () => {
       {loginInfo.islogin ? (
         <>
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-          <div className="group-add-info-wraper">
+          <div className="group-add-info-wraper" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="container">
               <div className="page-type1-area-title" id="groupAddB1">
                 活動內容

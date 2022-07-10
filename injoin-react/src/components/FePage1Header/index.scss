@@ -93,7 +93,7 @@
   /* ===== page header ===== */
   .page-type1-header {
     .page-type1-header-img {
-      transform: translateY(50%);
+      transform: translateY(50%) !important;
       top: unset;
       bottom: 18%;
       max-width: 40rem !important;

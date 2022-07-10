@@ -20,7 +20,11 @@
   font-weight: 900;
   z-index: -1;
   font-size: var(--fs-en-page-type1-title-caption);
-  top: 1rem;
+  top: -2.5rem;
+  left: -1rem;
+  &.text-end {
+    right: -1rem;
+  }
 }
 
 // =====section-content=======
@@ -59,7 +63,7 @@
   .homepages3-card {
     padding: $space-2;
     .card-img {
-      width: 10rem;
+      width: 18rem;
       height: 15rem;
       img {
         width: 100%;
@@ -84,8 +88,8 @@
   .homepages4-card {
     padding: 0 $space-3;
     .card-img {
-      width: 20rem;
-      height: 20rem;
+      width: 18rem;
+      height: 18rem;
       img {
         width: 100%;
         height: 100%;
@@ -102,10 +106,10 @@
 
 // ======bartd-card=====
 .bartd-card {
-  width: 60vw;
+  width: 60%;
   .bartd-img {
-    width: 70vw;
-    height: 70vw;
+    width: 100%;
+    height: 20rem;
     img {
       width: 100%;
       height: 100%;
@@ -210,12 +214,14 @@
     left: 0;
     margin-top: $space-3;
   }
+  .homepage-sec2-img-area {
+    min-height: 90vh;
+  }
   .s2-img1 {
     position: absolute;
     left: 0;
     top: 45%;
-    width: 80%;
-    height: 30%;
+    width: 90%;
     z-index: 2;
     img {
       object-fit: cover;
@@ -225,10 +231,9 @@
   }
   .s2-img2 {
     position: absolute;
-    bottom: 10%;
+    bottom: 5%;
     right: 0;
-    width: 80%;
-    height: 20rem;
+    width: 60%;
     img {
       object-fit: cover;
       width: 100%;
@@ -268,7 +273,7 @@
   }
   .bartd-slider {
     top: 45vh;
-    width: 100vw;
+    width: 100%;
   }
   .slider-button {
     position: absolute;
@@ -311,6 +316,9 @@
   }
 }
 @media screen and (min-width: 768px) {
+  .button-style {
+    font-size: 2.5rem;
+  }
   // =====section-content=======
   .section-content {
     top: 10rem;
@@ -370,12 +378,12 @@
     height: 30%;
     width: 50%;
     .homepages4-card {
-      width: 25rem;
-      height: 90rem;
+      width: 20rem;
+      // height: 90rem;
       padding: 0 $space-3;
       .card-img {
         width: 100%;
-        height: 20%;
+        height: 20rem;
         img {
           width: 100%;
           height: 100%;
@@ -441,7 +449,7 @@
     .pc-img {
       position: absolute;
       //width: ;
-      width: 90rem;
+      width: 90%;
       height: 50rem;
       left: -4.5rem;
       top: 5rem;
@@ -503,9 +511,12 @@
       left: 19.5rem;
       top: 10rem;
     }
+    .homepage-sec2-img-area {
+      min-height: 70vh;
+    }
     .section-title-en {
-      top: 15%;
-      left: 3rem;
+      top: -9rem;
+      left: -6rem;
     }
     .section-content {
       top: 16.5rem;
@@ -517,8 +528,7 @@
       left: auto;
       right: 3rem;
       top: 5rem;
-      width: 50%;
-      height: 70%;
+      width: 45%;
       z-index: -1;
       img {
         object-fit: cover;
@@ -528,10 +538,9 @@
     }
     .s2-img2 {
       position: absolute;
-      bottom: -2rem;
+      bottom: -3rem;
       right: 40%;
-      width: 22%;
-      height: 40%;
+      width: 25%;
       z-index: -2;
       img {
         object-fit: cover;
@@ -549,8 +558,8 @@
       top: 5rem;
     }
     .section-title-en {
-      top: 8%;
-      right: 12rem;
+      top: -9rem;
+      right: -5rem;
     }
     .section-content {
       right: 17rem;
@@ -572,7 +581,8 @@
       left: 18rem;
     }
     .section-title-en {
-      left: 4rem;
+      top: -9rem;
+      left: -6rem;
     }
     .section-content {
       left: 9rem;
@@ -581,7 +591,7 @@
       position: absolute;
       top: 45vh;
       right: 0;
-      width: 60vw;
+      width: 100%;
       display: flex;
     }
     .slider-button {
@@ -604,8 +614,9 @@
     }
 
     .section-title-en {
-      right: 38rem;
-      top: 30rem;
+      top: -9rem;
+      left: -6rem;
+      width: fit-content;
     }
     .section-content {
       left: 67%;

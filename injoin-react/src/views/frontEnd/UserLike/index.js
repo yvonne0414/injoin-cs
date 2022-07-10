@@ -16,6 +16,9 @@ import EmptyImage from '../../../components/EmptyImage';
 import BartendingCard from '../../../components/BartendingCard';
 
 const UserLike = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // userid
   // 檢查登入
   const [isLogin, setisLogin] = useState('');
@@ -175,16 +178,13 @@ const UserLike = () => {
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-
-      <div className="page-type1-list-area faverite-list mode-official">
-        <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
+        <div className="page-type1-list-area faverite-list mode-official">
           <div className="page-type1-area-title" id="faveRite-bolck1">
             商品收藏
           </div>
         </div>
-      </div>
-      <div className="user-add-faverite-content" id="faverite-bolck1">
-        <div className="container">
+        <div className="user-add-faverite-content" id="faverite-bolck1">
           {prdpagination.total === 0 ? (
             <div className="py-5">
               <EmptyImage discText="尚無最愛商品" />
@@ -192,7 +192,7 @@ const UserLike = () => {
           ) : (
             <>
               <div className=" prd-card-all row row-cols-2 row-cols-md-4 ">
-                {apparr.map((v, i) => {
+                {arr.map((v, i) => {
                   return <LikePrdCard key={v.id} data={v} isprdLike={true} />;
                 })}
               </div>
@@ -201,16 +201,13 @@ const UserLike = () => {
           )}
         </div>
       </div>
-
-      <div className="page-type1-list-area faverite-list mode-official mt-5">
-        <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
+        <div className="page-type1-list-area faverite-list mode-official mt-5">
           <div className="page-type1-area-title" id="faveRite-bolck1">
             酒譜收藏
           </div>
         </div>
-      </div>
-      <div className="user-add-faverite-content" id="faverite-bolck1">
-        <div className="container">
+        <div className="user-add-faverite-content" id="faverite-bolck1">
           {bartdpagination.total === 0 ? (
             <div className="py-5">
               <EmptyImage discText="尚無最愛酒譜" />

@@ -1,8 +1,8 @@
 import './HomePage.scss';
 import { FE_IMAGE_URL } from '../../../utils/config';
-import FePagination from '../../../components/FePagination1';
-import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
-import Carousel from 'react-bootstrap/Carousel';
+// import FePagination from '../../../components/FePagination1';
+// import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
+// import Carousel from 'react-bootstrap/Carousel';
 import HomeHotCard from '../../../components/HomePage/HomeHotCard';
 import Slider from 'react-slick';
 import HomeBartdCard from '../../../components/HomePage/HomeBartdCard';
@@ -61,13 +61,15 @@ const HomePage = () => {
     <>
       <div className="container-fluid">
         <section className="section1">
-          <div className="homeBox-1"></div>
-          <div className="mask"></div>
-          <div className="pc-img d-none d-md-flex">
-            <img src={`${FE_IMAGE_URL}/homepage/pc-img.svg`} alt="" />
+          <div className="homeBox-1" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000"></div>
+          <div data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1500">
+            <div className="mask"></div>
+            <div className="pc-img d-none d-md-flex">
+              <img src={`${FE_IMAGE_URL}/homepage/pc-img.svg`} alt="" />
+            </div>
           </div>
 
-          <div className="s1-position">
+          <div className="s1-position" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1200">
             <p className="font-cn-content">今朝有酒今朝醉，明日愁來明日愁。</p>
             <h3 className="font-en-title">There is wine today,</h3>
             <h3 className="font-en-title">Drunkenness today,</h3>
@@ -82,11 +84,9 @@ const HomePage = () => {
 
       <div className="container-fluid">
         <section className="section2 position-relative">
-          <div className="homeBox-2"></div>
-          <h3 className="section-title-en" data-aos="flip-left">
-            W
-          </h3>
-          <div className="section-content" data-aos="fade-right">
+          <div className="homeBox-2" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1300"></div>
+          <div className="section-content" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
+            <h3 className="section-title-en">W</h3>
             <h3 className="section-title-cn">關於我們</h3>
             <p className="section-content-en">Welcome to INJOIN</p>
             <p className="section-content-cn">莫扎特講過一句值得人反覆尋思的話，</p>
@@ -95,19 +95,19 @@ const HomePage = () => {
               Read More
             </Link>
           </div>
-          <div className="s2-img1" data-aos="fade-down-left">
-            <img src={`${FE_IMAGE_URL}/homepage/s2-img1.jpg`} alt="" />
-          </div>
-          <div className="s2-img2" data-aos="fade-down-left">
-            <img src={`${FE_IMAGE_URL}/homepage/s2-img2.png`} alt="" />
+          <div data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000" className="position-absolut right-0 w-100 homepage-sec2-img-area">
+            <div className="s2-img1">
+              <img src={`${FE_IMAGE_URL}/homepage/s2-img1.jpg`} alt="" className="img-fluid w-100" />
+            </div>
+            <div className="s2-img2">
+              <img src={`${FE_IMAGE_URL}/homepage/s2-img2.png`} alt="" className="img-fluid w-100" />
+            </div>
           </div>
         </section>
         <section className="section3 position-relative">
-          <div className="homeBox-3"></div>
-          <h3 className="section-title-en w-100 text-end" data-aos="flip-right">
-            B
-          </h3>
-          <div className="section-content text-end" data-aos="fade-down-left">
+          <div className="homeBox-3" data-aos="fade-rigleftht" data-aos-easing="ease-in" data-aos-duration="1500"></div>
+          <div className="section-content text-end" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000">
+            <h3 className="section-title-en text-end">B</h3>
             <h3 className="section-title-cn">熱門商品</h3>
             <p className="section-content-en">Best Seller</p>
             <p className="section-content-cn">我們可以很篤定的說，</p>
@@ -116,18 +116,18 @@ const HomePage = () => {
               Buy It !
             </Link>
           </div>
-          <Slider {...settings} className="homepages3-slder">
-            {hotprd.map((v, i) => {
-              return <HomeHotCard key={v.id} data={v} />;
-            })}
-          </Slider>
+          <div className="homepages3-slder" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
+            <Slider {...settings}>
+              {hotprd.map((v, i) => {
+                return <HomeHotCard key={v.id} data={v} />;
+              })}
+            </Slider>
+          </div>
         </section>
         <section className="section4 position-relative">
-          <div className="homeBox-4"></div>
-          <h3 className="section-title-en" data-aos="flip-left">
-            C
-          </h3>
-          <div className="section-content" data-aos="zoom-in-down">
+          <div className="homeBox-4" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1500"></div>
+          <div className="section-content" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
+            <h3 className="section-title-en">C</h3>
             <h3 className="section-title-cn">調酒酒譜</h3>
             <p className="section-content-en">classic cocktail</p>
             <p className="section-content-cn">總而言之，如果別人做得到，那我也可以做到。</p>
@@ -136,18 +136,18 @@ const HomePage = () => {
               Read More
             </Link>
           </div>
-          <Slider {...settings} className="homepages4-slider">
-            {hotbar.map((v, i) => {
-              return <HomeBartdCard key={v.id} data={v} />;
-            })}
-          </Slider>
+          <div className="homepages4-slider" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000">
+            <Slider {...settings}>
+              {hotbar.map((v, i) => {
+                return <HomeBartdCard key={v.id} data={v} />;
+              })}
+            </Slider>
+          </div>
         </section>
         <section className="section5 position-relative">
-          <div className="homeBox-5"></div>
-          <h3 className="section-title-en w-100 text-end" data-aos="flip-right">
-            T
-          </h3>
-          <div className="section-content text-end text-md-start" data-aos="fade-up">
+          <div className="homeBox-5" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1300"></div>
+          <div className="section-content text-end text-md-start" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000">
+            <h3 className="section-title-en text-end">T</h3>
             <h3 className="section-title-cn">現正揪團</h3>
             <p className="section-content-en">travel with a tour group</p>
             <br />
@@ -155,7 +155,7 @@ const HomePage = () => {
               Details
             </Link>
           </div>
-          <div className="s5-img" data-aos="fade-up">
+          <div className="s5-img" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1200">
             <img src={`${FE_IMAGE_URL}/homepage/s5-img.png`} alt="" />
           </div>
         </section>

@@ -21,6 +21,9 @@ import { GiSpoon } from 'react-icons/gi';
 const Production = () => {
   const { Option } = Select;
   const { Search } = Input;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // 檢查登入
   const [isLogin, setisLogin] = useState('');
   const loginInfo = useContext(userState);
@@ -235,7 +238,7 @@ const Production = () => {
               <button className="btn prd-search-btn" type="submit" onClick={search}>
                 搜尋
               </button> */}
-              <Search placeholder="input search text" allowClear enterButton="搜尋" onSearch={search} />
+              <Search placeholder="請輸入關鍵字" size="large" allowClear enterButton="搜尋" onSearch={search} />
             </form>
           </div>
           {pagination.total === 0 ? (
@@ -244,7 +247,11 @@ const Production = () => {
             <>
               <div className=" prd-card-all row row-cols-2 row-cols-md-4">
                 {prded.map((v, i) => {
-                  return <PrdCard key={v.id} data={v} isLike={v.isPrdLike} />;
+                  return (
+                    <div key={v.id} data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000" className="px-1 px-md-2">
+                      <PrdCard data={v} isLike={v.isPrdLike} />
+                    </div>
+                  );
                 })}
               </div>
               <FePagination pagination={pagination} setPage={setPage} />

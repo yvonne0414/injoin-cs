@@ -97,7 +97,7 @@ const OrderListDetail = () => {
     paymethod: '信用卡付款',
     paystatus: '已付款',
     paytotal: 'NT$1840',
-    remark: '請小心包裝',
+    remark: '',
   };
 
   // const orderdetailprdArr = [
@@ -209,7 +209,7 @@ const OrderListDetail = () => {
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 
       {/* -----------status------------ */}
-      <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
         <div className="step-status mb-5">
           {ordersDetailStatus === 4 ? (
             <Steps current={ordersDetailStatus} progressDot>
@@ -229,7 +229,7 @@ const OrderListDetail = () => {
 
       {/* ---------訂購資料 section Collapse ---------- */}
 
-      <div className="container">
+      <div className="container" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
         <div className="position-relative">
           <div className="order-detail-info-wraper "></div>
           <div className="p-3 ">
@@ -242,14 +242,14 @@ const OrderListDetail = () => {
                   <span className="me-2">訂單編號:</span>
                   {orderId}
                   <br />
-                  <span className="me-2">收件人:</span> {ordersUserInfo.name}
+                  <span className="me-2">收件人:</span> {ordersDetailData.orderer_name}
                   <br />
                   <span className="me-2">連絡電話:</span>
-                  {ordersUserInfo.phone}
+                  {ordersDetailData.orderer_phone}
                   <br />
                   <span className="me-2">地址: </span>
-                  {ordersUserInfo.countyName}
-                  {ordersUserInfo.address_detail}
+                  {ordersDetailData.countyName}
+                  {ordersDetailData.address_detail}
                   <br />
                 </Panel>
 
@@ -267,7 +267,7 @@ const OrderListDetail = () => {
                   <br />
                   付款狀態:{detailthree.paystatus}
                   <br />
-                  訂單總金額: NT${prdTotal() - Number(ordersCoupon.discount)}
+                  訂單總金額: NT${prdTotal() - Number(ordersCoupon ? ordersCoupon.discount : 0)}
                   <br />
                   備註: {detailthree.remark}
                 </Panel>
@@ -309,9 +309,9 @@ const OrderListDetail = () => {
                 <div className="summary-item d-flex ms-5">
                   NT${prdTotal()}
                   <br />
-                  -NT${ordersCoupon.discount}
+                  -NT$ {Number(ordersCoupon ? ordersCoupon.discount : 0)}
                   <br />
-                  NT${prdTotal() - Number(ordersCoupon.discount)}
+                  NT$ {prdTotal() - Number(ordersCoupon ? ordersCoupon.discount : 0)}
                 </div>
               </div>
             </div>

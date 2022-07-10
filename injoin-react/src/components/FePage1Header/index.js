@@ -57,7 +57,7 @@ const FePage1Header = (props) => {
           </ul>
         </div>
       </div>
-      <div className="page-type1-header-img">
+      <div className="page-type1-header-img" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
         <img src={`${FE_IMAGE_URL}/page1header/${imgs.m}`} className="img-fluid object-cover m-view" alt={imgs.m} />
         <img src={`${FE_IMAGE_URL}/page1header/${imgs.pc}`} className="img-fluid object-cover pc-view" alt={imgs.pc} />
         <div className="page-type1-header-img-mask"></div>

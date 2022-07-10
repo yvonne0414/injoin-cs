@@ -18,6 +18,9 @@ import { userState } from '../../../App';
 //test
 import reputationimg from '../../../assets/images/fe/userReputation/reputation_1.png';
 const UserReputation = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const page1HeaderInfo = {
     titleEn: 'Reputation',
     titleCn: '會員評價',
@@ -148,7 +151,7 @@ const UserReputation = () => {
         <>
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
 
-          <div className="page-type1-list-area reputation-list mode-reputation py-3 mb-4">
+          <div className="page-type1-list-area reputation-list mode-reputation py-3 mb-4" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="container">
               <div className="page-type1-area-title" id="user-reputation-bolck1">
                 歷史評價
@@ -175,7 +178,7 @@ const UserReputation = () => {
             {ratePagination.total !== 0 && <FePagination pagination={ratePagination} setPage={setRatePage} />}
           </div>
 
-          <div className="page-type1-list-area reputation-orderlist mode-reputation-order py-3 mb-4">
+          <div className="page-type1-list-area reputation-orderlist mode-reputation-order py-3 mb-4" data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="container">
               <div className="page-type1-area-title" id="user-reputation-bolck2">
                 待評價訂單

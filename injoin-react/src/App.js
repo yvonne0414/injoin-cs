@@ -31,6 +31,8 @@ import axios from 'axios';
 import { API_URL } from './utils/config';
 import AboutUser from './views/frontEnd/AboutUser';
 import ForgetPage from './views/frontEnd/Forgetpage';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export const userState = createContext();
 
@@ -88,12 +90,17 @@ function App() {
     getMemberInfo();
   }, [islogin]);
 
+  useEffect(() => {
+    AOS.init();
+    // AOS.refresh();
+  }, []);
+
   return (
     <userState.Provider value={{ islogin, setislogin, member, setMember }}>
       <BrowserRouter>
         <BackTop />
         <FeHeader />
-        <main>
+        <main className="overflow-hidden">
           <Routes>
             <Route path="/chen" element={<Chen />} />
 

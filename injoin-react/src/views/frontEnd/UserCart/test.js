@@ -222,8 +222,7 @@ const UserCart = () => {
   };
 
   let [orederId, setOrderId] = useState('');
-  const handleSubmit = async () => {
-
+  const handleSubmit = async (value) => {
     // console.log('送出訂單', ans);
     try {
       if (isChecked == false) {
@@ -233,8 +232,7 @@ const UserCart = () => {
 
       setStepNum(stepNum + 1);
       // alert('送出訂單');
-
-      // console.log('送出訂單', ans);
+      console.log('送出訂單', ans);
       let res = await axios.post(`${API_URL}/cart`, ans);
       // console.log(res);
       message.success('完成訂單');
@@ -339,7 +337,7 @@ const UserCart = () => {
               {stepNum === 1 ? (
                 <Step1 stepNum={stepNum} setStepNum={setStepNum} setAns={setAns} userId={userId} />
               ) : stepNum === 2 ? (
-                <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit} cartlist={ans.cartList} setIsChecked={setIsChecked} />
+                <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit} cartlist={ans.cartList} setIsChecked={setIsChecked} setAns={setAns} ans={ans} />
               ) : (
                 <Step3 orederId={orederId} />
               )}

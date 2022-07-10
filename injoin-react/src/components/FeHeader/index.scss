@@ -161,6 +161,10 @@ $header-logo-md-width: 5rem;
     align-items: flex-start;
     flex-grow: 1;
   }
+  .header-menu-li {
+    --animate-delay: 200ms;
+  }
+
   .header-menu {
     display: flex;
     align-items: flex-start;

@@ -96,7 +96,7 @@ const AboutUser = () => {
       ) : (
         <>
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-          <div className="container">
+          <div className="container" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
             <section className="aboutUser-s1">
               <div className="aboutUser-card">
                 <div className="upper-half">

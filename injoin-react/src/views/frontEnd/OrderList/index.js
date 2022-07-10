@@ -187,7 +187,7 @@ const OrderList = () => {
         <>
           <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
           {/* <!-- page-type1-list official --> */}
-          <div className="page-type1-list-area order-list mode-official">
+          <div className="page-type1-list-area order-list mode-official" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="container">
               <nav className="navbar order-status-wraper  d-flex justify-content-center justify-content-md-start">
                 <ul className="nav order-status">
@@ -257,7 +257,9 @@ const OrderList = () => {
                 </div>
               </div>
               {ordersPagination.total === 0 ? (
-                <EmptyImage discText="無相關訂單" />
+                <div className="py-5 my-5">
+                  <EmptyImage discText="無相關訂單" />
+                </div>
               ) : (
                 <>
                   <div className="page-type1-list-wraper">

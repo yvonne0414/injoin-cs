@@ -9,7 +9,7 @@ import axios from 'axios';
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload, Button, Form, Input, DatePicker, Select, InputNumber, Spin, message } from 'antd';
 const { Option } = Select;
-const Sighup = ({ setlogoutState }) => {
+const SignUp = ({ setlogoutState }) => {
   const [member, setMember] = useState({
     username: '',
     useremail: '',
@@ -192,6 +192,12 @@ const Sighup = ({ setlogoutState }) => {
     </div>
   );
 
+  const dummyRequest = ({ file, onSuccess }) => {
+    setTimeout(() => {
+      onSuccess('ok');
+    }, 0);
+  };
+
   return (
     <>
       <FePage1Header className="d-none" titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
@@ -204,7 +210,7 @@ const Sighup = ({ setlogoutState }) => {
             <div className="signupform">
               <Form form={form} layout="vertical">
                 <Form.Item className="loginformimg" name="signupuserimg" label={signupuserimgLabel}>
-                  <Upload action="https://www.mocky.io/v2/5cc8019d300000980a055e76" listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
+                  <Upload customRequest={dummyRequest} listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
                     {fileList.length >= 1 ? null : uploadButton}
                   </Upload>
 
@@ -334,11 +340,11 @@ const Sighup = ({ setlogoutState }) => {
         </section>
         <section className="notice">
           注意事項 :<span>※未滿18歲請勿註冊。</span>
-          <span>※本頁面只提供會員註冊，如要修改會員資料請至會員中心 > 會員資料，進行更新。</span>
+          <span>※本頁面只提供會員註冊，如要修改會員資料請至會員中心 {'>'} 會員資料，進行更新。</span>
         </section>
       </div>
     </>
   );
 };
 
-export default Sighup;
+export default SignUp;

@@ -14,7 +14,7 @@ import groupListImg1 from '../../../assets/images/fe/groupList/group-list-img-1.
 import groupListImg2 from '../../../assets/images/fe/groupList/group-list-img-2.png';
 import groupListImg3 from '../../../assets/images/fe/groupList/group-list-img-3.png';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 
@@ -175,7 +175,7 @@ const GroupList = () => {
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
       {/* <!-- page-type1-list official --> */}
-      <div className="page-type1-list-area activity-list mode-official">
+      <div className="page-type1-list-area activity-list mode-official" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
         <div className="container">
           <div className="page-type1-area-title" id="grouplist-bolck1">
             INJON主辦活動
@@ -222,10 +222,10 @@ const GroupList = () => {
       </div>
       {/* <!-- page-type1-intro --> */}
       <div className="page-group-intro-area container">
-        <div className=" group-list-img-1">
+        <div className=" group-list-img-1" data-aos="flip-right" data-aos-easing="ease-in" data-aos-duration="1500">
           <img src={groupListImg1} alt="group-list-img-1" className="img-fluid object-cover w-100" />
         </div>
-        <div className="page-group-intro-content">
+        <div className="page-group-intro-content" data-aos="flip-left" data-aos-easing="ease-in" data-aos-duration="1500">
           <div className="page-group-intro-text">
             <div>INJON總能陪伴在您生活中的每一個時刻：從威士忌、葡萄酒、清酒再到啤酒，有INJON的每個場合都將更美好。</div>
           </div>
@@ -238,7 +238,7 @@ const GroupList = () => {
         <div className="bg-square"></div>
         {/* <!-- page-type1-list --> */}
         <div className="container">
-          <div className="page-type1-list-area activity-list mode-user py-4">
+          <div className="page-type1-list-area activity-list mode-user py-4" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
             <div className="page-type1-area-title" id="grouplist-bolck2">
               私人開團活動
             </div>
@@ -246,7 +246,7 @@ const GroupList = () => {
               <EmptyImage discText="無私人活動" />
             ) : (
               <>
-                <div className="page-type1-list-wraper">
+                <div className="page-type1-list-wraper" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
                   <div className="page-type1-list-title pc-view">
                     <div>活動名稱</div>
                     <div>活動時間</div>
@@ -283,10 +283,10 @@ const GroupList = () => {
             )}
           </div>
           <div className="user-add-group-area">
-            <div className="group-list-img-3 mb-5 mb-md-0">
+            <div className="group-list-img-3 mb-5 mb-md-0" data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000">
               <img src={groupListImg3} className="img-fluid object-cover w-50" alt="group-list-img-3" />
             </div>
-            <div className="user-add-group-contents ">
+            <div className="user-add-group-contents " data-aos="fade-right" data-aos-easing="ease-in" data-aos-duration="1000">
               <div className="user-add-group-content" id="grouplist-bolck3">
                 <div className="page-type1-area-title m-view">我要開團</div>
                 <div className="user-add-group-content-text">

@@ -20,6 +20,9 @@ import { userState } from '../../../App';
 
 const GroupDetail = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // header 資料
   const page1HeaderInfo = {
     titleEn: 'details',
@@ -110,7 +113,7 @@ const GroupDetail = () => {
   return (
     <>
       <FePage1Header titleEn={titleEn} titleCn={titleCn} menuList={menuList} imgs={imgs} pageSelector={pageSelector} />
-      <div className="group-detail-info-wraper">
+      <div className="group-detail-info-wraper" data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000">
         <div className="container">
           <div className="page-type1-area-title" id="grouplist-bolck1">
             活動詳細內容

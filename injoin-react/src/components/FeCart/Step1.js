@@ -109,7 +109,7 @@ const Step1 = (props) => {
     };
     try {
       setAns(ans);
-      console.log('送出訂單', ans);
+      // console.log('送出訂單', ans);
     } catch (e) {
       console.error(e);
     }
@@ -131,7 +131,7 @@ const Step1 = (props) => {
                   <span>Your shopping bag</span>
                 </div>
 
-                {arr.length == 0 ? <div className="cart-step1-noprd-text">歡迎選購商品</div> : <></>}
+                {productsInOrder.length === 0 ? <div className="cart-step1-noprd-text">歡迎選購商品</div> : <></>}
 
                 {/* 商品迴圈 */}
 

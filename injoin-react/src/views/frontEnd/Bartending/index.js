@@ -235,6 +235,9 @@ const Bartending = () => {
     }
   }, [category]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   //console.log('a', barted);
   return (
     <>
@@ -297,7 +300,7 @@ const Bartending = () => {
             </div>
             {/* 搜尋欄 */}
             <form className="Bartending-search-form d-flex mx-0">
-              <Search placeholder="input search text" allowClear enterButton="搜尋" onSearch={search} />
+              <Search placeholder="請輸入關鍵字" size="large" allowClear enterButton="搜尋" onSearch={search} />
             </form>
           </div>
           {pagination.total === 0 ? (
@@ -309,7 +312,11 @@ const Bartending = () => {
               <div className=" Bartending-card-all row row-cols-2 row-cols-md-4 gx-2">
                 {barted.map((v, i) => {
                   // console.log(v);
-                  return <BartendingCard key={v.id} data={v} isbartdLike={v.isLike} />;
+                  return (
+                    <div key={v.id} data-aos="fade-up" data-aos-easing="ease-in" data-aos-duration="1000" className="px-1 px-md-2">
+                      <BartendingCard key={v.id} data={v} isbartdLike={v.isLike} />
+                    </div>
+                  );
                 })}
               </div>
               <FePagination pagination={pagination} setPage={setPage} />

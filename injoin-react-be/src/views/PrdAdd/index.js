@@ -156,8 +156,8 @@ const PrdAdd = () => {
       if (values.cateS) {
         formData.append('cate_s', values.cateS);
       }
-      if (values.mater) {
-        formData.append('mater', values.mater);
+      if (values.prdMater) {
+        formData.append('mater', values.prdMater);
       }
       if (values.prdImg) {
         for (let i = 0; i < values.prdImg.length; i++) {

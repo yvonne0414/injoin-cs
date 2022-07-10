@@ -1,0 +1,92 @@
+@import '../../assets/scss/_variable.scss';
+.logisticsState-btn,
+.fun-btn {
+  color: white;
+  border-bottom: 1px solid transparent;
+  border-radius: 0;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  &:hover,
+  &.active {
+    color: $color-font-gold;
+    border-bottom: 1px solid #fff;
+  }
+}
+.be-orderlist-area {
+  width: 100%;
+  > div {
+    display: flex;
+    flex-flow: column;
+  }
+}
+@media screen and (min-width: 768px) {
+  .be-orderlist-area {
+    > div {
+      flex-flow: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: $space-2 $space-3;
+      gap: $space-2;
+      > div {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        gap: $space-3;
+        &:first-child {
+          width: 5%;
+        }
+        &:nth-child(2) {
+          width: 30%;
+        }
+        &:nth-child(3) {
+          width: 10%;
+        }
+        &:nth-child(6) {
+          width: 15%;
+        }
+        &:nth-child(4) {
+          justify-content: flex-end;
+        }
+        &:nth-child(4),
+        &:nth-child(5),
+        &:nth-child(7) {
+          width: 10%;
+        }
+        &:nth-child(7) {
+          justify-content: flex-end;
+          svg:hover {
+            fill: $color-font-gold;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    .prdlist-title {
+      border-top: 2px #ffdb96 solid;
+      border-bottom: 2px #ffdb96 solid;
+      color: #333;
+      background-color: #ffdb96;
+      font-family: $font-family-cn-main;
+    }
+    .prdlist-content {
+      border-bottom: 1px #333 solid;
+      &:hover {
+        background-color: #ffda962c;
+      }
+      &:nth-child(2n + 1) {
+        background-color: $color-bg-light;
+        &:hover {
+          background-color: #ffda962c;
+        }
+      }
+      .prd-img {
+        min-height: 5rem;
+        img {
+          max-width: 5rem;
+          max-height: 5rem;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}

@@ -12,6 +12,7 @@ import CouponList from './views/CouponList';
 import CouponAdd from './views/CouponAdd';
 import GroupList from './views/GroupList';
 import GroupAdd from './views/GroupAdd';
+import OrderList from './views/OrderList';
 
 const { Content } = Layout;
 
@@ -42,6 +43,7 @@ function App() {
               <Route path="/coupon" exact element={<CouponAdd />} />
               <Route path="/grouplist" exact element={<GroupList />} />
               <Route path="/group" exact element={<GroupAdd />} />
+              <Route path="/orderlist" exact element={<OrderList />} />
             </Routes>
           </Content>
         </Layout>

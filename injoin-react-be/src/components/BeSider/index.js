@@ -32,9 +32,9 @@ const items = [
     </Link>
   ),
   getItem(
-    <Link to="/">訂單管理</Link>,
+    <Link to="/orderlist">訂單管理</Link>,
     '3',
-    <Link to="/">
+    <Link to="/orderlist">
       <ProfileOutlined />
     </Link>
   ),

@@ -53,7 +53,19 @@ a:hover {
 .ant-back-top-content {
   background-color: #6e686873;
 }
-
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: $color-font-gold;
+  a {
+    color: #222;
+  }
+  svg {
+    fill: #222;
+  }
+}
+.ant-pagination-prev:hover .ant-pagination-item-link,
+.ant-pagination-next:hover .ant-pagination-item-link {
+  color: $color-font-gold;
+}
 /* ===== select樣式 ===== */
 select {
   background: transparent;

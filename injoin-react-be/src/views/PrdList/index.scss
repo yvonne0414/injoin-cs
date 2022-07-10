@@ -44,15 +44,22 @@
       }
     }
     .prdlist-title {
-      border-bottom: 2px #333 solid;
-      border-top: 2px #333 solid;
+      border-top: 2px #ffdb96 solid;
+      border-bottom: 2px #ffdb96 solid;
+      color: #333;
+      background-color: #ffdb96;
       font-family: $font-family-cn-main;
-      background-color: #332c22;
     }
     .prdlist-content {
       border-bottom: 1px #333 solid;
+      &:hover {
+        background-color: #ffda962c;
+      }
       &:nth-child(2n + 1) {
         background-color: $color-bg-light;
+        &:hover {
+          background-color: #ffda962c;
+        }
       }
       .prd-img {
         min-height: 5rem;

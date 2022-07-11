@@ -1,7 +1,7 @@
 import './index.scss';
 import { Breadcrumb, Carousel, Rate } from 'antd';
 import { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { userState } from '../../../App';
@@ -180,7 +180,9 @@ const BartendingDetail = () => {
               <Breadcrumb.Separator />
               <Breadcrumb.Item href="">威士忌</Breadcrumb.Item>
               <Breadcrumb.Separator /> */}
-              <Breadcrumb.Item href="/bartending">調酒酒譜</Breadcrumb.Item>
+              <Breadcrumb.Item>
+                <Link to={'/bartending'}>調酒酒譜</Link>
+              </Breadcrumb.Item>
               <Breadcrumb.Separator />
               <Breadcrumb.Item>{barPrdDetail.name}</Breadcrumb.Item>
             </Breadcrumb>

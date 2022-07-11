@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 
 const FePage2Header = (props) => {
   const [barNav, setBarNav] = useState(-1);
-  const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs, setCateL, category, setCateM, setCateS, setSearchWord } = props;
+  const { isProduct, sectionBg, subTitle, majorTitle, prdImg, navs, setCateL, category, setCateM, setCateS, setPage } = props;
   return (
     <section>
       <div className="section-title">
@@ -51,13 +51,14 @@ const FePage2Header = (props) => {
           <ul className="list-unstyled d-flex  justify-content-start mb-0 nav-justified prd-nav-ul">
             {navs.map((nav) => {
               return (
-                <li className="prd-nav-li">
+                <li className="prd-nav-li" key={nav.cateL}>
                   <span
                     className={`nav-link prd-nav-a ${category === nav.cateL && 'active'}`}
                     onClick={() => {
                       setCateL(nav.cateL);
                       setCateM(0);
                       setCateS(0);
+                      setPage(1);
                     }}
                   >
                     {/* <FaWineBottle className=" prd-nav-icon" /> */}

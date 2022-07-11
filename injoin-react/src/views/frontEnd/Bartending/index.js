@@ -252,6 +252,7 @@ const Bartending = () => {
         category={category}
         setCateM={setBarCateL}
         setCateS={setBarCateS}
+        setPage={setPage}
       />
       <div className="Bartending-content pb-5 mb-5">
         <div className="container">

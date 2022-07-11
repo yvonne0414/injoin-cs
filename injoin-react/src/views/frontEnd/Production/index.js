@@ -157,6 +157,7 @@ const Production = () => {
         category={category}
         setCateM={setCateM}
         setCateS={setCateS}
+        setPage={setPage}
       />
       <div className="prd-content mb-5">
         <div className="container">

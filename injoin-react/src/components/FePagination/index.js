@@ -1,17 +1,21 @@
 const FePagination = (props) => {
-  const { pagination, setPage } = props;
+  const { pagination, setPage, toTop } = props;
   const { page, lastPage } = pagination;
 
   // pagination{
   //   page:1,
   //   lastpage:1,
   // }
+  // console.log(toTop);
   return (
     <div className="page-type1-pagination">
       <button
         className={`page-type1-pagination-btn prev  ${Number(page) !== 1 && 'active'}`}
         onClick={() => {
           if (page <= 1) return;
+          if (toTop) {
+            window.scrollTo(0, 0);
+          }
           setPage(Number(page) - 1);
         }}
       >
@@ -41,6 +45,9 @@ const FePagination = (props) => {
           // console.log('page', page);
           // console.log('lastPage', lastPage);
           if (page >= lastPage) return;
+          if (toTop) {
+            window.scrollTo(0, 0);
+          }
           setPage(Number(page) + 1);
         }}
       >

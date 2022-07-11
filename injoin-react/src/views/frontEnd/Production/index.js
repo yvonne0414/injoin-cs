@@ -255,7 +255,7 @@ const Production = () => {
                   );
                 })}
               </div>
-              <FePagination pagination={pagination} setPage={setPage} />
+              <FePagination pagination={pagination} setPage={setPage} toTop={true} />
             </>
           )}
         </div>

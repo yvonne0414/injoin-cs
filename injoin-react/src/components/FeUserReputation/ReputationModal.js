@@ -126,59 +126,62 @@ const ReputationModal = (props) => {
       </div>
     </div>
   );
+
   return (
     <Form layout="vertical" disabled={isReview} initialValues={{ rate: 5 }} onFinish={onFinish}>
       <div className="reputation-pop ">
         <div className="container">
-          <div className="reputation-pop-content">
-            <div className="reputation-pop-img">
-              <img src={`${BE_IMAGE_URL}/production/${data.main_img}`} alt={data.name} />
-            </div>
-            <div className="reputation-pop-prd">
-              <div className="reputation-pop-tittle">{data.name}</div>
+          <Spin spinning={loading} tip="Loading...">
+            <div className="reputation-pop-content">
+              <div className="reputation-pop-img">
+                <img src={`${BE_IMAGE_URL}/production/${data.main_img}`} alt={data.name} />
+              </div>
+              <div className="reputation-pop-prd">
+                <div className="reputation-pop-tittle">{data.name}</div>
+                {!isReview && (
+                  <div className="reputation-pop-star">
+                    <Form.Item name="rate">
+                      <Rate allowHalf allowClear={false} />
+                    </Form.Item>
+                  </div>
+                )}
+              </div>
+
               {!isReview && (
-                <div className="reputation-pop-star">
-                  <Form.Item name="rate">
-                    <Rate allowHalf allowClear={false} />
-                  </Form.Item>
-                </div>
-              )}
-            </div>
-
-            {!isReview && (
-              <>
-                <div className="reputation-pop-commit">
-                  {/* <span>評論</span>
+                <>
+                  <div className="reputation-pop-commit">
+                    {/* <span>評論</span>
                 <textarea cols="30"></textarea> */}
-                  <Form.Item name="commit" label="評論">
-                    <Input.TextArea className="reputation-pop-commit-context" />
-                  </Form.Item>
-                </div>
-                <div className="reputation-pop-img w-100">
-                  <Form.Item name="reviewImg" valuePropName="fileList" getValueFromEvent={normFile}>
-                    <Upload customRequest={dummyRequest} listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
-                      {fileList.length >= 3 ? null : uploadButton}
-                    </Upload>
-                  </Form.Item>
-                  <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
-                    <img
-                      alt="example"
-                      style={{
-                        width: '100%',
-                      }}
-                      src={previewImage}
-                    />
-                  </Modal>
-                </div>
-              </>
-            )}
+                    <Form.Item name="commit" label="評論">
+                      <Input.TextArea className="reputation-pop-commit-context" />
+                    </Form.Item>
+                  </div>
+                  <div className="reputation-pop-img w-100">
+                    <Form.Item name="reviewImg" valuePropName="fileList" getValueFromEvent={normFile}>
+                      <Upload customRequest={dummyRequest} listType="picture-card" fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
+                        {fileList.length >= 3 ? null : uploadButton}
+                      </Upload>
+                    </Form.Item>
+                    <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+                      <img
+                        alt="example"
+                        style={{
+                          width: '100%',
+                        }}
+                        src={previewImage}
+                      />
+                    </Modal>
+                  </div>
+                </>
+              )}
 
-            <Form.Item className="mx-auto mb-0">
-              <Button type="primary" htmlType="submit" className="btn btn-injoin-outline py-0 text-white">
-                {!isReview ? '評價' : '已評價'}
-              </Button>
-            </Form.Item>
-          </div>
+              <Form.Item className="mx-auto mb-0">
+                <Button type="primary" htmlType="submit" className="btn btn-injoin-outline py-0 text-white">
+                  {!isReview ? '評價' : '已評價'}
+                </Button>
+              </Form.Item>
+            </div>
+          </Spin>
         </div>
       </div>
     </Form>

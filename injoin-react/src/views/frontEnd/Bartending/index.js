@@ -130,6 +130,7 @@ const Bartending = () => {
 
   const search = (searchvalue) => {
     setSearchWord(searchvalue);
+    setPage(1);
   };
 
   const [barCateLList, setBrCateLList] = useState([]);

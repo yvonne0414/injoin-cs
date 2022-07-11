@@ -143,6 +143,7 @@ const Production = () => {
   // console.log('a', searchWord);
   const search = (searchvalue) => {
     setSearchWord(searchvalue);
+    setPage(1);
   };
 
   useEffect(() => {

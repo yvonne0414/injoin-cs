@@ -14,7 +14,10 @@ const FePagination = (props) => {
         onClick={() => {
           if (page <= 1) return;
           if (toTop) {
-            window.scrollTo(0, 0);
+            window.scrollTo({
+              top: 900,
+              behavior: 'smooth',
+            });
           }
           setPage(Number(page) - 1);
         }}
@@ -46,7 +49,10 @@ const FePagination = (props) => {
           // console.log('lastPage', lastPage);
           if (page >= lastPage) return;
           if (toTop) {
-            window.scrollTo(0, 0);
+            window.scrollTo({
+              top: 900,
+              behavior: 'smooth',
+            });
           }
           setPage(Number(page) + 1);
         }}

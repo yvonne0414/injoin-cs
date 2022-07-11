@@ -17,7 +17,7 @@ const ReputationList = (props) => {
       <div className="reputation-list-name">{data.name}</div>
       <div className="reputation-list-commit">
         <div>
-          <Rate value={data.rating} allowHalf />
+          <Rate value={data.rating} allowHalf disabled />
           <div>{data.content}</div>
         </div>
       </div>

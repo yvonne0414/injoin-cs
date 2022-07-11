@@ -144,7 +144,7 @@ const BartendingDetail = () => {
           userId: memberInfo.userId,
         },
       });
-      console.log(response.data);
+      // console.log(response.data);
       setBarPrdDetail(response.data[0]);
       // console.log('a', response.data);
       // console.log('g', response.data[0]);
@@ -163,7 +163,7 @@ const BartendingDetail = () => {
 
     getbarPrdDetail();
   }, []);
-  console.log('v', barPrdDetail);
+  // console.log('v', barPrdDetail);
   // console.log('u', barPrdDetail[0]);
   // console.log('o', barPrdDetail.name);
   // console.log('dd', [material]);

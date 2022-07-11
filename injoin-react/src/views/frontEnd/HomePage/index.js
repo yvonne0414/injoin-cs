@@ -11,7 +11,7 @@ import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AOS from 'aos';
-import 'aos/dist/aos.css';
+// import 'aos/dist/aos.css';
 
 const HomePage = () => {
   const settings = {
@@ -53,8 +53,8 @@ const HomePage = () => {
     };
     gethotbar();
     // AOS
-    AOS.init();
-    AOS.refresh();
+    // AOS.init();
+    // AOS.refresh();
   }, []);
 
   return (
@@ -76,7 +76,7 @@ const HomePage = () => {
             <h3 className="font-en-title">Sorrow tomorrow。</h3>
             <p className="font-cn-title">放鬆交友，飲酒生活</p>
             <Link to="/account/user" className="s1-button button-style my-2">
-              加入我們
+              Join Us
             </Link>
           </div>
         </section>
@@ -95,7 +95,7 @@ const HomePage = () => {
               Read More
             </Link>
           </div>
-          <div data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000" className="position-absolut right-0 w-100 homepage-sec2-img-area">
+          <div data-aos="fade-left" data-aos-easing="ease-in" data-aos-duration="1000" className="position-absolut right-0 homepage-sec2-img-area">
             <div className="s2-img1">
               <img src={`${FE_IMAGE_URL}/homepage/s2-img1.jpg`} alt="" className="img-fluid w-100" />
             </div>

@@ -21,7 +21,7 @@ const LikePrdCard = (props) => {
   };
 
   let handleCart = () => {
-    message.success(`將 ${data.likePrdName} 加到購物車`);
+    message.success(`將 ${data.name} 加到購物車`);
     // console.log(data.id);
     // ==========首先把要用的資料處理好
     let obj = {};

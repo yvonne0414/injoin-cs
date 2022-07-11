@@ -97,8 +97,8 @@ const UserVip = () => {
               </div>
               <div className="vip-part">在成為 Injon 會員後，一年內累積以下實際消費金額與有效交易次數，可獲得相應的會員身份一年：</div>
               <div className="vip-part">黃金會員：累積消費總金額未達 NT$ 5,000。</div>
-              <div className="vip-part">鉑金會員：累積消費總金額達 NT$ 5,000，且交易次數達 2 次以上。</div>
-              <div className="vip-part">鑽石會員：累積消費總金額達 NT$ 7,000，且交易次數達 4 次以上。</div>
+              <div className="vip-part">鉑金會員：累積消費總金額達 NT$ 5,000。</div>
+              <div className="vip-part">鑽石會員：累積消費總金額達 NT$ 7,000。</div>
               <div className="vip-part">會員的身份等級、可享優惠、累積消費總金額都可以在網站的會員中心會員中心進行查詢。</div>
             </div>
           </div>

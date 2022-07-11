@@ -13,6 +13,7 @@ import Step1Prd from './Step1Prd';
 const Step1 = (props) => {
   const { Option } = Select;
   const { stepNum, setStepNum, setAns, userId } = props;
+  const [allCoupon, setAllCoupon] = useState([]);
   const [coupon, setCoupon] = useState([]);
   const optsRef = useRef([]);
 
@@ -25,7 +26,7 @@ const Step1 = (props) => {
   const createCart = async () => {
     let cart = JSON.parse(localStorage.getItem('cart'));
 
-    console.log('cart', cart);
+    // console.log('cart', cart);
     let tempCartArray = [];
     // cart.length
     for (let idx = 0; idx < cart.length; idx++) {
@@ -48,11 +49,22 @@ const Step1 = (props) => {
     createCart();
     let getUserCoupon = async () => {
       let res = await axios.get(`${API_URL}/cart/getUserCoupon`, { params: { userId } });
-      console.log('coupon', res.data);
+      // console.log('coupon', res.data);
+      setAllCoupon(res.data);
       setCoupon(res.data);
     };
     getUserCoupon();
   }, []);
+
+  useEffect(() => {
+    setCoupon(
+      allCoupon.filter((item, i) => {
+        // console.log(`total`, totalPrice());
+        // console.log(`coupon ${i}`, item.rule_min);
+        return totalPrice() > item.rule_min;
+      })
+    );
+  }, [allCoupon, productsInOrder]);
   // chennnnn------
   // console.log('productsInOrder', productsInOrder);
   const [couponId, setCouponId] = useState(0);
@@ -74,6 +86,8 @@ const Step1 = (props) => {
       result += productsInOrder[i].cartprdCount * productsInOrder[i].cartprdPrice;
       // console.log(result);
     }
+    console.log('result', result);
+    // setTotal(result);
     return result;
   };
   let arr = [];

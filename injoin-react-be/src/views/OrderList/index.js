@@ -16,6 +16,7 @@ const OrderList = () => {
   const [pagination, setPagination] = useState([]);
   const [data, setData] = useState([]);
   const [logisticsState, setLogisticsState] = useState(1);
+  const [updState, setUpdState] = useState(1);
   useEffect(() => {
     let getPrdList = async () => {
       let res = await axios.get(`${API_URL}/order/be/list`, { params: { page, logisticsState } });
@@ -23,15 +24,30 @@ const OrderList = () => {
       setPagination(res.data.pagination);
     };
     getPrdList();
-  }, [page, logisticsState]);
+  }, [page, logisticsState, updState]);
 
-  // 將訂單變為已完成
-  async function toArrive(orderId) {
-    let res = await axios.post(`${API_URL}/order/be/toFinish`, { orderId });
-    if (res.data.code === 0) {
-      message.success(`${orderId} 已送達`);
-    } else {
-      message.warning(`${orderId} 未送達`);
+  // 將訂單變為已出貨/已送達
+  async function toArrive(logisticsStateTo, orderId) {
+    let res = await axios.post(`${API_URL}/order/be/toFinish`, { logisticsState: logisticsStateTo, orderId });
+    switch (logisticsStateTo) {
+      case 2:
+        setUpdState(updState + 1);
+        if (res.data.code === 0) {
+          message.success(`${orderId} 已送達`);
+        } else {
+          message.warning(`${orderId} 未送達`);
+        }
+        break;
+      case 3:
+        setUpdState(updState + 1);
+        if (res.data.code === 0) {
+          message.success(`${orderId} 已送達`);
+        } else {
+          message.warning(`${orderId} 未送達`);
+        }
+        break;
+      default:
+        message.warning(`${orderId} 操作失敗`);
     }
   }
 
@@ -96,16 +112,31 @@ const OrderList = () => {
                 <div>
                   <FaEye />
                 </div>
-                <div>
-                  <button
-                    className={`btn-none fun-btn`}
-                    onClick={() => {
-                      toArrive(order.id);
-                    }}
-                  >
-                    送達訂單
-                  </button>
-                </div>
+                {logisticsState === 1 ? (
+                  <div>
+                    <button
+                      className={`btn-none fun-btn`}
+                      onClick={() => {
+                        toArrive(2, order.id);
+                      }}
+                    >
+                      出貨
+                    </button>
+                  </div>
+                ) : logisticsState === 2 ? (
+                  <div>
+                    <button
+                      className={`btn-none fun-btn`}
+                      onClick={() => {
+                        toArrive(3, order.id);
+                      }}
+                    >
+                      送達
+                    </button>
+                  </div>
+                ) : (
+                  ''
+                )}
               </div>
             </div>
           );

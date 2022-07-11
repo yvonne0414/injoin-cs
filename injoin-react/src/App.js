@@ -92,7 +92,7 @@ function App() {
 
   useEffect(() => {
     AOS.init();
-    // AOS.refresh();
+    AOS.refresh();
   }, []);
 
   return (
@@ -131,9 +131,6 @@ function App() {
             <Route path="/account/reputation" exact element={<UserReputation />} />
             <Route path="/account/group" exact element={<UserGroup />} />
             <Route path="/resetPassword/:mail" exact element={<ForgetPage />} />
-
-            
-
 
             {/* 訂單 */}
             <Route path="/account/order" exact element={<OrderList />} />

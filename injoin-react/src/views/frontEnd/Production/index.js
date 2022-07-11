@@ -34,6 +34,13 @@ const Production = () => {
     userId: loginInfo.member ? loginInfo.member.id : -1,
   });
 
+  useEffect(() => {
+    if (loginInfo.member) {
+      // console.log('useEffect-loginInfo', loginInfo);
+      setMemberInfo({ userId: loginInfo.member.id });
+    }
+  }, [loginInfo]);
+
   const page2HeaderInfo = {
     isProduct: true,
     sectionBg: 'prolist_background.png',
@@ -44,7 +51,7 @@ const Production = () => {
     },
     majorTitle: {
       contents: ['About Don Julio', 'Blanco Tequila'],
-      href: '',
+      href: '/production/21',
     },
     prdImg: 'Flagship_product.png',
     navs: [

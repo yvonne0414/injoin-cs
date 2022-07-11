@@ -40,9 +40,9 @@ const FePage2Header = (props) => {
           })}
           {/* <span>Blanco Tequila</span>
           <br /> */}
-          <a className="title-major-btn btn btn-outline" href="/">
+          <Link className="title-major-btn btn btn-outline" to={majorTitle.href}>
             Details
-          </a>
+          </Link>
         </div>
         <div className="title-image">
           <img src={`${FE_IMAGE_URL}/page2header/${prdImg}`} alt="" />

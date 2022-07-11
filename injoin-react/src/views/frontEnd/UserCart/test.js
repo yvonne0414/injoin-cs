@@ -28,10 +28,6 @@ import faveriteImg from '../../../assets/images/fe/faverite/faverite-product-img
 import { BsTrashFill } from 'react-icons/bs';
 
 const UserCart = () => {
-  // 檢查有沒有打勾
-
-  const [isChecked, setIsChecked] = useState(false);
-
   // 檢查登入
   const [isLogin, setisLogin] = useState('');
   const loginInfo = useContext(userState);
@@ -50,6 +46,8 @@ const UserCart = () => {
   }, [loginInfo]);
 
   let userId = memberInfo.userId;
+
+  let [userInfo, setUserInfo] = useState([]);
 
   const [ans, setAns] = useState([]);
   const page1HeaderInfo = {
@@ -118,7 +116,15 @@ const UserCart = () => {
     ],
   };
 
-  // chennnn
+  // memberInfo
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const getuserInfo = async () => {
+      let userInfoArr = await axios.get(`${API_URL}/cart/userinfo`, { params: { userId } });
+      setUserInfo(userInfoArr.data.data[0]);
+    };
+    getuserInfo();
+  }, [userId]);
 
   //購物車商品陣列
 
@@ -222,28 +228,28 @@ const UserCart = () => {
   };
 
   let [orederId, setOrderId] = useState('');
-  const handleSubmit = async (value) => {
-    // console.log('送出訂單', ans);
-    try {
-      if (isChecked == false) {
-        message.error('請詳閱同意接受服務條款和隱私權政策');
-        return;
-      }
+  // const handleSubmit = async (value) => {
+  //   // console.log('送出訂單', ans);
+  //   try {
+  //     if (isChecked == false) {
+  //       message.error('請詳閱同意接受服務條款和隱私權政策');
+  //       return;
+  //     }
 
-      setStepNum(stepNum + 1);
-      // alert('送出訂單');
-      console.log('送出訂單', ans);
-      let res = await axios.post(`${API_URL}/cart`, ans);
-      // console.log(res);
-      message.success('完成訂單');
-      setOrderId(res.data.orderId);
-      localStorage.removeItem('cart');
-    } catch (e) {
-      console.error(e);
-    }
-    // console.log(ans);
-    // console.log('handleSubmit');
-  };
+  //     setStepNum(stepNum + 1);
+  //     // alert('送出訂單');
+  //     console.log('送出訂單', ans);
+  //     let res = await axios.post(`${API_URL}/cart`, ans);
+  //     // console.log(ans);
+  //     message.success('完成訂單');
+  //     setOrderId(res.data.orderId);
+  //     localStorage.removeItem('cart');
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  //   // console.log(ans);
+  //   // console.log('handleSubmit');
+  // };
 
   //相關商品陣列
   const cardArr = [
@@ -337,24 +343,24 @@ const UserCart = () => {
               {stepNum === 1 ? (
                 <Step1 stepNum={stepNum} setStepNum={setStepNum} setAns={setAns} userId={userId} />
               ) : stepNum === 2 ? (
-                <Step2 stepNum={stepNum} setStepNum={setStepNum} handleSubmit={handleSubmit} cartlist={ans.cartList} setIsChecked={setIsChecked} setAns={setAns} ans={ans} />
+                <Step2 stepNum={stepNum} setStepNum={setStepNum} cartlist={ans.cartList} setAns={setAns} ans={ans} setOrderId={setOrderId} userInfo={userInfo} />
               ) : (
                 <Step3 orederId={orederId} />
               )}
+              <Link to="/production" className="back-page btn btn-none mt-3">
+                <div>
+                  <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
+                    />
+                  </svg>
+                </div>
+                <span className="ms-3 ff-cn-main">繼續選購</span>
+              </Link>
               {stepNum === 0 && (
                 <>
-                  <Link to="/production" className="back-page btn btn-none mt-3">
-                    <div>
-                      <svg width="37" height="24" viewBox="0 0 37 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          fillRule="evenodd"
-                          clipRule="evenodd"
-                          d="M0.935198 13.0565C0.351696 12.4684 0.355391 11.5187 0.943452 10.9352L10.5265 1.42643C11.1145 0.842929 12.0643 0.846624 12.6478 1.43469C13.2313 2.02275 13.2276 2.97249 12.6395 3.55599L5.62711 10.514L36.4814 10.6341L36.4698 13.6341L5.61543 13.514L12.5735 20.5264C13.157 21.1145 13.1533 22.0642 12.5652 22.6477C11.9772 23.2312 11.0274 23.2275 10.4439 22.6395L0.935198 13.0565Z"
-                        />
-                      </svg>
-                    </div>
-                    <span className="ms-3 ff-cn-main">繼續選購</span>
-                  </Link>
                   {/* the same kind  product-------------------------------------*/}
                   <div className="prd-detail-evaluation-bg mt-5">
                     <div className="container mb-4">

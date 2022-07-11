@@ -89,9 +89,10 @@ const UserReputation = () => {
 
   useEffect(() => {
     if (loginInfo.member) {
+      // console.log('useEffect-loginInfo', loginInfo);
       setMemberInfo({ userId: loginInfo.member.id });
     }
-  }, [loginInfo.islogin]);
+  }, [loginInfo]);
 
   let [sendCommit, setCommit] = useState(0);
 

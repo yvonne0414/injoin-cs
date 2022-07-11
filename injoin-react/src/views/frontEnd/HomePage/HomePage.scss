@@ -216,6 +216,7 @@
   }
   .homepage-sec2-img-area {
     min-height: 90vh;
+    width: 100%;
   }
   .s2-img1 {
     position: absolute;
@@ -513,6 +514,8 @@
     }
     .homepage-sec2-img-area {
       min-height: 70vh;
+      width: 50%;
+      margin-left: auto;
     }
     .section-title-en {
       top: -9rem;
@@ -528,7 +531,7 @@
       left: auto;
       right: 3rem;
       top: 5rem;
-      width: 45%;
+      width: 90%;
       z-index: -1;
       img {
         object-fit: cover;
@@ -539,8 +542,8 @@
     .s2-img2 {
       position: absolute;
       bottom: -3rem;
-      right: 40%;
-      width: 25%;
+      right: 80%;
+      width: 50%;
       z-index: -2;
       img {
         object-fit: cover;

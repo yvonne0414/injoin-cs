@@ -2,7 +2,7 @@
 import './_index.scss';
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Form, Input, Select, Checkbox } from 'antd';
+import { Button, Form, Input, Select, Checkbox, message } from 'antd';
 import axios from 'axios';
 import { API_URL, BE_IMAGE_URL } from '../../utils/config';
 
@@ -12,7 +12,7 @@ import faveriteImg from '../../assets/images/fe/faverite/faverite-product-img-1.
 
 const Step2 = (props) => {
   const { Option } = Select;
-  const { stepNum, setStepNum, handleSubmit, cartlist, setIsChecked, setAns, ans } = props;
+  const { stepNum, setStepNum, cartlist, setAns, ans, userInfo, setOrderId } = props;
   const onFinish = (values) => {
     // console.log(values);
   };
@@ -53,6 +53,35 @@ const Step2 = (props) => {
   // 訂購人資訊
   const [form] = Form.useForm();
   const ordererValue = Form.useWatch('user', form);
+
+  console.log('userInfo', userInfo);
+
+  // 檢查有沒有打勾
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleSubmit = async (lastOrder) => {
+    // console.log('送出訂單', ans);
+    try {
+      if (isChecked == false) {
+        message.error('請詳閱同意接受服務條款和隱私權政策');
+        return;
+      }
+
+      setStepNum(stepNum + 1);
+      // alert('送出訂單');
+      console.log('送出訂單', lastOrder);
+      let res = await axios.post(`${API_URL}/cart`, lastOrder);
+      // console.log(ans);
+      message.success('完成訂單');
+      setOrderId(res.data.orderId);
+      localStorage.removeItem('cart');
+    } catch (e) {
+      console.error(e);
+    }
+    // console.log(ans);
+    // console.log('handleSubmit');
+  };
 
   return (
     <div className="position-relative  mt-4">
@@ -111,7 +140,7 @@ const Step2 = (props) => {
                 },
               ]}
             >
-              <Input defaultValue={userstate.member.name} />
+              <Input defaultValue={userInfo.name} />
             </Form.Item>
             <Form.Item
               name={['user', 'phone']}
@@ -122,7 +151,7 @@ const Step2 = (props) => {
                 },
               ]}
             >
-              <Input defaultValue={userstate.member.phone} />
+              <Input defaultValue={userInfo.phone} />
             </Form.Item>
             <Form.Item
               name={['user', 'email']}
@@ -135,7 +164,7 @@ const Step2 = (props) => {
                 },
               ]}
             >
-              <Input defaultValue={userstate.member.email} />
+              <Input defaultValue={userInfo.email} />
             </Form.Item>
 
             <Form.Item label="地址">
@@ -155,7 +184,7 @@ const Step2 = (props) => {
                       width: '22%',
                     }}
                     placeholder="請選擇縣市"
-                    defaultValue={userstate.member.address_country}
+                    defaultValue={userInfo.address_country}
                   >
                     {cities.map((city) => {
                       return (
@@ -172,7 +201,7 @@ const Step2 = (props) => {
                       width: '78%',
                     }}
                     placeholder="詳細地址"
-                    defaultValue={userstate.member.address_detail}
+                    defaultValue={userInfo.address_detail}
                   />
                 </Form.Item>
               </Input.Group>
@@ -290,16 +319,28 @@ const Step2 = (props) => {
         </button>
         <button
           onClick={async () => {
-            console.log(ordererValue);
-            await setAns({
+            // console.log('ordererValue', ordererValue);
+            // console.log('detail', {
+            //   ...ans,
+            //   orderer_name: ordererValue.name ? ordererValue.name : userInfo.name,
+            //   address_country: ordererValue.city ? ordererValue.city : userInfo.address_country,
+            //   address_detail: ordererValue.street ? ordererValue.street : userInfo.address_detail,
+            //   orderer_phone: ordererValue.phone ? ordererValue.phone : userInfo.phone,
+            //   orderer_email: ordererValue.email ? ordererValue.email : userInfo.email,
+            // });
+
+            let lastOrder = {
               ...ans,
-              orderer_name: ordererValue.name ? ordererValue.name : userstate.member.name,
-              address_country: ordererValue.city ? ordererValue.city : userstate.member.address_country,
-              address_detail: ordererValue.street ? ordererValue.street : userstate.member.address_detail,
-              orderer_phone: ordererValue.phone ? ordererValue.phone : userstate.member.phone,
-              orderer_email: ordererValue.email ? ordererValue.email : userstate.member.email,
-            });
-            handleSubmit();
+              orderer_name: ordererValue.name ? ordererValue.name : userInfo.name,
+              address_country: ordererValue.city ? ordererValue.city : userInfo.address_country,
+              address_detail: ordererValue.street ? ordererValue.street : userInfo.address_detail,
+              orderer_phone: ordererValue.phone ? ordererValue.phone : userInfo.phone,
+              orderer_email: ordererValue.email ? ordererValue.email : userInfo.email,
+            };
+            await setAns(lastOrder);
+            // console.log('訂單', ans);
+            handleSubmit(lastOrder);
+            return;
           }}
           className="btn btn-none injoin-btn-outline text-gold"
         >

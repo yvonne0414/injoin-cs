@@ -25,7 +25,7 @@ const Bartending = () => {
     },
     majorTitle: {
       contents: ['Have you hugged a', 'bartender today'],
-      href: '',
+      href: '/bartending/42',
     },
 
     navs: [
@@ -142,7 +142,7 @@ const Bartending = () => {
     setBrCateLList(response.data.data);
   };
   const handleCateSChange = async (value) => {
-    console.log(value);
+    // console.log(value);
     setBarCateL(value);
     setBarCateS(0);
     let response = await axios.get(`${API_URL}/bar/cateM`, { params: { cateL: value } });

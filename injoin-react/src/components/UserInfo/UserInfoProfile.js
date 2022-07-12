@@ -147,7 +147,7 @@ const UserInfoProfile = ({ cities }) => {
 
   const user = usermember.member;
   let memberGender = '1';
-  if (user.gender === 'M') {
+  if (user.gender === 'F') {
     memberGender = '2';
   } else {
     memberGender = '1';

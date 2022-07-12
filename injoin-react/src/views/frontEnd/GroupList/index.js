@@ -222,10 +222,10 @@ const GroupList = () => {
       </div>
       {/* <!-- page-type1-intro --> */}
       <div className="page-group-intro-area container">
-        <div className=" group-list-img-1" data-aos="flip-right" data-aos-easing="ease-in" data-aos-duration="1500">
+        <div className=" group-list-img-1" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="1500">
           <img src={groupListImg1} alt="group-list-img-1" className="img-fluid object-cover w-100" />
         </div>
-        <div className="page-group-intro-content" data-aos="flip-left" data-aos-easing="ease-in" data-aos-duration="1500">
+        <div className="page-group-intro-content" data-aos="zoom-in" data-aos-easing="ease-in" data-aos-duration="1500">
           <div className="page-group-intro-text">
             <div>INJON總能陪伴在您生活中的每一個時刻：從威士忌、葡萄酒、清酒再到啤酒，有INJON的每個場合都將更美好。</div>
           </div>

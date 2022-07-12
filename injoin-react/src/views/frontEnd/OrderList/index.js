@@ -226,7 +226,7 @@ const OrderList = () => {
                         setOrdersStatus(3);
                       }}
                     >
-                      已完成
+                      已送達
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -244,7 +244,7 @@ const OrderList = () => {
               </nav>
               <div className="nav-date d-flex justify-content-between ">
                 <div className="page-type1-area-title mb-3" id="grouplist-bolck1">
-                  {orderStatus === 1 ? '待出貨' : orderStatus === 2 ? '已出貨' : orderStatus === 3 ? '已完成' : '已取消'}
+                  {orderStatus === 1 ? '待出貨' : orderStatus === 2 ? '已出貨' : orderStatus === 3 ? '已送達' : '已取消'}
                 </div>
                 <div className="orderdate mb-4">
                   <RangePicker

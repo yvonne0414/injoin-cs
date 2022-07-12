@@ -49,6 +49,9 @@
     position: absolute;
     right: 0.25rem;
     bottom: 0.25rem;
+    svg {
+      fill: $color-like;
+    }
   }
 }
 @media screen and (min-width: 768px) {
@@ -63,6 +66,9 @@
     .heart-position {
       right: 1rem;
       bottom: 1rem;
+      svg {
+        font-size: 1.5rem;
+      }
     }
   }
   .Bartending-card-title {

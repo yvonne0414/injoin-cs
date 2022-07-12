@@ -7,26 +7,24 @@ const UserInfoTask = () => {
   const userstate = useContext(userState);
   // let vip_level =userstate.member.vip_level || 1 ;
   // console.log("task",vip_level);
-  const [UserInfoVipLevel,setUserInfoVipLevel ]= useState({
+  const [UserInfoVipLevel, setUserInfoVipLevel] = useState({
     vipLevel: 1,
     vipcount: 1,
     vipmoney: 5000,
-  })
+  });
 
+  // console.log('userstate',userstate);
 
-// console.log('userstate',userstate);
-  
-  useEffect(()=>{
-    let getUser= async()=>{
+  useEffect(() => {
+    let getUser = async () => {
       // console.log(userstate.member.id);
-      let res =await axios.get(`${API_URL}/auth/about?userid=${userstate.member.id}`)
+      let res = await axios.get(`${API_URL}/auth/about?userid=${userstate.member.id}`);
       // console.log(res.data[0].vip_level);
-      setUserInfoVipLevel({...UserInfoVipLevel,vipLevel:res.data[0].vip_level})
-    }
-    getUser()
-  
-  },[userstate.member])
- 
+      setUserInfoVipLevel({ ...UserInfoVipLevel, vipLevel: res.data[0].vip_level });
+    };
+    getUser();
+  }, [userstate.member]);
+
   return (
     <>
       <div className="page-type1-area-title" id="#">
@@ -56,7 +54,7 @@ const UserInfoTask = () => {
               <div className="levelcontextm">
                 達成任務可立即升級為鉑金會員，會員期限會延續至下一個年度
                 <hr />
-                達成條件：整年度累積實際消費達 NT$ 5,000，且交易次數達 2 次以上。
+                達成條件：整年度累積實際消費達 NT$ 5,000。
               </div>
             </div>
           </div>
@@ -70,7 +68,7 @@ const UserInfoTask = () => {
               <div className="levelcontextm">
                 達成任務可立即升級為鉑金會員，會員期限會延續至下一個年度
                 <hr />
-                達成條件：整年度累積實際消費達 NT$ 7000，且交易次數達 4 次以上。
+                達成條件：整年度累積實際消費達 NT$ 7000。
               </div>
             </div>
           </div>

@@ -214,7 +214,7 @@ const ProductionDetail = () => {
           // console.log('newArr',newArr);
           localStorage.setItem('cart', JSON.stringify(newArr));
           // alert(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`);
-          message.success(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`)
+          message.success(`已加入購物車`);
           return;
         } else {
           var newArr = [...oldCart, obj];
@@ -223,7 +223,7 @@ const ProductionDetail = () => {
     }
     // console.log('newArr',newArr);
     localStorage.setItem('cart', JSON.stringify(newArr));
-    message.success(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`)
+    message.success(`已加入購物車`);
     // alert(`已將 數量:${num}, 的 ${Number(prdId)} 加入購物車`);
     // console.log('handleAddCart');
   };

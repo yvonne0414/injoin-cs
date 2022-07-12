@@ -222,7 +222,24 @@ const Step2 = (props) => {
           </div>
           <Form name="nest-messages" onFinish={onFinish}>
             <Form.Item
-              name={['credit-card', 'check-num']}
+              name={['creditCard', 'holder']}
+              label="持卡人:"
+              rules={[
+                {
+                  required: true,
+                  message: '必填',
+                },
+              ]}
+            >
+              <Input
+                maxlength="3"
+                style={{
+                  width: '45%',
+                }}
+              />
+            </Form.Item>
+            <Form.Item
+              name={['creditCard', 'checkNum']}
               label="卡號:"
               rules={[
                 {
@@ -259,7 +276,7 @@ const Step2 = (props) => {
               />
             </Form.Item>
             <Form.Item
-              name={['credit-card', 'check-date']}
+              name={['creditCard', 'checkDate']}
               label="效期:"
               rules={[
                 {
@@ -284,7 +301,7 @@ const Step2 = (props) => {
               />
             </Form.Item>
             <Form.Item
-              name={['信用卡', '安全碼']}
+              name={['creditCard', 'CSC']}
               label="安全碼:"
               rules={[
                 {

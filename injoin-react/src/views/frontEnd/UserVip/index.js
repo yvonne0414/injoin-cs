@@ -92,10 +92,10 @@ const UserVip = () => {
             <div className="uservips2-title">會員分級標準</div>
             <div className="uservips2-content">
               <div className="vip-part">
-                Injon 會員分為三個級別，以每年年初(1月1日)作為年度結算日基準，並以結算日前一年內，會員在 Injon
+                Injoin 會員分為三個級別，以每年年初(1月1日)作為年度結算日基準，並以結算日前一年內，會員在 Injoin
                 累積的實際消費總金額與有效交易次數作為分級標準。實際消費金額不含運費與取消訂單金額，若訂單套用優惠折抵，實際消費金額以折抵後金額計算。
               </div>
-              <div className="vip-part">在成為 Injon 會員後，一年內累積以下實際消費金額與有效交易次數，可獲得相應的會員身份一年：</div>
+              <div className="vip-part">在成為 Injoin 會員後，一年內累積以下實際消費金額與有效交易次數，可獲得相應的會員身份一年：</div>
               <div className="vip-part">黃金會員：累積消費總金額未達 NT$ 5,000。</div>
               <div className="vip-part">鉑金會員：累積消費總金額達 NT$ 5,000。</div>
               <div className="vip-part">鑽石會員：累積消費總金額達 NT$ 7,000。</div>
@@ -118,7 +118,7 @@ const UserVip = () => {
               <li>生日購物金使用期限以一個月為限</li>
               <li>生日優惠券無法和購物金、首購優惠等其他優惠一起使用。</li>
               <li>已成立訂單不得以未使用優惠券為由取消訂單。</li>
-              <li>Injon 保有修改、變更或暫停本活動之權利，如有未盡事宜，悉依 Injon 相關規定或解釋辦理，並得隨時補充公告之。</li>
+              <li>Injoin 保有修改、變更或暫停本活動之權利，如有未盡事宜，悉依 Injoin 相關規定或解釋辦理，並得隨時補充公告之。</li>
             </ul>
           </div>
         </seciton>

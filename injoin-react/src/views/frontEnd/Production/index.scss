@@ -110,6 +110,9 @@
       padding: 0 0 $space-3 0;
       .prd-card-image {
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         img {
           background: white;
           object-fit: contain;

@@ -232,9 +232,8 @@ const Step2 = (props) => {
               ]}
             >
               <Input
-                maxlength="3"
                 style={{
-                  width: '45%',
+                  width: '55%',
                 }}
               />
             </Form.Item>

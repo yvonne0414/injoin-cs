@@ -253,9 +253,9 @@ const Step1 = (props) => {
 
                   <div className="delivery-section mb-5 ms-md-5">
                     {/* <div className="shopping-cart-info-subtitle">運送方式</div> */}
-                    <Select labelInValue defaultValue={{ value: 1, label: '宅配' }} style={{ width: 250, size: 25 }} onChange={handleChange}>
-                      <Option value="1">宅配</Option>
-                      <Option value="2">郵局</Option>
+                    <Select labelInValue defaultValue={1} style={{ width: 250, size: 25 }} onChange={handleChange}>
+                      <Option value={1}>郵局</Option>
+                      <Option value={2}>宅配</Option>
                     </Select>
                   </div>
                   <div className="shopping-cart-summary-area">

@@ -37,17 +37,21 @@ function BartendingCard(props) {
           </div>
           <div className="Bartending-card-body card-body ">
             <div className="Bartending-card-title card-title">
-              <Link to={`/bartending/${data.id}`}>{data.name}</Link>
+              <Link to={`/bartending/${data.id}`} className="d-block w-100">
+                {data.name}
+              </Link>
             </div>
-            <div className="Bartending-card-subtitle card-footer">
-              {data.material.map((item) => {
-                return (
-                  <span className="me-2" key={item}>
-                    {item}
-                  </span>
-                );
-              })}
-            </div>
+            <Link to={`/bartending/${data.id}`}>
+              <div className="Bartending-card-subtitle card-footer">
+                {data.material.map((item) => {
+                  return (
+                    <span className="me-2" key={item}>
+                      {item}
+                    </span>
+                  );
+                })}
+              </div>
+            </Link>
           </div>
           <div className="heart-position">
             <Heart data={data} heartState={2} isLike={isLike} />

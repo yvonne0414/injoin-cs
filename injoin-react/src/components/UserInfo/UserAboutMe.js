@@ -101,7 +101,7 @@ const UserAboutMe = () => {
               </Form.Item>
               {/* 關於我 */}
               <Form.Item label={useraboutmeLabel} name="useraboutme">
-                <TextArea value={`${userAbout.userAboutme ? userAbout.userAboutme : ''}`} placeholder="介紹介紹自己吧～" onChange={handleChange} />
+                <TextArea name="userAboutme" value={`${userAbout.userAboutme ? userAbout.userAboutme : ''}`} placeholder="介紹介紹自己吧～" onChange={handleChange} />
                 <p className="d-none">{userAbout.userAboutme}</p>
               </Form.Item>
               {/* 送出按鈕 */}

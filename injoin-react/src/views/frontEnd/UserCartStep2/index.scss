@@ -55,6 +55,10 @@
       object-fit: contain;
       overflow: hidden;
       margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
       .faverite-product-img-1 {
         width: 100%;
       }

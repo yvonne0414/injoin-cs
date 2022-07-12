@@ -49,7 +49,7 @@ const UserInfoTask = () => {
               <img src={`${FE_IMAGE_URL}/membercenter/memberlevelplatinum.png`} alt="" />
             </div>
             <div className="levelcontent">
-              <div className="leveltitle">柏金會員</div>
+              <div className="leveltitle">鉑金會員</div>
               <div className="levelstate text-danger">進行中</div>
               <div className="levelcontextm">
                 達成任務可立即升級為鉑金會員，會員期限會延續至下一個年度
@@ -91,9 +91,9 @@ const UserInfoTask = () => {
               <img src={`${FE_IMAGE_URL}/membercenter/memberlevelplatinum.png`} alt="" />
             </div>
             <div className="levelcontent ">
-              <div className="leveltitle">柏金會員</div>
+              <div className="leveltitle">鉑金會員</div>
               <div className="levelstate">已達成</div>
-              <div className="levelcontextm">已升級為柏金會員</div>
+              <div className="levelcontextm">已升級為鉑金會員</div>
             </div>
           </div>
           <div className="userInfo-task">
@@ -129,9 +129,9 @@ const UserInfoTask = () => {
               <img src={`${FE_IMAGE_URL}/membercenter/memberlevelplatinum.png`} alt="" />
             </div>
             <div className="levelcontent">
-              <div className="leveltitle">柏金會員</div>
+              <div className="leveltitle">鉑金會員</div>
               <div className="levelstate">已達成</div>
-              <div className="levelcontextm">已升級為柏金會員</div>
+              <div className="levelcontextm">已升級為鉑金會員</div>
             </div>
           </div>
           <div className="userInfo-task active">

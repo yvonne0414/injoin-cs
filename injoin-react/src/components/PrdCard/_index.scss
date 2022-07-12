@@ -10,6 +10,13 @@
   padding: 0 0 $space-3 0;
   overflow: hidden;
   box-shadow: 5px 5px 1rem #111;
+  transition: 0.4s;
+  &:hover {
+    transform: scale(1.02);
+    a {
+      color: $color-font-gold;
+    }
+  }
   .prd-card-image {
     width: 100%;
     overflow: hidden;
